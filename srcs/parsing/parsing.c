@@ -6,16 +6,22 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/08/30 12:21:44 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/09/07 15:59:49 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
-void	parser(char **line)
+void	parser(char *line)
 {
-	while (line)
+	if (line)
 	{
-		
+		while (line)
+		{
+			//placer dans chaque maillon de la chaine
+			line++;
+		}
 	}
+	else 
+		exit(0);
 }

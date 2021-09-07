@@ -9,12 +9,13 @@ NAME = minishell
 ###################
 
 #compiler
-CC = gcc
+CC = clang 
 
 #compiler flags
 CFLAGS += -Wall
 CFLAGS += -Wextra
 CFLAGS += -Werror
+CFLAGS += -lreadline -L
 #CFLAGS += -fsanitize=address
 
 ###################
@@ -49,10 +50,13 @@ INCLUDES += includes/libft/libft.a
 ########################
 
 PATH_SRCS = srcs
+PATH_PARSE = srcs/parsing
 
 SRCS += minishell.c
+SRCS += parsing.c
 
 vpath %.c $(PATH_SRCS)
+vpath %.c $(PATH_PARSE)
 
 ########################
 # Objects compilations #
@@ -69,7 +73,7 @@ all: $(PATH_OBJS) $(NAME)
 
 $(NAME): $(OBJS) 
 		@make -C ./includes/libft
-		@$(CC) $(OBJS) $(INCLUDES) $(CFLAGS) -o $(NAME)
+		@$(CC) $(OBJS) $(INCLUDES) $(CFLAGS) 
 		@echo "$(GREEN)$@ is ready.\n\n$(NC)"
 
 $(OBJS): $(PATH_OBJS)%.o: %.c Makefile

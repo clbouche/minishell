@@ -36,10 +36,19 @@
 ** STRUCTURES
 */
 
+typedef	struct s_lst_shell
+{
+	void				*content;
+	struct s_lst_shell	*next;
+	int					token;
+}				t_lst_shell;
+
+
 
 /*
 ** FUNCTIONS
 */
 
+void	parser(char *line);
 
 #endif
