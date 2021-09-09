@@ -6,6 +6,25 @@
 */
 
 
+
+
+/*
+** ENUM
+*/
+
+typedef enum {
+	T_WORD,  /* un mot */
+	T_BAR,   /* | */
+	T_SEMI,  /* ; */
+	T_AMPER, /* & */
+	T_LT,    /* < */
+	T_GT,    /* > */
+	T_GTGT,  /* >> */
+	T_NL,    /* retour-chariot */
+	T_EOF    /* ctrl-d */
+} TOKEN;
+
+
 /*
 ** LIBRAIRIES
 */
@@ -36,19 +55,31 @@
 ** STRUCTURES
 */
 
-typedef	struct s_lst_shell
+/*typedef	struct s_lst_shell
 {
-	void				*content;
+	void				*cmd;
+	char				*arg;
+	char				*option;
 	struct s_lst_shell	*next;
 	int					token;
-}				t_lst_shell;
+	char				**path;
+	int					output;
+	int					input;
+}				t_lst_shell;*/
 
+
+typedef	struct	s_env
+{
+	char	*path;
+	char	**paths;
+}				t_env;
 
 
 /*
 ** FUNCTIONS
 */
 
-void	parser(char *line);
+int		init(t_env *env, t_list *list);
+void	parser(char *line, t_list *list);
 
 #endif

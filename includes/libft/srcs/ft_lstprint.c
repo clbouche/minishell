@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 16:11:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/06/28 13:49:44 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/09/08 15:57:17 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_lstprint(t_list *lst)
 		printf("la liste est vide\n");
 	while (lst != NULL)
 	{
-		printf("check element : %d\n", (int)lst->content);
+		printf("check element : %s\n", (char *)lst->content);
 		lst = lst->next;
 	}
 }

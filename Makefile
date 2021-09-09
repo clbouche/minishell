@@ -15,7 +15,7 @@ CC = clang
 CFLAGS += -Wall
 CFLAGS += -Wextra
 CFLAGS += -Werror
-CFLAGS += -lreadline -L
+CFLAGS += -lreadline
 #CFLAGS += -fsanitize=address
 
 ###################
@@ -54,6 +54,7 @@ PATH_PARSE = srcs/parsing
 
 SRCS += minishell.c
 SRCS += parsing.c
+SRCS += init.c 
 
 vpath %.c $(PATH_SRCS)
 vpath %.c $(PATH_PARSE)
@@ -73,7 +74,7 @@ all: $(PATH_OBJS) $(NAME)
 
 $(NAME): $(OBJS) 
 		@make -C ./includes/libft
-		@$(CC) $(OBJS) $(INCLUDES) $(CFLAGS) 
+		@$(CC) $(OBJS) $(INCLUDES) $(CFLAGS)
 		@echo "$(GREEN)$@ is ready.\n\n$(NC)"
 
 $(OBJS): $(PATH_OBJS)%.o: %.c Makefile
