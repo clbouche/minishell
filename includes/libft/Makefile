@@ -6,7 +6,7 @@
 #    By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 13:17:26 by clbouche          #+#    #+#              #
-#    Updated: 2021/08/25 16:54:39 by clbouche         ###   ########.fr        #
+#    Updated: 2021/09/09 11:48:43 by clbouche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -137,7 +137,7 @@ SRCS += print_dlist.c
 SRCS += ft_dlstdelone.c
 SRCS += ft_dlstdelone_back.c
 SRCS += ft_dlstdelone_front.c
-#SRCS += ft_dlstclear.c
+SRCS += ft_dlstclear.c
 	   
 vpath %.c $(PATH_SRCS)
 

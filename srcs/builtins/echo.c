@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dlstlast.c                                      :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/04 13:04:20 by claclou           #+#    #+#             */
-/*   Updated: 2021/09/09 11:17:23 by clbouche         ###   ########.fr       */
+/*   Created: 2021/09/09 12:18:32 by clbouche          #+#    #+#             */
+/*   Updated: 2021/09/09 12:24:51 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "../../includes/minishell.h"
 
-char	*ft_dlstlast(t_dlist *lst)
+void	echo()
 {
-	if (lst == NULL)
-		return (0);
-	return (lst->end->value);
+	//echo tout seul fait un saut a la ligne
+	//echo sans arg -n fait juste un retour de prompt
+	//pas de nombre d'args max (je crois?)
 }

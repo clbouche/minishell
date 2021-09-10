@@ -6,13 +6,13 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 13:06:58 by claclou           #+#    #+#             */
-/*   Updated: 2021/06/29 15:13:16 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/09/09 11:09:46 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-t_dlist	*ft_dlstadd_front(t_dlist *lst, int content, int index)
+t_dlist	*ft_dlstadd_front(t_dlist *lst, char *content, int index)
 {
 	t_node	 *new_node;
 

@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 13:07:33 by claclou           #+#    #+#             */
-/*   Updated: 2021/06/30 10:11:18 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/09/09 11:17:15 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	print_dlist(t_dlist *lst)
 		ft_error(ERR_EMPTY_DLIST);
 	while (temp != NULL)
 	{
-		printf("[%d]\n", temp->value);
+		printf("[%s]\n", temp->value);
 		temp = temp->next;
 	}
 }

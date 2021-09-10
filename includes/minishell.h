@@ -79,7 +79,7 @@ typedef	struct	s_env
 ** FUNCTIONS
 */
 
-int		init(t_env *env, t_list *list);
-void	parser(char *line, t_list *list);
+int		init(t_env *env, t_dlist *list);
+void	parser(char *line, t_dlist *list);
 
 #endif
