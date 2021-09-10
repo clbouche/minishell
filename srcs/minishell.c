@@ -6,27 +6,29 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/10 09:41:01 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/09/10 11:06:40 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	display_prompt()
+char	*display_prompt()
 {
 	char *prompt;
-	size_t	len;
-	size_t	count_slash;
-	
-	prompt = "🍄 MINISHELL🍄 :";
-	ft_putstr_fd("\033[31;1m", 1);
-	ft_putstr_fd(prompt, 1);
-	prompt = getcwd(NULL, 0);
-	len = ft_strlen(prompt);
-	ft_putstr_fd("\e[1;32m", 1);
-	ft_putstr_fd(prompt, 1);
-	ft_putstr_fd("$\e[0m ", 1);
-	free(prompt);
+	char *add;
+
+	prompt = "\001\033[31;1m\002 ";
+	add = "🍄 MINISHELL🍄 : ";
+	prompt = ft_strjoin(prompt, add);
+	add = "\001\e[1;32m\002";
+	prompt = ft_strjoin(prompt, add);
+	add = getcwd(NULL, 0);
+	prompt = ft_strjoin(prompt, add);
+	add = "$  ";
+	prompt = ft_strjoin(prompt, add);
+	char *reset_cmd = tgetstr("me", NULL);
+	tputs(reset_cmd, 1, putchar);
+	return (prompt);
 }
 
 int main(int argc, char **argv, char **envp)
@@ -41,7 +43,7 @@ int main(int argc, char **argv, char **envp)
 		init(env, list);
 		while (1) //changer pour dire tant que pas EOF ou ctrl+D ou exit ou ? 
 		{
-			display_prompt();
+			prompt = display_prompt();
 			line = readline(prompt);
 			parser(line, list);
 		}

@@ -16,6 +16,7 @@ CFLAGS += -Wall
 CFLAGS += -Wextra
 CFLAGS += -Werror
 CFLAGS += -lreadline
+CFLAGS +=  -lform -lncurses
 #CFLAGS += -fsanitize=address
 
 ###################
