@@ -12,20 +12,8 @@
 
 #include "../../includes/minishell.h"
 
-t_dlist	*init_list(t_dlist *list)
-{
-	list = malloc(sizeof(t_dlist));
-	if (!list)
-		exit(0);
-	list->begin = NULL;
-	list->end = NULL;
-	list->len = 0;
-	return (list);
-}
-
 int	init(t_env *env, t_dlist *list)
 {
-	list = init_list(list);
 	env = malloc(sizeof(t_env *));
 	env->path = getenv("PATH");
 	env->paths = ft_split(env->path, ':');
