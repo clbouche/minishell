@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 12:25:32 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/09 12:25:53 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/09/13 16:34:29 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	cd()
+void	pwd()
 {
 
 }

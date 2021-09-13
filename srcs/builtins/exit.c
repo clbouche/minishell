@@ -3,18 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 10:32:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/09 10:36:35 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/09/13 16:35:54 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+/*
+** ends a process. Took 2 args max and the second one it's numeric. 
+** It's not allowed to have option. 
+*/
+
 void	exit()
 {
-	//prends max 2 args
-	//2e arg oblige numeric
-	//pas options	
+	
 }
