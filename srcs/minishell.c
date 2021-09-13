@@ -6,7 +6,7 @@
 /*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/13 18:09:54 by claclou          ###   ########.fr       */
+/*   Updated: 2021/09/13 18:55:02 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@ char	*display_prompt()
 	char *prompt;
 	char *add;
 
-	add = "🍄 MINISHELL🍄 : ";
-	prompt = "\001\033[31;1m\002 ";
-	prompt = ft_strjoin(add, prompt);
-	add = "\001\e[1;32m\002";
-	prompt = ft_strjoin(prompt, add);
+
+	prompt = "🍄 MINISHELL🍄 : ";
+	prompt = ft_strjoin(RED, prompt);
+	prompt = ft_strjoin(prompt, GREEN);
 	add = getcwd(NULL, 0);
 	prompt = ft_strjoin(prompt, add);
 	add = "$  ";
 	prompt = ft_strjoin(prompt, add);
-	char *reset_cmd = tgetstr("me", NULL);
-	tputs(reset_cmd, 1, putchar);
+	//prompt = ft_strjoin(prompt, RESET);
+	// char *reset_cmd = tgetstr("me", NULL);
+	// tputs(reset_cmd, 1, putchar);
 	return (prompt);
 }
 
@@ -38,6 +38,7 @@ int main(int argc, char **argv, char **envp)
 	t_env	*env;
 	t_dlist *list;
 
+	prompt = getcwd(NULL, 0);
 	if (argc == 1)
 	{
 		init(env, list);

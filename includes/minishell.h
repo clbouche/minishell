@@ -5,8 +5,9 @@
 ** DEFINE
 */
 
-
-
+#define RED "\001\033[31;1m\002"
+#define GREEN "\001\e[1;32m\002"
+#define RESET "\001\e[0m\002"
 
 /*
 ** ENUM
