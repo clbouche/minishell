@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/10 11:09:25 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/09/13 18:06:53 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@ char	*display_prompt()
 	char *prompt;
 	char *add;
 
-	prompt = "\001\033[31;1m\002 ";
 	add = "🍄 MINISHELL🍄 : ";
-	prompt = ft_strjoin(prompt, add);
+	prompt = "\001\033[31;1m\002 ";
+	prompt = ft_strjoin(add, prompt);
 	add = "\001\e[1;32m\002";
 	prompt = ft_strjoin(prompt, add);
 	add = getcwd(NULL, 0);
 	prompt = ft_strjoin(prompt, add);
 	add = "$  ";
 	prompt = ft_strjoin(prompt, add);
-	char *reset_cmd = tgetstr("me", NULL);
-	tputs(reset_cmd, 1, putchar);
+	//char *reset_cmd = tgetstr("me", NULL);
+	//tputs(reset_cmd, 1, putchar);
 	return (prompt);
 }
 
