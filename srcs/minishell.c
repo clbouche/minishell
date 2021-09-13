@@ -6,7 +6,7 @@
 /*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/13 18:06:53 by claclou          ###   ########.fr       */
+/*   Updated: 2021/09/13 18:09:54 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ char	*display_prompt()
 	prompt = ft_strjoin(prompt, add);
 	add = "$  ";
 	prompt = ft_strjoin(prompt, add);
-	//char *reset_cmd = tgetstr("me", NULL);
-	//tputs(reset_cmd, 1, putchar);
+	char *reset_cmd = tgetstr("me", NULL);
+	tputs(reset_cmd, 1, putchar);
 	return (prompt);
 }
 
