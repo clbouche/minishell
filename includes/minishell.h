@@ -56,31 +56,33 @@ typedef enum {
 ** STRUCTURES
 */
 
-/*typedef	struct s_lst_shell
+//typedef	struct	s_list
+//{
+//		char *data;
+//		struct s_env *next;
+//}				t_list;
+
+typedef	struct s_lst_shell
 {
 	void				*cmd;
 	char				*arg;
 	char				*option;
 	struct s_lst_shell	*next;
+	t_list				*env;
 	int					token;
 	char				**path;
 	int					output;
 	int					input;
-}				t_lst_shell;*/
+}				t_lst_shell;
 
-
-typedef	struct	s_env
-{
-	char	*path;
-	char	**paths;
-}				t_env;
 
 
 /*
 ** FUNCTIONS
 */
 
-int		init(t_env *env, t_dlist *list);
+int		init(char **envp, t_list *env, t_dlist *list);
 void	parser(char *line, t_dlist *list);
+void	get_env(char **envp, t_list *env);
 
 #endif
