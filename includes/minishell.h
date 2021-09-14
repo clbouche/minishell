@@ -84,5 +84,12 @@ typedef	struct s_lst_shell
 int		init(char **envp, t_list *env, t_dlist *list);
 void	parser(char *line, t_dlist *list);
 void	get_env(char **envp, t_list *env);
+void	print_env(t_list *env);
+
+/*
+** BUILT-IN
+*/
+
+void	ft_env(t_list *env);
 
 #endif
