@@ -15,7 +15,7 @@
 
 typedef enum {
 	T_WORD,  /* un mot */
-	T_BAR,   /* | */
+	T_PIPE,   /* | */
 	T_SEMI,  /* ; */
 	T_AMPER, /* & */
 	T_LT,    /* < */
@@ -56,6 +56,7 @@ typedef enum {
 ** STRUCTURES
 */
 
+
 /*typedef	struct s_lst_shell
 {
 	void				*cmd;
@@ -80,7 +81,7 @@ typedef	struct	s_env
 ** FUNCTIONS
 */
 
-int		init(t_env *env, t_dlist *list);
-void	parser(char *line, t_dlist *list);
+int		init(t_env *env);
+void	parser(char *line);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/13 18:26:31 by claclou          ###   ########.fr       */
+/*   Updated: 2021/09/14 11:00:34 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ char	**put_token(char **line)
 	int i;
 
 	i = -1;
-	/*while (line[i++] != NULL)
+	while (line[i++] != NULL)
 	{
 		printf("line[%d] = : %s\n", i, line[i]);
-	}*/
+	}
 }
 
-void	parser(char *line, t_dlist *list)
+void	parser(char *line)
 {
 	char **split_line;
 
