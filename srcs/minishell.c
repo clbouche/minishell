@@ -6,7 +6,7 @@
 /*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/14 12:23:34 by claclou          ###   ########.fr       */
+/*   Updated: 2021/09/14 15:35:38 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,16 @@ int main(int argc, char **argv, char **envp)
 	char *line;
 	char *prompt;
 	t_env	*env;
+	t_dlist *list;
 
-	prompt = getcwd(NULL, 0);
 	if (argc == 1)
 	{
-		init(env);
+		init(env, list);
 		while (1) //changer pour dire tant que pas EOF ou ctrl+D ou exit ou ? 
 		{
 			//prompt = display_prompt();
 			line = readline("🍄 MINISHELL🍄 : ");
-			parser(line);
+			parser(line, list);
 		}
 	}
 	else

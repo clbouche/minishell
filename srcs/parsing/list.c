@@ -1,40 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/14 15:57:14 by claclou          ###   ########.fr       */
+/*   Created: 2021/09/14 15:37:43 by claclou           #+#    #+#             */
+/*   Updated: 2021/09/14 15:53:00 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-/*PRINTF A SUPPR*/
-
-void	put_token(char **line, t_dlist *list)
+t_dlist	*ft_add_node(t_dlist *lst, char *content)
 {
-	int i;
-	
+	t_node	*new_node;
 
-	i = 0;
-	while (line[i] != NULL)
+	new_node = (t_node *)malloc(sizeof(t_node));
+	if (new_node == NULL || lst == NULL)
+		ft_error(ERR_ALLOC);
+	new_node->value = content;
+	new_node->next = NULL;
+	new_node->prev = NULL;
+	if (lst->len == 0)
 	{
-		ft_add_node(list, line[i]);
+		lst->begin = new_node;
+		lst->end = new_node;
 	}
-}
-
-void	parser(char *line, t_dlist *list)
-{
-	char **split_line;
-
-	if (line)
+	else
 	{
-		split_line = ft_split(line, ' ');
-		put_token(split_line, list);
+		lst->end->next = new_node;
+		new_node->prev = lst->end;
+		lst->end = new_node;
 	}
-	else 
-		exit(0);
+	lst->len += 1;
+	return (lst);
 }

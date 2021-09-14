@@ -15,6 +15,7 @@
 
 typedef enum {
 	T_WORD,  /* un mot */
+	T_OPT,   /* une option */
 	T_PIPE,   /* | */
 	T_SEMI,  /* ; */
 	T_AMPER, /* & */
@@ -56,6 +57,20 @@ typedef enum {
 ** STRUCTURES
 */
 
+typedef struct s_node
+{
+	struct s_node	*next;
+	struct s_node	*prev;
+	char			*value;
+	TOKEN			type;
+}					t_node;
+
+typedef struct s_dlist
+{
+	struct s_node	*begin;
+	struct s_node	*end;
+	int				len;
+}					t_dlist;
 
 /*typedef	struct s_lst_shell
 {
@@ -81,7 +96,8 @@ typedef	struct	s_env
 ** FUNCTIONS
 */
 
-int		init(t_env *env);
-void	parser(char *line);
+int		init(t_env *env, t_dlist *list);
+void	parser(char *line, t_dlist *list);
+t_dlist	*ft_add_node(t_dlist *lst, char *content);
 
 #endif
