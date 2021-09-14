@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/13 11:23:57 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/09/13 18:26:31 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ char	**put_token(char **line)
 	int i;
 
 	i = -1;
-	while (line[i++] != NULL)
+	/*while (line[i++] != NULL)
 	{
 		printf("line[%d] = : %s\n", i, line[i]);
-	}
+	}*/
 }
 
 void	parser(char *line, t_dlist *list)

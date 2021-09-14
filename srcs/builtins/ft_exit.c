@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd.c                                               :+:      :+:    :+:   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/09 12:25:00 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/13 16:31:24 by claclou          ###   ########.fr       */
+/*   Created: 2021/09/09 10:32:52 by clbouche          #+#    #+#             */
+/*   Updated: 2021/09/14 09:47:50 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 /*
-** change the working directory
-** -> utilisation de chdir
+** ends a process. Took 2 args max and the second one it's numeric. 
+** It's not allowed to have option. 
 */
 
-void	cd()
+void	ft_exit()
 {
 	
 }

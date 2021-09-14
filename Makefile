@@ -52,13 +52,28 @@ INCLUDES += includes/libft/libft.a
 
 PATH_SRCS = srcs
 PATH_PARSE = srcs/parsing
+PATH_EXEC = srcs/execution
+PATH_BUILT = srcs/builtins 
 
 SRCS += minishell.c
+
 SRCS += parsing.c
 SRCS += init.c 
 
+SRCS += execution.c
+
+SRCS += ft_cd.c
+SRCS += ft_echo.c 
+SRCS += ft_env.c 
+SRCS += ft_exit.c 
+SRCS += ft_export.c 
+SRCS += ft_pwd.c
+SRCS += ft_unset.c 
+
 vpath %.c $(PATH_SRCS)
 vpath %.c $(PATH_PARSE)
+vpath %.c $(PATH_EXEC)
+vpath %.c $(PATH_BUILT)
 
 ########################
 # Objects compilations #
@@ -75,12 +90,12 @@ all: $(PATH_OBJS) $(NAME)
 
 $(NAME): $(OBJS) 
 		@make -C ./includes/libft
-		@$(CC) $(OBJS) $(INCLUDES) $(CFLAGS)
+		@$(CC) $(OBJS) $(INCLUDES) $(CFLAGS) -o $(NAME)
 		@echo "$(GREEN)$@ is ready.\n\n$(NC)"
 
 $(OBJS): $(PATH_OBJS)%.o: %.c Makefile
 		@$(CC) -c $< -o $@ 
-		@echo "$(ONELINE)$(CYAN)Compiling $<\n$(NC)"
+		@echo "$(ONELINE)$(CYAN)Compiling $<$(NC)"
 
 $(PATH_OBJS):
 	@mkdir $@
@@ -89,13 +104,11 @@ clean:
 	@$(RM) $(OBJS)
 	@$(RM) -R $(PATH_OBJS)
 	@make clean -C ./includes/libft
-	@echo "$(PURPLE)Minishell : clean $<"
 
 fclean: clean
 	@$(RM) $(NAME)
 	@$(RM) includes/libft/libft.a
 	@make fclean -C ./includes/libft
-	@echo "$(PURPLE)Minishell : fclean"
 
 re: fclean all
 

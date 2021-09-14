@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+         #
+#    By: claclou <claclou@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 13:17:26 by clbouche          #+#    #+#              #
-#    Updated: 2021/09/09 11:48:43 by clbouche         ###   ########.fr        #
+#    Updated: 2021/09/14 09:45:20 by claclou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -168,11 +168,9 @@ $(PATH_OBJS):
 clean:
 	@$(RM) $(OBJS)
 	@$(RM) -R $(PATH_OBJS)
-	@echo "$(RED)Libft : clean"
 
 fclean: clean 
 	@$(RM) $(NAME)
-	@echo "$(RED)Libft : fclean"
 
 re: fclean all
 
