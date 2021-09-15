@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldes-cou@ <ldes-cou@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/09 13:38:06 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/14 09:47:52 by claclou          ###   ########.fr       */
+/*   Created: 2021/09/14 16:38:59 by ldes-cou@         #+#    #+#             */
+/*   Updated: 2021/09/14 16:40:43 by ldes-cou@        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include "../../includes/minishell.h"
 /*
 **run a program in a modified environment
 */
 
-void	ft_env()
+void	ft_env(t_list *env)
 {
-
+	print_env(env);
 }

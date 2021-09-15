@@ -6,7 +6,7 @@
 #    By: claclou <claclou@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 13:17:26 by clbouche          #+#    #+#              #
-#    Updated: 2021/09/14 09:45:20 by claclou          ###   ########.fr        #
+#    Updated: 2021/09/14 15:14:20 by ldes-cou@        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -124,7 +124,7 @@ SRCS += ft_lstadd_front.c
 SRCS += ft_lstsize.c
 SRCS += ft_lstlast.c
 SRCS += ft_lstprint.c
-#SRCS += ft_lstadd_back.c
+SRCS += ft_lstadd_back.c
 
 # MANIP DOUBLE LINKED LIST #
 SRCS += ft_dlstnew.c

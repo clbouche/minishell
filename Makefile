@@ -68,7 +68,8 @@ SRCS += ft_env.c
 SRCS += ft_exit.c 
 SRCS += ft_export.c 
 SRCS += ft_pwd.c
-SRCS += ft_unset.c 
+SRCS += ft_unset.c
+SRCS += set_env.c
 
 vpath %.c $(PATH_SRCS)
 vpath %.c $(PATH_PARSE)
