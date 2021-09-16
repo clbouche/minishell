@@ -91,5 +91,13 @@ void	print_env(t_list *env);
 */
 
 void	ft_env(t_list *env);
+void	ft_export(t_list *env);
+void	ft_export_var(t_list *env, char *name, char *variable);
+void	ft_unset();
+void	ft_unset_arg(t_list *env, char *name);
 
+/*
+** FREE
+*/
+void	free_stack(t_node *top);
 #endif

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: claclou <claclou@student.42.fr>            +#+  +:+       +#+         #
+#    By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 13:17:26 by clbouche          #+#    #+#              #
-#    Updated: 2021/09/14 15:14:20 by ldes-cou@        ###   ########.fr        #
+#    Updated: 2021/09/16 15:00:39 by ldes-cou@st      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -128,6 +128,7 @@ SRCS += ft_lstadd_back.c
 
 # MANIP DOUBLE LINKED LIST #
 SRCS += ft_dlstnew.c
+SRCS += ft_lstdelone.c
 SRCS += ft_dlstsize.c
 SRCS += ft_dlstfirst.c
 SRCS += ft_dlstlast.c

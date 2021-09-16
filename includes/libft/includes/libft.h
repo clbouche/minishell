@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 11:56:59 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/09 11:17:53 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/09/16 14:59:51 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ char	*ft_savetxt(char *s);
 
 /* MANIP LINKED LIST*/
 t_list	*ft_lstnew(void *content);
+
 void	ft_lstadd_front(t_list **alst, t_list *new);
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
@@ -119,6 +120,7 @@ void	ft_lstadd_back(t_list **alst, t_list *new);
 
 /* MANIP DOUBLE LINKED LIST*/
 t_dlist	*ft_dlstnew(char *content);
+void	ft_lstdelone(t_list *lst, void (*del)(void*));
 int		ft_dlstsize(t_dlist *lst);
 char	*ft_dlstfirst(t_dlist *lst);
 char	*ft_dlstlast(t_dlist *lst);
