@@ -6,7 +6,7 @@
 /*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/16 12:54:55 by claclou          ###   ########.fr       */
+/*   Updated: 2021/09/16 15:44:34 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,25 @@
 
 unsigned int	define_token(t_node *node)
 {
-	int i;
+	unsigned int i;
 	unsigned int tok_type;
 
-	i = 0;
+	i = 1;
+	tok_type = g_get_tok_type[g_get_chr_class[node->value[0]]];
 	while (node->value[i])
 	{
-		tok_type = g_get_tok_type[g_get_chr_class[node->value[i]]];
+		node->type = g_token_chr_rules[tok_type][g_get_chr_class[i]];
 		i++;
+		//tester plusieurs combinaisons pour voir si ça fonctionne
+		//definir plus de règles dans le .h
 	}
 	printf("define token is : %u\n", tok_type);
 	return (tok_type);
 }
+
+
+
+
 
 t_dlist	*put_token(t_dlist *list)
 {

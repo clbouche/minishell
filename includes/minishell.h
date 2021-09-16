@@ -29,6 +29,7 @@ typedef enum		e_token
 	T_BACKSLASH, 
 	T_NL, 
 	T_EOF,
+	T_MAX
 }					t_token;
 
 typedef enum		e_chr_class {
@@ -36,7 +37,6 @@ typedef enum		e_chr_class {
 	CHR_DIGIT,
 	CHR_SEMI,
 	CHR_DASH,
-	CHR_DOL,
 	CHR_QUOTE, 
 	CHR_NL, 
 	CHR_PIPE, 
@@ -57,10 +57,28 @@ static t_chr_class		g_get_chr_class[255] =
 	['A'...'Z'] = CHR_ALPHA,
 	['a'...'z'] = CHR_ALPHA,
 	['-'] = CHR_DASH,
+	['"'] = CHR_QUOTE,
 	//[' '] = CHR_SPACE,
 	//['$'] = CHR_DOL,
 	//['0'...'9'] = CHR_DIGIT,
 	//[';'] = CHR_SEMI,
+};
+
+static int				g_token_chr_rules[T_MAX][CHR_MAX] =
+{
+	[T_CMD] = {
+		[CHR_ALPHA] = 1,
+	},
+	[T_OPT] = {
+		[CHR_DASH] = 1,
+		[CHR_ALPHA] = 1,
+		[CHR_DIGIT] = 1,
+		[CHR_QUOTE] = 0,
+	},
+	[T_ARG] = {
+		[CHR_ALPHA] = 1,
+		[CHR_QUOTE] = 1,
+	},
 };
 
 
