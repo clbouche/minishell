@@ -6,7 +6,7 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:31 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/16 15:59:09 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/09/16 16:53:10 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,16 @@ void	ft_unset_arg(t_list *env, char *name)
     //ft_lstdelone(tmp, );
 }
 
-void ft_unset()
+void ft_unset(t_list *env)
 {
     free_stack(env);
 }
 
 
-void	free_stack(t_node *top)
+void	free_stack(t_list *top)
 {
-	t_node	*head;
-	t_node	*tofree;
+	t_list	*head;
+	t_list	*tofree;
 
 	if (top)
 	{
@@ -43,6 +43,7 @@ void	free_stack(t_node *top)
 		while (head->next != NULL)
 		{
 			tofree = head;
+            printf("%p\n", tofree);
 			head = head->next;
 			free(tofree);
 			tofree = NULL;

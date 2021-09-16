@@ -6,7 +6,7 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 12:09:16 by ldes-cou@         #+#    #+#             */
-/*   Updated: 2021/09/16 14:42:41 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/09/16 16:48:22 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void get_env(char **envp, t_list *env)
 	ft_env(env);
 	puts(RED"ft_export_var"RESET); ft_export_var(env, "PAPOU", "vour");
 	puts(RED"ft_export"RESET); ft_export(env);
+	ft_unset(env);
+	ft_env(env);
 	
 }
 //===> don't forget to free

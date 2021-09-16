@@ -6,7 +6,7 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:38:59 by ldes-cou@         #+#    #+#             */
-/*   Updated: 2021/09/16 13:40:43 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/09/16 16:54:02 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,15 @@
 */
 #include "../../includes/minishell.h"
 
-void	ft_env(t_list *env)
+int	ft_env(t_list *env)
 {
 	t_list *tmp;
 	
+	// if (env == NULL)
+	// {
+	// 	perror("env");
+	// 	return (1);
+	// }
 	tmp = env;
 	while(env != NULL)
 	{
@@ -27,4 +32,5 @@ void	ft_env(t_list *env)
 		env = env->next;
 	}
 	env = tmp;
+	return (0);
 }
