@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   set_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@ <ldes-cou@student42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 12:09:16 by ldes-cou@         #+#    #+#             */
-/*   Updated: 2021/09/14 16:45:11 by ldes-cou@        ###   ########.fr       */
+/*   Updated: 2021/09/17 12:03:04 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../../includes/minishell.h"
 
 void get_env(char **envp, t_list *env)
@@ -37,7 +38,7 @@ void print_env(t_list *env)
 	tmp = env;
 	while(env != NULL)
 	{
-		printf("%s\n", env->content);
+		printf("%s\n", (char *)env->content);
 		env = env->next;
 	}
 	env = tmp;
