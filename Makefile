@@ -59,6 +59,7 @@ SRCS += minishell.c
 
 SRCS += parsing.c
 SRCS += init.c 
+SRCS += list.c
 
 SRCS += execution.c
 
