@@ -23,6 +23,7 @@ char	**put_token(char **line)
 	{
 		printf("line[%d] = : %s\n", i, line[i]);
 	}*/
+	return(line);
 }
 
 void	parser(char *line, t_dlist *list)

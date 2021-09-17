@@ -20,11 +20,11 @@ int	ft_env(t_list *env)
 {
 	t_list *tmp;
 	
-	// if (env == NULL)
-	// {
-	// 	perror("env");
-	// 	return (1);
-	// }
+	if (env == NULL)
+	{
+		perror("env");
+		return (1);
+	}
 	tmp = env;
 	while(env != NULL)
 	{

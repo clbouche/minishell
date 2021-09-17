@@ -34,8 +34,8 @@ void get_env(char **envp, t_list *env)
 	ft_env(env);
 	puts(RED"ft_export_var"RESET); ft_export_var(env, "PAPOU", "vour");
 	puts(RED"ft_export"RESET); ft_export(env);
-	ft_unset(env);
-	ft_env(env);
+	//ft_unset(env);
+	//ft_env(env);
 	
 }
 //===> don't forget to free
