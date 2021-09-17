@@ -38,7 +38,8 @@ typedef enum		e_chr_class {
 	CHR_SEMI,
 	CHR_DASH,
 	CHR_QUOTE, 
-	CHR_NL, 
+	CHR_NL,
+	CHR_DOL,
 	CHR_PIPE, 
 	CHR_REDIR_L, 
 	CHR_REDIR_R, 
@@ -61,9 +62,9 @@ static t_chr_class		g_get_chr_class[255] =
 	[' '] = CHR_SPACE,
 	['$'] = CHR_DOL,
 	['0'...'9'] = CHR_DIGIT,
-	[''] = CHR_SEMI,
 };
-//j'ai enleve le ; ligne 64 qui faisait des trucs chelous
+//[''] = CHR_SEMI,
+//j'ai enleve le ; ligne 65 qui faisait des trucs chelous
 static int				g_token_chr_rules[T_MAX][CHR_MAX] =
 {
 	[T_CMD] = {
