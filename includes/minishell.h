@@ -164,6 +164,7 @@ void	print_env(t_list *env);
 ** BUILT-IN
 */
 
+<<<<<<< HEAD
 void		ft_env(t_list *env);
 void		init(t_env *env);
 void		parser(char *line);
@@ -172,5 +173,16 @@ void		print_dlist(t_dlist *lst);
 void		ft_delete_node(t_dlist *list);
 t_dlist		*init_list(t_dlist *list);
 
+=======
+int	ft_env(t_list *env);
+void	ft_export(t_list *env);
+void	ft_export_var(t_list *env, char *name, char *variable);
+void	ft_unset(t_list *env);
+void	ft_unset_arg(t_list *env, char *name);
+>>>>>>> lulu
 
+/*
+** FREE
+*/
+void	free_stack(t_list *top);
 #endif

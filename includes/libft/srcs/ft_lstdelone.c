@@ -1,23 +1,22 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_echo.c                                          :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/09 12:18:32 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/16 13:31:03 by ldes-cou@st      ###   ########.fr       */
+/*   Created: 2020/12/03 10:52:04 by ldes-cou          #+#    #+#             */
+/*   Updated: 2020/12/03 10:52:07 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "libft.h"
 
-/* Echo function write (illimiteds) arguments
-** to the standard output with a new line 
-** unless the -n option is set. 
-*/
-
-void	ft_echo(char *str)
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-    //ft_putstr(str);
+	if (!lst || !del)
+		return ;
+	(*del)(lst->content);
+	free(lst);
 }

@@ -3,10 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+<<<<<<< HEAD
 /*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 11:56:59 by clbouche          #+#    #+#             */
 /*   Updated: 2021/09/14 15:55:05 by claclou          ###   ########.fr       */
+=======
+/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/07 11:56:59 by clbouche          #+#    #+#             */
+/*   Updated: 2021/09/16 14:59:51 by ldes-cou@st      ###   ########.fr       */
+>>>>>>> lulu
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +118,7 @@ char	*ft_savetxt(char *s);
 
 /* MANIP LINKED LIST*/
 t_list	*ft_lstnew(void *content);
+
 void	ft_lstadd_front(t_list **alst, t_list *new);
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
@@ -118,6 +126,7 @@ void	ft_lstprint(t_list *lst);
 void	ft_lstadd_back(t_list **alst, t_list *new);
 
 /* MANIP DOUBLE LINKED LIST*/
+<<<<<<< HEAD
 //t_dlist	*ft_dlstnew(char *content);
 //int		ft_dlstsize(t_dlist *lst);
 //char	*ft_dlstfirst(t_dlist *lst);
@@ -129,5 +138,19 @@ void	ft_lstadd_back(t_list **alst, t_list *new);
 //void	ft_dlstdelone_back(t_dlist *lst);
 //void	ft_dlstdelone_front(t_dlist *lst);
 //t_dlist	*ft_dlstclear(t_dlist *lst);
+=======
+t_dlist	*ft_dlstnew(char *content);
+void	ft_lstdelone(t_list *lst, void (*del)(void*));
+int		ft_dlstsize(t_dlist *lst);
+char	*ft_dlstfirst(t_dlist *lst);
+char	*ft_dlstlast(t_dlist *lst);
+t_dlist	*ft_dlstadd_back(t_dlist *lst, char *content, int index);
+t_dlist	*ft_dlstadd_front(t_dlist *lst, char *content, int index);
+void	print_dlist(t_dlist *lst);
+void	ft_dlstdelone(t_node *node);
+void	ft_dlstdelone_back(t_dlist *lst);
+void	ft_dlstdelone_front(t_dlist *lst);
+t_dlist	*ft_dlstclear(t_dlist *lst);
+>>>>>>> lulu
 
 #endif

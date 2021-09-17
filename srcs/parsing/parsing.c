@@ -32,8 +32,6 @@ unsigned int	define_token(t_node *node)
 
 
 
-
-
 t_dlist	*put_token(t_dlist *list)
 {
 	t_node		*temp;
