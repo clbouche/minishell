@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:54 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/16 11:00:44 by claclou          ###   ########.fr       */
+/*   Updated: 2021/09/17 12:00:22 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	init(t_env *env)
+void	init_path(t_env *path)
 {
-	env = malloc(sizeof(t_env *));
-	env->path = getenv("PATH");
-	env->paths = ft_split(env->path, ':');
+	path = malloc(sizeof(t_env *));
+	path->path = getenv("PATH");
+	path->paths = ft_split(path->path, ':');
 }
 
 void init_env(char **envp, t_list *env)
