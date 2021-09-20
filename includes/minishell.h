@@ -13,24 +13,6 @@
 ** ENUM
 */
 
-typedef enum		e_token
-{
-	T_CMD, 
-	T_ARG, 
-	T_OPT, 
-	T_WORD,
-	T_SIMPLE_REDIR_LEFT, 
-	T_SIMPLE_REDIR_RIGHT, 
-	T_DOUBLE_REDIR_LEFT,
-	T_DOUBLE_REDIR_RIGHT, 
-	T_PIPE,
-	T_SINGLE_QUOTE, 
-	T_DOUBLE_QUOTE, 
-	T_BACKSLASH, 
-	T_NL, 
-	T_EOF,
-	T_MAX
-}					t_token;
 
 typedef enum		e_chr_class {
 	CHR_ALPHA,
@@ -76,21 +58,6 @@ typedef enum		e_chr_class {
 /*
 ** STRUCTURES
 */
-
-typedef struct s_node
-{
-	struct s_node	*next;
-	struct s_node	*prev;
-	char			*value;
-	t_token			type;
-}					t_node;
-
-typedef struct s_dlist
-{
-	struct s_node	*begin;
-	struct s_node	*end;
-	int				len;
-}					t_dlist;
 
 typedef	struct	s_env
 {

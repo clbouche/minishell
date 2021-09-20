@@ -6,7 +6,7 @@
 /*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:11:54 by claclou           #+#    #+#             */
-/*   Updated: 2021/09/17 11:54:25 by claclou          ###   ########.fr       */
+/*   Updated: 2021/09/20 11:28:43 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ t_dlist	*put_token(t_dlist *list)
 	while (temp != NULL)
 	{
 		temp->type = define_token(temp);
-		printf("put token is : %u\n", temp->type);
 		temp = temp->next;
 	}
 	return (list);
