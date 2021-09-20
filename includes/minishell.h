@@ -8,6 +8,8 @@
 #define RED "\001\033[31;1m\002"
 #define GREEN "\001\e[1;32m\002"
 #define RESET "\001\e[0m\002"
+#define ERROR 1
+#define SUCCESS 0
 
 /*
 ** ENUM
@@ -56,11 +58,12 @@ typedef enum {
 ** STRUCTURES
 */
 
-//typedef	struct	s_list
+//typedef	struct	s_env
 //{
-//		char *data;
+//		char *name;
+//		char *var;
 //		struct s_env *next;
-//}				t_list;
+//}				t_env;
 
 typedef	struct s_lst_shell
 {
@@ -81,16 +84,26 @@ typedef	struct s_lst_shell
 ** FUNCTIONS
 */
 
-int		init(char **envp, t_list *env, t_dlist *list);
+int		init(char **envp, t_dlist *list);
 void	parser(char *line, t_dlist *list);
-void	get_env(char **envp, t_list *env);
-void	print_env(t_list *env);
+
+/*
+** ENVIRONNEMENT
+*/
+
+void	get_env(char **envp);
+void	print_env(t_list **env);
+void	free_exit(t_list *lst, char *error);
+void	free_lst(t_list *lst);
+void	tests(t_list *env);
+
+
 
 /*
 ** BUILT-IN
 */
 
-int	ft_env(t_list *env);
+int		ft_env(t_list *env);
 void	ft_export(t_list *env);
 void	ft_export_var(t_list *env, char *name, char *variable);
 void	ft_unset(t_list *env);

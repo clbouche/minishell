@@ -6,7 +6,7 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:31 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/16 16:53:10 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/09/20 16:38:26 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,31 +23,11 @@ void	ft_unset_arg(t_list *env, char *name)
             break;
         tmp = tmp->next;
     }
+    
     //ft_lstdelone(tmp, );
 }
 
-void ft_unset(t_list *env)
-{
-    free_stack(env);
-}
-
-
-void	free_stack(t_list *top)
-{
-	t_list	*head;
-	t_list	*tofree;
-
-	if (top)
-	{
-		head = top->next;
-		while (head->next != NULL)
-		{
-			tofree = head;
-            printf("%p\n", tofree);
-			head = head->next;
-			free(tofree);
-			tofree = NULL;
-		}
-		free(head);
-	}
-}
+/*to delete a node check the position of the node 
+    ==> if first node deplace the ptr to the 2nd node
+    ==> if in the middle, deplace the ptr to next of the precedent node to the next node
+    ==> if in the end move ptr of the previous to NULL 

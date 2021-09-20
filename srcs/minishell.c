@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/14 16:45:03 by ldes-cou@        ###   ########.fr       */
+/*   Updated: 2021/09/20 15:33:09 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,12 @@ int main(int argc, char **argv, char **envp)
 {
 	char *line;
 	char *prompt;
-	t_list	*env;
 	t_dlist *list;
 
 	prompt = getcwd(NULL, 0);
 	if (argc == 1)
 	{
-		init(envp, env, list);
+		init(envp, list);
 		while (1) //changer pour dire tant que pas EOF ou ctrl+D ou exit ou ? 
 		{
 			//prompt = display_prompt();
