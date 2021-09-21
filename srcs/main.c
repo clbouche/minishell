@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/30 12:20:54 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/21 10:34:49 by claclou          ###   ########.fr       */
+/*   Created: 2021/09/20 14:36:27 by claclou           #+#    #+#             */
+/*   Updated: 2021/09/20 16:18:18 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../includes/minishell.h"
 
-void init_env(char **envp, t_list *env)
+int main(int argc, char **argv)
 {
-	get_env(envp, env);
+	int i = 1;
+	int j = 0;
+	t_dlist *list;
+	
+	list = ft_dlstnew(argv[1]);
+	while (argv[i])
+	{
+		ft_dlstadd_back(list, argv[i]);
+		i++;
+	}
+	print_dlist(list);
 }

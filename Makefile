@@ -57,6 +57,7 @@ PATH_BUILT = srcs/builtins
 
 SRCS += minishell.c
 
+
 SRCS += parsing.c
 SRCS += init.c 
 SRCS += tokenizer.c
@@ -72,6 +73,8 @@ SRCS += ft_pwd.c
 SRCS += ft_unset.c
 SRCS += set_env.c
 
+SRCS_TEST = main.c
+
 vpath %.c $(PATH_SRCS)
 vpath %.c $(PATH_PARSE)
 vpath %.c $(PATH_EXEC)
@@ -83,6 +86,7 @@ vpath %.c $(PATH_BUILT)
 
 PATH_OBJS = objs/
 OBJS = $(patsubst %.c, $(PATH_OBJS)%.o, $(SRCS))
+OBJS_TEST = $(patsubst %.c, $(PATH_OBJS)%.o, $(SRCS_TEST))
 
 #########
 # RULES #
@@ -94,6 +98,11 @@ $(NAME): $(OBJS)
 		@make -C ./includes/libft
 		@$(CC) $(OBJS) $(INCLUDES) $(CFLAGS) -o $(NAME)
 		@echo "$(GREEN)$@ is ready.\n\n$(NC)"
+
+$(TEST): $(OBJS)
+		make -C ./includes/libft
+		$(CC) $(OBJS_TEST) $(INCLUDES) $(CFLAGS) -o $(NAME)
+		echo "$(GREEN)$@ is ready.\n\n$(NC)"
 
 $(OBJS): $(PATH_OBJS)%.o: %.c Makefile
 		@$(CC) -c $< -o $@ 

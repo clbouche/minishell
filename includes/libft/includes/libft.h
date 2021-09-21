@@ -6,7 +6,7 @@
 /*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 11:56:59 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/20 11:26:49 by claclou          ###   ########.fr       */
+/*   Updated: 2021/09/21 10:29:08 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,8 @@
 typedef enum		e_token
 {
 	T_CMD, 
-	T_ARG, 
 	T_OPT, 
-	T_WORD,
+	T_ARG, 
 	T_SIMPLE_REDIR_LEFT, 
 	T_SIMPLE_REDIR_RIGHT, 
 	T_DOUBLE_REDIR_LEFT,
