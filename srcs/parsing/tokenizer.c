@@ -6,7 +6,7 @@
 /*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:11:54 by claclou           #+#    #+#             */
-/*   Updated: 2021/09/21 10:35:06 by claclou          ###   ########.fr       */
+/*   Updated: 2021/09/21 10:59:01 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,4 @@ t_dlist	*put_token(t_dlist *list)
 }
 
 //a la place de tokenizer les maillons
-// -> creer les maillons en fonction de tokens 
+// -> creer les maillons en fonction de tokens ??

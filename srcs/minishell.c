@@ -6,16 +6,18 @@
 /*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/21 10:34:10 by claclou          ###   ########.fr       */
+/*   Updated: 2021/09/21 10:59:26 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+/*###SUPPRIMER WRITE HISTORY####*/
+
 int main(int argc, char **argv, char **envp)
 {
 	char *line;
-	t_dlist	*list;
+	t_list	*list;
 
 	if (argc == 1)
 	{
@@ -24,6 +26,8 @@ int main(int argc, char **argv, char **envp)
 		{
 			//ajouter le signal ici 
 			line = readline("🍄 MINISHELL🍄 : ");
+			add_history(line);
+			write_history("history.txt");
 			parser(line);
 			//execute(list) 
 			//faire un parsing qui renvoie la liste chaînée traité 
