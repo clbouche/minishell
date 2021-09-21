@@ -6,7 +6,7 @@
 #    By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 13:17:26 by clbouche          #+#    #+#              #
-#    Updated: 2021/09/16 15:00:39 by ldes-cou@st      ###   ########.fr        #
+#    Updated: 2021/09/21 10:17:11 by ldes-cou@st      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,7 @@ SRCS += ft_error.c
 SRCS += ft_strlcat.c
 SRCS += ft_strlcpy.c
 SRCS += ft_strncmp.c
+SRCS += ft_strcmp.c
 SRCS += ft_strstr.c
 SRCS += ft_strnstr.c
 SRCS += ft_strrchr.c
