@@ -31,9 +31,13 @@ t_list	*ft_unset(t_list *env, char *var)
     tmp = env;
     while (tmp != NULL)
     {
-        if (!ft_strncmp(var, tmp->content, (ft_strlen(var))))
-            env = delete_node(env, var);
+        if (ft_strncmp(var, tmp->content, (ft_strlen(var))) == 0)
+        {
+			env = delete_node(env, var);
+			return(env);
+		}
         tmp = tmp->next;
+		puts("ici ?");
         pos++;
     }
     return (env);
@@ -46,27 +50,32 @@ t_list *delete_node(t_list *head, char *var)
     
     h = head;
     hn = head->next;
-    if (ft_strcmp(h->content, var) == 0)
+	puts("la");
+    if (ft_strncmp(var, h->content, (ft_strlen(var))) == 0)
     {
         head = hn;
         free(h);
     }
     else
     {
-        while (ft_strcmp(h->content, var) != 0)
+		puts("lolo");
+        if (!ft_strncmp(var, h->content, (ft_strlen(var))))
         {
             h = h->next;
             hn = hn->next;
         }
-        if (h->next == NULL)
+        if (hn->next == NULL)
         {
-            hn->next = NULL;
+            h->next = NULL;
             free(h);
         }
         else
+		{
             hn->next = h->next;
-            free(h);
+            free(hn);
+		}
     }
+	//printf("head ==== %s\n", head->content);
     return (head);
 }
 

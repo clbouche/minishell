@@ -76,6 +76,7 @@ typedef	struct s_lst_shell
 	char				**path;
 	int					output;
 	int					input;
+	int					ret;
 }				t_lst_shell;
 
 
@@ -107,6 +108,8 @@ int		ft_env(t_list *env);
 void	ft_export(t_list *env);
 void	ft_export_var(t_list *env, char *name, char *variable);
 t_list	*ft_unset(t_list *env, char *name);
+int		ft_cd(const char *path);
+
 
 /*
 ** FREE

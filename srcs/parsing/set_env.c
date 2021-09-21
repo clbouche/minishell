@@ -27,7 +27,7 @@ void get_env(char **envp)
 		var = ft_strdup(envp[i]);
 		if (var == NULL)
 			free_exit(env, "malloc error");
-		new = ft_lstnew(var);
+		new = ft_lstnew(var);   
 		if (new == NULL)
 			free_exit(env, "chained list error");
 		ft_lstadd_back(&env, new);	

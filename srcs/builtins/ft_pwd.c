@@ -20,5 +20,5 @@
 
 void	ft_pwd()
 {
-
+    getcwd()
 }

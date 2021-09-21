@@ -17,7 +17,7 @@
 ** unless the -n option is set. 
 */
 
-void	ft_echo(char *str)
+void	ft_echo(char *str, int fd)
 {
-    //ft_putstr(str);
+    ft_putstr_fd(str, fd);
 }

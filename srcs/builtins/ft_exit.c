@@ -17,7 +17,7 @@
 ** It's not allowed to have option. 
 */
 
-void	ft_exit()
+void	ft_exit(int status, t_lst_shell *data)
 {
-	
+    data->ret = status;
 }

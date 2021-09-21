@@ -26,7 +26,7 @@ int	ft_env(t_list *env)
 		return (1);
 	}
 	tmp = env;
-	while(env->next != NULL)
+	while(env != NULL)
 	{
 		printf("%s\n", env->content);
 		env = env->next;

@@ -25,11 +25,13 @@ void tests(t_list *env)
 	/**tests**/
 	puts("ft_env"); 
 	ft_env(env);
-	puts("ft_export_var");
-	ft_export_var(env, "PAPOU", "vour");
-	puts("ft_export");
+	//puts("ft_export_var");
+	//ft_export_var(env, "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE", "|||||||||||||||||||||||||||||||||||||||");
+	//puts("ft_export");
 	ft_export(env);
-	ft_unset(env, "PAPOU");
+	env = ft_unset(env, "TERM_PROGRAM");
+	ft_env(env);
+	//ft_env(env);
 	//ft_env(env);
 }
 	//env->path = getenv("PATH");
