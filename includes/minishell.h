@@ -65,6 +65,11 @@ typedef enum {
 //		char *var;
 //		struct s_env *next;
 //}				t_env;
+typedef struct s_builtins
+{
+	char *name;
+	int (*func)(void);
+} 				t_builtins;
 
 typedef	struct s_lst_shell
 {
@@ -73,11 +78,12 @@ typedef	struct s_lst_shell
 	char				*option;
 	struct s_lst_shell	*next;
 	t_list				*env;
+	t_builtins			*b_in;
 	int					token;
 	char				**path;
 	int					output;
 	int					input;
-	int					ret;
+	int					ret; //pour $?
 }				t_lst_shell;
 
 

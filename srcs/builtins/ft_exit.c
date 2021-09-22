@@ -19,5 +19,9 @@
 
 void	ft_exit(int status, t_lst_shell *data)
 {
+    /*  -> si process en cours, tue le process
+        -> besoin du pid du process ?
+        -> le stocker dans la structure ?
+    */
     data->ret = status;
 }
