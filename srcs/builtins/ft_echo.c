@@ -17,7 +17,13 @@
 ** unless the -n option is set. 
 */
 
-void	ft_echo(char *str, int fd)
+void	ft_echo(char *str, char option, int fd)
 {
-    ft_putstr_fd(str, fd);
+    if (option == 'n')
+        ft_putstr_fd(str, fd);
+    else
+    {
+        ft_putstr_fd("\n", fd);
+        ft_putstr_fd(str, fd);
+    }
 }
