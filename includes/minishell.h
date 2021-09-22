@@ -10,6 +10,7 @@
 #define RESET "\001\e[0m\002"
 #define ERROR 1
 #define SUCCESS 0
+#define MAX 6
 
 /*
 ** ENUM
