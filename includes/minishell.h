@@ -13,24 +13,6 @@
 ** ENUM
 */
 
-typedef enum		e_token
-{
-	T_CMD, 
-	T_ARG, 
-	T_OPT, 
-	T_WORD,
-	T_SIMPLE_REDIR_LEFT, 
-	T_SIMPLE_REDIR_RIGHT, 
-	T_DOUBLE_REDIR_LEFT,
-	T_DOUBLE_REDIR_RIGHT, 
-	T_PIPE,
-	T_SINGLE_QUOTE, 
-	T_DOUBLE_QUOTE, 
-	T_BACKSLASH, 
-	T_NL, 
-	T_EOF,
-	T_MAX
-}					t_token;
 
 typedef enum		e_chr_class {
 	CHR_ALPHA,
@@ -38,14 +20,14 @@ typedef enum		e_chr_class {
 	CHR_SEMI,
 	CHR_DASH,
 	CHR_QUOTE, 
-	CHR_NL, 
+	CHR_NL,
+	CHR_DOL,
 	CHR_PIPE, 
 	CHR_REDIR_L, 
 	CHR_REDIR_R, 
 	CHR_SPACE, 
 	CHR_MAX
 }					t_chr_class;
-
 
 /*
 ** LIBRAIRIES
@@ -77,51 +59,50 @@ typedef enum		e_chr_class {
 ** STRUCTURES
 */
 
-typedef struct s_node
-{
-	struct s_node	*next;
-	struct s_node	*prev;
-	char			*value;
-	t_token			type;
-}					t_node;
-
-typedef struct s_dlist
-{
-	struct s_node	*begin;
-	struct s_node	*end;
-	int				len;
-}					t_dlist;
-
-/*typedef	struct s_lst_shell
-{
-	void				*cmd;
-	char				*arg;
-	char				*option;
-	struct s_lst_shell	*next;
-	int					token;
-	char				**path;
-	int					output;
-	int					input;
-}				t_lst_shell;*/
-
-
 typedef	struct	s_env
 {
 	char	*path;
 	char	**paths;
 }				t_env;
 
+/*typedef	struct s_lst_shell
+//typedef	struct	s_list
+//{
+//		char *data;
+//		struct s_env *next;
+//}				t_list;
+
+typedef	struct s_lst_shell
+{
+	void				*cmd;
+	char				*arg;
+	char				*option;
+	struct s_lst_shell	*next;
+	t_list				*env;
+	int					token;
+	char				**path;
+	int					output;
+	int					input;
+}				t_lst_shell;*/
 
 /*
 ** FUNCTIONS
 */
 
-void		init(t_env *env);
+void	init_env(char **envp, t_list *env);
+void	get_env(char **envp, t_list *env);
+void	print_env(t_list *env);
+
+/*
+** BUILT-IN
+*/
+
+void		ft_env(t_list *env);
+void		init_path(t_env *path);
 void		parser(char *line);
 t_dlist		*ft_add_node(t_dlist *lst, char *content);
 void		print_dlist(t_dlist *lst);
 void		ft_delete_node(t_dlist *list);
 t_dlist		*init_list(t_dlist *list);
-t_dlist		*put_token(t_dlist *list);
 
 #endif
