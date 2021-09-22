@@ -16,17 +16,18 @@
 
 typedef enum		e_chr_class {
 	CHR_ALPHA,
+	CHR_SEP,
 	CHR_DIGIT,
-	CHR_SEMI,
 	CHR_DASH,
 	CHR_QUOTE, 
 	CHR_NL,
-	CHR_DOL,
-	CHR_PIPE, 
-	CHR_REDIR_L, 
-	CHR_REDIR_R, 
-	CHR_SPACE, 
-	CHR_MAX
+	// CHR_SEMI,
+	// CHR_DOL,
+	// CHR_PIPE, 
+	// CHR_REDIR_L, 
+	// CHR_REDIR_R, 
+	// CHR_SPACE, 
+	 CHR_MAX
 }					t_chr_class;
 
 /*
@@ -97,12 +98,13 @@ void	print_env(t_list *env);
 ** BUILT-IN
 */
 
-void		ft_env(t_list *env);
-void		init_path(t_env *path);
-void		parser(char *line);
-t_dlist		*ft_add_node(t_dlist *lst, char *content);
-void		print_dlist(t_dlist *lst);
-void		ft_delete_node(t_dlist *list);
-t_dlist		*init_list(t_dlist *list);
+void			ft_env(t_list *env);
+void			init_path(t_env *path);
+void			parser(char *line);
+t_dlist			*ft_add_node(t_dlist *lst, char *content);
+void			print_dlist(t_dlist *lst);
+void			ft_delete_node(t_dlist *list);
+t_dlist			*init_list(t_dlist *list);
+unsigned int	define_token(char *input);
 
 #endif
