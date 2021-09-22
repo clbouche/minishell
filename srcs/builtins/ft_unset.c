@@ -6,7 +6,7 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:31 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/21 10:44:12 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/09/22 17:27:03 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,7 @@ t_list *delete_node(t_list *head, char *var)
     }
     else
     {
-		puts("lolo");
-        if (!ft_strncmp(var, h->content, (ft_strlen(var))))
+        if (ft_strncmp(var, h->content, (ft_strlen(var))) == 0)
         {
             h = h->next;
             hn = hn->next;
@@ -71,7 +70,8 @@ t_list *delete_node(t_list *head, char *var)
         }
         else
 		{
-            hn->next = h->next;
+		    puts("lolo");
+            h->next = hn->next;
             free(hn);
 		}
     }

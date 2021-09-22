@@ -6,7 +6,7 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:54 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/21 10:17:56 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/09/22 17:27:11 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void tests(t_list *env)
 	//ft_export_var(env, "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE", "|||||||||||||||||||||||||||||||||||||||");
 	//puts("ft_export");
 	ft_export(env);
-	env = ft_unset(env, "TERM_PROGRAM");
+	env = ft_unset(env, "LANGUAGE");
+	//ft_export(env);
 	ft_env(env);
 	//ft_env(env);
 	//ft_env(env);

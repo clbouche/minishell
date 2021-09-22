@@ -86,8 +86,6 @@ typedef	struct s_lst_shell
 	int					ret; //pour $?
 }				t_lst_shell;
 
-
-
 /*
 ** FUNCTIONS
 */
@@ -106,7 +104,6 @@ void	free_lst(t_list *lst);
 void	tests(t_list *env);
 
 
-
 /*
 ** BUILT-IN
 */
@@ -117,10 +114,10 @@ void	ft_export_var(t_list *env, char *name, char *variable);
 t_list	*ft_unset(t_list *env, char *name);
 int		ft_cd(const char *path);
 
-
 /*
 ** FREE
 */
+
 void	free_stack(t_list *top);
 t_list	*delete_node(t_list *head, char *var);
 t_list	*delete_head(t_list *head);
