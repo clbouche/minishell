@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_dlstadd_back.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 13:04:57 by claclou           #+#    #+#             */
-/*   Updated: 2021/09/20 11:11:02 by claclou          ###   ########.fr       */
+/*   Updated: 2021/09/09 11:09:10 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
-#include "../../minishell.h"
 
-t_dlist	*ft_dlstadd_back(t_dlist *lst, char *content)
+t_dlist	*ft_dlstadd_back(t_dlist *lst, char *content, int index)
 {
 	t_node	*new_node;
 
@@ -21,6 +20,7 @@ t_dlist	*ft_dlstadd_back(t_dlist *lst, char *content)
 	if (new_node == NULL || lst == NULL)
 		ft_error(ERR_ALLOC);
 	new_node->value = content;
+	new_node->index = index;
 	new_node->next = NULL;
 	new_node->prev = NULL;
 	if (lst->len == 0)

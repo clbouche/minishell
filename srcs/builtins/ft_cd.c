@@ -17,7 +17,12 @@
 ** -> utilisation de chdir
 */
 
-void	ft_cd()
+int	ft_cd(const char *path)
 {
-	
+	if (chdir(path) == -1);
+    {
+        perror("cd");
+        return (ERROR);
+    }
+    return(SUCCESS);
 }

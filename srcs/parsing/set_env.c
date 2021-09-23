@@ -3,44 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   set_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 12:09:16 by ldes-cou@         #+#    #+#             */
-/*   Updated: 2021/09/20 11:26:01 by claclou          ###   ########.fr       */
+/*   Updated: 2021/09/21 10:38:07 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void get_env(char **envp, t_list *env)
+void get_env(char **envp)
 {
-	t_list *home;
-	t_list *old_pwd;
-	t_list *pwd;
-	t_list *shlvl;
+	t_list *env;
+	t_list *new;
+	char *var;
+	int i;
 	
-	env = ft_lstnew(ft_strjoin("PATH=", getenv("PATH")));
-	home = ft_lstnew(ft_strjoin("HOME=", getenv("HOME=")));
-	old_pwd = ft_lstnew(ft_strjoin("OLDPWD=", getenv("OLDPWD=")));
-	pwd = ft_lstnew(ft_strjoin("PWD=", getenv("PWD=")));
-	shlvl = ft_lstnew(ft_strjoin("SHLVL=", getenv("SHLVL=")));
-	ft_lstadd_back(&env, home);
-	ft_lstadd_back(&env, old_pwd);
-	ft_lstadd_back(&env, pwd);
-	ft_lstadd_back(&env, shlvl);
-	//print_env(env);
-}
-
-void print_env(t_list *env)
-{
-	t_list *tmp;
-	
-	tmp = env;
-	while(env != NULL)
+	new = NULL;
+	var = NULL;
+	i = -1;
+	while (envp[++i])
 	{
-		printf("%s\n", (char *)env->content);
-		env = env->next;
+		var = ft_strdup(envp[i]);
+		if (var == NULL)
+			free_exit(env, "malloc error");
+		new = ft_lstnew(var);   
+		if (new == NULL)
+			free_exit(env, "chained list error");
+		ft_lstadd_back(&env, new);	
 	}
-	env = tmp;
+	tests(env);
+}
+	
+void free_lst(t_list *lst)
+{
+	t_list *tofree;
+
+	tofree = NULL;
+	while (lst != NULL)
+	{
+		tofree = lst;
+		free(tofree);
+		lst = lst->next;
+	}
 }
 
+void free_exit(t_list *lst, char *error)
+{
+	perror("error");
+	free_lst(lst);
+	exit(ERROR);
+}
+	

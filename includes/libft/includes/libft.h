@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 11:56:59 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/21 10:29:08 by claclou          ###   ########.fr       */
+/*   Updated: 2021/09/16 14:59:51 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,6 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <stdbool.h>
-
-
-typedef enum		e_token
-{
-	T_CMD, 
-	T_OPT, 
-	T_ARG, 
-	T_SIMPLE_REDIR_LEFT, 
-	T_SIMPLE_REDIR_RIGHT, 
-	T_DOUBLE_REDIR_LEFT,
-	T_DOUBLE_REDIR_RIGHT, 
-	T_PIPE,
-	T_SINGLE_QUOTE, 
-	T_DOUBLE_QUOTE, 
-	T_BACKSLASH, 
-	T_NL, 
-	T_EOF,
-	T_MAX
-}					t_token;
-
 
 # define BUFFER_SIZE 1000000
 
@@ -64,7 +44,8 @@ typedef struct s_node
 	struct s_node	*next;
 	struct s_node	*prev;
 	char			*value;
-	t_token			type;
+	int				index;
+	int				keep;
 }					t_node;
 
 typedef struct s_dlist
@@ -80,7 +61,7 @@ typedef struct s_dlist
 size_t	ft_strlen(const char *s);
 int		ft_atoi(const char *str);
 void	ft_error(char *error);
-//void	print_index(t_dlist *stack_a);
+void	print_index(t_dlist *stack_a);
 
 /* MANIP  STRING */
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
@@ -130,6 +111,7 @@ char	*ft_savetxt(char *s);
 
 /* MANIP LINKED LIST*/
 t_list	*ft_lstnew(void *content);
+
 void	ft_lstadd_front(t_list **alst, t_list *new);
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
@@ -138,11 +120,12 @@ void	ft_lstadd_back(t_list **alst, t_list *new);
 
 /* MANIP DOUBLE LINKED LIST*/
 t_dlist	*ft_dlstnew(char *content);
+void	ft_lstdelone(t_list *lst, void (*del)(void*));
 int		ft_dlstsize(t_dlist *lst);
 char	*ft_dlstfirst(t_dlist *lst);
 char	*ft_dlstlast(t_dlist *lst);
-t_dlist	*ft_dlstadd_back(t_dlist *lst, char *content);
-t_dlist	*ft_dlstadd_front(t_dlist *lst, char *content);
+t_dlist	*ft_dlstadd_back(t_dlist *lst, char *content, int index);
+t_dlist	*ft_dlstadd_front(t_dlist *lst, char *content, int index);
 void	print_dlist(t_dlist *lst);
 void	ft_dlstdelone(t_node *node);
 void	ft_dlstdelone_back(t_dlist *lst);

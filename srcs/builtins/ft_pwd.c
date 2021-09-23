@@ -15,10 +15,16 @@
 /*
 ** writes the absolute pathname of the current working directory 
 ** to the standard output.
-** -> getcwd
+** -> there is a max size of 6 octets for the path
+** ->
 */ 
 
 void	ft_pwd()
 {
+    char path[MAX];
 
+    if (getcwd(path, sizeof(path)) != NULL)
+        printf("%s", path);
+    else
+        perror("pwd");
 }

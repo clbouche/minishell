@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 12:18:32 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/14 09:47:53 by claclou          ###   ########.fr       */
+/*   Updated: 2021/09/16 13:31:03 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,13 @@
 ** unless the -n option is set. 
 */
 
-void	ft_echo()
+void	ft_echo(char *str, char option, int fd)
 {
-    
+    if (option == 'n')
+        ft_putstr_fd(str, fd);
+    else
+    {
+        ft_putstr_fd("\n", fd);
+        ft_putstr_fd(str, fd);
+    }
 }

@@ -1,6 +1,0 @@
-_HiStOrY_V2_
-ls
-ls\040-l
-ls\040-lq
-ls\040-la
-ls\040-l\040>\040bonjour

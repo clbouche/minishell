@@ -1,28 +1,22 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/20 14:36:27 by claclou           #+#    #+#             */
-/*   Updated: 2021/09/20 16:18:18 by claclou          ###   ########.fr       */
+/*   Created: 2020/12/03 10:52:04 by ldes-cou          #+#    #+#             */
+/*   Updated: 2020/12/03 10:52:07 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int main(int argc, char **argv)
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-	int i = 1;
-	int j = 0;
-	t_dlist *list;
-	
-	list = ft_dlstnew(argv[1]);
-	while (argv[i])
-	{
-		ft_dlstadd_back(list, argv[i]);
-		i++;
-	}
-	print_dlist(list);
+	if (!lst || !del)
+		return ;
+	(*del)(lst->content);
+	free(lst);
 }
