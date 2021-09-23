@@ -108,8 +108,7 @@ void	ft_lstprint(t_list *lst);
 void	ft_lstadd_back(t_list **alst, t_list *new);
 
 /* MANIP DOUBLE LINKED LIST*/
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 //t_dlist	*ft_dlstnew(char *content);
 //int		ft_dlstsize(t_dlist *lst);
 //char	*ft_dlstfirst(t_dlist *lst);

@@ -108,8 +108,6 @@ void	tests(t_list *env);
 ** BUILT-IN
 */
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 void		ft_env(t_list *env);
 void		init_path(t_env *path);
 void		parser(char *line);
@@ -118,19 +116,13 @@ void		print_dlist(t_dlist *lst);
 void		ft_delete_node(t_dlist *list);
 t_dlist		*init_list(t_dlist *list);
 
-<<<<<<< HEAD
-=======
 int	ft_env(t_list *env);
 void	ft_export(t_list *env);
 void	ft_export_var(t_list *env, char *name, char *variable);
 void	ft_unset(t_list *env);
 void	ft_unset_arg(t_list *env, char *name);
->>>>>>> lulu
-=======
 t_dlist	*put_token(t_dlist *list);
 
->>>>>>> 7680b17c4028b11585770488bffd6a015a13ebec
-=======
 int		ft_env(t_list *env);
 void	ft_export(t_list *env);
 void	ft_export_var(t_list *env, char *name, char *variable);
@@ -144,7 +136,6 @@ int		ft_cd(const char *path);
 void	free_stack(t_list *top);
 t_list	*delete_node(t_list *head, char *var);
 t_list	*delete_head(t_list *head);
->>>>>>> 99f1f4944d8e7d6e06b40fc7362a5974341a7d08
 
 /*
 ** FREE
