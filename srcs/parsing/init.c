@@ -3,23 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:54 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/17 12:00:22 by claclou          ###   ########.fr       */
+/*   Updated: 2021/09/22 17:27:11 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	init_path(t_env *path)
+int	init(char **envp, t_dlist *list)
 {
-	path = malloc(sizeof(t_env *));
-	path->path = getenv("PATH");
-	path->paths = ft_split(path->path, ':');
+	get_env(envp);
+	
+	return (0);
 }
-
-void init_env(char **envp, t_list *env)
+void tests(t_list *env)
 {
-	get_env(envp, env);
+//===> don't forget to free
+// 
+	/**tests**/
+	puts("ft_env"); 
+	ft_env(env);
+	//puts("ft_export_var");
+	//ft_export_var(env, "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE", "|||||||||||||||||||||||||||||||||||||||");
+	//puts("ft_export");
+	ft_export(env);
+	env = ft_unset(env, "LANGUAGE");
+	//ft_export(env);
+	ft_env(env);
+	//ft_env(env);
+	//ft_env(env);
 }
+	//env->path = getenv("PATH");
+	//env->paths = ft_split(env->path, ':');
+	//env = malloc(sizeof(t_env *));

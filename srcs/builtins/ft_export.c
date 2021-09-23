@@ -36,8 +36,8 @@ void ft_export(t_list *env)
 	{
 		if (env->next == NULL)
 		{
-			printf(GREEN"declare -x ");
-			printf("\"%s\"\n"RESET, env->content);
+			printf("declare -x ");
+			printf("\"%s\"\n", env->content);
 		}
 		else
 		{

@@ -8,44 +8,26 @@
 #define RED "\001\033[31;1m\002"
 #define GREEN "\001\e[1;32m\002"
 #define RESET "\001\e[0m\002"
+#define ERROR 1
+#define SUCCESS 0
+#define MAX 6
 
 /*
 ** ENUM
 */
 
-typedef enum		e_token
-{
-	T_CMD, 
-	T_ARG, 
-	T_OPT, 
-	T_WORD,
-	T_SIMPLE_REDIR_LEFT, 
-	T_SIMPLE_REDIR_RIGHT, 
-	T_DOUBLE_REDIR_LEFT,
-	T_DOUBLE_REDIR_RIGHT, 
-	T_PIPE,
-	T_SINGLE_QUOTE, 
-	T_DOUBLE_QUOTE, 
-	T_BACKSLASH, 
-	T_NL, 
-	T_EOF,
-	T_MAX
-}					t_token;
+typedef enum {
+	T_WORD,  /* un mot */
+	T_BAR,   /* | */
+	T_SEMI,  /* ; */
+	T_AMPER, /* & */
+	T_LT,    /* < */
+	T_GT,    /* > */
+	T_GTGT,  /* >> */
+	T_NL,    /* retour-chariot */
+	T_EOF    /* ctrl-d */
+} TOKEN;
 
-typedef enum		e_chr_class {
-	CHR_ALPHA,
-	CHR_DIGIT,
-	CHR_SEMI,
-	CHR_DASH,
-	CHR_QUOTE, 
-	CHR_NL,
-	CHR_DOL,
-	CHR_PIPE, 
-	CHR_REDIR_L, 
-	CHR_REDIR_R, 
-	CHR_SPACE, 
-	CHR_MAX
-}					t_chr_class;
 
 /*
 ** LIBRAIRIES
@@ -77,33 +59,17 @@ typedef enum		e_chr_class {
 ** STRUCTURES
 */
 
-typedef struct s_node
-{
-	struct s_node	*next;
-	struct s_node	*prev;
-	char			*value;
-	t_token			type;
-}					t_node;
-
-typedef struct s_dlist
-{
-	struct s_node	*begin;
-	struct s_node	*end;
-	int				len;
-}					t_dlist;
-
-typedef	struct	s_env
-{
-	char	*path;
-	char	**paths;
-}				t_env;
-
-/*typedef	struct s_lst_shell
-//typedef	struct	s_list
+//typedef	struct	s_env
 //{
-//		char *data;
+//		char *name;
+//		char *var;
 //		struct s_env *next;
-//}				t_list;
+//}				t_env;
+typedef struct s_builtins
+{
+	char *name;
+	int (*func)(void);
+} 				t_builtins;
 
 typedef	struct s_lst_shell
 {
@@ -112,24 +78,37 @@ typedef	struct s_lst_shell
 	char				*option;
 	struct s_lst_shell	*next;
 	t_list				*env;
+	t_builtins			*b_in;
 	int					token;
 	char				**path;
 	int					output;
 	int					input;
-}				t_lst_shell;*/
+	int					ret; //pour $?
+}				t_lst_shell;
 
 /*
 ** FUNCTIONS
 */
 
-void	init_env(char **envp, t_list *env);
-void	get_env(char **envp, t_list *env);
-void	print_env(t_list *env);
+int		init(char **envp, t_dlist *list);
+void	parser(char *line, t_dlist *list);
+
+/*
+** ENVIRONNEMENT
+*/
+
+void	get_env(char **envp);
+void	print_env(t_list **env);
+void	free_exit(t_list *lst, char *error);
+void	free_lst(t_list *lst);
+void	tests(t_list *env);
+
 
 /*
 ** BUILT-IN
 */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void		ft_env(t_list *env);
 void		init_path(t_env *path);
@@ -151,6 +130,21 @@ void	ft_unset_arg(t_list *env, char *name);
 t_dlist	*put_token(t_dlist *list);
 
 >>>>>>> 7680b17c4028b11585770488bffd6a015a13ebec
+=======
+int		ft_env(t_list *env);
+void	ft_export(t_list *env);
+void	ft_export_var(t_list *env, char *name, char *variable);
+t_list	*ft_unset(t_list *env, char *name);
+int		ft_cd(const char *path);
+
+/*
+** FREE
+*/
+
+void	free_stack(t_list *top);
+t_list	*delete_node(t_list *head, char *var);
+t_list	*delete_head(t_list *head);
+>>>>>>> 99f1f4944d8e7d6e06b40fc7362a5974341a7d08
 
 /*
 ** FREE
