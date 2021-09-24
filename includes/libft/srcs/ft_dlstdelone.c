@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 13:08:06 by claclou           #+#    #+#             */
-/*   Updated: 2021/06/28 18:54:23 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/09/24 14:47:30 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,5 @@ void	ft_dlstdelone(t_node *node)
 	node->prev = NULL;
 	node->value = 0;
 	node->index = 0;
-	node->keep = 0;
 	free(node);
 }

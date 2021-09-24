@@ -16,18 +16,20 @@
 ** ENUM
 */
 
-typedef enum {
-	T_WORD,  /* un mot */
-	T_BAR,   /* | */
-	T_SEMI,  /* ; */
-	T_AMPER, /* & */
-	T_LT,    /* < */
-	T_GT,    /* > */
-	T_GTGT,  /* >> */
-	T_NL,    /* retour-chariot */
-	T_EOF    /* ctrl-d */
-} TOKEN;
-
+typedef enum		e_chr_class {
+	CHR_ALPHA,
+	CHR_SEP,
+	CHR_DIGIT,
+	CHR_DASH,
+	CHR_QUOTE, 
+	CHR_NL,
+	CHR_PIPE, 
+	CHR_DOL,
+	CHR_SEMI,
+	CHR_REDIR_L, 
+	CHR_REDIR_R, 
+	CHR_MAX
+}					t_chr_class;
 
 /*
 ** LIBRAIRIES
@@ -59,78 +61,58 @@ typedef enum {
 ** STRUCTURES
 */
 
-//typedef	struct	s_env
-//{
-//		char *name;
-//		char *var;
-//		struct s_env *next;
-//}				t_env;
-typedef struct s_builtins
+typedef struct		s_token 
 {
-	char *name;
-	int (*func)(void);
-} 				t_builtins;
+	t_token_type	tok_type;
+	char			*data;
+}					t_token;
 
-typedef	struct s_lst_shell
+typedef struct s_node
 {
-	void				*cmd;
-	char				*arg;
-	char				*option;
-	struct s_lst_shell	*next;
-	t_list				*env;
-	t_builtins			*b_in;
-	int					token;
-	char				**path;
-	int					output;
-	int					input;
-	int					ret; //pour $?
-}				t_lst_shell;
+	struct s_node	*next;
+	struct s_node	*prev;
+	char			*value;
+	int				index;
+	t_token_type	token;
+}					t_node;
+
+typedef struct s_dlist
+{
+	struct s_node	*begin;
+	struct s_node	*end;
+	int				len;
+}					t_dlist;
 
 /*
 ** FUNCTIONS
 */
 
-int		init(char **envp, t_dlist *list);
-void	parser(char *line, t_dlist *list);
+t_dlist	*init_list(t_dlist *list);
+void	print_dlist(t_dlist *lst);
+void	init_env(char **envp, t_list *env);
+void	get_env(char **envp, t_list *env);
 
 /*
-** ENVIRONNEMENT
-*/
-
-void	get_env(char **envp);
-void	print_env(t_list **env);
-void	free_exit(t_list *lst, char *error);
-void	free_lst(t_list *lst);
-void	tests(t_list *env);
-
-
-/*
-** BUILT-IN
+** Built-in 
 */
 
 void		ft_env(t_list *env);
-void		init_path(t_env *path);
-void		parser(char *line);
-t_dlist		*ft_add_node(t_dlist *lst, char *content);
-void		print_dlist(t_dlist *lst);
-void		ft_delete_node(t_dlist *list);
-t_dlist		*init_list(t_dlist *list);
-
-int	ft_env(t_list *env);
-void	ft_export(t_list *env);
-void	ft_export_var(t_list *env, char *name, char *variable);
-void	ft_unset(t_list *env);
-void	ft_unset_arg(t_list *env, char *name);
-t_dlist	*put_token(t_dlist *list);
-
-int		ft_env(t_list *env);
-void	ft_export(t_list *env);
-void	ft_export_var(t_list *env, char *name, char *variable);
-t_list	*ft_unset(t_list *env, char *name);
-int		ft_cd(const char *path);
 
 /*
-** FREE
+** Tokenizer
+*/ 
+
+void					parser(char *line);
+t_dlist					*ft_add_node(t_dlist *lst, t_token *node, int index);
+void					print_list(t_dlist *lst);
+t_token					split_token(char *input);
+static t_token_type		get_tok_type[CHR_MAX];
+static int				token_chr_rules[T_MAX][CHR_MAX];
+static t_chr_class		get_chr_class[255];
+static t_chr_class		get_chr_class[255];
+
+/*
+** Parsing
 */
 
 void	free_stack(t_list *top);
