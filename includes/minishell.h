@@ -8,11 +8,13 @@
 #define RED "\001\033[31;1m\002"
 #define GREEN "\001\e[1;32m\002"
 #define RESET "\001\e[0m\002"
+#define ERROR 1
+#define SUCCESS 0
+#define MAX 6
 
 /*
 ** ENUM
 */
-
 
 typedef enum		e_chr_class {
 	CHR_ALPHA,
@@ -115,4 +117,12 @@ static t_chr_class		get_chr_class[255];
 ** Parsing
 */
 
+void	free_stack(t_list *top);
+t_list	*delete_node(t_list *head, char *var);
+t_list	*delete_head(t_list *head);
+
+/*
+** FREE
+*/
+void	free_stack(t_list *top);
 #endif

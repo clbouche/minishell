@@ -6,12 +6,11 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 13:04:57 by claclou           #+#    #+#             */
-/*   Updated: 2021/09/24 14:09:12 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/09/24 14:47:26 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
-#include "../../minishell.h"
 
 t_dlist	*ft_dlstadd_back(t_dlist *lst, char *content, int index)
 {
@@ -21,6 +20,7 @@ t_dlist	*ft_dlstadd_back(t_dlist *lst, char *content, int index)
 	if (new_node == NULL || lst == NULL)
 		ft_error(ERR_ALLOC);
 	new_node->value = content;
+	new_node->index = index;
 	new_node->next = NULL;
 	new_node->prev = NULL;
 	new_node->index = index;

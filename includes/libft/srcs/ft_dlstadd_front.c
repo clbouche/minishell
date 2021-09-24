@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_dlstadd_front.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 13:06:58 by claclou           #+#    #+#             */
-/*   Updated: 2021/09/23 15:26:07 by claclou          ###   ########.fr       */
+/*   Updated: 2021/09/24 14:47:28 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_dlist	*ft_dlstadd_front(t_dlist *lst, char *content, int index)
 	if (new_node == NULL || lst == NULL)
 		ft_error(ERR_ALLOC);
 	new_node->value = content;
+	new_node->index = index;
 	new_node->next = NULL;
 	new_node->prev = NULL;
 	new_node->index = index;

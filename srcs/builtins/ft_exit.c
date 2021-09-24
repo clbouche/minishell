@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 10:32:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/14 09:47:50 by claclou          ###   ########.fr       */
+/*   Updated: 2021/09/24 14:42:58 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,11 @@
 ** It's not allowed to have option. 
 */
 
-void	ft_exit()
+void	ft_exit(int status, t_lst_shell *data)
 {
-	
+    /*  -> si process en cours, tue le process
+        -> besoin du pid du process ?
+        -> le stocker dans la structure ?
+    */
+    data->ret = status;
 }

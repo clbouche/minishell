@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/24 16:25:54 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/09/24 16:35:15 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 //#SUPPRIMER PRINT LIST#
 
-void	print_dlist(t_dlist *lst)
+void	print_list(t_dlist *lst)
 {
 	t_node	*temp;
 
@@ -90,7 +90,6 @@ void	parser(char *line)
 		lst = put_in_node(lst, &tok, index);
 		line++;
 	}
-	print_dlist(lst);
+	print_list(lst);
 	//besoin de clean les statics sinon lors du relancement du prompt ca reset pas lol 
 }
-

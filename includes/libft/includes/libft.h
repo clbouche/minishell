@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 11:56:59 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/24 16:29:04 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/09/24 16:35:22 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ typedef struct s_dlist
 size_t	ft_strlen(const char *s);
 int		ft_atoi(const char *str);
 void	ft_error(char *error);
-//void	print_index(t_dlist *stack_a);
+// void	print_index(t_dlist *stack_a);
 
 /* MANIP  STRING */
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
@@ -130,6 +130,7 @@ char	*ft_savetxt(char *s);
 
 /* MANIP LINKED LIST*/
 t_list	*ft_lstnew(void *content);
+
 void	ft_lstadd_front(t_list **alst, t_list *new);
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);

@@ -6,7 +6,7 @@
 #    By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 13:17:26 by clbouche          #+#    #+#              #
-#    Updated: 2021/09/24 14:11:02 by clbouche         ###   ########.fr        #
+#    Updated: 2021/09/24 14:49:43 by clbouche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,7 @@ SRCS += ft_error.c
 SRCS += ft_strlcat.c
 SRCS += ft_strlcpy.c
 SRCS += ft_strncmp.c
+SRCS += ft_strcmp.c
 SRCS += ft_strstr.c
 SRCS += ft_strnstr.c
 SRCS += ft_strrchr.c
