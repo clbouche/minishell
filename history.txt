@@ -1,2 +1,2 @@
 _HiStOrY_V2_
-bonjour
+echo\040-n\040bonjour
