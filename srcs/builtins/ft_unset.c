@@ -12,16 +12,6 @@
 
 #include "../../includes/minishell.h"
 
-int	ft_strcmp(char *s1, char *s2)
-{
-	int i;
-
-	i = 0;
-	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
-		i++;
-	return (s1[i] - s2[i]);
-}
-
 t_list	*ft_unset(t_list *env, char *var)
 {
     t_list *tmp;
@@ -37,7 +27,6 @@ t_list	*ft_unset(t_list *env, char *var)
 			return(env);
 		}
         tmp = tmp->next;
-		puts("ici ?");
         pos++;
     }
     return (env);
@@ -50,7 +39,6 @@ t_list *delete_node(t_list *head, char *var)
     
     h = head;
     hn = head->next;
-	puts("la");
     if (ft_strncmp(var, h->content, (ft_strlen(var))) == 0)
     {
         head = hn;
@@ -70,7 +58,6 @@ t_list *delete_node(t_list *head, char *var)
         }
         else
 		{
-		    puts("lolo");
             h->next = hn->next;
             free(hn);
 		}

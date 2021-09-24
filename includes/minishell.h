@@ -11,6 +11,7 @@
 #define ERROR 1
 #define SUCCESS 0
 #define MAX 6
+#define BUILTIN "{cd, echo, exit, export, pwd, unset}"
 
 /*
 ** ENUM
@@ -86,17 +87,24 @@ typedef struct s_dlist
 /*
 ** FUNCTIONS
 */
-
+int		init(char **envp);
 t_dlist	*init_list(t_dlist *list);
 void	print_dlist(t_dlist *lst);
-void	init_env(char **envp, t_list *env);
-void	get_env(char **envp, t_list *env);
+void	get_env(char **envp);
 
 /*
 ** Built-in 
 */
 
-void		ft_env(t_list *env);
+int		ft_env(t_list *env);
+void	ft_export_var(t_list *env, char *name, char *variable);
+void	ft_export(t_list *env);
+t_list	*ft_unset(t_list *env, char *var);
+void	ft_pwd();
+int		ft_exit();
+int		ft_cd(const char *path);
+
+
 
 /*
 ** Tokenizer
@@ -124,5 +132,14 @@ t_list	*delete_head(t_list *head);
 /*
 ** FREE
 */
+
 void	free_stack(t_list *top);
+t_list	*delete_node(t_list *head, char *var);
+t_list	*delete_head(t_list *head);
+void	free_lst(t_list *lst);
+void	free_exit(t_list *lst, char *error);
+
+
+void tests(t_list *env);
+
 #endif

@@ -19,7 +19,7 @@
 
 int	ft_cd(const char *path)
 {
-	if (chdir(path) == -1);
+	if (chdir(path) == -1)
     {
         perror("cd");
         return (ERROR);

@@ -12,7 +12,7 @@
 
 #include "../../includes/minishell.h"
 
-int	init(char **envp, t_dlist *list)
+int	init(char **envp)
 {
 	get_env(envp);
 	
@@ -29,9 +29,9 @@ void tests(t_list *env)
 	//ft_export_var(env, "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE", "|||||||||||||||||||||||||||||||||||||||");
 	//puts("ft_export");
 	ft_export(env);
-	env = ft_unset(env, "LANGUAGE");
-	//ft_export(env);
-	ft_env(env);
+	env = ft_unset(env, "SHELL");
+	ft_export(env);
+	//ft_env(env);
 	//ft_env(env);
 	//ft_env(env);
 }

@@ -21,7 +21,7 @@ void	ft_export_var(t_list *env, char *name, char *variable)
 {
 	t_list *new_var;
 	
-	name = ft_strjoin(name, "=");
+	name = ft_strjoin(name, "=");//dont forget to free
 	new_var = ft_lstnew(ft_strjoin(name, variable));
 	ft_lstadd_back(&env, new_var);
 }

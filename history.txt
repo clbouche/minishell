@@ -1,4 +1,2 @@
 _HiStOrY_V2_
-onjour
-boner
-ger
+echo\040-n\040bonjour
