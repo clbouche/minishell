@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dlstdelone.c                                    :+:      :+:    :+:   */
+/*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/04 13:08:06 by claclou           #+#    #+#             */
-/*   Updated: 2021/09/24 14:47:30 by clbouche         ###   ########.fr       */
+/*   Created: 2021/09/17 11:11:54 by claclou           #+#    #+#             */
+/*   Updated: 2021/09/24 15:03:48 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "../../includes/minishell.h"
 
-void	ft_dlstdelone(t_node *node)
+t_token	save_token(char *s, int len, t_token_type toktype)
 {
-	node->next = NULL;
-	node->prev = NULL;
-	node->value = 0;
-	node->index = 0;
-	free(node);
+	t_token rtn;
+	
+	rtn.tok_type = toktype;
+	rtn.data = strndup(s, len);
+	// printf("check ret tok: %u\n", rtn.tok_type);
+	// printf("check ret data : %s\n", rtn.data);
+	return rtn;
 }
+
+void	ignore_wspace(char *s, int *i)
+{
+	while (s[*i] && get_chr_class[(unsigned char)s[*i]] == CHR_SEP)
+		(*i)++;
+}
+
+
+
