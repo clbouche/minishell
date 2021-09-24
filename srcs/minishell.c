@@ -17,14 +17,14 @@
 int main(int argc, char **argv, char **envp)
 {
 	char *line;
-	t_list	*list;
+
 
 	if (argc == 1)
 	{
-		//init_env(envp, list);
+		//ajouter le signal ici 
+		init(envp);
 		while (1) //changer pour dire tant que pas EOF ou ctrl+D ou exit ou ? 
 		{
-			//ajouter le signal ici 
 			line = readline("🍄 MINISHELL🍄 : ");
 			add_history(line);
 			write_history("history.txt");

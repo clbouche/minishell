@@ -17,11 +17,12 @@
 ** It's not allowed to have option. 
 */
 
-void	ft_exit(int status, t_lst_shell *data)
+int	ft_exit()
 {
     /*  -> si process en cours, tue le process
         -> besoin du pid du process ?
         -> le stocker dans la structure ?
     */
-    data->ret = status;
+    /*stocker le statut du retour dans la structure*/
+    return (0);
 }
