@@ -60,6 +60,11 @@ typedef enum		e_chr_class {
 ** STRUCTURES
 */
 
+typedef struct		s_token {
+	t_token_type	tok_type;
+	char			*data;
+}					t_token;
+
 typedef	struct	s_env
 {
 	char	*path;
@@ -90,6 +95,8 @@ typedef	struct s_lst_shell
 ** FUNCTIONS
 */
 
+t_dlist	*init_list(t_dlist *list);
+void	print_dlist(t_dlist *lst);
 void	init_env(char **envp, t_list *env);
 void	get_env(char **envp, t_list *env);
 void	print_env(t_list *env);
@@ -105,6 +112,7 @@ t_dlist			*ft_add_node(t_dlist *lst, char *content);
 void			print_dlist(t_dlist *lst);
 void			ft_delete_node(t_dlist *list);
 t_dlist			*init_list(t_dlist *list);
-unsigned int	define_token(char *input);
+void			check_and_insert_spaces(char **line);
+t_token			split_token(char *input);
 
 #endif

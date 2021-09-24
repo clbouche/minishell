@@ -6,7 +6,7 @@
 /*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 11:56:59 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/22 12:44:11 by claclou          ###   ########.fr       */
+/*   Updated: 2021/09/23 15:37:40 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <stdbool.h>
 
 
-typedef enum		e_token
+typedef enum		e_token_type
 {
 	T_ARG, 
 	T_SEP,
@@ -40,7 +40,7 @@ typedef enum		e_token
 	// T_NL, 
 	// T_EOF,
 	 T_MAX
-}					t_token;
+}					t_token_type;
 
 
 # define BUFFER_SIZE 1000000
@@ -65,7 +65,8 @@ typedef struct s_node
 	struct s_node	*next;
 	struct s_node	*prev;
 	char			*value;
-	t_token			type;
+	int				index;
+	t_token_type	token;
 }					t_node;
 
 typedef struct s_dlist
@@ -142,8 +143,8 @@ t_dlist	*ft_dlstnew(char *content);
 int		ft_dlstsize(t_dlist *lst);
 char	*ft_dlstfirst(t_dlist *lst);
 char	*ft_dlstlast(t_dlist *lst);
-t_dlist	*ft_dlstadd_back(t_dlist *lst, char *content);
-t_dlist	*ft_dlstadd_front(t_dlist *lst, char *content);
+t_dlist	*ft_dlstadd_back(t_dlist *lst, char *content, int index);
+t_dlist	*ft_dlstadd_front(t_dlist *lst, char *content, int index);
 void	print_dlist(t_dlist *lst);
 void	ft_dlstdelone(t_node *node);
 void	ft_dlstdelone_back(t_dlist *lst);
