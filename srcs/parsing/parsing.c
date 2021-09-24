@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/24 14:28:07 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/09/24 14:57:01 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 //#SUPPRIMER PRINT LIST#
 
-void	print_list(t_dlist *lst)
+void	print_dlist(t_dlist *lst)
 {
 	t_node	*temp;
 

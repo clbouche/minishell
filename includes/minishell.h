@@ -104,6 +104,8 @@ void					parser(char *line);
 t_dlist					*ft_add_node(t_dlist *lst, t_token *node, int index);
 void					print_list(t_dlist *lst);
 t_token					split_token(char *input);
+t_token					save_token(char *s, int len, t_token_type toktype);
+void					ignore_wspace(char *s, int *i);
 static t_token_type		get_tok_type[CHR_MAX];
 static int				token_chr_rules[T_MAX][CHR_MAX];
 static t_chr_class		get_chr_class[255];
