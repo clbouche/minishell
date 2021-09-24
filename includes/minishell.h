@@ -140,5 +140,9 @@ t_list	*delete_head(t_list *head);
 /*
 ** FREE
 */
+
 void	free_stack(t_list *top);
+t_list	*delete_node(t_list *head, char *var);
+t_list	*delete_head(t_list *head);
+
 #endif

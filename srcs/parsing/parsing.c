@@ -38,3 +38,19 @@ void	parser(char *line, t_dlist *list)
 	else 
 		exit(0);
 }
+
+static char **fill_buitin()
+{
+	char **builtins;
+	int i;
+
+	i = 0;
+	builtins = (char **)malloc(sizeof(char *) * 7  + 1);
+	builtin[0] = ft_strdup("cd");
+	builtin[1] = ft_strdup("echo");
+	builtins[2] = ft_strdup("echo");
+}
+void is_builtin(char *cmd)
+{
+
+}
