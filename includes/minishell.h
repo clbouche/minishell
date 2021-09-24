@@ -21,13 +21,12 @@ typedef enum		e_chr_class {
 	CHR_DASH,
 	CHR_QUOTE, 
 	CHR_NL,
-	// CHR_SEMI,
-	// CHR_DOL,
-	// CHR_PIPE, 
-	// CHR_REDIR_L, 
-	// CHR_REDIR_R, 
-	// CHR_SPACE, 
-	 CHR_MAX
+	CHR_PIPE, 
+	CHR_DOL,
+	CHR_SEMI,
+	CHR_REDIR_L, 
+	CHR_REDIR_R, 
+	CHR_MAX
 }					t_chr_class;
 
 /*
@@ -60,36 +59,27 @@ typedef enum		e_chr_class {
 ** STRUCTURES
 */
 
-typedef struct		s_token {
+typedef struct		s_token 
+{
 	t_token_type	tok_type;
 	char			*data;
 }					t_token;
 
-typedef	struct	s_env
+typedef struct s_node
 {
-	char	*path;
-	char	**paths;
-}				t_env;
+	struct s_node	*next;
+	struct s_node	*prev;
+	char			*value;
+	int				index;
+	t_token_type	token;
+}					t_node;
 
-/*typedef	struct s_lst_shell
-//typedef	struct	s_list
-//{
-//		char *data;
-//		struct s_env *next;
-//}				t_list;
-
-typedef	struct s_lst_shell
+typedef struct s_dlist
 {
-	void				*cmd;
-	char				*arg;
-	char				*option;
-	struct s_lst_shell	*next;
-	t_list				*env;
-	int					token;
-	char				**path;
-	int					output;
-	int					input;
-}				t_lst_shell;*/
+	struct s_node	*begin;
+	struct s_node	*end;
+	int				len;
+}					t_dlist;
 
 /*
 ** FUNCTIONS
@@ -99,20 +89,28 @@ t_dlist	*init_list(t_dlist *list);
 void	print_dlist(t_dlist *lst);
 void	init_env(char **envp, t_list *env);
 void	get_env(char **envp, t_list *env);
-void	print_env(t_list *env);
 
 /*
-** BUILT-IN
+** Built-in 
 */
 
-void			ft_env(t_list *env);
-void			init_path(t_env *path);
-void			parser(char *line);
-t_dlist			*ft_add_node(t_dlist *lst, char *content);
-void			print_dlist(t_dlist *lst);
-void			ft_delete_node(t_dlist *list);
-t_dlist			*init_list(t_dlist *list);
-void			check_and_insert_spaces(char **line);
-t_token			split_token(char *input);
+void		ft_env(t_list *env);
+
+/*
+** Tokenizer
+*/ 
+
+void					parser(char *line);
+t_dlist					*ft_add_node(t_dlist *lst, t_token *node, int index);
+void					print_list(t_dlist *lst);
+t_token					split_token(char *input);
+static t_token_type		get_tok_type[CHR_MAX];
+static int				token_chr_rules[T_MAX][CHR_MAX];
+static t_chr_class		get_chr_class[255];
+static t_chr_class		get_chr_class[255];
+
+/*
+** Parsing
+*/
 
 #endif

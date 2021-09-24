@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/24 08:54:19 by claclou          ###   ########.fr       */
+/*   Updated: 2021/09/24 14:28:07 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 //#SUPPRIMER PRINT LIST#
 
-void	print_dlist(t_dlist *lst)
+void	print_list(t_dlist *lst)
 {
 	t_node	*temp;
 
@@ -24,7 +24,9 @@ void	print_dlist(t_dlist *lst)
 		ft_error(ERR_EMPTY_DLIST);
 	while (temp != NULL)
 	{
-		printf("[%s]\n", temp->value);
+		printf("value : [%s]\n", temp->value);
+		printf("index : [%i]\n", temp->index);
+		printf("token : [%u]\n", temp->token);
 		temp = temp->next;
 	}
 }
@@ -40,45 +42,58 @@ t_dlist	*init_list(t_dlist *list)
 	return (list);
 }
 
-
-/*t_node	*save_node(t_node *left, t_tokens tok, t_node *right)
+t_dlist	*ft_add_node(t_dlist *lst, t_token *node, int index)
 {
-	t_node	*node = NULL;
-	static int	cur_key = 0;
+	t_node	*new_node;
 
-	if (!(node = malloc(sizeof(t_node))))
-		exit(1);
-	node->left = left;
-	node->right = right;
-	node->key = cur_key;
-	node->tok = tok.tok;
-	node->data = tok.data;
-	cur_key++;
-	return (node);
+	new_node = (t_node *)malloc(sizeof(t_node));
+	if (new_node == NULL || lst == NULL)
+		ft_error(ERR_ALLOC);
+	new_node->value = node->data;
+	new_node->token = node->tok_type;
+	new_node->next = NULL;
+	new_node->prev = NULL;
+	new_node->index = index;
+	if (lst->len == 0)
+	{
+		lst->begin = new_node;
+		lst->end = new_node;
+	}
+	else
+	{
+		lst->end->next = new_node;
+		new_node->prev = lst->end;
+		lst->end = new_node;
+	}
+	lst->len += 1;
+	return (lst);
 }
 
-t_node	*put_in_node(char *input, t_token token)
+t_dlist	*put_in_node(t_dlist *lst, t_token *node, int index)
 {
-	t_node	*node;
-
-	if (!(node = malloc(sizeof(t_node))))
-		exit(0);
-	node->next = ;
-	node->prev = ;
-	node->token = ;
-	node->value = ;
-	node->index = ;
-	return (node);
-}*/
+	ft_add_node(lst, node, index);
+	return (lst);
+}
 
 void	parser(char *line)
 {
+	int len;
 	t_token tok;
+	t_dlist *lst;
 	t_node	*node;
+	static int index = 0;
 
+	len = ft_strlen(line);
+	lst = init_list(lst);
 	//ne pas faire de tokenisation pour les commandes simples
-	tok = split_token(line);
-	//node = put_in_node(input, &tok);
-
+	while(tok.tok_type != T_EOF)	
+	{
+		tok = split_token(line);
+		index++;
+		lst = put_in_node(lst, &tok, index);
+		line++;
+	}
+	print_dlist(lst);
+	//besoin de clean les statics sinon lors du relancement du prompt ca reset pas lol 
 }
 
