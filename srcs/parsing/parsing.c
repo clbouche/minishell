@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/24 16:35:15 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/09/24 16:58:48 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,15 +79,15 @@ void	parser(char *line)
 {
 	t_token tok;
 	t_dlist *lst;
-	static int index = 0;
+	int index = 0;
 
 	lst = init_list(lst);
 	//ne pas faire de tokenisation pour les commandes simples
 	while(tok.tok_type != T_EOF)	
 	{
 		tok = split_token(line);
-		index++;
 		lst = put_in_node(lst, &tok, index);
+		index++;
 		line++;
 	}
 	print_list(lst);

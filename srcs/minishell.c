@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/24 14:47:52 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/09/24 16:59:48 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@
 
 int main(int argc, char **argv, char **envp)
 {
-	char *line;
+	char	*line;
 	t_list	*list;
 
 	if (argc == 1)
 	{
+		//init_infos(infos);
 		//init_env(envp, list);
 		while (1) //changer pour dire tant que pas EOF ou ctrl+D ou exit ou ? 
 		{
