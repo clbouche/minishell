@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 11:56:59 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/24 14:29:33 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/09/24 16:29:04 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,11 @@ typedef enum		e_token_type
 	T_EOF,
 	T_PIPE,
 	T_REDIR,
-	// T_CMD, 
-	// T_SIMPLE_REDIR_LEFT, 
-	// T_SIMPLE_REDIR_RIGHT, 
-	// T_DOUBLE_REDIR_LEFT,
-	// T_DOUBLE_REDIR_RIGHT, 
-	// T_SINGLE_QUOTE, 
-	// T_DOUBLE_QUOTE, 
+	T_CMD, 
+	T_SIMPLE_REDIR_LEFT, 
+	T_SIMPLE_REDIR_RIGHT, 
+	T_DOUBLE_REDIR_LEFT,
+	T_DOUBLE_REDIR_RIGHT, 
 	// T_BACKSLASH, 
 	// T_NL, 
 	 T_MAX

@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/24 14:57:01 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/09/24 16:25:54 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,10 @@ t_dlist	*put_in_node(t_dlist *lst, t_token *node, int index)
 
 void	parser(char *line)
 {
-	int len;
 	t_token tok;
 	t_dlist *lst;
-	t_node	*node;
 	static int index = 0;
 
-	len = ft_strlen(line);
 	lst = init_list(lst);
 	//ne pas faire de tokenisation pour les commandes simples
 	while(tok.tok_type != T_EOF)	
