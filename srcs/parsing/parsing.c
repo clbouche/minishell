@@ -38,3 +38,14 @@ void	parser(char *line, t_dlist *list)
 	else 
 		exit(0);
 }
+
+// static char **fill_buitin()
+// {
+// 	char **builtins;
+
+// 	builtin = malloc(sizeof(char *) )
+// }
+// void is_builtin(char *cmd)
+// {
+
+// }
