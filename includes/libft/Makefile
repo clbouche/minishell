@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+         #
+#    By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 13:17:26 by clbouche          #+#    #+#              #
-#    Updated: 2021/09/24 14:49:43 by clbouche         ###   ########.fr        #
+#    Updated: 2021/09/27 09:14:42 by ldes-cou@st      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ ONELINE =\e[1A\r
 # INCLUDES #
 ############
 
-PATH_INCLUDES = includes/
+PATH_INCLUDES = includes
 I_INCLUDES += -I $(PATH_INCLUDES)
 
 ##########

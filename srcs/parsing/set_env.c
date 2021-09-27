@@ -6,7 +6,7 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 12:09:16 by ldes-cou@         #+#    #+#             */
-/*   Updated: 2021/09/21 10:38:07 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/09/27 09:14:07 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void get_env(char **envp)
 			free_exit(env, "chained list error");
 		ft_lstadd_back(&env, new);	
 	}
-	tests(env);
+	//tests(env);
 }
 	
 void free_lst(t_list *lst)
