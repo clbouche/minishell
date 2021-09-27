@@ -1,2 +1,4 @@
 _HiStOrY_V2_
 echo\040-n\040bonjour
+echo\040\040\040\040bonjour
+echo\040\040\040"bonjour\040\040\040\040>>\040bonjour"

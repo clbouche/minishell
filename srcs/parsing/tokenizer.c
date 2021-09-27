@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:11:54 by claclou           #+#    #+#             */
-/*   Updated: 2021/09/24 15:03:48 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/09/27 15:28:26 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ t_token	save_token(char *s, int len, t_token_type toktype)
 	
 	rtn.tok_type = toktype;
 	rtn.data = strndup(s, len);
-	// printf("check ret tok: %u\n", rtn.tok_type);
-	// printf("check ret data : %s\n", rtn.data);
 	return rtn;
 }
 

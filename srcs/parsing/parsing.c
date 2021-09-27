@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/24 16:58:48 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/09/27 15:11:51 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ void	parser(char *line)
 	int index = 0;
 
 	lst = init_list(lst);
-	//ne pas faire de tokenisation pour les commandes simples
 	while(tok.tok_type != T_EOF)	
 	{
 		tok = split_token(line);
@@ -91,5 +90,4 @@ void	parser(char *line)
 		line++;
 	}
 	print_list(lst);
-	//besoin de clean les statics sinon lors du relancement du prompt ca reset pas lol 
 }

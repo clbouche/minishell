@@ -17,7 +17,7 @@ CFLAGS += -Wextra
 CFLAGS += -Werror
 CFLAGS += -lreadline
 CFLAGS +=  -lform -lncurses
-#CFLAGS += -fsanitize=address
+CFLAGS += -fsanitize=address
 
 ###################
 # PRINT VARIABLES #

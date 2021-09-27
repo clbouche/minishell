@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/24 17:19:58 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/09/27 14:40:17 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int main(int argc, char **argv, char **envp)
 	if (argc == 1)
 	{
 		//ajouter le signal ici 
-		init(envp);
+		//init(envp);
 		while (1) //changer pour dire tant que pas EOF ou ctrl+D ou exit ou ? 
 		{
 			line = readline("🍄 MINISHELL🍄 : ");

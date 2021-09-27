@@ -25,10 +25,10 @@ typedef enum		e_chr_class {
 	CHR_QUOTE, 
 	CHR_NL,
 	CHR_PIPE, 
-	CHR_DOL,
-	CHR_SEMI,
 	CHR_REDIR_L, 
 	CHR_REDIR_R, 
+	// CHR_DOL,
+	// CHR_SEMI,
 	CHR_MAX
 }					t_chr_class;
 
@@ -104,22 +104,19 @@ void	ft_pwd();
 int		ft_exit();
 int		ft_cd(const char *path);
 
-
-
 /*
 ** Tokenizer
 */ 
 
-void					parser(char *line);
-t_dlist					*ft_add_node(t_dlist *lst, t_token *node, int index);
-void					print_list(t_dlist *lst);
-t_token					split_token(char *input);
-t_token					save_token(char *s, int len, t_token_type toktype);
-void					ignore_wspace(char *s, int *i);
-static t_token_type		get_tok_type[CHR_MAX];
-static int				token_chr_rules[T_MAX][CHR_MAX];
-static t_chr_class		get_chr_class[255];
-static t_chr_class		get_chr_class[255];
+void			parser(char *line);
+t_token_type	get_tok_type[CHR_MAX];
+int				token_chr_rules[T_MAX][CHR_MAX];
+t_chr_class		get_chr_class[255];
+t_dlist			*ft_add_node(t_dlist *lst, t_token *node, int index);
+t_token			split_token(char *input);
+void			ignore_wspace(char *s, int *i);
+t_token			save_token(char *s, int len, t_token_type toktype);
+void			print_list(t_dlist *lst);
 
 /*
 ** Parsing
