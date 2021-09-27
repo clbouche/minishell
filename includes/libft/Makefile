@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+         #
+#    By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 13:17:26 by clbouche          #+#    #+#              #
-#    Updated: 2021/09/21 10:17:11 by ldes-cou@st      ###   ########.fr        #
+#    Updated: 2021/09/24 14:49:43 by clbouche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -128,18 +128,17 @@ SRCS += ft_lstprint.c
 SRCS += ft_lstadd_back.c
 
 # MANIP DOUBLE LINKED LIST #
-SRCS += ft_dlstnew.c
-SRCS += ft_lstdelone.c
-SRCS += ft_dlstsize.c
-SRCS += ft_dlstfirst.c
-SRCS += ft_dlstlast.c
-SRCS += ft_dlstadd_back.c
-SRCS += ft_dlstadd_front.c
-SRCS += print_dlist.c
-SRCS += ft_dlstdelone.c
-SRCS += ft_dlstdelone_back.c
-SRCS += ft_dlstdelone_front.c
-SRCS += ft_dlstclear.c
+#SRCS += ft_dlstnew.c
+#SRCS += ft_dlstsize.c
+#SRCS += ft_dlstfirst.c
+#SRCS += ft_dlstlast.c
+#SRCS += ft_dlstadd_back.c
+#SRCS += ft_dlstadd_front.c
+#SRCS += print_dlist.c
+#SRCS += ft_dlstdelone.c
+#SRCS += ft_dlstdelone_back.c
+#SRCS += ft_dlstdelone_front.c
+#SRCS += ft_dlstclear.c
 	   
 vpath %.c $(PATH_SRCS)
 

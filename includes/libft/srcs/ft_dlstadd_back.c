@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 13:04:57 by claclou           #+#    #+#             */
-/*   Updated: 2021/09/09 11:09:10 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/09/24 14:47:26 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_dlist	*ft_dlstadd_back(t_dlist *lst, char *content, int index)
 	new_node->index = index;
 	new_node->next = NULL;
 	new_node->prev = NULL;
+	new_node->index = index;
 	if (lst->len == 0)
 	{
 		lst->begin = new_node;

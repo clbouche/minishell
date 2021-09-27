@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:54 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/22 17:27:11 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/09/24 14:43:09 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	init(char **envp, t_dlist *list)
+int	init(char **envp)
 {
 	get_env(envp);
 	
@@ -29,9 +29,9 @@ void tests(t_list *env)
 	//ft_export_var(env, "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE", "|||||||||||||||||||||||||||||||||||||||");
 	//puts("ft_export");
 	ft_export(env);
-	env = ft_unset(env, "LANGUAGE");
-	//ft_export(env);
-	ft_env(env);
+	env = ft_unset(env, "SHELL");
+	ft_export(env);
+	//ft_env(env);
 	//ft_env(env);
 	//ft_env(env);
 }
