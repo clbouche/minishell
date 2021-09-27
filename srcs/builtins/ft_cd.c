@@ -6,7 +6,7 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 12:25:00 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/27 11:35:58 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/09/27 15:05:13 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,18 @@
 
 int	ft_cd(char **cmd)
 {
-	if (chdir(cmd[1]) == -1)
+    char *path;
+
+    path = NULL;
+    if (cmd[1] == NULL)
+    {
+        path = ft_strcpy(path, "~/");
+        puts("ok");
+        printf("%s\n", path);
+    }
+    else
+        path = ft_strcpy(path, cmd[1]);
+	if (chdir(path) == -1)
     {
         perror("cd");
         return (FAILURE);

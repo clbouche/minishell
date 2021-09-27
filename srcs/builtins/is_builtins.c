@@ -6,21 +6,11 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 10:14:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/09/27 12:06:42 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/09/27 15:28:55 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-int		ft_strcmp(char *s1, char *s2)
-{
-	int i;
-
-	i = 0;
-	while (s1[i] && s2[i] && s1[i] == s2[i])
-		i++;
-	return (s1[i] - s2[i]);
-}
 
 // static t_built my_builtins[] =
 // {
@@ -50,7 +40,7 @@ int		ft_strcmp(char *s1, char *s2)
 //     return(NULL);
 // }
 
-void is_builtins(char **cmd)
+int is_builtins(char **cmd)
 {
     if(ft_strcmp(cmd[0], "cd") == 0)
         return(ft_cd(cmd));
@@ -61,10 +51,12 @@ void is_builtins(char **cmd)
     else if(ft_strcmp(cmd[0], "export") == 0)
         return(ft_export(cmd));
     else if(ft_strcmp(cmd[0], "pwd") == 0)
-        return(ft_pwd(cmd));
+        return(ft_pwd());
     else if(ft_strcmp(cmd[0], "unset") == 0)
         return(ft_unset(cmd));
-        
+    else if(ft_strcmp(cmd[0], "exit") == 0)
+        return(ft_exit());
+    return(FAILURE);
 }
 
 

@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/09 10:32:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/27 15:27:23 by ldes-cou@st      ###   ########.fr       */
+/*   Created: 2021/09/27 14:59:26 by ldes-cou@st       #+#    #+#             */
+/*   Updated: 2021/09/27 14:59:30 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
-
-/*
-** ends a process. Took 2 args max and the second one it's numeric. 
-** It's not allowed to have option. 
-*/
-
-int	ft_exit()
+char *ft_strcpy(char *dest, char *src)
 {
-    
-    /*  -> si process en cours, tue le process
-        -> besoin du pid du process ?
-        -> le stocker dans la structure ?
-    */
-    /*stocker le statut du retour dans la structure*/
-    ft_putstr_fd("exit", 1);
-   exit(0);
+	int i;
+
+	i = 0;
+	while (src[i] != '\0')
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }

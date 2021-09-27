@@ -6,7 +6,7 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/27 11:34:50 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/09/27 15:06:19 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@
 int main(int argc, char **argv, char **envp)
 {
 	char *line;
+	char **cmd;
+	int ret;
 
-
+	ret = 0;
+	cmd = NULL;
 	if (argc == 1)
 	{
 		//ajouter le signal ici 
@@ -28,7 +31,15 @@ int main(int argc, char **argv, char **envp)
 			line = readline("🍄 MINISHELL🍄 : ");
 			add_history(line);
 			write_history("history.txt");
-			printf("%p", is_builtin(argv));
+			cmd = ft_split(line, ' ');
+			// while(cmd[ret])
+			// {
+			// 	printf("%s\n", cmd[ret]);
+			// 	ret++;
+			// }
+			ret = is_builtins(cmd);
+			//printf("\n%i", ret);
+			
 			//parser(line);
 			//execute(list) 
 			//faire un parsing qui renvoie la liste chaînée traité 
@@ -36,5 +47,5 @@ int main(int argc, char **argv, char **envp)
 	}
 	else
 		exit(0);
-	return (0);
+	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:04 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/27 12:03:17 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/09/27 14:27:36 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_list	*export_var(char **cmd)
 //=>export_var
 ///don't forget to free
 //==> don't forget to sort alphabetically the variables
-void ft_export(char **cmd)
+int ft_export(char **cmd)
 {
 	t_list *tmp;
 	t_list *env;
@@ -40,7 +40,7 @@ void ft_export(char **cmd)
 	if(cmd[1] != NULL)
 	{
 		export_var(cmd);
-		return;
+		return(0);
 	}
 	tmp = env;
 	while(env != NULL) //print alphabetically
@@ -58,5 +58,5 @@ void ft_export(char **cmd)
 		env = env->next;
 	}
 	env = tmp;
-	
+	return(0);
 }

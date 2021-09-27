@@ -6,13 +6,13 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:31 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/27 12:07:58 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/09/27 15:26:37 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_list	*ft_unset(char **cmd)
+int ft_unset(char **cmd)
 {
     t_list *tmp;
     t_list *env;
@@ -27,12 +27,12 @@ t_list	*ft_unset(char **cmd)
         if (ft_strncmp(var, tmp->content, (ft_strlen(var))) == 0)
         {
 			env = delete_node(env, var);
-			return(env);
+			return(0);
 		}
         tmp = tmp->next;
         pos++;
     }
-    return (env);
+    return (1);
 }
 
 t_list *delete_node(t_list *head, char *var)

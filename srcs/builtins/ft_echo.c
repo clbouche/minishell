@@ -23,11 +23,11 @@ int	ft_echo(char **cmd)
 
     option = cmd[1][1];
     if (option == 'n')
-        ft_putstr_fd(cmd[2], 1);
+        ft_putstr_fd(cmd[2], 1);//faire ecrire sur la line
     else
     {
-        ft_putstr_fd("\n", 1);
         ft_putstr_fd(cmd[1], 1);
+        ft_putstr_fd("\n", 1);
     }
     return (0);
 }

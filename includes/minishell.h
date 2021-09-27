@@ -10,8 +10,7 @@
 #define RESET "\001\e[0m\002"
 #define FAILURE 1
 #define SUCCESS 0
-#define MAX 6
-#define BUILTIN "{cd, echo, exit, export, pwd, unset}"
+#define MAX 4096
 
 /*
 ** ENUM
@@ -103,13 +102,13 @@ void	get_env(char **envp);
 
 int		ft_env();
 t_list	*export_var(char **cmd);
-int	ft_export(char **cmd);
-t_list	*ft_unset(char **cmd);
-int	ft_pwd();
+int		ft_export(char **cmd);
+int		ft_unset(char **cmd);
+int		ft_pwd(void);
 int		ft_exit();
 int		ft_cd(char **cmd);
 int		ft_echo(char **cmd);
-void	*is_builtin(char *input);
+int	is_builtins(char **cmd);
 
 
 
