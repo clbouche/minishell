@@ -6,7 +6,7 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 12:09:16 by ldes-cou@         #+#    #+#             */
-/*   Updated: 2021/09/27 09:14:07 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/09/27 11:04:02 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void get_env(char **envp)
 	char *var;
 	int i;
 	
+	env = NULL;	
 	new = NULL;
 	var = NULL;
 	i = -1;
@@ -52,6 +53,6 @@ void free_exit(t_list *lst, char *error)
 {
 	perror("error");
 	free_lst(lst);
-	exit(ERROR);
+	exit(FAILURE);
 }
 	

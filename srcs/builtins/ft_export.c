@@ -6,7 +6,7 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:04 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/16 14:45:55 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/09/27 12:03:17 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,33 @@
 ** without arg, it list env variables, in alphabetical order
 */
 
-void	ft_export_var(t_list *env, char *name, char *variable)
+t_list	*export_var(char **cmd)
 {
-	t_list *new_var;
+	t_list	*new_var;
+	t_list	*env;
+	//char *name;
 	
-	name = ft_strjoin(name, "=");//dont forget to free
-	new_var = ft_lstnew(ft_strjoin(name, variable));
+	//name = ft_strjoin(cmd[1], "=");//dont forget to free
+	new_var = ft_lstnew(cmd[1]);
 	ft_lstadd_back(&env, new_var);
+	return(env);
 }
+
+//=>export_var
 ///don't forget to free
 //==> don't forget to sort alphabetically the variables
-void ft_export(t_list *env)
+void ft_export(char **cmd)
 {
 	t_list *tmp;
-
+	t_list *env;
+	
+	if(cmd[1] != NULL)
+	{
+		export_var(cmd);
+		return;
+	}
 	tmp = env;
-	while(env != NULL)
+	while(env != NULL) //print alphabetically
 	{
 		if (env->next == NULL)
 		{

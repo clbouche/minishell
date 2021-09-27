@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:54 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/24 14:43:09 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/09/27 11:00:53 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,3 @@ void tests(t_list *env)
 	//ft_env(env);
 	//ft_env(env);
 }
-	//env->path = getenv("PATH");
-	//env->paths = ft_split(env->path, ':');
-	//env = malloc(sizeof(t_env *));

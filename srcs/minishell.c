@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/24 14:47:52 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/09/27 11:34:50 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ int main(int argc, char **argv, char **envp)
 			line = readline("🍄 MINISHELL🍄 : ");
 			add_history(line);
 			write_history("history.txt");
-			parser(line);
+			printf("%p", is_builtin(argv));
+			//parser(line);
 			//execute(list) 
 			//faire un parsing qui renvoie la liste chaînée traité 
 		}

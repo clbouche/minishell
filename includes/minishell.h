@@ -8,7 +8,7 @@
 #define RED "\001\033[31;1m\002"
 #define GREEN "\001\e[1;32m\002"
 #define RESET "\001\e[0m\002"
-#define ERROR 1
+#define FAILURE 1
 #define SUCCESS 0
 #define MAX 6
 #define BUILTIN "{cd, echo, exit, export, pwd, unset}"
@@ -84,6 +84,11 @@ typedef struct s_dlist
 	int				len;
 }					t_dlist;
 
+typedef struct s_builtins
+{
+	char *name;
+	int (*func)(void);
+}				t_built;
 /*
 ** FUNCTIONS
 */
@@ -96,13 +101,15 @@ void	get_env(char **envp);
 ** Built-in 
 */
 
-int		ft_env(t_list *env);
-void	ft_export_var(t_list *env, char *name, char *variable);
-void	ft_export(t_list *env);
-t_list	*ft_unset(t_list *env, char *var);
-void	ft_pwd();
+int		ft_env();
+t_list	*export_var(char **cmd);
+int	ft_export(char **cmd);
+t_list	*ft_unset(char **cmd);
+int	ft_pwd();
 int		ft_exit();
-int		ft_cd(const char *path);
+int		ft_cd(char **cmd);
+int		ft_echo(char **cmd);
+void	*is_builtin(char *input);
 
 
 

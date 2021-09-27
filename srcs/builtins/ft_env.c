@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:38:59 by ldes-cou@         #+#    #+#             */
-/*   Updated: 2021/09/24 14:43:00 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/09/27 11:40:01 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
 */
 #include "../../includes/minishell.h"
 
-int	ft_env(t_list *env)
+int	ft_env()
 {
 	t_list *tmp;
+	t_list *env;
 	
 	if (env == NULL)
 	{

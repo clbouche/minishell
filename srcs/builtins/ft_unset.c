@@ -6,17 +6,20 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:31 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/22 17:27:03 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/09/27 12:07:58 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_list	*ft_unset(t_list *env, char *var)
+t_list	*ft_unset(char **cmd)
 {
     t_list *tmp;
+    t_list *env;
     int pos;
+    char *var;
 
+    var = cmd[1];
     pos = 0;
     tmp = env;
     while (tmp != NULL)

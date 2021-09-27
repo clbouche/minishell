@@ -6,7 +6,7 @@
 #    By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 13:17:26 by clbouche          #+#    #+#              #
-#    Updated: 2021/09/27 09:14:42 by ldes-cou@st      ###   ########.fr        #
+#    Updated: 2021/09/27 11:20:17 by ldes-cou@st      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -147,7 +147,7 @@ vpath %.c $(PATH_SRCS)
 ###########
 
 PATH_OBJS = objs/
-OBJS = $(patsubst %.c, $(PATH_OBJS)%.o, $(SRCS))
+OBJS = $(patsubst %.c, $(PATH_OBJS)%.o, $(SRCS)) 
 
 #########
 # RULES #

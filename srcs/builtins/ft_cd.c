@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 12:25:00 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/14 09:47:54 by claclou          ###   ########.fr       */
+/*   Updated: 2021/09/27 11:35:58 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 ** -> utilisation de chdir
 */
 
-int	ft_cd(const char *path)
+int	ft_cd(char **cmd)
 {
-	if (chdir(path) == -1)
+	if (chdir(cmd[1]) == -1)
     {
         perror("cd");
-        return (ERROR);
+        return (FAILURE);
     }
     return(SUCCESS);
 }

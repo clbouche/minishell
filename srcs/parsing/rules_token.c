@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   rules_token.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 14:20:20 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/24 15:01:57 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/09/27 10:41:37 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static t_token_type		get_tok_type[CHR_MAX] = {
+static t_token_type		get_tok_type[CHR_MAX] =
+{
 	[CHR_QUOTE] = T_ARG,
 	[CHR_ALPHA] = T_ARG,
 	[CHR_DIGIT] = T_ARG,

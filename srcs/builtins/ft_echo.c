@@ -17,13 +17,17 @@
 ** unless the -n option is set. 
 */
 
-void	ft_echo(char *str, char option, int fd)
+int	ft_echo(char **cmd)
 {
+    char option;
+
+    option = cmd[1][1];
     if (option == 'n')
-        ft_putstr_fd(str, fd);
+        ft_putstr_fd(cmd[2], 1);
     else
     {
-        ft_putstr_fd("\n", fd);
-        ft_putstr_fd(str, fd);
+        ft_putstr_fd("\n", 1);
+        ft_putstr_fd(cmd[1], 1);
     }
+    return (0);
 }
