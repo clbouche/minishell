@@ -12,7 +12,7 @@
 
 #include "../../includes/minishell.h"
 
-int ft_unset(char **cmd, t_data *d)
+t_list	*ft_unset(char **cmd, t_data *d)
 {
     t_list *tmp;
 
@@ -32,7 +32,7 @@ int ft_unset(char **cmd, t_data *d)
         tmp = tmp->next;
         pos++;
     }
-    return (SUCCESS);
+    return (d->env);
 }
 
 t_list *delete_node(t_list *head, char *var)
@@ -66,7 +66,7 @@ t_list *delete_node(t_list *head, char *var)
 		}
     }
 	//printf("head ==== %s\n", head->content);
-    return (head);
+    return (head); 
 }
 
 // t_list *delete_head(t_list *head)

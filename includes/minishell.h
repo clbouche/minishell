@@ -115,7 +115,7 @@ t_list *get_env(t_list *env, char **envp);
 int		ft_env(t_list *env);
 void	export_var(char **cmd, t_data *d);
 int		ft_export(char **cmd, t_data *d);
-int		ft_unset(char **cmd, t_data *d);
+t_list	*ft_unset(char **cmd, t_data *d);
 int		ft_pwd(void);
 int		ft_exit(void);
 int		ft_cd(char **cmd);
