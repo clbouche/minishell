@@ -17,46 +17,42 @@
 ** without arg, it list env variables, in alphabetical order
 */
 
-t_list	*export_var(char **cmd)
+t_list	*export_var(char **cmd, d)
 {
 	t_list	*new_var;
-	t_list	*env;
-	//char *name;
-	
-	//name = ft_strjoin(cmd[1], "=");//dont forget to free
+
 	new_var = ft_lstnew(cmd[1]);
-	ft_lstadd_back(&env, new_var);
-	return(env);
+	ft_lstadd_back(&d->env, new_var);
+	return(d->env);
 }
 
 //=>export_var
 ///don't forget to free
 //==> don't forget to sort alphabetically the variables
-int ft_export(char **cmd)
+int ft_export(char **cmd, t_data *d)
 {
 	t_list *tmp;
-	t_list *env;
 	
 	if(cmd[1] != NULL)
 	{
-		export_var(cmd);
+		export_var(cmd, d);
 		return(0);
 	}
-	tmp = env;
-	while(env != NULL) //print alphabetically
+	tmp = d->env;
+	while(d->env != NULL) //print alphabetically
 	{
-		if (env->next == NULL)
+		if (d->env->next == NULL)
 		{
 			printf("declare -x ");
-			printf("\"%s\"\n", env->content);
+			printf("\"%s\"\n", d->env->content);
 		}
 		else
 		{
 			printf("declare -x ");
-			printf("\"%s\"\n", env->content);
+			printf("\"%s\"\n", d->env->content);
 		}
-		env = env->next;
+		d->env = d->env->next;
 	}
-	env = tmp;
+	d->env = tmp;
 	return(0);
 }
