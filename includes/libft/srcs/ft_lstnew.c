@@ -6,7 +6,7 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 09:41:50 by user42            #+#    #+#             */
-/*   Updated: 2021/09/27 10:01:49 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/09/28 10:43:29 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ t_list	*ft_lstnew(void *content)
 		return (0);
 	element->content = content;
 	element->next = NULL;
-	free(content);
+	//free(content);
 	return (element);
 }

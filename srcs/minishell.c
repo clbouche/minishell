@@ -6,7 +6,7 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/27 15:06:19 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/09/28 10:48:01 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,15 @@ int main(int argc, char **argv, char **envp)
 	char *line;
 	char **cmd;
 	int ret;
+	t_data d;
 
 	ret = 0;
 	cmd = NULL;
 	if (argc == 1)
 	{
 		//ajouter le signal ici 
-		init(envp);
+		init(&d, envp);
+		
 		while (1) //changer pour dire tant que pas EOF ou ctrl+D ou exit ou ? 
 		{
 			line = readline("🍄 MINISHELL🍄 : ");
@@ -37,7 +39,11 @@ int main(int argc, char **argv, char **envp)
 			// 	printf("%s\n", cmd[ret]);
 			// 	ret++;
 			// }
-			ret = is_builtins(cmd);
+			// ret = is_builtins(cmd);
+			// if (ret != FAILURE)
+			// 	exec_builtin(ret, cmd, &d);
+			// get_path(cmd, envp);
+			
 			//printf("\n%i", ret);
 			
 			//parser(line);

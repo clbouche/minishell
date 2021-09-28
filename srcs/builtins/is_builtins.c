@@ -6,7 +6,7 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 10:14:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/09/27 15:28:55 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/09/28 09:54:52 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,21 +43,27 @@
 int is_builtins(char **cmd)
 {
     if(ft_strcmp(cmd[0], "cd") == 0)
-        return(ft_cd(cmd));
+        return(CD);
     else if(ft_strcmp(cmd[0], "echo") == 0)
-        return(ft_echo(cmd));
+        return(ECHO);
     else if(ft_strcmp(cmd[0], "env") == 0)
-        return(ft_env());
+        return(ENV);
     else if(ft_strcmp(cmd[0], "export") == 0)
-        return(ft_export(cmd));
+        return(EXPORT);
     else if(ft_strcmp(cmd[0], "pwd") == 0)
-        return(ft_pwd());
+        return(PWD);
     else if(ft_strcmp(cmd[0], "unset") == 0)
-        return(ft_unset(cmd));
+        return(UNSET);
     else if(ft_strcmp(cmd[0], "exit") == 0)
-        return(ft_exit());
+        return(EXIT);
     return(FAILURE);
 }
 
-
+// void exec_builtin(int ret, char **cmd, t_data *d)
+// {
+//     if (is_builtins(cmd) == CD)
+//         ft_cd(cmd);
+//     else if (is_builtins(cmd) == ENV)
+//         ft_env()
+// }
 

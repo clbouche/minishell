@@ -31,6 +31,17 @@ typedef enum		e_chr_class {
 	CHR_MAX
 }					t_chr_class;
 
+typedef enum	s_builtin
+{
+	CD = 2,
+	ECHO,
+	ENV,
+	EXPORT,
+	PWD,
+	UNSET,
+	EXIT,
+}				t_builtin;
+
 /*
 ** LIBRAIRIES
 */
@@ -83,24 +94,25 @@ typedef struct s_dlist
 	int				len;
 }					t_dlist;
 
-typedef struct s_builtins
+
+typedef struct s_data
 {
-	char *name;
-	int (*func)(void);
-}				t_built;
+	int		ret;
+	t_list	*env;
+}				t_data;
 /*
 ** FUNCTIONS
 */
-int		init(char **envp);
+int		init(t_data *data, char **envp);
 t_dlist	*init_list(t_dlist *list);
 void	print_dlist(t_dlist *lst);
-void	get_env(char **envp);
+t_list *get_env(t_list *env, char **envp);
 
 /*
 ** Built-in 
 */
 
-int		ft_env();
+int		ft_env(t_list *env);
 t_list	*export_var(char **cmd);
 int		ft_export(char **cmd);
 int		ft_unset(char **cmd);
@@ -145,7 +157,7 @@ t_list	*delete_head(t_list *head);
 void	free_lst(t_list *lst);
 void	free_exit(t_list *lst, char *error);
 
-
-void tests(t_list *env);
+void	get_path(char **cmd, char **envp);
+void	tests(t_list *env, char **cmd);
 
 #endif

@@ -6,32 +6,34 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:54 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/27 14:54:02 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/09/28 10:47:20 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	init(char **envp)
-{
-	get_env(envp);
+int	init(t_data *d, char **envp)
+{	
+	t_list *env;
 	
-	return (0);
+	ft_memset(d, 0, sizeof(d));
+	env = get_env(env, envp);
+	ft_env(env);
 }
-// void tests(t_list *env)
-// {
-// //===> don't forget to free
-// // 
-// 	/**tests**/
-// 	puts("ft_env"); 
-// 	ft_env(env);
-// 	//puts("ft_export_var");
-// 	//ft_export_var(env, "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE", "|||||||||||||||||||||||||||||||||||||||");
-// 	//puts("ft_export");
-// 	ft_export(env);
-// 	env = ft_unset(env, "SHELL");
-// 	ft_export(env);
-// 	//ft_env(env);
-// 	//ft_env(env);
-// 	//ft_env(env);
-// }
+void tests(t_list *env, char **cmd)
+{
+//===> don't forget to free
+// 
+	/**tests**/
+	puts("ft_env"); 
+	ft_env(env);
+	//puts("ft_export_var");
+	//ft_export_var(env, "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE", "|||||||||||||||||||||||||||||||||||||||");
+	//puts("ft_export");
+	//ft_export(cmd);
+	//ft_unset(cmd);
+	//ft_export(cmd);
+	//ft_env(env);
+	//ft_env(env);
+	//ft_env(env);
+}
