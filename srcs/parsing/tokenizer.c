@@ -6,11 +6,12 @@
 /*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 11:11:54 by claclou           #+#    #+#             */
-/*   Updated: 2021/09/27 15:28:26 by claclou          ###   ########.fr       */
+/*   Updated: 2021/09/28 15:32:22 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
 
 t_token	save_token(char *s, int len, t_token_type toktype)
 {

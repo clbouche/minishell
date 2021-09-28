@@ -17,7 +17,7 @@ CFLAGS += -Wextra
 CFLAGS += -Werror
 CFLAGS += -lreadline
 CFLAGS +=  -lform -lncurses
-CFLAGS += -fsanitize=address
+#CFLAGS += -fsanitize=address
 
 ###################
 # PRINT VARIABLES #
@@ -62,7 +62,7 @@ SRCS += init.c
 SRCS += tokenizer.c
 SRCS += rules_token.c
 
-SRCS += execution.c
+#SRCS += execution.c
 
 SRCS += ft_cd.c
 SRCS += ft_echo.c 

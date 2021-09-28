@@ -6,21 +6,22 @@
 /*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 14:20:20 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/27 15:30:19 by claclou          ###   ########.fr       */
+/*   Updated: 2021/09/28 15:32:19 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 t_token_type		get_tok_type[CHR_MAX] = {
-	[CHR_QUOTE] = T_ARG_QUOTE,
+	[CHR_DOUBLE_QUOTE] = T_ARG_DOUBLE_QUOTE,
+	[CHR_SIMPLE_QUOTE] = T_ARG_SIMPLE_QUOTE,
 	[CHR_ALPHA] = T_ARG,
 	[CHR_DIGIT] = T_ARG,
 	[CHR_SEP] = T_SEP,
 	[CHR_DASH] = T_OPT,
 	[CHR_PIPE] = T_PIPE,
-	[CHR_REDIR_L] = T_REDIR,
-	[CHR_REDIR_R] = T_REDIR,
+	[CHR_REDIR_L] = T_SIMPLE_REDIR_L,
+	[CHR_REDIR_R] = T_SIMPLE_REDIR_R,
 };
 
 t_chr_class		get_chr_class[255] =
@@ -28,7 +29,8 @@ t_chr_class		get_chr_class[255] =
 	['A'...'Z'] = CHR_ALPHA,
 	['a'...'z'] = CHR_ALPHA,
 	['-'] = CHR_DASH,
-	['"'] = CHR_QUOTE,
+	['"'] = CHR_DOUBLE_QUOTE,
+	['\''] = CHR_SIMPLE_QUOTE,
 	[' '] = CHR_SEP,
 	['\n'] = CHR_NL,
 	['0'...'9'] = CHR_DIGIT,
@@ -41,6 +43,13 @@ t_chr_class		get_chr_class[255] =
 
 int				token_chr_rules[T_MAX][CHR_MAX] =
 {
+	[T_CMD] = {
+		[CHR_ALPHA] = 1,
+		[CHR_SEP] = 0,
+		[CHR_DIGIT] = 0,
+		[CHR_NL] = 0,
+		[CHR_PIPE] = 0,
+	},
 	[T_SEP] = {
 		[CHR_SEP] = 0,
 	},
@@ -49,7 +58,8 @@ int				token_chr_rules[T_MAX][CHR_MAX] =
 		[CHR_ALPHA] = 1,
 		[CHR_NL] = 0,
 		[CHR_SEP] = 0,
-		[CHR_QUOTE] = 0,
+		[CHR_SIMPLE_QUOTE] = 0,
+		[CHR_DOUBLE_QUOTE] = 0,
 	},
 	[T_OPT] = {
 		[CHR_DASH] = 1,
@@ -60,7 +70,7 @@ int				token_chr_rules[T_MAX][CHR_MAX] =
 		[CHR_PIPE] = 1,
 		[CHR_SEP] = 0,
 	},
-	[T_ARG_QUOTE] = {
+	[T_ARG_DOUBLE_QUOTE] = {
 		[CHR_DIGIT] = 1,
 		[CHR_ALPHA] = 1,
 		[CHR_SEP] = 1,
@@ -68,7 +78,17 @@ int				token_chr_rules[T_MAX][CHR_MAX] =
 		[CHR_REDIR_L] = 1,
 		[CHR_REDIR_R] = 1,
 		[CHR_NL] = 0,
-		[CHR_QUOTE] = 0,
+		[CHR_DOUBLE_QUOTE] = 0,
+	},
+	[T_ARG_SIMPLE_QUOTE] = {
+		[CHR_DIGIT] = 1,
+		[CHR_ALPHA] = 1,
+		[CHR_SEP] = 1,
+		[CHR_PIPE] = 1,
+		[CHR_REDIR_L] = 1,
+		[CHR_REDIR_R] = 1,
+		[CHR_NL] = 0,
+		[CHR_SIMPLE_QUOTE] = 0,
 	}
 };
 
@@ -86,11 +106,6 @@ t_token	get_token(char *input, int *i, t_token_type tok_type)
 	}
 	return (save_token(input + (*i - len), len, tok_type));
 }
-
-/*t_token manage_quote(char *s, int *i, t_token_type tok_type)
-{
-
-}*/
 
 t_token	split_token(char *input)
 {

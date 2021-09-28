@@ -12,26 +12,6 @@
 #define SUCCESS 0
 #define MAX 6
 #define BUILTIN "{cd, echo, exit, export, pwd, unset}"
-
-/*
-** ENUM
-*/
-
-typedef enum		e_chr_class {
-	CHR_ALPHA,
-	CHR_SEP,
-	CHR_DIGIT,
-	CHR_DASH,
-	CHR_QUOTE, 
-	CHR_NL,
-	CHR_PIPE, 
-	CHR_REDIR_L, 
-	CHR_REDIR_R, 
-	// CHR_DOL,
-	// CHR_SEMI,
-	CHR_MAX
-}					t_chr_class;
-
 /*
 ** LIBRAIRIES
 */
@@ -57,10 +37,38 @@ typedef enum		e_chr_class {
 #include <curses.h>
 #include <term.h>
 
+/*
+** ENUM
+*/
+
+typedef enum		e_chr_class {
+	CHR_ALPHA,
+	CHR_SEP,
+	CHR_DIGIT,
+	CHR_DASH,
+	CHR_SIMPLE_QUOTE, 
+	CHR_DOUBLE_QUOTE,
+	CHR_NL,
+	CHR_PIPE, 
+	CHR_REDIR_L, 
+	CHR_REDIR_R, 
+	// CHR_DOL,
+	// CHR_SEMI,
+	CHR_MAX
+}					t_chr_class;
 
 /*
 ** STRUCTURES
 */
+
+
+typedef	struct s_data
+{
+	t_list	*env;
+	int		fd_in;
+	int		fd_out;
+}				t_data;
+
 
 typedef struct		s_token 
 {
@@ -68,28 +76,10 @@ typedef struct		s_token
 	char			*data;
 }					t_token;
 
-typedef struct s_node
-{
-	struct s_node	*next;
-	struct s_node	*prev;
-	char			*value;
-	int				index;
-	t_token_type	token;
-}					t_node;
-
-typedef struct s_dlist
-{
-	struct s_node	*begin;
-	struct s_node	*end;
-	int				len;
-}					t_dlist;
-
 /*
 ** FUNCTIONS
 */
 int		init(char **envp);
-t_dlist	*init_list(t_dlist *list);
-void	print_dlist(t_dlist *lst);
 void	get_env(char **envp);
 
 /*
@@ -108,15 +98,13 @@ int		ft_cd(const char *path);
 ** Tokenizer
 */ 
 
-void			parser(char *line);
+void			parser(char *line, t_data *data);
 t_token_type	get_tok_type[CHR_MAX];
 int				token_chr_rules[T_MAX][CHR_MAX];
 t_chr_class		get_chr_class[255];
-t_dlist			*ft_add_node(t_dlist *lst, t_token *node, int index);
 t_token			split_token(char *input);
 void			ignore_wspace(char *s, int *i);
 t_token			save_token(char *s, int len, t_token_type toktype);
-void			print_list(t_dlist *lst);
 
 /*
 ** Parsing

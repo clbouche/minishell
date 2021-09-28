@@ -1,4 +1,5 @@
 _HiStOrY_V2_
-echo\040-n\040bonjour
-echo\040\040\040\040bonjour
-echo\040\040\040"bonjour\040\040\040\040>>\040bonjour"
+echo\040
+echo\040bonjour
+echo\040bonjour\040toi
+echo\040bonjour\040|\040ls\040-l

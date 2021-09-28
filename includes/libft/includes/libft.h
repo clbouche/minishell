@@ -6,7 +6,7 @@
 /*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 11:56:59 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/27 15:30:42 by claclou          ###   ########.fr       */
+/*   Updated: 2021/09/28 15:33:05 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,23 @@
 
 typedef enum		e_token_type
 {
-	T_ARG, 
-	T_SEP,
-	T_OPT, 
-	T_EOF,
-	T_PIPE,
-	T_REDIR,
-	T_ARG_QUOTE,
-	// T_CMD,
-	// T_SIMPLE_REDIR_LEFT, 
-	// T_SIMPLE_REDIR_RIGHT, 
-	// T_DOUBLE_REDIR_LEFT,
-	// T_DOUBLE_REDIR_RIGHT, 
-	// T_BACKSLASH, 
-	// T_NL, 
-	 T_MAX
+	T_ARG = 0,
+	T_SEP = 1,
+	T_OPT = 2,
+	T_EOF = 3,
+	T_PIPE = 4,
+	T_ARG_DOUBLE_QUOTE  = 5,
+	T_ARG_SIMPLE_QUOTE = 6,
+	T_CMD = 7,
+	T_FILE = 8,
+	T_SIMPLE_REDIR_L = 9,
+	T_SIMPLE_REDIR_R = 10, 
+	T_DOUBLE_REDIR_L = 11,
+	T_DOUBLE_REDIR_R = 12,
+	//T_DOLLARS = 13,
+	// T_BACKSLASH = 14,
+	// T_NL = 15,
+	T_MAX
 }					t_token_type;
 
 
@@ -86,6 +88,7 @@ void	ft_error(char *error);
 /* MANIP  STRING */
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+int		ft_strcmp(char *s1, char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strstr(char *str, char *to_find);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
