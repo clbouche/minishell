@@ -6,7 +6,7 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 10:32:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/27 15:27:23 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/09/28 12:03:53 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** It's not allowed to have option. 
 */
 
-int	ft_exit()
+void	ft_exit()
 {
     
     /*  -> si process en cours, tue le process
@@ -25,6 +25,6 @@ int	ft_exit()
         -> le stocker dans la structure ?
     */
     /*stocker le statut du retour dans la structure*/
-    ft_putstr_fd("exit", 1);
-   exit(0);
+    //ft_putstr_fd("exit", 1);
+    //exit(0);
 }

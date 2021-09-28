@@ -6,7 +6,7 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 10:14:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/09/28 09:54:52 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/09/28 12:09:37 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,22 @@ int is_builtins(char **cmd)
     return(FAILURE);
 }
 
-// void exec_builtin(int ret, char **cmd, t_data *d)
-// {
-//     if (is_builtins(cmd) == CD)
-//         ft_cd(cmd);
-//     else if (is_builtins(cmd) == ENV)
-//         ft_env()
-// }
+void exec_builtin(int ret, char **cmd, t_data *d)
+{
+    
+    if (is_builtins(cmd) == CD)
+        ft_cd(cmd);
+    else if (is_builtins(cmd) == ENV)
+        ft_env(d->env);
+    else if (is_builtins(cmd) == ECHO)
+        ft_echo(cmd);
+    else if (is_builtins(cmd) == EXPORT)
+        ft_export(cmd);
+    else if (is_builtins(cmd) == PWD)
+        ft_pwd();
+    else if (is_builtins(cmd) == UNSET)
+        ft_unset(cmd);
+    else if (is_builtins(cmd) == EXIT)
+        ft_exit();
+}
 

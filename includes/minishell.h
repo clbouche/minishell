@@ -103,7 +103,7 @@ typedef struct s_data
 /*
 ** FUNCTIONS
 */
-int		init(t_data *data, char **envp);
+t_list	*init(t_data *data, char **envp);
 t_dlist	*init_list(t_dlist *list);
 void	print_dlist(t_dlist *lst);
 t_list *get_env(t_list *env, char **envp);
@@ -117,10 +117,11 @@ t_list	*export_var(char **cmd);
 int		ft_export(char **cmd);
 int		ft_unset(char **cmd);
 int		ft_pwd(void);
-int		ft_exit();
+void		ft_exit(void);
 int		ft_cd(char **cmd);
 int		ft_echo(char **cmd);
-int	is_builtins(char **cmd);
+int		is_builtins(char **cmd);
+void	exec_builtin(int ret, char **cmd, t_data *d);
 
 
 

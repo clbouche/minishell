@@ -6,20 +6,22 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:54 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/28 10:47:20 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/09/28 12:08:57 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	init(t_data *d, char **envp)
+t_list	*init(t_data *d, char **envp)
 {	
 	t_list *env;
 	
 	ft_memset(d, 0, sizeof(d));
-	env = get_env(env, envp);
-	ft_env(env);
+	d->env = get_env(d->env, envp);
+	
+	return (d->env);
 }
+
 void tests(t_list *env, char **cmd)
 {
 //===> don't forget to free
