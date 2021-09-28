@@ -20,7 +20,6 @@ int main(int argc, char **argv, char **envp)
 	char **cmd;
 	int ret;
 	t_data d;
-	t_list	*env;
 
 	ret = 0;
 	cmd = NULL;
@@ -28,7 +27,6 @@ int main(int argc, char **argv, char **envp)
 	{
 		//ajouter le signal ici 
 		d.env = init(&d, envp);
-		ft_env(d.env);
 		while (1) //changer pour dire tant que pas EOF ou ctrl+D ou exit ou ? 
 		{
 			line = readline("🍄 MINISHELL🍄 : ");
@@ -36,9 +34,8 @@ int main(int argc, char **argv, char **envp)
 			write_history("history.txt");
 			cmd = ft_split(line, ' ');
 			ret = is_builtins(cmd);
-			printf("%i\n", ret);
 			if (ret != FAILURE)
-				exec_builtin(ret, cmd, &d, env);
+				exec_builtin(ret, cmd, &d);
 			// get_path(cmd, envp);
 			
 			//printf("\n%i", ret);
