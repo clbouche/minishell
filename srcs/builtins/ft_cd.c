@@ -22,18 +22,12 @@ int	ft_cd(char **cmd)
     char *path;
 
     path = NULL;
-    if (cmd[1] == NULL)
-    {
-        path = ft_strcpy(path, "~/");
-        puts("ok");
-        printf("%s\n", path);
-    }
-    else
-        path = ft_strcpy(path, cmd[1]);
+    path = ft_strdup(cmd[1]);
 	if (chdir(path) == -1)
     {
         perror("cd");
-        return (FAILURE);
+        free(path);
+        exit(FAILURE);
     }
     return(SUCCESS);
 }

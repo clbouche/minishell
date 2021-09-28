@@ -17,7 +17,7 @@
 ** It's not allowed to have option. 
 */
 
-void	ft_exit()
+int	ft_exit()
 {
     
     /*  -> si process en cours, tue le process

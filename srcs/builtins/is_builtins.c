@@ -55,7 +55,7 @@ int is_builtins(char **cmd)
     else if(ft_strcmp(cmd[0], "unset") == 0)
         return(UNSET);
     else if(ft_strcmp(cmd[0], "exit") == 0)
-        return(EXIT);
+        return(ft_exit());
     return(FAILURE);
 }
 
@@ -63,7 +63,10 @@ void exec_builtin(int ret, char **cmd, t_data *d)
 {
     
     if (is_builtins(cmd) == CD)
+    {
+        puts("here");
         ft_cd(cmd);
+    }
     else if (is_builtins(cmd) == ENV)
         ft_env(d->env);
     else if (is_builtins(cmd) == ECHO)
@@ -74,6 +77,6 @@ void exec_builtin(int ret, char **cmd, t_data *d)
         ft_pwd();
     else if (is_builtins(cmd) == UNSET)
         ft_unset(cmd, d);
-    else if (is_builtins(cmd) == EXIT)
-        ft_exit();
+    //else if (is_builtins(cmd) == EXIT)
+        //ft_exit();
 }

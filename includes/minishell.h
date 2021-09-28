@@ -117,7 +117,7 @@ void	export_var(char **cmd, t_data *d);
 int		ft_export(char **cmd, t_data *d);
 int		ft_unset(char **cmd, t_data *d);
 int		ft_pwd(void);
-void		ft_exit(void);
+int		ft_exit(void);
 int		ft_cd(char **cmd);
 int		ft_echo(char **cmd);
 int		is_builtins(char **cmd);
