@@ -17,19 +17,19 @@
 ** without arg, it list env variables, in alphabetical order
 */
 
-t_list	*export_var(char **cmd, d)
+void	export_var(char **cmd, t_data *d)
 {
 	t_list	*new_var;
 
 	new_var = ft_lstnew(cmd[1]);
 	ft_lstadd_back(&d->env, new_var);
-	return(d->env);
+	d->ret = 0;
 }
 
 //=>export_var
 ///don't forget to free
 //==> don't forget to sort alphabetically the variables
-int ft_export(char **cmd, t_data *d)
+int		ft_export(char **cmd, t_data *d)
 {
 	t_list *tmp;
 	
@@ -54,5 +54,5 @@ int ft_export(char **cmd, t_data *d)
 		d->env = d->env->next;
 	}
 	d->env = tmp;
-	return(0);
+	d->ret = 0;
 }

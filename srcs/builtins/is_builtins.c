@@ -69,12 +69,11 @@ void exec_builtin(int ret, char **cmd, t_data *d)
     else if (is_builtins(cmd) == ECHO)
         ft_echo(cmd);
     else if (is_builtins(cmd) == EXPORT)
-        ft_export(cmd);
+        ft_export(cmd, d);
     else if (is_builtins(cmd) == PWD)
         ft_pwd();
     else if (is_builtins(cmd) == UNSET)
-        ft_unset(cmd);
+        ft_unset(cmd, d);
     else if (is_builtins(cmd) == EXIT)
         ft_exit();
 }
-

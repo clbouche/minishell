@@ -25,6 +25,6 @@ void	ft_exit()
         -> le stocker dans la structure ?
     */
     /*stocker le statut du retour dans la structure*/
-    //ft_putstr_fd("exit", 1);
-    //exit(0);
+    ft_putstr_fd("exit", 1);
+    exit(0);
 }

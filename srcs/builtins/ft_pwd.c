@@ -30,7 +30,6 @@ int	ft_pwd(void)
     }
     else
     {
-        puts("ici");
         perror("pwd");
         exit(FAILURE);
     }  

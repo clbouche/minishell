@@ -34,6 +34,7 @@ int main(int argc, char **argv, char **envp)
 			write_history("history.txt");
 			cmd = ft_split(line, ' ');
 			ret = is_builtins(cmd);
+			printf("%i\n", ret);
 			if (ret != FAILURE)
 				exec_builtin(ret, cmd, &d);
 			// get_path(cmd, envp);
@@ -46,6 +47,6 @@ int main(int argc, char **argv, char **envp)
 		}
 	}
 	else
-		exit(0);
+		exit(SUCCESS);
 	return (ret);
 }

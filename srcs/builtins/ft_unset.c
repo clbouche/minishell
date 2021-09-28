@@ -12,27 +12,27 @@
 
 #include "../../includes/minishell.h"
 
-int ft_unset(char **cmd)
+int ft_unset(char **cmd, t_data *d)
 {
     t_list *tmp;
-    t_list *env;
+
     int pos;
     char *var;
 
     var = cmd[1];
     pos = 0;
-    tmp = env;
+    tmp = d->env;
     while (tmp != NULL)
     {
         if (ft_strncmp(var, tmp->content, (ft_strlen(var))) == 0)
         {
-			env = delete_node(env, var);
-			return(0);
+			d->env = delete_node(d->env, var);
+			return(FAILURE);
 		}
         tmp = tmp->next;
         pos++;
     }
-    return (1);
+    return (SUCCESS);
 }
 
 t_list *delete_node(t_list *head, char *var)
