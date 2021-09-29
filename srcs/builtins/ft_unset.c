@@ -3,36 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:31 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/27 15:26:37 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/09/29 16:33:21 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_list	*ft_unset(char **cmd, t_data *d)
+t_list  *ft_unset(char **cmd, t_data *d)
 {
     t_list *tmp;
 
     int pos;
-    char *var;
-
-    var = cmd[1];
+    
     pos = 0;
     tmp = d->env;
     while (tmp != NULL)
     {
-        if (ft_strncmp(var, tmp->content, (ft_strlen(var))) == 0)
+        if (ft_strncmp(cmd[1], tmp->content, (ft_strlen(cmd[1]))) == 0)
         {
-			d->env = delete_node(d->env, var);
-			return(FAILURE);
+			d->env = delete_node(d->env, cmd[1]);
+            puts("here");
+            d->ret = SUCCESS;
+			return(d->env);
 		}
         tmp = tmp->next;
         pos++;
     }
-    return (d->env);
+    d->ret = FAILURE;
+    return(NULL);
 }
 
 t_list *delete_node(t_list *head, char *var)
@@ -54,7 +55,7 @@ t_list *delete_node(t_list *head, char *var)
             h = h->next;
             hn = hn->next;
         }
-        if (hn->next == NULL)
+        else if (hn->next == NULL)
         {
             h->next = NULL;
             free(h);

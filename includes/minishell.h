@@ -11,6 +11,7 @@
 #define FAILURE 1
 #define SUCCESS 0
 #define MAX 4096
+#define UNKNOWN_COMMAND 127 
 
 /*
 ** ENUM
@@ -112,14 +113,14 @@ t_list *get_env(t_list *env, char **envp);
 ** Built-in 
 */
 
-int		ft_env(t_list *env);
+void	ft_env(t_list *env, t_data *d);
 void	export_var(char **cmd, t_data *d);
 int		ft_export(char **cmd, t_data *d);
 t_list	*ft_unset(char **cmd, t_data *d);
 int		ft_pwd(void);
 int		ft_exit(void);
 int		ft_cd(char **cmd);
-int		ft_echo(char **cmd);
+int		ft_echo(char **cmd, t_data *d);
 int		is_builtins(char **cmd);
 void	exec_builtin(int ret, char **cmd, t_data *d);
 

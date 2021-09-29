@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:04 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/27 14:27:36 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/09/29 16:03:46 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,23 @@
 void	export_var(char **cmd, t_data *d)
 {
 	t_list	*new_var;
+	int		i;
 
-	new_var = ft_lstnew(cmd[1]);
-	ft_lstadd_back(&d->env, new_var);
-	d->ret = 0;
+	i = 0;
+	printf("%s\n", cmd[1]);
+	while(cmd[1][i])
+	{
+		if (cmd[1][i] == '=')
+		{
+			new_var = ft_lstnew(cmd[1]);
+			ft_lstadd_back(&d->env, new_var);
+			d->ret = SUCCESS;
+			return;
+		}
+		i++;
+	}
+	d->ret = UNKNOWN_COMMAND;
+	return;
 }
 
 //=>export_var
@@ -36,7 +49,7 @@ int		ft_export(char **cmd, t_data *d)
 	if(cmd[1] != NULL)
 	{
 		export_var(cmd, d);
-		return(0);
+		return(SUCCESS);
 	}
 	tmp = d->env;
 	while(d->env != NULL) //print alphabetically
@@ -44,15 +57,16 @@ int		ft_export(char **cmd, t_data *d)
 		if (d->env->next == NULL)
 		{
 			printf("declare -x ");
-			printf("\"%s\"\n", d->env->content);
+			printf("\"%s\"\n", (char *)d->env->content);
 		}
 		else
 		{
 			printf("declare -x ");
-			printf("\"%s\"\n", d->env->content);
+			printf("\"%s\"\n", (char *)d->env->content);
 		}
 		d->env = d->env->next;
 	}
 	d->env = tmp;
-	d->ret = 0;
+	d->ret = SUCCESS;
+	return (SUCCESS);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+         #
+#    By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 13:17:26 by clbouche          #+#    #+#              #
-#    Updated: 2021/09/27 15:00:38 by ldes-cou@st      ###   ########.fr        #
+#    Updated: 2021/09/29 15:51:03 by ldes-cou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,6 +99,7 @@ SRCS += ft_isascii.c
 SRCS += ft_isprint.c
 SRCS += ft_tolower.c
 SRCS += ft_toupper.c
+SRCS += ft_itoa.c
 
 # MANIP MEMORY #
 SRCS += ft_memset.c

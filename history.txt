@@ -1,3 +1,4 @@
-pwd
-make
-cd ../
+export KK=lllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll
+unset KK
+env
+env
