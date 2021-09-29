@@ -1,4 +1,1 @@
-export KK=lllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll
-unset KK
-env
-env
+exit
