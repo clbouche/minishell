@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 12:25:32 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/14 09:47:47 by claclou          ###   ########.fr       */
+/*   Updated: 2021/09/27 15:18:56 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,19 @@
 ** ->
 */ 
 
-void	ft_pwd()
+int	ft_pwd(void)
 {
     char path[MAX];
 
-    if (getcwd(path, sizeof(path)) != NULL)
-        printf("%s", path);
+    if (getcwd(path, MAX))
+    {
+        ft_putendl_fd(path, 1);
+        return(SUCCESS);
+    }
     else
+    {
+        puts("ici");
         perror("pwd");
+        exit(FAILURE);
+    }  
 }

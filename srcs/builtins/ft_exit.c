@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 10:32:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/24 14:42:58 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/09/28 12:03:53 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@
 ** It's not allowed to have option. 
 */
 
-int	ft_exit()
+void	ft_exit()
 {
+    
     /*  -> si process en cours, tue le process
         -> besoin du pid du process ?
         -> le stocker dans la structure ?
     */
     /*stocker le statut du retour dans la structure*/
-    return (0);
+    //ft_putstr_fd("exit", 1);
+    //exit(0);
 }

@@ -8,10 +8,12 @@
 #define RED "\001\033[31;1m\002"
 #define GREEN "\001\e[1;32m\002"
 #define RESET "\001\e[0m\002"
-#define ERROR 1
+#define FAILURE 1
 #define SUCCESS 0
-#define MAX 6
+//#define MAX 6
 #define BUILTIN "{cd, echo, exit, export, pwd, unset}"
+#define MAX 4096
+
 /*
 ** LIBRAIRIES
 */
@@ -41,6 +43,17 @@
 ** ENUM
 */
 
+typedef enum	s_builtin
+{
+	FT_CD = 2,
+	FT_ECHO,
+	FT_ENV,
+	FT_EXPORT,
+	FT_PWD,
+	FT_UNSET,
+	FT_EXIT,
+}				t_builtin;
+
 typedef enum		e_chr_class {
 	CHR_ALPHA,
 	CHR_SEP,
@@ -67,6 +80,7 @@ typedef	struct s_data
 	t_list	*env;
 	int		fd_in;
 	int		fd_out;
+	int 	ret;
 }				t_data;
 
 
@@ -79,20 +93,23 @@ typedef struct		s_token
 /*
 ** FUNCTIONS
 */
-int		init(char **envp);
-void	get_env(char **envp);
+t_list	*init(t_data *data, char **envp);
+t_list *get_env(t_list *env, char **envp);
 
 /*
 ** Built-in 
 */
 
 int		ft_env(t_list *env);
-void	ft_export_var(t_list *env, char *name, char *variable);
-void	ft_export(t_list *env);
-t_list	*ft_unset(t_list *env, char *var);
-void	ft_pwd();
-int		ft_exit();
-int		ft_cd(const char *path);
+t_list	*export_var(char **cmd);
+int		ft_export(char **cmd);
+int		ft_unset(char **cmd);
+int		ft_pwd(void);
+void	ft_exit(void);
+int		ft_cd(char **cmd);
+int		ft_echo(char **cmd);
+int		is_builtins(char **cmd);
+void	exec_builtin(int ret, char **cmd, t_data *d);
 
 /*
 ** Tokenizer
@@ -124,7 +141,7 @@ t_list	*delete_head(t_list *head);
 void	free_lst(t_list *lst);
 void	free_exit(t_list *lst, char *error);
 
-
-void tests(t_list *env);
+void	get_path(char **cmd, char **envp);
+void	tests(t_list *env, char **cmd);
 
 #endif

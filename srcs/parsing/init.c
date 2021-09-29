@@ -3,22 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:54 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/24 16:55:59 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/09/29 14:07:37 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	init(char **envp)
-{
-	get_env(envp);
+t_list	*init(t_data *d, char **envp)
+{	
+	t_list *env;
 	
-	return (0);
+	ft_memset(d, 0, sizeof(d));
+	d->env = get_env(d->env, envp);
+	
+	return (d->env);
 }
-void tests(t_list *env)
+
+void tests(t_list *env, char **cmd)
 {
 //===> don't forget to free
 // 
@@ -28,13 +32,10 @@ void tests(t_list *env)
 	//puts("ft_export_var");
 	//ft_export_var(env, "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE", "|||||||||||||||||||||||||||||||||||||||");
 	//puts("ft_export");
-	ft_export(env);
-	env = ft_unset(env, "SHELL");
-	ft_export(env);
+	//ft_export(cmd);
+	//ft_unset(cmd);
+	//ft_export(cmd);
 	//ft_env(env);
 	//ft_env(env);
 	//ft_env(env);
 }
-	//env->path = getenv("PATH");
-	//env->paths = ft_split(env->path, ':');
-	//env = malloc(sizeof(t_env *));

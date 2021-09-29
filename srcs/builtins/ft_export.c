@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:04 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/16 14:45:55 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/09/29 14:11:02 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,35 +17,46 @@
 ** without arg, it list env variables, in alphabetical order
 */
 
-void	ft_export_var(t_list *env, char *name, char *variable)
+t_list	*export_var(char **cmd)
 {
-	t_list *new_var;
+	t_list	*new_var;
+	t_list	*env;
+	//char *name;
 	
-	name = ft_strjoin(name, "=");//dont forget to free
-	new_var = ft_lstnew(ft_strjoin(name, variable));
+	//name = ft_strjoin(cmd[1], "=");//dont forget to free
+	new_var = ft_lstnew(cmd[1]);
 	ft_lstadd_back(&env, new_var);
+	return(env);
 }
+
+//=>export_var
 ///don't forget to free
 //==> don't forget to sort alphabetically the variables
-void ft_export(t_list *env)
+int ft_export(char **cmd)
 {
 	t_list *tmp;
-
+	t_list *env;
+	
+	if(cmd[1] != NULL)
+	{
+		export_var(cmd);
+		return(0);
+	}
 	tmp = env;
-	while(env != NULL)
+	while(env != NULL) //print alphabetically
 	{
 		if (env->next == NULL)
 		{
 			printf("declare -x ");
-			printf("\"%s\"\n", env->content);
+			printf("\"%s\"\n", (char *)env->content);
 		}
 		else
 		{
 			printf("declare -x ");
-			printf("\"%s\"\n", env->content);
+			printf("\"%s\"\n", (char *)env->content);
 		}
 		env = env->next;
 	}
 	env = tmp;
-	
+	return(0);
 }

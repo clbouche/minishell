@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:38:59 by ldes-cou@         #+#    #+#             */
-/*   Updated: 2021/09/24 14:43:00 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/09/29 14:10:49 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ int	ft_env(t_list *env)
 	
 	if (env == NULL)
 	{
-		perror("env");
-		return (1);
+		ft_putstr_fd("there is no environment", 2);
+		return (FAILURE);
 	}
 	tmp = env;
 	while(env != NULL)
 	{
-		printf("%s\n", env->content);
+		printf("%s\n", (char *)env->content);
 		env = env->next;
 	}
 	env = tmp;
-	return (0);
+	return (SUCCESS);
 }

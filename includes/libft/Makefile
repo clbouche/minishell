@@ -6,7 +6,7 @@
 #    By: claclou <claclou@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 13:17:26 by clbouche          #+#    #+#              #
-#    Updated: 2021/09/28 10:49:21 by claclou          ###   ########.fr        #
+#    Updated: 2021/09/29 14:04:40 by claclou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ ONELINE =\e[1A\r
 # INCLUDES #
 ############
 
-PATH_INCLUDES = includes/
+PATH_INCLUDES = includes
 I_INCLUDES += -I $(PATH_INCLUDES)
 
 ##########
@@ -89,6 +89,7 @@ SRCS += ft_split.c
 SRCS += ft_strmapi.c
 SRCS += ft_strchr.c
 SRCS += ft_strjoin.c
+SRCS += ft_strcpy.c
 
 # CHECK CHAR #
 SRCS += ft_isalpha.c
@@ -147,7 +148,7 @@ vpath %.c $(PATH_SRCS)
 ###########
 
 PATH_OBJS = objs/
-OBJS = $(patsubst %.c, $(PATH_OBJS)%.o, $(SRCS))
+OBJS = $(patsubst %.c, $(PATH_OBJS)%.o, $(SRCS)) 
 
 #########
 # RULES #

@@ -6,7 +6,7 @@
 /*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/28 15:32:26 by claclou          ###   ########.fr       */
+/*   Updated: 2021/09/29 14:08:49 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,15 @@ int main(int argc, char **argv, char **envp)
 	char *line;
 	char **cmd;
 	t_data	data;
+	int ret;
 
+	ret = 0;
+	cmd = NULL;
 	if (argc == 1)
 	{
 		//ajouter le signal ici 
-		//init(envp);
 		//initialiser les datas : sortie standard, etc..
+		data.env = init(&data, envp);
 		while (1) //changer pour dire tant que pas EOF ou ctrl+D ou exit ou ? 
 		{
 			line = readline("🍄 MINISHELL🍄 : ");
@@ -34,7 +37,18 @@ int main(int argc, char **argv, char **envp)
 			//execute(cmd) 
 		}
 	}
+			// cmd = ft_split(line, ' ');
+			// ret = is_builtins(cmd);
+			// if (ret != FAILURE)
+			// 	exec_builtin(ret, cmd, &d);
+			// get_path(cmd, envp);
+			
+			//printf("\n%i", ret);
+			
+			//parser(line);
+			//execute(list) 
+			//faire un parsing qui renvoie la liste chaînée traité 
 	else
-		exit(EXIT_FAILURE);
-	return (0);
+		exit(0);
+	return (ret);
 }

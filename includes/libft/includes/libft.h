@@ -6,7 +6,7 @@
 /*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 11:56:59 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/28 15:33:05 by claclou          ###   ########.fr       */
+/*   Updated: 2021/09/29 14:04:35 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	ft_error(char *error);
 // void	print_index(t_dlist *stack_a);
 
 /* MANIP  STRING */
+char	*ft_strcpy(char *dest, char *src);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 int		ft_strcmp(char *s1, char *s2);
