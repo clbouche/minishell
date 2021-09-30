@@ -113,7 +113,7 @@ t_list *get_env(t_list *env, char **envp);
 ** Built-in 
 */
 
-void	ft_env(t_list *env, t_data *d);
+void	ft_env(t_data *d);
 void	export_var(char **cmd, t_data *d);
 int		ft_export(char **cmd, t_data *d);
 t_list	*ft_unset(char **cmd, t_data *d);
@@ -147,15 +147,14 @@ static t_chr_class		get_chr_class[255];
 
 void	free_stack(t_list *top);
 t_list	*delete_node(t_list *head, char *var);
-t_list	*delete_head(t_list *head);
+
 
 /*
 ** FREE
 */
 
 void	free_stack(t_list *top);
-t_list	*delete_node(t_list *head, char *var);
-t_list	*delete_head(t_list *head);
+
 void	free_lst(t_list *lst);
 void	free_exit(t_list *lst, char *error);
 

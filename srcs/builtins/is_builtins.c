@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_builtins.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 10:14:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/09/29 16:21:11 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/09/30 09:09:58 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void exec_builtin(int ret, char **cmd, t_data *d)
         ft_cd(cmd);
     }
     else if (is_builtins(cmd) == ENV)
-        ft_env(d->env, d);
+        ft_env(d);
     else if (is_builtins(cmd) == ECHO)
         ft_echo(cmd, d);
     else if (is_builtins(cmd) == EXPORT)

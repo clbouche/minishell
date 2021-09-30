@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:38:59 by ldes-cou@         #+#    #+#             */
-/*   Updated: 2021/09/29 15:57:59 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/09/30 09:10:24 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,21 @@
 */
 #include "../../includes/minishell.h"
 
-void	ft_env(t_list *env, t_data *d)
+void	ft_env(t_data *d)
 {
 	t_list *tmp;
 	
-	if (env == NULL)
+	if (d->env == NULL)
 	{
 		ft_putstr_fd("there is no environment", 2);
 		d->ret = FAILURE;
 	}
-	tmp = env;
-	while(env != NULL)
+	tmp = d->env;
+	while(d->env != NULL)
 	{
-		printf("%s\n", (char *)env->content);
-		env = env->next;
+		printf("%s\n", (char *)d->env->content);
+		d->env = d->env->next;
 	}
-	env = tmp;
+	d->env = tmp;
 	d->ret = FAILURE;
 }
