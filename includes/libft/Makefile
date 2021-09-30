@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+         #
+#    By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 13:17:26 by clbouche          #+#    #+#              #
-#    Updated: 2021/09/29 15:51:03 by ldes-cou         ###   ########.fr        #
+#    Updated: 2021/09/30 14:16:02 by ldes-cou@st      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -110,6 +110,7 @@ SRCS += ft_memmove.c
 SRCS += ft_memchr.c
 SRCS += ft_memcmp.c
 SRCS += ft_calloc.c
+SRCS += ft_memdel.c
 
 # MANIP FILE #
 SRCS += ft_putchar_fd.c

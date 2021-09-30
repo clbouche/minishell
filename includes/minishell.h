@@ -157,8 +157,7 @@ void	free_stack(t_list *top);
 
 void	free_lst(t_list *lst);
 void	free_exit(t_list *lst, char *error);
-
-void	get_path(char **cmd, char **envp);
+char	**get_path(char **cmd, t_data *d);
 void	tests(t_list *env, char **cmd);
 
 #endif

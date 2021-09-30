@@ -6,7 +6,7 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/28 12:08:36 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/09/30 14:12:54 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,28 @@ int main(int argc, char **argv, char **envp)
 			add_history(line);
 			write_history("history.txt");
 			cmd = ft_split(line, ' ');
-			//ret = is_builtins(cmd);
-			//printf("%i\n", ret);
+			while(cmd[ret])
+			{
+				printf("%s\n", cmd[ret]);
+				ret ++;
+			}
+			ret = 0;
+			ret = is_builtins(cmd);
+			printf("%i\n", ret);
 			if (ret != FAILURE)
 				exec_builtin(ret, cmd, &d);
+			else
+			{
+				char **paths;
+				int i;
+				paths = get_path(cmd, &d);
+				while(paths[i])
+				{
+					printf("%s\n", paths[i]);
+					i++;
+				}
+			}
+			
 			// get_path(cmd, envp);
 			
 			//printf("\n%i", ret);
