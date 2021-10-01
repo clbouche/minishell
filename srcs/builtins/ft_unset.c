@@ -6,7 +6,7 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:31 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/30 11:34:41 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/10/01 11:04:39 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static t_list	*delete_last(t_list *head, t_list *hn)
 	free(hn);
 	return(head);
 }
+
 t_list  *ft_unset(char **cmd, t_data *d)
 {
 	t_list *tmp;
@@ -82,10 +83,3 @@ t_list *delete_node(t_list *head, char *var)
 	}
 	return (head); 
 }
-
-
-/*to delete a node check the position of the node 
-	==> if first node deplace the ptr to the 2nd node
-	==> if in the middle, deplace the ptr to next of the precedent node to the next node
-	==> if in the end move ptr of the previous to NULL 
-*/

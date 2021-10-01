@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:54 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/29 15:58:43 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/01 11:04:16 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 t_list	*init(t_data *d, char **envp)
 {	
-	t_list *env;
 	
+	d->env = NULL;
 	ft_memset(d, 0, sizeof(d));
-	d->env = get_env(d->env, envp);
+	// printf("rret ==%i\n", d->ret);
+	// printf("%i\n", d->env_len);
+	d->env = get_env(d, envp);
 	
 	return (d->env);
 }

@@ -99,15 +99,16 @@ typedef struct s_dlist
 typedef struct s_data
 {
 	int		ret;
+	int		env_len;
 	t_list	*env;
 }				t_data;
 /*
 ** FUNCTIONS
 */
-t_list	*init(t_data *data, char **envp);
+t_list	*get_env(t_data *d, char **envp);
 t_dlist	*init_list(t_dlist *list);
 void	print_dlist(t_dlist *lst);
-t_list *get_env(t_list *env, char **envp);
+t_list	*init(t_data *d, char **envp);
 
 /*
 ** Built-in 
@@ -148,16 +149,25 @@ static t_chr_class		get_chr_class[255];
 void	free_stack(t_list *top);
 t_list	*delete_node(t_list *head, char *var);
 
+/*
+** execution
+*/
+
+
+void	get_path(char **cmd, t_data *d);
+void	test_path(char **paths, char **cmd, char **envp);
+char	*find_bin(char **cmd, char **paths, char *bin, int i);
 
 /*
 ** FREE
 */
 
 void	free_stack(t_list *top);
-
+void	free_array(char **array);
 void	free_lst(t_list *lst);
 void	free_exit(t_list *lst, char *error);
-char	**get_path(char **cmd, t_data *d);
 void	tests(t_list *env, char **cmd);
+
+
 
 #endif

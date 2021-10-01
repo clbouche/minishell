@@ -6,7 +6,7 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 14:26:48 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/30 14:15:33 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/10/01 11:59:40 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_list
 	struct s_list	*next;
 }				t_list;
 
+char	*ft_strcat(char *dst, char *src);
 void    ft_memdel(char *str);
 size_t	ft_strlen(const char *s);
 int		ft_atoi(const char *str);

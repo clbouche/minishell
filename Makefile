@@ -64,6 +64,7 @@ SRCS += rules_token.c
 
 SRCS += execution.c
 SRCS += get_binary.c
+SRCS += free.c
 
 SRCS += ft_cd.c
 SRCS += ft_echo.c 

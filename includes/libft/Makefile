@@ -6,7 +6,7 @@
 #    By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 13:17:26 by clbouche          #+#    #+#              #
-#    Updated: 2021/09/30 14:16:02 by ldes-cou@st      ###   ########.fr        #
+#    Updated: 2021/10/01 11:58:55 by ldes-cou@st      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,6 +90,7 @@ SRCS += ft_strmapi.c
 SRCS += ft_strchr.c
 SRCS += ft_strjoin.c
 SRCS += ft_strcpy.c
+SRCS += ft_strcat.c
 
 # CHECK CHAR #
 SRCS += ft_isalpha.c

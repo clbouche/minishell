@@ -6,19 +6,18 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 12:09:16 by ldes-cou@         #+#    #+#             */
-/*   Updated: 2021/09/28 10:45:49 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/10/01 10:35:44 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_list *get_env(t_list *env, char **envp)
+t_list *get_env(t_data *d, char **envp)
 {
 	t_list *new;
 	char *var;
 	int i;
 	
-	env = NULL;	
 	new = NULL;
 	var = NULL;
 	i = -1;
@@ -26,13 +25,15 @@ t_list *get_env(t_list *env, char **envp)
 	{
 		var = ft_strdup(envp[i]);
 		if (var == NULL)
-			free_exit(env, "malloc error");
+			free_exit(d->env, "malloc error");
 		new = ft_lstnew(var);
 		if (new == NULL)
-			free_exit(env, "chained list error");
-		ft_lstadd_back(&env, new);
+			free_exit(d->env, "chained list error");
+		ft_lstadd_back(&d->env, new);
+		d->env_len++;	
 	}
-	return(env);
+	printf("%i\n", d->env_len);
+	return(d->env);
 }
 	
 void free_lst(t_list *lst)
