@@ -54,22 +54,6 @@ typedef enum	s_builtin
 	FT_EXIT,
 }				t_builtin;
 
-typedef enum		e_chr_class {
-	CHR_ALPHA,
-	CHR_SEP,
-	CHR_DIGIT,
-	CHR_DASH,
-	CHR_SIMPLE_QUOTE, 
-	CHR_DOUBLE_QUOTE,
-	CHR_NL,
-	CHR_PIPE, 
-	CHR_REDIR_L, 
-	CHR_REDIR_R, 
-	// CHR_DOL,
-	// CHR_SEMI,
-	CHR_MAX
-}					t_chr_class;
-
 /*
 ** STRUCTURES
 */
@@ -78,23 +62,17 @@ typedef enum		e_chr_class {
 typedef	struct s_data
 {
 	t_list	*env;
-	int		fd_in;
-	int		fd_out;
+	int		input;
+	int		ouput;
 	int 	ret;
 }				t_data;
-
-
-typedef struct		s_token 
-{
-	t_token_type	tok_type;
-	char			*data;
-}					t_token;
 
 /*
 ** FUNCTIONS
 */
 t_list	*init(t_data *data, char **envp);
-t_list *get_env(t_list *env, char **envp);
+void	init_datas(t_data *data);
+t_list 	*get_env(t_list *env, char **envp);
 
 /*
 ** Built-in 
@@ -112,21 +90,10 @@ int		is_builtins(char **cmd);
 void	exec_builtin(int ret, char **cmd, t_data *d);
 
 /*
-** Tokenizer
-*/ 
-
-void			parser(char *line, t_data *data);
-t_token_type	get_tok_type[CHR_MAX];
-int				token_chr_rules[T_MAX][CHR_MAX];
-t_chr_class		get_chr_class[255];
-t_token			split_token(char *input);
-void			ignore_wspace(char *s, int *i);
-t_token			save_token(char *s, int len, t_token_type toktype);
-
-/*
 ** Parsing
 */
 
+void	parser(char *line, t_data *data);
 void	free_stack(t_list *top);
 t_list	*delete_node(t_list *head, char *var);
 t_list	*delete_head(t_list *head);

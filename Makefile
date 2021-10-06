@@ -59,8 +59,6 @@ SRCS += minishell.c
 
 SRCS += parsing.c
 SRCS += init.c 
-SRCS += tokenizer.c
-SRCS += rules_token.c
 
 SRCS += execution.c
 SRCS += get_binary.c
