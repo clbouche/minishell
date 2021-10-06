@@ -15,19 +15,19 @@
 
 int is_builtins(char **cmd)
 {
-    if(ft_strcmp(cmd[0], "cd") == 0)
+    if(ft_strcmp("cd", cmd[0]) == 0)
         return(CD);
-    else if(ft_strcmp(cmd[0], "echo") == 0)
+    else if(ft_strcmp("echo", cmd[0]) == 0)
         return(ECHO);
-    else if(ft_strcmp(cmd[0], "env") == 0)
+    else if(ft_strcmp("env", cmd[0]) == 0)
         return(ENV);
-    else if(ft_strcmp(cmd[0], "export") == 0)
+    else if(ft_strcmp("export", cmd[0]) == 0)
         return(EXPORT);
-    else if(ft_strcmp(cmd[0], "pwd") == 0)
+    else if(ft_strcmp("pwd", cmd[0]) == 0)
         return(PWD);
-    else if(ft_strcmp(cmd[0], "unset") == 0)
+    else if(ft_strcmp("unset", cmd[0]) == 0)
         return(UNSET);
-    else if(ft_strcmp(cmd[0], "exit") == 0)
+    else if(ft_strcmp("exit", cmd[0]) == 0)
         return(ft_exit());
     return(FAILURE);
 }
@@ -36,10 +36,7 @@ void exec_builtin(int ret, char **cmd, t_data *d)
 {
     
     if (is_builtins(cmd) == CD)
-    {
-        puts("here");
         ft_cd(cmd);
-    }
     else if (is_builtins(cmd) == ENV)
         ft_env(d);
     else if (is_builtins(cmd) == ECHO)

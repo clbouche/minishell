@@ -1,1 +1,1 @@
-ld
+cat -e Makefile

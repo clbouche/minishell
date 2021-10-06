@@ -63,6 +63,8 @@ SRCS += tokenizer.c
 SRCS += rules_token.c
 
 SRCS += execution.c
+SRCS += exec_simple.c
+SRCS += manage_errors.c
 SRCS += get_binary.c
 SRCS += free.c
 

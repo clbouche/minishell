@@ -3,26 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/01 12:10:32 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/10/06 18:43:35 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
 /*###SUPPRIMER WRITE HISTORY####*/
+t_sig g_signal;
 
 int main(int argc, char **argv, char **envp)
 {
 	char *line;
 	char **cmd;
-	int ret;
 	t_data d;
 
-	ret = 0;
-	cmd = NULL;
 	if (argc == 1)
 	{
 		//ajouter le signal ici 
@@ -32,36 +30,7 @@ int main(int argc, char **argv, char **envp)
 			line = readline("🍄 MINISHELL🍄 : ");
 			add_history(line);
 			write_history("history.txt");
-			cmd = ft_split(line, ' ');
-			while(cmd[ret])
-			{
-				printf("%s\n", cmd[ret]);
-				ret ++;
-			}
-			ret = 0;
-			ret = is_builtins(cmd);
-			printf("%i\n", ret);
-			if (ret != FAILURE)
-				exec_builtin(ret, cmd, &d);
-			else
-			{
-				get_path(cmd, &d);
-			}		
-			// else
-			// {
-			// 	char **paths;
-			// 	int i;
-			// 	paths = get_path(cmd, &d);
-			// 	while(paths[i])
-			// 	{
-			// 		printf("%s\n", paths[i]);
-			// 		i++;
-			// 	}
-			// }
-			
-			// get_path(cmd, envp);
-			
-			//printf("\n%i", ret);
+			parse_exec(line, &d);
 			
 			//parser(line);
 			//execute(list) 
@@ -70,5 +39,5 @@ int main(int argc, char **argv, char **envp)
 	}
 	else
 		exit(SUCCESS);
-	return (ret);
+
 }

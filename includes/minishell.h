@@ -73,6 +73,14 @@ typedef enum	s_builtin
 ** STRUCTURES
 */
 
+typedef struct	s_sig
+{
+	int				sigint;
+	int				sigquit;
+	int				exit_status;
+	pid_t			pid;
+}				t_sig;
+
 typedef struct		s_token 
 {
 	t_token_type	tok_type;
@@ -103,7 +111,7 @@ typedef struct s_data
 	t_list	*env;
 }				t_data;
 /*
-** FUNCTIONS
+** initialization
 */
 t_list	*get_env(t_data *d, char **envp);
 t_dlist	*init_list(t_dlist *list);
@@ -122,9 +130,6 @@ int		ft_pwd(void);
 int		ft_exit(void);
 int		ft_cd(char **cmd);
 int		ft_echo(char **cmd, t_data *d);
-int		is_builtins(char **cmd);
-void	exec_builtin(int ret, char **cmd, t_data *d);
-
 
 
 /*
@@ -145,15 +150,17 @@ static t_chr_class		get_chr_class[255];
 /*
 ** Parsing
 */
+void	parse_exec(char *line, t_data *d);
+int		is_builtins(char **cmd);
 
-void	free_stack(t_list *top);
-t_list	*delete_node(t_list *head, char *var);
 
 /*
 ** execution
 */
-
-
+void	exec_simple(char  **cmd, t_data *d);
+void    exec_child(char **cmd, t_data *d);
+void    exec_parent(char **cmd, t_data *d);
+void	exec_builtin(int ret, char **cmd, t_data *d);
 void	get_path(char **cmd, t_data *d);
 void	test_path(char **paths, char **cmd, char **envp);
 char	*find_bin(char **cmd, char **paths, char *bin, int i);
@@ -162,11 +169,13 @@ char	*find_bin(char **cmd, char **paths, char *bin, int i);
 ** FREE
 */
 
+t_list	*delete_node(t_list *head, char *var);
 void	free_stack(t_list *top);
 void	free_array(char **array);
 void	free_lst(t_list *lst);
 void	free_exit(t_list *lst, char *error);
 void	tests(t_list *env, char **cmd);
+void	opening_error(char *error);
 
 
 

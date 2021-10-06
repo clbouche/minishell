@@ -27,12 +27,12 @@ static char **convert_env(t_data *d)
 		tmp = tmp->next;
 		i++;
 	}
-	i = 0;
-	while(i < 52)
-	{
-		printf("[%i] == %s\n", i, env[i]);
-		i++;
-	}
+	// i = 0;
+	// while(i < 52)
+	// {
+	// 	printf("[%i] == %s\n", i, env[i]);
+	// 	i++;
+	// }
 	return(env);
 }
 
@@ -79,14 +79,14 @@ void	test_path(char **paths, char **cmd, char **envp)
 	free_array(paths);
 	free(cmd[0]);
 	cmd[0] = bin;
-	// if (bin == NULL)
-	// 	free_exit(cmd);
-	// else
-	// {
-	puts("here");
-	execve(bin, cmd, envp);
-	exit(0);
-	//}
+	if (bin == NULL)
+		exit(FAILURE);//free_exit(cmd);
+	else
+	{
+		puts("exec == ");
+		execve(bin, cmd, envp);
+		//exit(0);
+	}
 }
 
 char	*find_bin(char **cmd, char **paths, char *bin, int i)

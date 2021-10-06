@@ -45,7 +45,7 @@ t_list  *ft_unset(char **cmd, t_data *d)
 	pos = 0;
 	tmp = d->env;
 	printf("cmd[1] = %s\n", cmd[1]);
-	while (tmp != NULL)
+	while (tmp->next != NULL)
 	{
 		if (ft_strncmp(cmd[1], tmp->content, (ft_strlen(cmd[1]))) == 0)
 		{
