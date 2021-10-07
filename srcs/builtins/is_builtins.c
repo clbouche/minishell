@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   is_builtins.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 10:14:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/09/30 09:09:58 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/10/07 11:37:26 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 
 int is_builtins(char **cmd)
@@ -32,7 +32,7 @@ int is_builtins(char **cmd)
     return(FAILURE);
 }
 
-void exec_builtin(int ret, char **cmd, t_data *d)
+void exec_builtin(char **cmd, t_data *d)
 {
     
     if (is_builtins(cmd) == CD)

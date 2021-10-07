@@ -6,11 +6,11 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 17:27:22 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/10/06 17:30:29 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/07 11:37:26 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 void	opening_error(char *error)
 {

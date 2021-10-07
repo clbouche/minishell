@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   set_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 12:09:16 by ldes-cou@         #+#    #+#             */
-/*   Updated: 2021/10/01 10:35:44 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/10/07 11:37:26 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 t_list *get_env(t_data *d, char **envp)
 {
@@ -51,7 +51,7 @@ void free_lst(t_list *lst)
 
 void free_exit(t_list *lst, char *error)
 {
-	perror("error");
+	perror(error);
 	free_lst(lst);
 	exit(FAILURE);
 }

@@ -6,11 +6,11 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/06 18:43:35 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/07 12:34:41 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "minishell.h"
 
 /*###SUPPRIMER WRITE HISTORY####*/
 t_sig g_signal;
@@ -18,8 +18,8 @@ t_sig g_signal;
 int main(int argc, char **argv, char **envp)
 {
 	char *line;
-	char **cmd;
 	t_data d;
+	(void)argv;
 
 	if (argc == 1)
 	{
@@ -27,6 +27,7 @@ int main(int argc, char **argv, char **envp)
 		d.env = init(&d, envp);
 		while (1) //changer pour dire tant que pas EOF ou ctrl+D ou exit ou ? 
 		{
+			//line = exit ? break/exit
 			line = readline("🍄 MINISHELL🍄 : ");
 			add_history(line);
 			write_history("history.txt");

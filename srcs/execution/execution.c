@@ -6,11 +6,11 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 09:02:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/10/06 17:29:25 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/07 11:37:26 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 void parse_exec(char *line, t_data *d)
 {
@@ -28,7 +28,7 @@ void parse_exec(char *line, t_data *d)
     ret = is_builtins(cmd);
     //printf("%i\n", ret);
     if (ret != FAILURE)
-        exec_builtin(ret, cmd, d);
+        exec_builtin(cmd, d);
     else
     {
         exec_simple(cmd, d);

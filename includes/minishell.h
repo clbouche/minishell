@@ -160,7 +160,7 @@ int		is_builtins(char **cmd);
 void	exec_simple(char  **cmd, t_data *d);
 void    exec_child(char **cmd, t_data *d);
 void    exec_parent(char **cmd, t_data *d);
-void	exec_builtin(int ret, char **cmd, t_data *d);
+void	exec_builtin(char **cmd, t_data *d);
 void	get_path(char **cmd, t_data *d);
 void	test_path(char **paths, char **cmd, char **envp);
 char	*find_bin(char **cmd, char **paths, char *bin, int i);
