@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/07 12:34:41 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/07 15:04:37 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int main(int argc, char **argv, char **envp)
 	t_data d;
 	(void)argv;
 
+	line = NULL;
 	if (argc == 1)
 	{
 		//ajouter le signal ici 
@@ -30,7 +31,7 @@ int main(int argc, char **argv, char **envp)
 			//line = exit ? break/exit
 			line = readline("🍄 MINISHELL🍄 : ");
 			add_history(line);
-			write_history("history.txt");
+			//write_history("history.txt");
 			parse_exec(line, &d);
 			
 			//parser(line);

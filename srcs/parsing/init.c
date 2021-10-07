@@ -6,21 +6,20 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:54 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/07 11:37:26 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/07 15:44:15 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+extern t_sig g_signal;
+
 t_list	*init(t_data *d, char **envp)
-{	
+{
 	
 	d->env = NULL;
 	ft_memset(d, 0, sizeof(d));
-	// printf("rret ==%i\n", d->ret);
-	// printf("%i\n", d->env_len);
 	d->env = get_env(d, envp);
-	
 	return (d->env);
 }
 

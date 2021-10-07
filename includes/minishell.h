@@ -109,6 +109,8 @@ typedef struct s_data
 	int		ret;
 	int		env_len;
 	t_list	*env;
+	t_node	*lexer;
+	t_dlist	*lst;
 }				t_data;
 /*
 ** initialization

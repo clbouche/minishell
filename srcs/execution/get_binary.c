@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 15:15:48 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/10/07 12:34:58 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/07 15:33:38 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,16 @@ static char **convert_env(t_data *d)
 	
 	i = 0;
 	tmp = d->env;
-	env = malloc(sizeof(char *) * d->env_len);
+	env = malloc(sizeof(char *) * d->env_len + 1);
 	while(tmp != NULL)
 	{
 		env[i] = ft_strdup(tmp->content);
 		tmp = tmp->next;
 		i++;
 	}
+	env[i] = NULL;
 	// i = 0;
-	// while(i < 52)
+	// while(env[i] != NULL)
 	// {
 	// 	printf("[%i] == %s\n", i, env[i]);
 	// 	i++;
@@ -38,37 +39,36 @@ static char **convert_env(t_data *d)
 
 void	get_path(char **cmd, t_data *d)
 {
-	int		i;
-	int		j;
 	char	*path;
 	char	**paths;
 	char	**envp;
+	int		i;
 
 	i = 0;
-	j = 0;
 	path = NULL;
 	paths = NULL;
 	envp = convert_env(d);
-	while (*envp)
+	while (envp[i])
 	{
-		if (ft_strnstr(*envp, "PATH", 4) != 0)
+		if (ft_strnstr(envp[i], "PATH=", 5) != 0)
 			break ;
-		envp++;
+		i++;
 	}
-	while (envp[i][j] != '/')
-		j++;
-	path = ft_substr(*envp, j, ft_strlen(*envp));
+
+	//printf("%s\n", envp[i]);
+	path = ft_substr(envp[i], 4, ft_strlen(envp[i]));
 	paths = ft_split(path, ':');
 	free(path);
 	path = NULL;
 	test_path(paths, cmd, envp);
 }
 
-void	test_path(char **paths, char **cmd, char **envp)
+void	test_path(char **paths, char **cmd, char **env)
 {
 	char	*bin;
 	int		i;
-
+	//(void)envp;
+	
 	i = 0;
 	bin = NULL;
 	while (paths[i] && bin == NULL)
@@ -84,20 +84,25 @@ void	test_path(char **paths, char **cmd, char **envp)
 	free_array(paths);
 	free(cmd[0]);
 	cmd[0] = bin;
-	//printf("%s\n", bin);
+	// printf("%s\n", bin);
+	// i = -1;
+	// while(envp[++i] != NULL)
+	// {
+	// 	printf("%s\n", envp[i]);
+	// }
 	if (bin == NULL)
 		exit(FAILURE);//free_exit(cmd);
 	else
 	{
 		//puts("exec");
-		execve(bin, cmd, envp);
+		execve(bin, cmd, env);
 		exit(10);
 	}
 }
 
 char	*find_bin(char **cmd, char **paths, char *bin, int i)
 {
-	bin = (char *)calloc(sizeof(char), (ft_strlen(paths[i]) + ft_strlen(cmd[0]) + 2));
+	bin = (char *)ft_calloc(sizeof(char), (ft_strlen(paths[i]) + ft_strlen(cmd[0]) + 2));
 	ft_strcat(bin, paths[i]); //faire une fonction maison
 	ft_strcat(bin, "/");
 	ft_strcat(bin, cmd[0]);
