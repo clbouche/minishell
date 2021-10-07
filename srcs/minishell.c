@@ -6,7 +6,7 @@
 /*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/06 10:04:31 by claclou          ###   ########.fr       */
+/*   Updated: 2021/10/07 15:54:41 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,14 @@ void	manage_history(char *input)
 void	minishell_loop(t_data *data)
 {
 	char	*line;
+	char	**cmd;
 	
 	while (1) //changer pour dire tant que pas EOF ou ctrl+D ou exit ou ? 
 	{
 		line = readline("🍄 MINISHELL🍄 : ");
 		manage_history(line);
-		parser(line, data);
-		//execute(cmd) 
+		cmd = parser(line, data);
+		execute(cmd, data);
 	}
 }
 

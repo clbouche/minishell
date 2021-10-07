@@ -56,9 +56,11 @@ PATH_EXEC = srcs/execution
 PATH_BUILT = srcs/builtins 
 
 SRCS += minishell.c
+SRCS += init.c 
 
 SRCS += parsing.c
-SRCS += init.c 
+SRCS += redir.c
+SRCS += split_cmd.c
 
 SRCS += execution.c
 SRCS += get_binary.c

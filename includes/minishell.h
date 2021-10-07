@@ -70,9 +70,33 @@ typedef	struct s_data
 /*
 ** FUNCTIONS
 */
+
+/*
+** Init
+*/
+
 t_list	*init(t_data *data, char **envp);
 void	init_datas(t_data *data);
 t_list 	*get_env(t_list *env, char **envp);
+
+/*
+** Parsing
+*/
+
+char	**parser(char *line, t_data *data);
+char	**complete_parser(char *line, t_data *data);
+char	**split_cmd(char *line);
+
+/*
+** Execution
+*/
+
+void	execute(char **cmd, t_data *data);
+
+
+void	free_stack(t_list *top);
+t_list	*delete_node(t_list *head, char *var);
+t_list	*delete_head(t_list *head);
 
 /*
 ** Built-in 
@@ -89,17 +113,9 @@ int		ft_echo(char **cmd);
 int		is_builtins(char **cmd);
 void	exec_builtin(int ret, char **cmd, t_data *d);
 
-/*
-** Parsing
-*/
-
-void	parser(char *line, t_data *data);
-void	free_stack(t_list *top);
-t_list	*delete_node(t_list *head, char *var);
-t_list	*delete_head(t_list *head);
 
 /*
-** FREE
+** Free
 */
 
 void	free_stack(t_list *top);

@@ -6,7 +6,7 @@
 /*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/06 10:30:43 by claclou          ###   ########.fr       */
+/*   Updated: 2021/10/07 15:55:50 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,10 @@ char	*manage_quotes(char *line, t_data *data)
 	return (&line[i + 1]);
 }
 
-void	parser(char *line, t_data *data)
+char	**parser(char *line, t_data *data)
 {
 	int	i;
+	char	**cmd;
 
 	i = 0;
 	while(line[i])
@@ -57,5 +58,7 @@ void	parser(char *line, t_data *data)
 			manage_dollars(&line[i + 1], data);
 		i++;
 	}
-	//execute (gerer les redirections dedans)
+	manage_redir(&line, data);
+	cmd = split_cmd(line);
+	return (cmd);
 }
