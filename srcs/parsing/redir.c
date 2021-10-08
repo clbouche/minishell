@@ -6,11 +6,42 @@
 /*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/07 17:08:00 by claclou          ###   ########.fr       */
+/*   Updated: 2021/10/08 18:09:27 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+void	redir_read_input(char *str, char **input, t_data *data)
+{
+	//heredoc a se renseigner
+}
+
+void	redir_input(char *str, char **input, t_data *data)
+{
+	//pas compris les moments ou c'est plus utile 
+	//que de juste rien mettre
+}
+
+void	redir_output_append(char *str, char **input, t_data *data)
+{
+	//si pas de fichier a ce nom, passer par redir_output
+	//else ajouter a la fin du fichier 
+}
+
+void	redir_ouput(char *str, char **input, t_data *data)
+{
+	int	fd;
+	int	i;
+	char	*file_name;
+
+	i = 0;
+	file_name = recup_filename(str);
+	//aller chercher l'arg suivant 
+	//recuperer le nom du fichier a creer 
+	//creer ce fichier et lui donner tous les flags (je penses?)
+	//changer l'output dans les datas 
+}
 
 void	check_redir(char **input, int i, t_data *data)
 {
@@ -21,23 +52,23 @@ void	check_redir(char **input, int i, t_data *data)
 	j = i;
 	if (str[i] == '>' && str[i + 1] != '>')
 	{
-		//redir_ouput(str, i, input, data);
-		printf(">");
+		redir_ouput(&str[i + 1], input, data);
+		printf(">\n");
 	}
 	else if (str[i] == '>' && str[i + 1] == '>')
 	{
-		//redir_output_appendmode(str, i, input, data);
-		printf(">>");
+		//redir_output_append(str, i, input, data);
+		printf(">>\n");
 	}
 	else if (str[i] == '<' && str[i + 1] != '<')
 	{
 		//redir_input(str, i, input, data);
-		printf("<");
+		printf("<\n");
 	}
 	else if (str[i] == '<' && str[i + 1] == '<')
 	{
 		//redir_read_input(str, i, input, data);
-		printf("<<");
+		printf("<<\n");
 	}
 }
 

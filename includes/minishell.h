@@ -62,6 +62,7 @@ typedef enum	s_builtin
 typedef	struct s_data
 {
 	t_list	*env;
+	char	opt;
 	int		input;
 	int		ouput;
 	int 	ret;
@@ -86,7 +87,11 @@ t_list 	*get_env(t_list *env, char **envp);
 char	**parser(char *line, t_data *data);
 char	**complete_parser(char *line, t_data *data);
 char	**split_cmd(char *line);
-int		manage_redir(char **input, t_data *data);
+int		manage_redir(char **cmd, t_data *data);
+char	*recup_filename(char *str);
+int		recup_file_len(char *str);
+
+
 
 /*
 ** Execution

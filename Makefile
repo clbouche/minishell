@@ -60,6 +60,7 @@ SRCS += init.c
 
 SRCS += parsing.c
 SRCS += redir.c
+SRCS += redir_output.c
 SRCS += split_cmd.c
 
 SRCS += execution.c

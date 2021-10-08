@@ -6,7 +6,7 @@
 /*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/07 17:16:45 by claclou          ###   ########.fr       */
+/*   Updated: 2021/10/08 16:52:02 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	manage_dollars(char *line, t_data *data)
 {
+	printf("$var\n");
 	//verifier si a la suite '?' ou pas
 	// 	-> si oui, envoyer a check history 
 	// 	-> si non, checker la variable 

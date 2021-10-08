@@ -6,7 +6,7 @@
 /*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/07 16:01:25 by claclou          ###   ########.fr       */
+/*   Updated: 2021/10/08 11:03:38 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int main(int argc, char **argv, char **envp)
 		data.env = init(&data, envp);
 		init_datas(&data);
 		minishell_loop(&data);
-
 	}
 	return (0);
 }
