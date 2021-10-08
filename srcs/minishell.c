@@ -6,7 +6,7 @@
 /*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/07 15:54:41 by claclou          ###   ########.fr       */
+/*   Updated: 2021/10/07 16:01:25 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	minishell_loop(t_data *data)
 	char	*line;
 	char	**cmd;
 	
-	while (1) //changer pour dire tant que pas EOF ou ctrl+D ou exit ou ? 
+	while (1)
 	{
 		line = readline("🍄 MINISHELL🍄 : ");
 		manage_history(line);
@@ -39,7 +39,6 @@ int main(int argc, char **argv, char **envp)
 	if (argc == 1)
 	{
 		//ajouter le signal ici 
-		//initialiser les datas : sortie standard, etc..
 		data.env = init(&data, envp);
 		init_datas(&data);
 		minishell_loop(&data);

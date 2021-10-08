@@ -6,7 +6,7 @@
 /*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/07 15:55:50 by claclou          ###   ########.fr       */
+/*   Updated: 2021/10/07 17:16:45 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@ void	manage_dollars(char *line, t_data *data)
 
 void	manage_pipe(char *line, t_data *data)
 {
-	//faire une copie du reste de la ligne 
+	char	*cpy;
+	char	**cmd;
+
+	cpy = ft_strdup(line);
+	printf("check line : %s\n", cpy);
 	//executer le debut de la ligne jusqu'au pipe
 	//revenir au parser avec le reste de la ligne
 }
@@ -42,6 +46,15 @@ char	*manage_quotes(char *line, t_data *data)
 	return (&line[i + 1]);
 }
 
+char	**complete_parser(char *line, t_data *data)
+{
+	char	**cmd; 
+	
+	manage_redir(&line, data);
+	cmd = split_cmd(line);
+	return (cmd);
+}
+
 char	**parser(char *line, t_data *data)
 {
 	int	i;
@@ -58,7 +71,6 @@ char	**parser(char *line, t_data *data)
 			manage_dollars(&line[i + 1], data);
 		i++;
 	}
-	manage_redir(&line, data);
-	cmd = split_cmd(line);
+	cmd = complete_parser(line, data);
 	return (cmd);
 }

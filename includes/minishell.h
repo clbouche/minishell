@@ -86,6 +86,7 @@ t_list 	*get_env(t_list *env, char **envp);
 char	**parser(char *line, t_data *data);
 char	**complete_parser(char *line, t_data *data);
 char	**split_cmd(char *line);
+int		manage_redir(char **input, t_data *data);
 
 /*
 ** Execution
