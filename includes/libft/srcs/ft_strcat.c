@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pwd.c                                           :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/09 12:25:32 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/07 11:37:26 by ldes-cou         ###   ########.fr       */
+/*   Created: 2021/10/01 11:51:43 by ldes-cou@st       #+#    #+#             */
+/*   Updated: 2021/10/07 11:26:53 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-/*
-** writes the absolute pathname of the current working directory 
-** to the standard output.
-** -> there is a max size of 6 octets for the path
-** ->
-*/ 
-
-int	ft_pwd(void)
+char *ft_strcat(char *dst, const char *src)
 {
-    char path[MAX];
+    int i;
+    int j;
 
-    if (getcwd(path, MAX))
+    i = 0;
+    j = 0;
+    while(dst[i])
+        i++;
+    while(src[j])
     {
-        ft_putendl_fd(path, 1);
-        return(SUCCESS);
+        dst[i + j] = src[j];
+        j++;
     }
-    else
-    {
-        perror("pwd");
-        exit(FAILURE);
-    }  
+    dst[i + j] = '\0';
+    return(dst);
 }

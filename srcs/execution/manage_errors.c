@@ -1,36 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pwd.c                                           :+:      :+:    :+:   */
+/*   manage_errors.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/09 12:25:32 by clbouche          #+#    #+#             */
+/*   Created: 2021/10/06 17:27:22 by ldes-cou          #+#    #+#             */
 /*   Updated: 2021/10/07 11:37:26 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-** writes the absolute pathname of the current working directory 
-** to the standard output.
-** -> there is a max size of 6 octets for the path
-** ->
-*/ 
-
-int	ft_pwd(void)
+void	opening_error(char *error)
 {
-    char path[MAX];
-
-    if (getcwd(path, MAX))
-    {
-        ft_putendl_fd(path, 1);
-        return(SUCCESS);
-    }
-    else
-    {
-        perror("pwd");
-        exit(FAILURE);
-    }  
+	perror(error);
+	exit(0);
 }

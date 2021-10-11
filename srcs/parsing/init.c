@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
+
+extern t_sig g_signal;
 
 void	init_datas(t_data *data)
 {
@@ -18,12 +20,29 @@ void	init_datas(t_data *data)
 	data->ouput = 1;
 }
 
-t_list	*init(t_data *d, char **envp)
-{	
-	t_list *env;
+t_list	*init(t_data *data, char **envp)
+{
 	
-	ft_memset(d, 0, sizeof(d));
-	d->env = get_env(d->env, envp);
-	
-	return (d->env);
+	data->env = NULL;
+	ft_memset(data, 0, sizeof(data));
+	data->env = get_env(data, envp);
+	return (data->env);
 }
+
+// void tests(t_list *env, char **cmd)
+// {
+// //===> don't forget to free
+// // 
+// 	/**tests**/
+// 	puts("ft_env"); 
+// 	ft_env(env, d);
+// 	//puts("ft_export_var");
+// 	//ft_export_var(env, "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE", "|||||||||||||||||||||||||||||||||||||||");
+// 	//puts("ft_export");
+// 	//ft_export(cmd);
+// 	//ft_unset(cmd);
+// 	//ft_export(cmd);
+// 	//ft_env(env);
+// 	//ft_env(env);
+// 	//ft_env(env);
+// }

@@ -1,36 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pwd.c                                           :+:      :+:    :+:   */
+/*   ft_memdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/09 12:25:32 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/07 11:37:26 by ldes-cou         ###   ########.fr       */
+/*   Created: 2021/09/30 14:14:08 by ldes-cou@st       #+#    #+#             */
+/*   Updated: 2021/10/07 11:52:58 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-/*
-** writes the absolute pathname of the current working directory 
-** to the standard output.
-** -> there is a max size of 6 octets for the path
-** ->
-*/ 
-
-int	ft_pwd(void)
+void    ft_memdel(char *str)
 {
-    char path[MAX];
-
-    if (getcwd(path, MAX))
-    {
-        ft_putendl_fd(path, 1);
-        return(SUCCESS);
-    }
-    else
-    {
-        perror("pwd");
-        exit(FAILURE);
-    }  
+    free(str);
+    str = NULL;
 }

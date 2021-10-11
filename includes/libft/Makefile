@@ -6,7 +6,7 @@
 #    By: claclou <claclou@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 13:17:26 by clbouche          #+#    #+#              #
-#    Updated: 2021/09/29 14:04:40 by claclou          ###   ########.fr        #
+#    Updated: 2021/10/01 11:58:55 by ldes-cou@st      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,6 +90,7 @@ SRCS += ft_strmapi.c
 SRCS += ft_strchr.c
 SRCS += ft_strjoin.c
 SRCS += ft_strcpy.c
+SRCS += ft_strcat.c
 
 # CHECK CHAR #
 SRCS += ft_isalpha.c
@@ -99,6 +100,7 @@ SRCS += ft_isascii.c
 SRCS += ft_isprint.c
 SRCS += ft_tolower.c
 SRCS += ft_toupper.c
+SRCS += ft_itoa.c
 
 # MANIP MEMORY #
 SRCS += ft_memset.c
@@ -109,6 +111,7 @@ SRCS += ft_memmove.c
 SRCS += ft_memchr.c
 SRCS += ft_memcmp.c
 SRCS += ft_calloc.c
+SRCS += ft_memdel.c
 
 # MANIP FILE #
 SRCS += ft_putchar_fd.c
@@ -129,17 +132,17 @@ SRCS += ft_lstprint.c
 SRCS += ft_lstadd_back.c
 
 # MANIP DOUBLE LINKED LIST #
-#SRCS += ft_dlstnew.c
-#SRCS += ft_dlstsize.c
-#SRCS += ft_dlstfirst.c
-#SRCS += ft_dlstlast.c
-#SRCS += ft_dlstadd_back.c
-#SRCS += ft_dlstadd_front.c
-#SRCS += print_dlist.c
-#SRCS += ft_dlstdelone.c
-#SRCS += ft_dlstdelone_back.c
-#SRCS += ft_dlstdelone_front.c
-#SRCS += ft_dlstclear.c
+SRCS += ft_dlstnew.c
+SRCS += ft_dlstsize.c
+SRCS += ft_dlstfirst.c
+SRCS += ft_dlstlast.c
+SRCS += ft_dlstadd_back.c
+SRCS += ft_dlstadd_front.c
+SRCS += print_dlist.c
+SRCS += ft_dlstdelone.c
+SRCS += ft_dlstdelone_back.c
+SRCS += ft_dlstdelone_front.c
+SRCS += ft_dlstclear.c
 	   
 vpath %.c $(PATH_SRCS)
 

@@ -10,10 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 void	manage_dollars(char *line, t_data *data)
 {
+	(void)line;
+	(void)data;
 	printf("$var\n");
 	//verifier si a la suite '?' ou pas
 	// 	-> si oui, envoyer a check history 
@@ -24,8 +26,8 @@ void	manage_dollars(char *line, t_data *data)
 void	manage_pipe(char *line, t_data *data)
 {
 	char	*cpy;
-	char	**cmd;
 
+	(void)data;
 	cpy = ft_strdup(line);
 	printf("check line : %s\n", cpy);
 	//executer le debut de la ligne jusqu'au pipe
@@ -37,6 +39,7 @@ void	manage_quotes(char *line, t_data *data)
 	int i;
 
 	i = 0;
+	(void)data;
 	while (line[i] != '"')
 	{
 		//if (line[i] == '$')

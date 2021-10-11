@@ -1,121 +1,129 @@
-########
-# NAME #
-########
+# Generated with GenMake
+# Arthur-TRT - https://github.com/arthur-trt/genMake
+# genmake v0.11
 
-NAME = minishell
+#Compiler and Linker
+CC			:= clang
+ifeq ($(shell uname -s),Darwin)
+	CC		:= gcc
+endif
 
-###################
-# FLAGS & LIBRARY #
-###################
+#The Target Binary Program
+TARGET			:= minishell
+TARGET_BONUS		:= minishell-bonus
 
-#compiler
-CC = clang 
+BUILD			:= release
 
-#compiler flags
-CFLAGS += -Wall
-CFLAGS += -Wextra
-CFLAGS += -Werror
-CFLAGS += -lreadline
-CFLAGS +=  -lform -lncurses
-#CFLAGS += -fsanitize=address
+include sources.mk
 
-###################
-# PRINT VARIABLES #
-###################
+#The Directories, Source, Includes, Objects, Binary and Resources
+SRCDIR			:= srcs
+INCDIR			:= includes
+BUILDDIR		:= obj
+TARGETDIR		:= .
+SRCEXT			:= c
+DEPEXT			:= d
+OBJEXT			:= o
 
-# Reset
-NC = \033[0m
+OBJECTS			:= $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.$(OBJEXT)))
+OBJECTS_BONUS		:= $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES_BONUS:.$(SRCEXT)=.$(OBJEXT)))
+
+#Flags, Libraries and Includes
+cflags.release		:= -Wall -Werror -Wextra
+cflags.valgrind		:= -Wall -Werror -Wextra -DDEBUG -ggdb
+cflags.debug		:= -Wall -Werror -Wextra -DDEBUG -ggdb -fsanitize=address -fno-omit-frame-pointer
+CFLAGS			:= $(cflags.$(BUILD))
+
+lib.release		:=  -L includes/libft/ -lft -lreadline
+
+lib.debug		:= $(lib.release) -fsanitize=address -fno-omit-frame-pointer
+LIB			:= $(lib.$(BUILD))
+
+INC			:= -I$(INCDIR) -I/usr/local/include
+INCDEP			:= -I$(INCDIR)
 
 # Colors
-YELLOW = \033[0;33m
-GREEN = \033[32m
-BLUE = \033[0;34m
-RED = \033[0;31m
-PURPLE = \033[0;35m
-CYAN = \033[0;36m
-BLACK = \033[0;30
-WHITE = \033[0;37m
+C_RESET			:= \033[0m
+C_PENDING		:= \033[0;36m
+C_SUCCESS		:= \033[0;32m
 
-# One Line Output
-ONELINE =\e[1A\r
+# Multi platforms
+ECHO			:= echo
 
-############
-# Includes #
-############
+# Escape sequences (ANSI/VT100)
+ES_ERASE		:= "\033[1A\033[2K\033[1A"
+ERASE			:= $(ECHO) $(ES_ERASE)
 
-INCLUDES += -I /includes/minishell.h
-INCLUDES += includes/libft/libft.a
+# hide STD/ERR and prevent Make from returning non-zero code
+HIDE_STD		:= > /dev/null
+HIDE_ERR		:= 2> /dev/null || true
 
-########################
-# Sources compilations #
-########################
+GREP			:= grep --color=auto --exclude-dir=.git
+NORMINETTE		:= norminette `ls`
 
-PATH_SRCS = srcs
-PATH_PARSE = srcs/parsing
-PATH_EXEC = srcs/execution
-PATH_BUILT = srcs/builtins 
+# Default Make
+all:  libft $(TARGETDIR)/$(TARGET)
+	@$(ERASE)
+	@$(ECHO) "$(TARGET)\t\t[$(C_SUCCESS)✅$(C_RESET)]"
+	@$(ECHO) "$(C_SUCCESS)All done, compilation successful! 👌 $(C_RESET)"
 
-SRCS += minishell.c
-SRCS += init.c 
+# Bonus rule
+bonus: CFLAGS += -DBONUS
+bonus: directories libft $(TARGETDIR)/$(TARGET_BONUS)
+	@$(ERASE)
+	@$(ECHO) "$(TARGET)\t\t[$(C_SUCCESS)✅$(C_RESET)]"
+	@$(ECHO) "$(C_SUCCESS)All done, compilation successful with bonus! 👌 $(C_RESET)"
 
-SRCS += parsing.c
-SRCS += redir.c
-SRCS += redir_output.c
-SRCS += split_cmd.c
-
-SRCS += execution.c
-SRCS += get_binary.c
-
-SRCS += ft_cd.c
-SRCS += ft_echo.c 
-SRCS += ft_env.c 
-SRCS += ft_exit.c 
-SRCS += ft_export.c 
-SRCS += ft_pwd.c
-SRCS += ft_unset.c
-SRCS += set_env.c
-SRCS += is_builtins.c
-
-vpath %.c $(PATH_SRCS)
-vpath %.c $(PATH_PARSE)
-vpath %.c $(PATH_EXEC)
-vpath %.c $(PATH_BUILT)
-
-########################
-# Objects compilations #
-########################
-
-PATH_OBJS = objs/
-OBJS = $(patsubst %.c, $(PATH_OBJS)%.o, $(SRCS))
-
-#########
-# RULES #
-#########
-
-all: $(PATH_OBJS) $(NAME)
-
-$(NAME): $(OBJS)
-	@make -C ./includes/libft
-	@$(CC) $(OBJS) $(INCLUDES) $(CFLAGS) -o $(NAME)
-	@echo "$(GREEN)$@ is ready.\n\n$(NC)"
-
-$(OBJS): $(PATH_OBJS)%.o: %.c Makefile
-	@$(CC) -c $< -o $@ 
-	@echo "$(ONELINE)$(CYAN)Compiling $<$(NC)"
-
-$(PATH_OBJS):
-	@mkdir $@
-
-clean:
-	@$(RM) $(OBJS)
-	@$(RM) -R $(PATH_OBJS)
-	@make clean -C ./includes/libft
-
-fclean: clean
-	@$(RM) $(NAME)
-	@$(RM) includes/libft/libft.a
-	@make fclean -C ./includes/libft
-
+# Remake
 re: fclean all
 
-.PHONY : all clean fclean re
+# Clean only Objects
+clean:
+	@$(RM) -rf $(BUILDDIR)
+	@make $@ -C includes/libft
+
+
+# Full Clean, Objects and Binaries
+fclean: clean
+	@$(RM) -rf $(TARGET)
+	@make $@ -C includes/libft
+
+
+# Pull in dependency info for *existing* .o files
+-include $(OBJECTS:.$(OBJEXT)=.$(DEPEXT))
+
+# Link
+$(TARGETDIR)/$(TARGET): $(OBJECTS)
+	@mkdir -p $(TARGETDIR)
+	$(CC) -o $(TARGETDIR)/$(TARGET) $^ $(LIB)
+
+# Link Bonus
+$(TARGETDIR)/$(TARGET_BONUS): $(OBJECTS_BONUS)
+	@mkdir -p $(TARGETDIR)
+	$(CC) -o $(TARGETDIR)/$(TARGET) $^ $(LIB)
+
+$(BUILDIR):
+	@mkdir -p $@
+
+# Compile
+$(BUILDDIR)/%.$(OBJEXT): $(SRCDIR)/%.$(SRCEXT)
+	@mkdir -p $(dir $@)
+	@$(ECHO) "$(TARGET)\t\t[$(C_PENDING)⏳$(C_RESET)]"
+	$(CC) $(CFLAGS) $(INC) -c -o $@ $<
+	@$(CC) $(CFLAGS) $(INCDEP) -MM $(SRCDIR)/$*.$(SRCEXT) > $(BUILDDIR)/$*.$(DEPEXT)
+	@$(ERASE)
+	@$(ERASE)
+	@cp -f $(BUILDDIR)/$*.$(DEPEXT) $(BUILDDIR)/$*.$(DEPEXT).tmp
+	@sed -e 's|.*:|$(BUILDDIR)/$*.$(OBJEXT):|' < $(BUILDDIR)/$*.$(DEPEXT).tmp > $(BUILDDIR)/$*.$(DEPEXT)
+	@sed -e 's/.*://' -e 's/\\$$//' < $(BUILDDIR)/$*.$(DEPEXT).tmp | fmt -1 | sed -e 's/^ *//' -e 's/$$/:/' >> $(BUILDDIR)/$*.$(DEPEXT)
+	@rm -f $(BUILDDIR)/$*.$(DEPEXT).tmp
+
+libft:
+	@make -C includes/libft
+
+
+norm:
+	@$(NORMINETTE) | $(GREP) -v "Not a valid file" | $(GREP) "Error\|Warning" -B 1 || true
+
+# Non-File Targets
+.PHONY: all re clean fclean norm bonus libft

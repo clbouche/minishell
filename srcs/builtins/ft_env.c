@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:38:59 by ldes-cou@         #+#    #+#             */
-/*   Updated: 2021/09/29 14:10:49 by claclou          ###   ########.fr       */
+/*   Updated: 2021/10/07 11:37:26 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 **run a program in a modified environment
 **without arg, it only print all env variables 
 */
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
-int	ft_env(t_list *env)
+void	ft_env(t_data *d)
 {
 	t_list *tmp;
 	
-	if (env == NULL)
+	if (d->env == NULL)
 	{
 		ft_putstr_fd("there is no environment", 2);
-		return (FAILURE);
+		d->ret = FAILURE;
 	}
-	tmp = env;
-	while(env != NULL)
+	tmp = d->env;
+	while(d->env != NULL)
 	{
-		printf("%s\n", (char *)env->content);
-		env = env->next;
+		printf("%s\n", (char *)d->env->content);
+		d->env = d->env->next;
 	}
-	env = tmp;
-	return (SUCCESS);
+	d->env = tmp;
+	d->ret = FAILURE;
 }

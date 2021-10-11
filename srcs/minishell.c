@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "minishell.h"
 
 void	manage_history(char *input)
 {
@@ -36,6 +36,7 @@ int main(int argc, char **argv, char **envp)
 {
 	t_data	data;
 
+	(void)argv;
 	if (argc == 1)
 	{
 		//ajouter le signal ici 

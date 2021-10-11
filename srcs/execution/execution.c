@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 09:02:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/10/08 18:09:49 by claclou          ###   ########.fr       */
+/*   Updated: 2021/10/07 11:37:26 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 void	execute(char **cmd, t_data *data)
 {
@@ -18,7 +18,8 @@ void	execute(char **cmd, t_data *data)
 
 	rtn = is_builtins(cmd);
 	if (rtn != FAILURE)
-        exec_builtin(rtn, cmd, data);
+        exec_builtin(cmd, data);
     else
-        printf("exec simple\n");
+        exec_simple(cmd, data);
 }
+

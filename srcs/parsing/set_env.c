@@ -3,22 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   set_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 12:09:16 by ldes-cou@         #+#    #+#             */
-/*   Updated: 2021/09/28 10:45:49 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/10/07 15:44:48 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
-t_list *get_env(t_list *env, char **envp)
+t_list *get_env(t_data *d, char **envp)
 {
 	t_list *new;
 	char *var;
 	int i;
 	
-	env = NULL;	
 	new = NULL;
 	var = NULL;
 	i = -1;
@@ -26,13 +25,14 @@ t_list *get_env(t_list *env, char **envp)
 	{
 		var = ft_strdup(envp[i]);
 		if (var == NULL)
-			free_exit(env, "malloc error");
+			free_exit(d->env, "malloc error");
 		new = ft_lstnew(var);
 		if (new == NULL)
-			free_exit(env, "chained list error");
-		ft_lstadd_back(&env, new);
+			free_exit(d->env, "chained list error");
+		ft_lstadd_back(&d->env, new);
+		d->env_len++;	
 	}
-	return(env);
+	return(d->env);
 }
 	
 void free_lst(t_list *lst)
@@ -50,7 +50,7 @@ void free_lst(t_list *lst)
 
 void free_exit(t_list *lst, char *error)
 {
-	perror("error");
+	perror(error);
 	free_lst(lst);
 	exit(FAILURE);
 }

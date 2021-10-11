@@ -13,6 +13,7 @@
 //#define MAX 6
 #define BUILTIN "{cd, echo, exit, export, pwd, unset}"
 #define MAX 4096
+#define UNKNOWN_COMMAND 127 
 
 /*
 ** LIBRAIRIES
@@ -43,6 +44,14 @@
 ** ENUM
 */
 
+typedef struct	s_sig
+{
+	int				sigint;
+	int				sigquit;
+	int				exit_status;
+	pid_t			pid;
+}				t_sig;
+
 typedef enum	s_builtin
 {
 	FT_CD = 2,
@@ -53,7 +62,6 @@ typedef enum	s_builtin
 	FT_UNSET,
 	FT_EXIT,
 }				t_builtin;
-
 /*
 ** STRUCTURES
 */
@@ -66,11 +74,10 @@ typedef	struct s_data
 	int		input;
 	int		ouput;
 	int 	ret;
+	int		env_len;
+	t_node	*lexer;
+	t_dlist	*lst;
 }				t_data;
-
-/*
-** FUNCTIONS
-*/
 
 /*
 ** Init
@@ -78,7 +85,6 @@ typedef	struct s_data
 
 t_list	*init(t_data *data, char **envp);
 void	init_datas(t_data *data);
-t_list 	*get_env(t_list *env, char **envp);
 
 /*
 ** Parsing
@@ -91,46 +97,47 @@ int		manage_redir(char **cmd, t_data *data);
 char	*recup_filename(char *str);
 int		recup_file_len(char *str);
 
-
-
 /*
 ** Execution
 */
 
 void	execute(char **cmd, t_data *data);
+void 	exec_builtin(char **cmd, t_data *d);
+void 	exec_simple(char  **cmd, t_data *d);
+int 	is_builtins(char **cmd);
+void	get_path(char **cmd, t_data *d);
 
 
 void	free_stack(t_list *top);
 t_list	*delete_node(t_list *head, char *var);
-t_list	*delete_head(t_list *head);
+t_list	*get_env(t_data *d, char **envp);
+t_dlist	*init_list(t_dlist *list);
+void	print_dlist(t_dlist *lst);
 
 /*
 ** Built-in 
 */
 
-int		ft_env(t_list *env);
-t_list	*export_var(char **cmd);
-int		ft_export(char **cmd);
-int		ft_unset(char **cmd);
+void	ft_env(t_data *d);
+void	export_var(char **cmd, t_data *d);
+int		ft_export(char **cmd, t_data *d);
+t_list	*ft_unset(char **cmd, t_data *d);
 int		ft_pwd(void);
-void	ft_exit(void);
+int		ft_exit(void);
 int		ft_cd(char **cmd);
-int		ft_echo(char **cmd);
-int		is_builtins(char **cmd);
-void	exec_builtin(int ret, char **cmd, t_data *d);
-
+int		ft_echo(char **cmd, t_data *d);
 
 /*
 ** Free
 */
 
 void	free_stack(t_list *top);
-t_list	*delete_node(t_list *head, char *var);
-t_list	*delete_head(t_list *head);
+void	free_array(char **array);
 void	free_lst(t_list *lst);
 void	free_exit(t_list *lst, char *error);
-
-void	get_path(char **cmd, char **envp);
 void	tests(t_list *env, char **cmd);
+void	opening_error(char *error);
+
+
 
 #endif

@@ -14,33 +14,45 @@
 
 void	redir_read_input(char *str, char **input, t_data *data)
 {
+	(void)str;
+	(void)input;
+	(void)data;
 	//heredoc a se renseigner
 }
 
 void	redir_input(char *str, char **input, t_data *data)
 {
+	(void)str;
+	(void)input;
+	(void)data;
 	//pas compris les moments ou c'est plus utile 
 	//que de juste rien mettre
 }
 
 void	redir_output_append(char *str, char **input, t_data *data)
 {
+	(void)str;
+	(void)input;
+	(void)data;
 	//si pas de fichier a ce nom, passer par redir_output
 	//else ajouter a la fin du fichier 
 }
 
 void	redir_ouput(char *str, char **input, t_data *data)
 {
-	int	fd;
-	int	i;
+	int		i;
 	char	*file_name;
 
+	(void)input;
+	(void)data;
 	i = 0;
 	file_name = recup_filename(str);
 	//aller chercher l'arg suivant 
 	//recuperer le nom du fichier a creer 
 	//creer ce fichier et lui donner tous les flags (je penses?)
 	//changer l'output dans les datas 
+	//si il n'y a pas d'arg avant la redir : 
+	// la creation du file fonctionne quand meme 
 }
 
 void	check_redir(char **input, int i, t_data *data)

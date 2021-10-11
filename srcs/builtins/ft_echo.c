@@ -10,20 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 /* Echo function write (illimiteds) arguments
 ** to the standard output with a new line 
 ** unless the -n option is set. 
 */
 
-int	ft_echo(char **cmd)
+int	ft_echo(char **cmd, t_data *d)
 {
-    char option;
 
-    option = cmd[1][1];
-    if (option == 'n')
+    if (cmd[1][1] == 'n')
         ft_putstr_fd(cmd[2], 1);//faire ecrire sur la line
+    else if(!ft_strncmp(cmd[1], "$?", 2))
+    {
+        ft_putchar_fd((d->ret + 32), 1);
+        ft_putchar_fd('\n', 1);
+    }
     else
     {
         ft_putstr_fd(cmd[1], 1);

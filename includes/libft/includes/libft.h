@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 11:56:59 by clbouche          #+#    #+#             */
-/*   Updated: 2021/09/29 14:04:35 by claclou          ###   ########.fr       */
+/*   Updated: 2021/10/07 11:34:55 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct s_list
 
 /*_______________DOUBLE LISTE CHAINEE_________________*/
 
-/*typedef struct s_node
+typedef struct s_node
 {
 	struct s_node	*next;
 	struct s_node	*prev;
@@ -75,7 +75,7 @@ typedef struct s_dlist
 	struct s_node	*begin;
 	struct s_node	*end;
 	int				len;
-}					t_dlist;*/
+}					t_dlist;
 
 /*_______________FONCTIONS_________________*/
 
@@ -86,6 +86,8 @@ void	ft_error(char *error);
 // void	print_index(t_dlist *stack_a);
 
 /* MANIP  STRING */
+int		ft_strcmp(char *s1, char *s2);
+char	*ft_strcat(char *dst, const char *src);
 char	*ft_strcpy(char *dest, char *src);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
@@ -112,6 +114,7 @@ int		ft_tolower(int c);
 int		ft_toupper(int c);
 
 /* MANIP MEMORY */
+void    ft_memdel(char *str);
 void	*ft_memset(void *b, int c, size_t len);
 void	ft_bzero(void *s, size_t n);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
@@ -143,16 +146,16 @@ void	ft_lstprint(t_list *lst);
 void	ft_lstadd_back(t_list **alst, t_list *new);
 
 /* MANIP DOUBLE LINKED LIST*/
-// t_dlist	*ft_dlstnew(char *content);
-// int		ft_dlstsize(t_dlist *lst);
-// char	*ft_dlstfirst(t_dlist *lst);
-// char	*ft_dlstlast(t_dlist *lst);
-// t_dlist	*ft_dlstadd_back(t_dlist *lst, char *content, int index);
-// t_dlist	*ft_dlstadd_front(t_dlist *lst, char *content, int index);
-// void	print_dlist(t_dlist *lst);
-// void	ft_dlstdelone(t_node *node);
-// void	ft_dlstdelone_back(t_dlist *lst);
-// void	ft_dlstdelone_front(t_dlist *lst);
-// t_dlist	*ft_dlstclear(t_dlist *lst);
+t_dlist	*ft_dlstnew(char *content);
+int		ft_dlstsize(t_dlist *lst);
+char	*ft_dlstfirst(t_dlist *lst);
+char	*ft_dlstlast(t_dlist *lst);
+t_dlist	*ft_dlstadd_back(t_dlist *lst, char *content, int index);
+t_dlist	*ft_dlstadd_front(t_dlist *lst, char *content, int index);
+void	print_dlist(t_dlist *lst);
+void	ft_dlstdelone(t_node *node);
+void	ft_dlstdelone_back(t_dlist *lst);
+void	ft_dlstdelone_front(t_dlist *lst);
+t_dlist	*ft_dlstclear(t_dlist *lst);
 
 #endif
