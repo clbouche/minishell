@@ -32,19 +32,17 @@ void	manage_pipe(char *line, t_data *data)
 	//revenir au parser avec le reste de la ligne
 }
 
-char	*manage_quotes(char *line, t_data *data)
+void	manage_quotes(char *line, t_data *data)
 {
 	int i;
 
 	i = 0;
-	printf(" line[i] : %s\n", line);
 	while (line[i] != '"')
 	{
-		if (line[i] == '$')
-			printf("manage $(expand)\n");
+		//if (line[i] == '$')
+		//	printf("manage $(expand)\n");
 		i++;
 	}
-	return (&line[i + 1]);
 }
 
 char	**complete_parser(char *line, t_data *data)
@@ -65,7 +63,7 @@ char	**parser(char *line, t_data *data)
 	while(line[i])
 	{
 		if (line[i] == '"')
-			line = manage_quotes(&line[i + 1], data);
+			manage_quotes(&line[i + 1], data);
 		if (line[i] == '|')
 			manage_pipe(&line[i + 1], data);
 		if (line[i] == '$')
