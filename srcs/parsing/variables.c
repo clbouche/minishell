@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 13:46:38 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/12 15:37:37 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/12 15:49:44 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void    manage_variable(char *line, t_data *data)
 	int		i;
 
 	i = 0;
+	printf("line manage variable : %s\n", line);
+	//faire un malloc de name
 	while(line[i] != ' ') 
 	{
 		if (line[i] == '=')
