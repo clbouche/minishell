@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:31 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/07 11:37:26 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/12 14:11:48 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static t_list *delete_head(t_list *head)
 
     new_head = head->next;
     free(head);
+	head = NULL;
     return(new_head); 
 }
 
@@ -44,8 +45,7 @@ t_list  *ft_unset(char **cmd, t_data *d)
 	
 	pos = 0;
 	tmp = d->env;
-	printf("cmd[1] = %s\n", cmd[1]);
-	while (tmp->next != NULL)
+	while (tmp != NULL)
 	{
 		if (ft_strncmp(cmd[1], tmp->content, (ft_strlen(cmd[1]))) == 0)
 		{
@@ -65,21 +65,27 @@ t_list *delete_node(t_list *head, char *var)
 	t_list *h;
 	t_list *hn;
 	
-	h = head;
-	hn = head->next;
-	if (!(ft_strncmp(var, h->content, (ft_strlen(var)))))
+	if (!(ft_strncmp(var, head->content, (ft_strlen(var)))))
 		head = delete_head(head);
-	while(hn != NULL)
+	h = head->next;
+	hn = head->next->next;
+	while(hn->next->next != NULL)
 	{
 		if (!(ft_strncmp(var, hn->content, (ft_strlen(var)))))
 		{
 			if (hn->next == NULL)
+			{
 				h = delete_last(h, hn);
+				return(head);
+			}
 			else
+			{
 				h = delete_middle(h, hn);
+				return(head);
+			}
 		}
 		h = h->next;
-		hn = hn->next;   
+		hn = hn->next;
 	}
 	return (head); 
 }

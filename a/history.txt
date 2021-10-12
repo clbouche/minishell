@@ -1,7 +1,0 @@
-cd ksfjflksd
-ls -al
-mkdir a
-ls
-cd a
-mkdir b
-cd b

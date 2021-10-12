@@ -6,14 +6,14 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 14:14:08 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/10/07 11:52:58 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/12 11:51:21 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void    ft_memdel(char *str)
+void    ft_memdel(char **str)
 {
-    free(str);
-    str = NULL;
+    free(*str);
+    *str = NULL;
 }
