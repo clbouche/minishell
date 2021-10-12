@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/12 13:59:51 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/12 17:32:00 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	minishell_loop(t_data *data)
 {
 	char	*line;
 	char	**cmd;
-	
+
 	while (1)
 	{
 		line = readline("🍄 MINISHELL 🍄 : ");
@@ -35,7 +35,7 @@ void	minishell_loop(t_data *data)
 	}
 }
 
-int main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;
 

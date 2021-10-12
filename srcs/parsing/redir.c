@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/12 14:04:08 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/12 17:46:09 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,17 @@ void	redir_ouput(char *str, char **input, t_data *data)
 	(void)data;
 	i = 0;
 	file_name = recup_filename(str);
-	//aller chercher l'arg suivant 
-	//recuperer le nom du fichier a creer 
-	//creer ce fichier et lui donner tous les flags (je penses?)
-	//changer l'output dans les datas 
-	//si il n'y a pas d'arg avant la redir : 
-	// la creation du file fonctionne quand meme 
+/* aller chercher l'arg suivant 
+** recuperer le nom du fichier a creer 
+** creer ce fichier et lui donner tous les flags (je penses?)
+** changer l'output dans les datas 
+** si il n'y a pas d'arg avant la redir : 
+la creation du file fonctionne quand meme */
 }
 
 /*
-** Verifie le type de redirections dont il s'agit pour envoyer a la bonne fonction.
+** Verifie le type de redirections dont il s'agit 
+** pour envoyer a la bonne fonction.
 */
 void	check_redir(char **input, int i, t_data *data)
 {

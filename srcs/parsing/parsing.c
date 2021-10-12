@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/12 15:46:02 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/12 17:45:15 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	manage_expand(char *line, t_data *data)
 }
 
 /*
-** Envoie les commandes correctement a l'execution.
+** Envoie les commandes correctement a l'execution pour les pipes.
 */
 void	manage_pipe(char *line, t_data *data)
 {
@@ -48,8 +48,8 @@ void	manage_pipe(char *line, t_data *data)
 */
 void	manage_quotes(char *line, t_data *data, char quote)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	(void)data;
 	(void)quote;
@@ -64,14 +64,13 @@ void	manage_quotes(char *line, t_data *data, char quote)
 	}
 }
 
-
 /*
 ** Envoie aux dernieres fonctions avant d'obtenir un input propre.
 */
 char	**complete_parser(char *line, t_data *data)
 {
-	char	**cmd; 
-	
+	char	**cmd;
+
 	manage_redir(&line, data);
 	cmd = split_cmd(line);
 	return (cmd);
@@ -82,18 +81,18 @@ char	**complete_parser(char *line, t_data *data)
 */
 char	**parser(char *line, t_data *data)
 {
-	int	i;
+	int		i;
 	char	**cmd;
 
 	i = 0;
 	while(line[i])
 	{
 		if (line[i] == '"' || line[i] == '\'')
-			manage_quotes(&line[i], data, line[i]);
+			manage_quotes (&line[i], data, line[i]);
 		if (line[i] == '|')
-			manage_pipe(&line[i + 1], data);
+			manage_pipe (&line[i + 1], data);
 		if (line[i] == '$')
-			manage_expand(&line[i], data);
+			manage_expand (&line[i], data);
 		i++;
 	}
 	cmd = complete_parser(line, data);

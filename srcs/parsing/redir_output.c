@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 17:54:08 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/12 14:07:30 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/12 17:42:37 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 /*
 ** Utile pour le malloc.
 */
-int		recup_file_len(char *str)
+int	recup_file_len(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i] != ' ' || str[i] != '|' || str[i] != '>'
@@ -32,9 +32,9 @@ int		recup_file_len(char *str)
 */
 char	*recup_filename(char *str)
 {
-	int	i;
-	int	j;
-	int	len;
+	int		i;
+	int		j;
+	int		len;
 	char	*file_name;
 
 	i = 0;
@@ -43,8 +43,8 @@ char	*recup_filename(char *str)
 	printf("str : %s\n", str);
 	file_name = malloc(sizeof(char) * (len + 1));
 	while (str[i] != ' ' || str[i] != '|' || str[i] != '>'
-			|| str[i] != '<')
-			file_name[j++] = str[i++];
+		|| str[i] != '<')
+		file_name[j++] = str[i++];
 	//faire des tests avec les quotes pcq pas tout a fait clair
 	return (file_name);
 }

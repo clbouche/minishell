@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:32:10 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/12 14:06:38 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/12 17:41:29 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ char	*split_args(char *str)
 /*
 ** Permet de faire le malloc.
 */
-int		count_args(char *line)
+int	count_args(char *line)
 {
 	int		i;
 	char	quote;
