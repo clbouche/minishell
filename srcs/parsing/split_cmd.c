@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   split_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:32:10 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/07 15:58:19 by claclou          ###   ########.fr       */
+/*   Updated: 2021/10/12 14:06:38 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+/*
+** Recupere le prochain argument.
+*/
 char	*next_cmd(char *str)
 {
 	char	quote;
@@ -30,6 +33,9 @@ char	*next_cmd(char *str)
 	return (str);
 }
 
+/*
+** Recupere l'arg pour le placer dans le tableau.
+*/
 void	copy_arg(char *src, char *dst, char quote)
 {
 	while (*src != ' ' && *src)
@@ -58,6 +64,9 @@ void	copy_arg(char *src, char *dst, char quote)
 	*dst = '\0';
 }
 
+/*
+** Determiner chaque arg.
+*/
 char	*split_args(char *str)
 {
 	int		len;
@@ -73,6 +82,9 @@ char	*split_args(char *str)
 	return (arg);
 }
 
+/*
+** Permet de faire le malloc.
+*/
 int		count_args(char *line)
 {
 	int		i;
@@ -93,6 +105,9 @@ int		count_args(char *line)
 	return (i);
 }
 
+/*
+** Creer le tableau de char * des arguments constituant la ligne de commande.
+*/
 char	**split_cmd(char *line)
 {
 	char	**cmd;

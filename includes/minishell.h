@@ -96,6 +96,8 @@ char	**split_cmd(char *line);
 int		manage_redir(char **cmd, t_data *data);
 char	*recup_filename(char *str);
 int		recup_file_len(char *str);
+void	return_last_rtn(t_data	*data);
+void    manage_variable(char *line, t_data *data);
 
 /*
 ** Execution

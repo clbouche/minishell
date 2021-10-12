@@ -9,12 +9,13 @@ SOURCES		+=                           		\
 ## SRCS/PARSING ##
 
 SOURCES		+=                           		\
+		srcs/parsing/variables.c            	\
+		srcs/parsing/split_cmd.c            	\
 		srcs/parsing/init.c                 	\
+		srcs/parsing/redir_output.c         	\
 		srcs/parsing/set_env.c              	\
 		srcs/parsing/parsing.c              	\
-		srcs/parsing/split_cmd.c 				\
-		srcs/parsing/redir.c 					\
-		srcs/parsing/redir_output.c 			\
+		srcs/parsing/redir.c                	\
 
 
 ## SRCS/BUILTINS ##

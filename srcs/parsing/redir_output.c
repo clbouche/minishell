@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   redir_output.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 17:54:08 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/08 18:09:43 by claclou          ###   ########.fr       */
+/*   Updated: 2021/10/12 14:07:30 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+/*
+** Utile pour le malloc.
+*/
 int		recup_file_len(char *str)
 {
 	int i;
@@ -24,6 +27,9 @@ int		recup_file_len(char *str)
 	return (i);
 }
 
+/*
+** Permet de nommer le fichier ou d'aller chercher un fichier.
+*/
 char	*recup_filename(char *str)
 {
 	int	i;

@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/08 18:09:27 by claclou          ###   ########.fr       */
+/*   Updated: 2021/10/12 14:04:08 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+/*
+** E
+*/
 void	redir_read_input(char *str, char **input, t_data *data)
 {
 	(void)str;
@@ -20,6 +23,9 @@ void	redir_read_input(char *str, char **input, t_data *data)
 	//heredoc a se renseigner
 }
 
+/*
+** E
+*/
 void	redir_input(char *str, char **input, t_data *data)
 {
 	(void)str;
@@ -29,6 +35,10 @@ void	redir_input(char *str, char **input, t_data *data)
 	//que de juste rien mettre
 }
 
+/*
+** Redirige le contenu de l'information demandee vers un fichier
+** sans ecraser son contenu (ajoute a la fin).
+*/
 void	redir_output_append(char *str, char **input, t_data *data)
 {
 	(void)str;
@@ -38,6 +48,9 @@ void	redir_output_append(char *str, char **input, t_data *data)
 	//else ajouter a la fin du fichier 
 }
 
+/*
+** Redirige le contenu de l'information demandee vers un fichier.
+*/
 void	redir_ouput(char *str, char **input, t_data *data)
 {
 	int		i;
@@ -55,6 +68,9 @@ void	redir_ouput(char *str, char **input, t_data *data)
 	// la creation du file fonctionne quand meme 
 }
 
+/*
+** Verifie le type de redirections dont il s'agit pour envoyer a la bonne fonction.
+*/
 void	check_redir(char **input, int i, t_data *data)
 {
 	char	*str;
@@ -84,6 +100,9 @@ void	check_redir(char **input, int i, t_data *data)
 	}
 }
 
+/*
+** Verifie si on rencontrer une redirection dans la ligne de commande.
+*/
 int	manage_redir(char **input, t_data *data)
 {
 	int		i;

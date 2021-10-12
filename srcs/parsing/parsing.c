@@ -3,26 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/08 16:52:02 by claclou          ###   ########.fr       */
+/*   Updated: 2021/10/12 15:36:53 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	manage_dollars(char *line, t_data *data)
+/*
+** Check le type de $ dont il s'agit
+*/
+void	manage_expand(char *line, t_data *data)
 {
-	(void)line;
-	(void)data;
-	printf("$var\n");
-	//verifier si a la suite '?' ou pas
-	// 	-> si oui, envoyer a check history 
-	// 	-> si non, checker la variable 
-	// pas tout compris
+	int		i;
+
+	i = 0;
+	if (line[i + 1])
+	{
+		if (line[i + 1] == '?')
+			return_last_rtn(data);
+		else
+			manage_variable(line, data);
+	}
 }
 
+/*
+** Envoie les commandes correctement a l'execution.
+*/
 void	manage_pipe(char *line, t_data *data)
 {
 	char	*cpy;
@@ -34,20 +43,31 @@ void	manage_pipe(char *line, t_data *data)
 	//revenir au parser avec le reste de la ligne
 }
 
-void	manage_quotes(char *line, t_data *data)
+/*
+** Permet de faire les expands si double quote.
+*/
+void	manage_quotes(char *line, t_data *data, char quote)
 {
 	int i;
-
+	
 	i = 0;
 	(void)data;
-	while (line[i] != '"')
+	(void)quote;
+	while (line[i] != quote)
 	{
-		//if (line[i] == '$')
-		//	printf("manage $(expand)\n");
+		if (quote == '"' && line[i] == '$')
+		{
+			//est ce que ca marche "$?" ??? 
+			manage_expand(line, data);
+		}
 		i++;
 	}
 }
 
+
+/*
+** Envoie aux dernieres fonctions avant d'obtenir un input propre.
+*/
 char	**complete_parser(char *line, t_data *data)
 {
 	char	**cmd; 
@@ -57,6 +77,9 @@ char	**complete_parser(char *line, t_data *data)
 	return (cmd);
 }
 
+/*
+** Verifie les caracteres particuliers que l'on peut rencontrer.
+*/
 char	**parser(char *line, t_data *data)
 {
 	int	i;
@@ -65,12 +88,12 @@ char	**parser(char *line, t_data *data)
 	i = 0;
 	while(line[i])
 	{
-		if (line[i] == '"')
-			manage_quotes(&line[i + 1], data);
+		if (line[i] == '"' || line[i] == '\'')
+			manage_quotes(&line[i], data, line[i]);
 		if (line[i] == '|')
 			manage_pipe(&line[i + 1], data);
 		if (line[i] == '$')
-			manage_dollars(&line[i + 1], data);
+			manage_expand(&line[i], data);
 		i++;
 	}
 	cmd = complete_parser(line, data);
