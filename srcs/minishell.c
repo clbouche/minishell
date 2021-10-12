@@ -3,43 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/07 15:04:37 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/12 13:59:51 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*###SUPPRIMER WRITE HISTORY####*/
-t_sig g_signal;
+/*
+** Ajoute les fonctions une a une a l'historique (utile pour la suite).
+*/
+void	manage_history(char *input)
+{
+	if (input)
+		add_history(input);
+}
+
+void	minishell_loop(t_data *data)
+{
+	char	*line;
+	char	**cmd;
+	
+	while (1)
+	{
+		line = readline("🍄 MINISHELL 🍄 : ");
+		manage_history(line);
+		cmd = parser(line, data);
+		execute(cmd, data);
+	}
+}
 
 int main(int argc, char **argv, char **envp)
 {
-	char *line;
-	t_data d;
-	(void)argv;
+	t_data	data;
 
-	line = NULL;
+	(void)argv;
 	if (argc == 1)
 	{
 		//ajouter le signal ici 
-		d.env = init(&d, envp);
-		while (1) //changer pour dire tant que pas EOF ou ctrl+D ou exit ou ? 
-		{
-			//line = exit ? break/exit
-			line = readline("🍄 MINISHELL🍄 : ");
-			add_history(line);
-			//write_history("history.txt");
-			parse_exec(line, &d);
-			
-			//parser(line);
-			//execute(list) 
-			//faire un parsing qui renvoie la liste chaînée traité 
-		}
+		data.env = init(&data, envp);
+		init_datas(&data);
+		minishell_loop(&data);
 	}
-	else
-		exit(SUCCESS);
-
+	return (0);
 }

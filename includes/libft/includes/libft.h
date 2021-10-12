@@ -25,22 +25,23 @@
 
 typedef enum		e_token_type
 {
-	T_ARG, 
-	T_SEP,
-	T_OPT, 
-	T_EOF,
-	T_PIPE,
-	T_REDIR,
-	// T_CMD, 
-	// T_SIMPLE_REDIR_LEFT, 
-	// T_SIMPLE_REDIR_RIGHT, 
-	// T_DOUBLE_REDIR_LEFT,
-	// T_DOUBLE_REDIR_RIGHT, 
-	// T_SINGLE_QUOTE, 
-	// T_DOUBLE_QUOTE, 
-	// T_BACKSLASH, 
-	// T_NL, 
-	 T_MAX
+	T_ARG = 0,
+	T_SEP = 1,
+	T_OPT = 2,
+	T_EOF = 3,
+	T_PIPE = 4,
+	T_ARG_DOUBLE_QUOTE  = 5,
+	T_ARG_SIMPLE_QUOTE = 6,
+	T_CMD = 7,
+	T_FILE = 8,
+	T_SIMPLE_REDIR_L = 9,
+	T_SIMPLE_REDIR_R = 10, 
+	T_DOUBLE_REDIR_L = 11,
+	T_DOUBLE_REDIR_R = 12,
+	//T_DOLLARS = 13,
+	// T_BACKSLASH = 14,
+	// T_NL = 15,
+	T_MAX
 }					t_token_type;
 
 
@@ -61,7 +62,7 @@ typedef struct s_list
 
 /*_______________DOUBLE LISTE CHAINEE_________________*/
 
-/*typedef struct s_node
+typedef struct s_node
 {
 	struct s_node	*next;
 	struct s_node	*prev;
@@ -74,7 +75,7 @@ typedef struct s_dlist
 	struct s_node	*begin;
 	struct s_node	*end;
 	int				len;
-}					t_dlist;*/
+}					t_dlist;
 
 /*_______________FONCTIONS_________________*/
 
@@ -90,6 +91,7 @@ char	*ft_strcat(char *dst, const char *src);
 char	*ft_strcpy(char *dest, char *src);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+int		ft_strcmp(char *s1, char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strstr(char *str, char *to_find);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
@@ -144,16 +146,16 @@ void	ft_lstprint(t_list *lst);
 void	ft_lstadd_back(t_list **alst, t_list *new);
 
 /* MANIP DOUBLE LINKED LIST*/
-// t_dlist	*ft_dlstnew(char *content);
-// int		ft_dlstsize(t_dlist *lst);
-// char	*ft_dlstfirst(t_dlist *lst);
-// char	*ft_dlstlast(t_dlist *lst);
-// t_dlist	*ft_dlstadd_back(t_dlist *lst, char *content, int index);
-// t_dlist	*ft_dlstadd_front(t_dlist *lst, char *content, int index);
-// void	print_dlist(t_dlist *lst);
-// void	ft_dlstdelone(t_node *node);
-// void	ft_dlstdelone_back(t_dlist *lst);
-// void	ft_dlstdelone_front(t_dlist *lst);
-// t_dlist	*ft_dlstclear(t_dlist *lst);
+t_dlist	*ft_dlstnew(char *content);
+int		ft_dlstsize(t_dlist *lst);
+char	*ft_dlstfirst(t_dlist *lst);
+char	*ft_dlstlast(t_dlist *lst);
+t_dlist	*ft_dlstadd_back(t_dlist *lst, char *content, int index);
+t_dlist	*ft_dlstadd_front(t_dlist *lst, char *content, int index);
+void	print_dlist(t_dlist *lst);
+void	ft_dlstdelone(t_node *node);
+void	ft_dlstdelone_back(t_dlist *lst);
+void	ft_dlstdelone_front(t_dlist *lst);
+t_dlist	*ft_dlstclear(t_dlist *lst);
 
 #endif

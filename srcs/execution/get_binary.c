@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_binary.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 15:15:48 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/10/12 13:46:08 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/12 16:42:30 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,31 +37,13 @@ static char **convert_env(t_data *d)
 	return(env);
 }
 
-void	get_path(char **cmd, t_data *d)
+char	*find_bin(char **cmd, char **paths, char *bin, int i)
 {
-	char	*path;
-	char	**paths;
-	char	**envp;
-	int		i;
-
-	i = 0;
-	path = NULL;
-	paths = NULL;
-	envp = convert_env(d);
-	while (envp[i])
-	{
-		if (ft_strnstr(envp[i], "PATH=", 5) != 0)
-			break ;
-		i++;
-	}
-
-	//printf("%s\n", envp[i]);
-	path = ft_substr(envp[i], 4, ft_strlen(envp[i]));
-	paths = ft_split(path, ':');
-	ft_memdel(&path);
-	// free(path);
-	// path = NULL;
-	test_path(paths, cmd, envp);
+	bin = (char *)ft_calloc(sizeof(char), (ft_strlen(paths[i]) + ft_strlen(cmd[0]) + 2));
+	ft_strcat(bin, paths[i]); //faire une fonction maison
+	ft_strcat(bin, "/");
+	ft_strcat(bin, cmd[0]);
+	return (bin);
 }
 
 void	test_path(char **paths, char **cmd, char **env)
@@ -101,11 +83,29 @@ void	test_path(char **paths, char **cmd, char **env)
 	}
 }
 
-char	*find_bin(char **cmd, char **paths, char *bin, int i)
+void	get_path(char **cmd, t_data *d)
 {
-	bin = (char *)ft_calloc(sizeof(char), (ft_strlen(paths[i]) + ft_strlen(cmd[0]) + 2));
-	ft_strcat(bin, paths[i]); //faire une fonction maison
-	ft_strcat(bin, "/");
-	ft_strcat(bin, cmd[0]);
-	return (bin);
+	char	*path;
+	char	**paths;
+	char	**envp;
+	int		i;
+
+	i = 0;
+	path = NULL;
+	paths = NULL;
+	envp = convert_env(d);
+	while (envp[i])
+	{
+		if (ft_strnstr(envp[i], "PATH=", 5) != 0)
+			break ;
+		i++;
+	}
+
+	//printf("%s\n", envp[i]);
+	path = ft_substr(envp[i], 4, ft_strlen(envp[i]));
+	paths = ft_split(path, ':');
+	free(path);
+	path = NULL;
+	test_path(paths, cmd, envp);
 }
+

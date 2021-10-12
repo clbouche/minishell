@@ -13,6 +13,17 @@
 #include "minishell.h"
 
 extern t_sig sig;
+
+void    exec_child(char **cmd, t_data *d)
+{
+    //dup(0);
+    get_path(cmd, d);
+}
+// //void    exec_parent(char **cmd, t_data *d)
+// {
+//     //puts("caca");
+// }
+
 void exec_simple(char  **cmd, t_data *d)
 {
     int pid;
@@ -30,12 +41,3 @@ void exec_simple(char  **cmd, t_data *d)
         
 }
 
-void    exec_child(char **cmd, t_data *d)
-{
-    //dup(0);
-    get_path(cmd, d);
-}
-// //void    exec_parent(char **cmd, t_data *d)
-// {
-//     //puts("caca");
-// }

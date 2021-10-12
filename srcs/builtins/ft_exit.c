@@ -19,7 +19,7 @@
 
 int	ft_exit()
 {
-    
+    exit(EXIT_SUCCESS);
     /*  -> si process en cours, tue le process
         -> besoin du pid du process ?
         -> le stocker dans la structure ?

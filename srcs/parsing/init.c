@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:54 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/12 11:49:20 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/12 16:40:03 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,17 @@
 
 extern t_sig g_signal;
 
-t_list	*init(t_data *d, char **envp)
+void	init_datas(t_data *data)
+{
+	data->input = 0;
+	data->ouput = 1;
+}
+
+t_list	*init(t_data *data, char **envp)
 {
 	
-	d->env = NULL;
-	ft_memset(d, 0, sizeof(d));
-	d->env = get_env(d, envp);
-	return (d->env);
+	data->env = NULL;
+	ft_memset(data, 0, sizeof(data));
+	data->env = get_env(data, envp);
+	return (data->env);
 }

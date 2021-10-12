@@ -12,40 +12,14 @@
 
 #include "minishell.h"
 
-void parse_exec(char *line, t_data *d)
+void	execute(char **cmd, t_data *data)
 {
-    char **cmd;
-    int ret;
+	int	rtn;
 
-    ret = 0;
-    cmd = ft_split(line, ' ');
-    // while(cmd[ret])
-    // {
-    // 	printf("%s\n", cmd[ret]);
-    // 	ret ++;
-    // }
-    // ret = 0;
-    ret = is_builtins(cmd);
-    //printf("%i\n", ret);
-    if (ret != FAILURE)
-        exec_builtin(cmd, d);
+	rtn = is_builtins(cmd);
+	if (rtn != FAILURE)
+        exec_builtin(cmd, data);
     else
-    {
-        exec_simple(cmd, d);
-    }		
-    // else
-    // {
-    // 	char **paths;
-    // 	int i;
-    // 	paths = get_path(cmd, &d);
-    // 	while(paths[i])
-    // 	{
-    // 		printf("%s\n", paths[i]);
-    // 		i++;
-    // 	}
-    // }
-    
-    // get_path(cmd, envp);
-    
-    //printf("\n%i", ret);
+        exec_simple(cmd, data);
 }
+
