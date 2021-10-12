@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:38:59 by ldes-cou@         #+#    #+#             */
-/*   Updated: 2021/10/07 11:37:26 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/12 15:01:58 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,26 @@ void	ft_env(t_data *d)
 	}
 	d->env = tmp;
 	d->ret = FAILURE;
+}
+
+char *find_var(char *name)
+{
+	char *var;
+
+	var = NULL;
+	var = ft_strchr(name, '=');
+	return(var + 1);
+}
+
+char *find_name(char *var)
+{
+	char *name;
+	int i;
+
+	i = 0;
+	while (var[i] != '=')
+		i++;
+	name = ft_substr(var, 0, i);
+	return(name);
+	
 }

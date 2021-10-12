@@ -125,6 +125,8 @@ t_list	*init(t_data *d, char **envp);
 */
 
 void	ft_env(t_data *d);
+char	*find_var(char *name);
+char	*find_name(char *var);
 void	export_var(char **cmd, t_data *d);
 int		ft_export(char **cmd, t_data *d);
 t_list	*ft_unset(char **cmd, t_data *d);
