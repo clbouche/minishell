@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 10:32:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/07 11:37:26 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/12 17:52:29 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,12 @@
 
 int	ft_exit()
 {
-    
+
     /*  -> si process en cours, tue le process
         -> besoin du pid du process ?
         -> le stocker dans la structure ?
     */
     /*stocker le statut du retour dans la structure*/
-    ft_putstr_fd("exit", 1);
-    ft_putchar_fd('\n', 1);
+    ft_putendl_fd("exit", 1);
     exit(0);
 }

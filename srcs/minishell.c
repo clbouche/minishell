@@ -6,14 +6,14 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/07 15:04:37 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/12 17:10:53 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /*###SUPPRIMER WRITE HISTORY####*/
-t_sig g_signal;
+t_sig *g_sig;
 
 int main(int argc, char **argv, char **envp)
 {

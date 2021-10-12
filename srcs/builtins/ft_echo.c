@@ -16,16 +16,19 @@
 ** to the standard output with a new line 
 ** unless the -n option is set. 
 */
+extern t_sig g_sig;
 
 int	ft_echo(char **cmd, t_data *d)
 {
 
+    (void)d;
     if (cmd[1][1] == 'n')
         ft_putstr_fd(cmd[2], 1);//faire ecrire sur la line
     else if(!ft_strncmp(cmd[1], "$?", 2))
     {
-        ft_putchar_fd((d->ret + 32), 1);
-        ft_putchar_fd('\n', 1);
+        printf("%i\n", g_sig.status);
+        // ft_putchar_fd((g_sig.status), 1);
+        // ft_putchar_fd('\n', 1);
     }
     else
     {

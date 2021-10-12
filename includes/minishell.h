@@ -77,7 +77,7 @@ typedef struct	s_sig
 {
 	int				sigint;
 	int				sigquit;
-	int				exit_status;
+	int				status;
 	pid_t			pid;
 }				t_sig;
 
