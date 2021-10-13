@@ -6,13 +6,13 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:49:47 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/10/12 18:11:09 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/13 14:59:50 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern t_sig g_sig;
+
 
 void exec_simple(char  **cmd, t_data *d)
 {
@@ -25,7 +25,7 @@ void exec_simple(char  **cmd, t_data *d)
         waitpid(-1, &g_sig.status, 0);
     if (WIFEXITED(g_sig.status))
         g_sig.status = WEXITSTATUS(g_sig.status);
-    printf("%i\n", g_sig.status);
+    //printf("%i\n", g_sig.status);
     
 }
 

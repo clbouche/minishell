@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 12:09:16 by ldes-cou@         #+#    #+#             */
-/*   Updated: 2021/10/12 14:30:41 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/13 15:20:52 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ t_list *get_env(t_data *d, char **envp)
 		if (new == NULL)
 			free_exit(d->env, "chained list error");
 		ft_lstadd_back(&d->env, new);
-		d->env_len++;	
+		d->env_len++;
 	}
+	//printf("%i\n", d->env_len);
 	return(d->env);
 }
 
@@ -43,6 +44,8 @@ void free_lst(t_list *lst)
 	while (lst != NULL)
 	{
 		tofree = lst;
+		if (tofree->content != NULL)
+			free(tofree->content);
 		free(tofree);
 		lst = lst->next;
 	}

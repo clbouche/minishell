@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 15:15:48 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/10/12 13:46:08 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/13 15:23:21 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,19 @@ static char **convert_env(t_data *d)
 	
 	i = 0;
 	tmp = d->env;
-	env = malloc(sizeof(char *) * d->env_len + 1);
+	env = malloc(sizeof(char *) * (d->env_len + 1));
 	while(tmp != NULL)
 	{
 		env[i] = ft_strdup(tmp->content);
 		tmp = tmp->next;
 		i++;
 	}
+	//printf("adress = %p\n", env[i]);
 	env[i] = NULL;
 	// i = 0;
 	// while(env[i] != NULL)
 	// {
-	// 	printf("[%i] == %s\n", i, env[i]);
+	// 	printf("[%i] == %p\n", i, env[i]);
 	// 	i++;
 	// }
 	return(env);
@@ -54,13 +55,14 @@ void	get_path(char **cmd, t_data *d)
 			break ;
 		i++;
 	}
-
-	//printf("%s\n", envp[i]);
+	if (envp[i] == NULL)
+	{
+		printf("minishell: %s: No such file or directory\n", cmd[0]);
+		return;
+	}
 	path = ft_substr(envp[i], 4, ft_strlen(envp[i]));
 	paths = ft_split(path, ':');
 	ft_memdel(&path);
-	// free(path);
-	// path = NULL;
 	test_path(paths, cmd, envp);
 }
 
@@ -92,12 +94,12 @@ void	test_path(char **paths, char **cmd, char **env)
 	// 	printf("%s\n", envp[i]);
 	// }
 	if (bin == NULL)
-		exit(FAILURE);//free_exit(cmd);
+		exit(127);//free_exit(cmd);
 	else
 	{
 		//puts("exec");
 		execve(bin, cmd, env);
-		exit(10);
+		exit(FAILURE);
 	}
 }
 

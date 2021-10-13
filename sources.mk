@@ -33,6 +33,7 @@ SOURCES		+=                           		\
 
 SOURCES		+=                           		\
 		srcs/execution/get_binary.c         	\
+		srcs/execution/signals.c            	\
 		srcs/execution/manage_errors.c      	\
 		srcs/execution/execution.c          	\
 		srcs/execution/exec_simple.c        	\

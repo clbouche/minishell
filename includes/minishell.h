@@ -79,7 +79,10 @@ typedef struct	s_sig
 	int				sigquit;
 	int				status;
 	pid_t			pid;
+	int 			prog;
 }				t_sig;
+
+extern t_sig g_sig;
 
 typedef struct		s_token 
 {
@@ -181,6 +184,10 @@ void	free_exit(t_list *lst, char *error);
 void	tests(t_list *env, char **cmd);
 void	opening_error(char *error);
 
+/*
+** signals
+*/
 
+void    sig_handler(int sig);
 
 #endif
