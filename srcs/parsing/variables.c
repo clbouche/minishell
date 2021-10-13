@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   variables.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 13:46:38 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/12 17:40:54 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/13 17:44:07 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /*
-**
+** Verifie les caracteres qui n'ont pas le droit de constituer 
+** le nom d'une variable
 */
 int	check_unvalid_char(int i)
 {
@@ -21,19 +22,6 @@ int	check_unvalid_char(int i)
 		|| i == '\'' || i == '>' || i == '<')
 		return (FAILURE);
 	return (SUCCESS);
-}
-
-/*
-** Permet d'aller recuperer le contenu d'une variable dispo dans l'env
-** pour que la variable que l'on cree prenne ce nom.
-** Si aucune variable dans l'env n'existe avec ce nom : error.
-*/
-char	*create_variable(char *line, t_data *data)
-{
-	(void)data;
-	printf("check content of future variable : %s\n", line);
-	//parcourir l'env a la recherche de la variable
-	return (line);
 }
 
 int	len_name(char *name)
@@ -47,71 +35,66 @@ int	len_name(char *name)
 	return (len);
 }
 
-int	len_content(char *content)
+/*char	*recup_content(char *var)
 {
-	int		len;
+	int	i;
 
-	len = 0;
-	//&& check_unvalid_char(content[len] == SUCCESS))
-	while (content[len] != ' ')
-		len++;
-	return (len);
+	i = 0;
+	while(var[i])
+	{
+
+	}
+}*/
+
+/*
+** Va remplacer la valeur $exemple par le contenu
+** de la variable $exemple dans un char **.
+*/
+char	**create_new_input(char *line, char *name, t_data *data)
+{
+	(void)line;
+	char 	**new_input;
+	char	*name_var;
+	char	*content;
+	t_list	*tmp;
+
+	new_input = NULL;
+	tmp = data->env;
+	while (tmp != NULL)
+	{
+		name_var = find_name(tmp->content);
+		if (ft_strcmp(name, name_var) == 0)
+		{
+			content = find_var(tmp->content);
+			printf("content : %s\n", content);
+			printf("env : %s\n", (char *)tmp->content);
+		}
+		tmp = tmp->next;
+	}
+	// new input = la meme chose jusqu'a croiser $, 
+	//si $ : remplacer par le contenu 
+	//si $ suivi de rien, le contenu est "\n"
+	//remettre la suite normalement
+	return (new_input);
 }
 
 /*
-** Recuperer le nom et le contenu de la variable a ajouter
-** ou a ecrire
+** Recuperer le nom et le contenu de la variable.
+** Et eliminer les caracteres interdit.
 */
 void	manage_variable(char *line, t_data *data)
 {
 	char	*name;
-	char	*content;
 	int		i;
+	int		j;
 	int		len_n;
-	int		len_c;
 
 	i = 1;
-	len_c = 0;
+	j = 0;
 	len_n = len_name(line);
-	content = NULL;
-	name = malloc(sizeof(char) * (len_n + 1));
-	while (line[i] != ' ')
-	{
-		if (line[i] == '=')
-		{
-			len_c = len_content(&(line[i + 1]));
-			content = malloc(sizeof(char) * len_c);
-			content = create_variable(&(line[i + 1]), data);
-		}
-		else
-		{
-			name[i] = line[i];
-			i++;
-		}
-		//else if (check_unvalid_char(line[i]) == FAILURE)
-		//	i++;
-	}
-	printf("name : %s\n", name);
-	printf("content : %s\n", content);
-}
-/*si aucune variable n'existe, juste afficher un retour a la ligne
-** si content est NULL, on veut juste afficher la variable.
-** apres le = recuperer son content;
-** recreer une ligne avec le nouvel arg ? 
-** besoin de parcourir l'environnement pour savoir si une var existe deja
-** creer un nouveau input a envoyer en double tableau 
-** remplacer le $test (ex) par le contenu de cette variable
-et creer un new input avec ca */
-
-/*
-** Retourne le retour de la derniere ligne de commande
-*/
-void	return_last_rtn(t_data	*data)
-{
-/* verifier que le fichier d'historique n'est pas vide
-** si rempli, aller la fin du fichier
-** recuperer la derniere ligne 
-et l'executer*/
-	(void)data;
-	printf("return history\n");
+	name = malloc(sizeof(char) * len_n);
+	//+ (check_unvalid_char(line[i]) == FAILURE)
+	while (line[i] != ' ' && line[i] != '=')
+		name[j++] = line[i++];
+	create_new_input(line, name, data);
 }

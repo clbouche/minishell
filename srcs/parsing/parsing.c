@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/12 17:45:15 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/13 16:14:17 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,11 @@ void	manage_expand(char *line, t_data *data)
 	if (line[i + 1])
 	{
 		if (line[i + 1] == '?')
-			return_last_rtn(data);
+			return ;
 		else
 			manage_variable(line, data);
 	}
+	//si rien ne suit $, erreur ou pas, a voir
 }
 
 /*
