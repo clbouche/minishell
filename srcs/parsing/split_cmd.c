@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:32:10 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/12 17:41:29 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/14 15:10:25 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ char	*next_cmd(char *str)
 		if (*str == '"' || *str == '\'')
 		{
 			quote = *(str++);
-			while (*str != quote)
+			while (*str && *str != quote)
 				str++;
 		}
-		if (*str == ' ')
+		if (*str && *str == ' ')
 			return (str + 1);
 	}
 	return (str);
@@ -38,22 +38,22 @@ char	*next_cmd(char *str)
 */
 void	copy_arg(char *src, char *dst, char quote)
 {
-	while (*src != ' ' && *src)
+	while (*src && *src != ' ')
 	{
 		if (*src == '\'')
 		{
 			quote = *src++;
-			while (*src != quote)
+			while (*src && *src != quote)
 				*dst++ = *src++;
 			src++;
 		}
 		else if (*src == '"')
 		{
 			quote = *(src++);
-			while (*src != quote)
+			while (*src && *src != quote)
 			{
-				if (*(src + 1) == '$')
-					src++;
+				// if (*(src + 1) == '$')
+				// 	src++;
 				*dst++ = *src++;
 			}
 			src++;
@@ -79,6 +79,7 @@ char	*split_args(char *str)
 	if (!arg)
 		exit(EXIT_FAILURE);
 	copy_arg(str, arg, quote);
+	//printf("arg = |%s|\n", arg);
 	return (arg);
 }
 
@@ -123,6 +124,7 @@ char	**split_cmd(char *line)
 	{
 		cmd[i++] = split_args(line);
 		line = next_cmd(line);
+		//printf("cmd[%d] = |%s|\n", i-1, cmd[i - 1]);
 	}
 	cmd[i] = NULL;
 	return (cmd);

@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/14 12:02:00 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/14 14:37:57 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	if (argc == 1)
 	{
-		//ajouter le signal ici 
 		data.env = init(&data, envp);
 		init_datas(&data);
 		minishell_loop(&data);

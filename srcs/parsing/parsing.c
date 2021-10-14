@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/14 13:57:52 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/14 15:29:39 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,7 @@ void	manage_quotes(char *line, t_data *data, char quote)
 	while (line[i] != quote)
 	{
 		if (quote == '"' && line[i] == '$')
-		{
-			//est ce que ca marche "$?" ??? 
-			//manage_expand(line, data);
-		}
+			manage_expand(line, data);
 		i++;
 	}
 }
@@ -93,10 +90,10 @@ char	**parser(char *line, t_data *data)
 	char	*new_line;
 
 	i = 0;
-	while(line[i])
+	while (line[i])
 	{
-		//if (line[i] == '"' || line[i] == '\'')
-		//	manage_quotes (&line[i], data, line[i]);
+		if (line[i] == '"' || line[i] == '\'')
+			manage_quotes(line, data, line[i]);
 		if (line[i] == '|')
 			manage_pipe (&line[i + 1], data);
 		if (line[i] == '$')
