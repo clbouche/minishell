@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   ft_intlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/30 12:20:54 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/14 12:31:59 by ldes-cou         ###   ########.fr       */
+/*   Created: 2021/10/14 12:37:20 by ldes-cou          #+#    #+#             */
+/*   Updated: 2021/10/14 12:41:27 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-extern t_sig g_signal;
-
-t_list	*init(t_data *d, char **envp)
+size_t		ft_intlen(int n)
 {
-	int shlvl;
+	size_t		len;
 
-	d->env = NULL;
-	shlvl = ft_atoi(getenv("SHLVL") + 1);
-	ft_memset(d, 0, sizeof(d));
-	d->env = get_env(d, envp);
-	d->env = set_lvl(d->env, shlvl);
-	return (d->env);
+	len = 0;
+	if (!n)
+		len++;
+	while (n)
+	{
+		n = n / 10;
+		len++;
+	}
+	return (len);
 }

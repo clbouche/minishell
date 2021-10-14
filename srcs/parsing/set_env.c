@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 12:09:16 by ldes-cou@         #+#    #+#             */
-/*   Updated: 2021/10/13 15:20:52 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/14 12:45:02 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,28 @@ t_list *get_env(t_data *d, char **envp)
 	return(d->env);
 }
 
+t_list *set_lvl(t_list *env, int lvl)
+{
+	t_list *tmp;
+	char *shlvl;
+
+	tmp = env;
+	while(tmp->next != NULL)
+	{
+		if (ft_strncmp("SHLVL", tmp->content, 5))
+		{
+			free(tmp->content);
+			shlvl = malloc(sizeof(char) * ft_intlen(lvl) + 7);
+			if (shlvl == NULL)
+				return (NULL);
+			shlvl = ft_strcpy("SHLVL=", shlvl);
+			shlvl = ft_strcat(shlvl, (char*)lvl);
+			tmp->content = ft_strdup(shlvl);
+			free(shlvl);
+		}
+	}
+	return(env);
+}
 void free_lst(t_list *lst)
 {
 	t_list *tofree;

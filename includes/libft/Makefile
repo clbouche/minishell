@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+         #
+#    By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 13:17:26 by clbouche          #+#    #+#              #
-#    Updated: 2021/10/01 11:58:55 by ldes-cou@st      ###   ########.fr        #
+#    Updated: 2021/10/14 12:38:21 by ldes-cou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,6 +73,7 @@ SRCS += ft_strlen.c
 SRCS += ft_atoi.c
 #SRCS += ft_itoa.c
 SRCS += ft_error.c
+SRCS += ft_intlen.c
 
 # MANIP  STRING #
 SRCS += ft_strlcat.c

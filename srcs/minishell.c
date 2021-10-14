@@ -6,13 +6,13 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/12 18:10:24 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/14 12:31:26 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*###SUPPRIMER WRITE HISTORY####*/
+//faire une fonction qui affiche le prompt
 t_sig g_sig;
 
 int main(int argc, char **argv, char **envp)
