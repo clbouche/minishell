@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/13 16:14:17 by claclou          ###   ########.fr       */
+/*   Updated: 2021/10/14 13:57:52 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,25 @@
 /*
 ** Check le type de $ dont il s'agit
 */
-void	manage_expand(char *line, t_data *data)
+char	*manage_expand(char *line, t_data *data)
 {
 	int		i;
+	char	*new_line;
 
 	i = 0;
+	while (line[i] != '$')
+		i++;
 	if (line[i + 1])
 	{
 		if (line[i + 1] == '?')
-			return ;
+			return (line);
 		else
-			manage_variable(line, data);
+		{
+			new_line = manage_variable(line, data);
+			return (new_line);
+		}
 	}
-	//si rien ne suit $, erreur ou pas, a voir
+	return (line);
 }
 
 /*
@@ -59,7 +65,7 @@ void	manage_quotes(char *line, t_data *data, char quote)
 		if (quote == '"' && line[i] == '$')
 		{
 			//est ce que ca marche "$?" ??? 
-			manage_expand(line, data);
+			//manage_expand(line, data);
 		}
 		i++;
 	}
@@ -84,16 +90,21 @@ char	**parser(char *line, t_data *data)
 {
 	int		i;
 	char	**cmd;
+	char	*new_line;
 
 	i = 0;
 	while(line[i])
 	{
-		if (line[i] == '"' || line[i] == '\'')
-			manage_quotes (&line[i], data, line[i]);
+		//if (line[i] == '"' || line[i] == '\'')
+		//	manage_quotes (&line[i], data, line[i]);
 		if (line[i] == '|')
 			manage_pipe (&line[i + 1], data);
 		if (line[i] == '$')
-			manage_expand (&line[i], data);
+		{
+			new_line = manage_expand (line, data);
+			cmd = complete_parser(new_line, data);
+			return (cmd);
+		}
 		i++;
 	}
 	cmd = complete_parser(line, data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   variables.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 13:46:38 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/13 17:44:07 by claclou          ###   ########.fr       */
+/*   Updated: 2021/10/14 11:13:30 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,46 +35,49 @@ int	len_name(char *name)
 	return (len);
 }
 
-/*char	*recup_content(char *var)
-{
-	int	i;
-
-	i = 0;
-	while(var[i])
-	{
-
-	}
-}*/
-
 /*
 ** Va remplacer la valeur $exemple par le contenu
 ** de la variable $exemple dans un char **.
 */
-char	**create_new_input(char *line, char *name, t_data *data)
+char	*find_content(char *name, t_data *data)
 {
-	(void)line;
-	char 	**new_input;
 	char	*name_var;
 	char	*content;
 	t_list	*tmp;
 
-	new_input = NULL;
 	tmp = data->env;
 	while (tmp != NULL)
 	{
 		name_var = find_name(tmp->content);
 		if (ft_strcmp(name, name_var) == 0)
-		{
 			content = find_var(tmp->content);
-			printf("content : %s\n", content);
-			printf("env : %s\n", (char *)tmp->content);
-		}
 		tmp = tmp->next;
 	}
 	// new input = la meme chose jusqu'a croiser $, 
 	//si $ : remplacer par le contenu 
 	//si $ suivi de rien, le contenu est "\n"
 	//remettre la suite normalement
+	return (content);
+}
+
+/* 
+** Va concatener le debut de la ligne en remplacant 
+** le nom de la variable par son contenu puis 
+** garder la fin de la ligne tel quel.
+*/
+char	*create_new_input(char *line, char *content)
+{
+	int 	i;
+	char	*new_input;
+
+	i = 0;
+	new_input = NULL;
+	while (line[i] != '$')
+		i++;
+	new_input = malloc(sizeof(char) * (i + ft_strlen(content) + 1));
+	ft_strlcat(new_input, line, i);
+	ft_strcat(new_input, " ");
+	ft_strcat(new_input, content);
 	return (new_input);
 }
 
@@ -82,19 +85,28 @@ char	**create_new_input(char *line, char *name, t_data *data)
 ** Recuperer le nom et le contenu de la variable.
 ** Et eliminer les caracteres interdit.
 */
-void	manage_variable(char *line, t_data *data)
+char	*manage_variable(char *line, t_data *data)
 {
+	char	*new_input;
 	char	*name;
+	char	*content;
 	int		i;
 	int		j;
 	int		len_n;
 
-	i = 1;
+	i = 0;
 	j = 0;
-	len_n = len_name(line);
-	name = malloc(sizeof(char) * len_n);
+	while(line[j] != '$')
+		j++;
+	len_n = len_name(&line[j + 1]);
+	name = malloc(sizeof(char) * (len_n + 1));
 	//+ (check_unvalid_char(line[i]) == FAILURE)
-	while (line[i] != ' ' && line[i] != '=')
-		name[j++] = line[i++];
-	create_new_input(line, name, data);
+	j++;
+	while (line[j] != ' ' && line[j] != '=')
+		name[i++] = line[j++];
+	content = find_content(name, data);
+	new_input = create_new_input(line, content);
+	if (line[j] != ' ' || line[j] != '\0')
+		ft_strcat(new_input, &line[j]);
+	return(new_input);
 }
