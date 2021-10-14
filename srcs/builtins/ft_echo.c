@@ -18,22 +18,62 @@
 */
 extern t_sig g_sig;
 
+static int handle_option(char **cmd, int i)
+{
+    char *str;
+    char*tmp;
+
+    str = NULL;
+    tmp = NULL;
+    while(ft_strncmp(cmd[i], "-n", 2))
+            i++;
+    while (cmd[i + 1] != NULL)
+    {
+        if (cmd[i + 2] != NULL)
+        {
+            printf("affiche moi ca :[cmd %i] == %s\n", i, cmd[i + 1]);
+            tmp = ft_strjoin(cmd[i + 1], " ");
+            str = ft_strjoin(str, tmp);
+            free(tmp);
+        }
+        else
+        {
+            printf("else :[cmd %i] == %s\n", i, cmd[i + 1]);
+            str = ft_strjoin(str, cmd[i + 1]);
+        }
+        i++;
+    }
+    ft_putstr_fd(str, 1);
+    free(str);
+    return(0);
+}
 int	ft_echo(char **cmd, t_data *d)
 {
+    int i;
+    char *str;
+    char*tmp;
 
+    str = NULL;
+    tmp = NULL;
+    i = 1;
     (void)d;
-    if (cmd[1][1] == 'n')
-        ft_putstr_fd(cmd[2], 1);//faire ecrire sur la line
-    else if(!ft_strncmp(cmd[1], "$?", 2))
-    {
+    if(!ft_strncmp(cmd[1], "$?", 2))
         printf("%i\n", g_sig.status);
-        // ft_putchar_fd((g_sig.status), 1);
-        // ft_putchar_fd('\n', 1);
-    }
+    if (!ft_strncmp(cmd[i], "-n", 2))
+        return (handle_option(cmd, i));
     else
     {
-        ft_putstr_fd(cmd[1], 1);
+        while (cmd[i] != NULL)
+        {
+            tmp = ft_strjoin(cmd[i], " ");
+            str = ft_strjoin(str, tmp);
+            //ft_putstr_fd(cmd[i], 1);
+            free(tmp);
+            i++;
+        }
+        ft_putstr_fd(str, 1);
         ft_putstr_fd("\n", 1);
     }
+    free(str);
     return (0);
 }
