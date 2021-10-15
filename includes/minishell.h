@@ -48,11 +48,33 @@ typedef struct	s_sig
 {
 	int				sigint;
 	int				sigquit;
-	int				exit_status;
+	int				status;
 	pid_t			pid;
+	int 			prog;
 }				t_sig;
 
+<<<<<<< HEAD
 typedef enum	s_builtin
+=======
+extern t_sig g_sig;
+
+typedef struct		s_token 
+{
+	t_token_type	tok_type;
+	char			*data;
+}					t_token;
+
+typedef struct s_node
+{
+	struct s_node	*next;
+	struct s_node	*prev;
+	char			*value;
+	int				index;
+	t_token_type	token;
+}					t_node;
+
+typedef struct s_dlist
+>>>>>>> signals
 {
 	FT_CD = 2,
 	FT_ECHO,
@@ -115,6 +137,11 @@ t_list	*delete_node(t_list *head, char *var);
 t_list	*get_env(t_data *d, char **envp);
 t_dlist	*init_list(t_dlist *list);
 void	print_dlist(t_dlist *lst);
+<<<<<<< HEAD
+=======
+t_list	*init(t_data *d, char **envp);
+t_list *set_lvl(t_list *env, char * lvl);
+>>>>>>> signals
 
 /*
 ** Built-in 
@@ -127,7 +154,8 @@ void	export_var(char **cmd, t_data *d);
 int		ft_export(char **cmd, t_data *d);
 t_list	*ft_unset(char **cmd, t_data *d);
 int		ft_pwd(void);
-int		ft_exit(void);
+//int		ft_exit(char **cmd, t_data *d);
+int		ft_exit();
 int		ft_cd(char **cmd);
 int		ft_echo(char **cmd, t_data *d);
 
@@ -142,6 +170,10 @@ void	free_exit(t_list *lst, char *error);
 void	tests(t_list *env, char **cmd);
 void	opening_error(char *error);
 
+/*
+** signals
+*/
 
+void sig_handler(int signo);
 
 #endif

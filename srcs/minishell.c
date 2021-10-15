@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/14 14:37:57 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/15 17:20:41 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,17 @@ void	minishell_loop(t_data *data)
 {
 	char	*line;
 	char	**cmd;
-
+	
+	
 	while (1)
 	{
 		line = readline("🍄 MINISHELL 🍄 : ");
+		if (line == NULL)
+				break;
 		manage_history(line);
 		cmd = parser(line, data);
 		execute(cmd, data);
+		//parse_exec(line, &d);
 	}
 }
 
@@ -42,9 +46,12 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	if (argc == 1)
 	{
+		signal(SIGINT, &sig_handler);
+		signal(SIGQUIT, &sig_handler);
 		data.env = init(&data, envp);
 		init_datas(&data);
 		minishell_loop(&data);
 	}
-	return (0);
+	ft_putstr_fd("exit\n", 1);
+	return (g_sig.status);
 }

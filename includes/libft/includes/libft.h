@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 11:56:59 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/12 11:50:25 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/14 12:39:50 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct s_dlist
 size_t	ft_strlen(const char *s);
 int		ft_atoi(const char *str);
 void	ft_error(char *error);
+size_t	ft_intlen(int n);
 // void	print_index(t_dlist *stack_a);
 
 /* MANIP  STRING */
