@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/14 15:29:39 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/15 13:24:11 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,31 +39,35 @@ char	*manage_expand(char *line, t_data *data)
 /*
 ** Envoie les commandes correctement a l'execution pour les pipes.
 */
-void	manage_pipe(char *line, t_data *data)
+void	manage_pipe(char *line, int pipe_pos, t_data *data)
 {
-	char	*cpy;
+	char	*new_input;
 
-	(void)data;
-	cpy = ft_strdup(line);
-	printf("check line : %s\n", cpy);
-	//executer le debut de la ligne jusqu'au pipe
-	//revenir au parser avec le reste de la ligne
+	new_input = ft_strdup(&line[pipe_pos + 1]);
+	line[pipe_pos] = '\0';
+	return (exec_pipes(line, new_input, data));
 }
 
 /*
 ** Permet de faire les expands si double quote.
 */
-void	manage_quotes(char *line, t_data *data, char quote)
+void	manage_quotes(char *line, char *input, t_data *data, char quote)
 {
-	int	i;
+	int		i;
+	char	**cmd;
+	char	*new_line;
 
 	i = 0;
-	(void)data;
-	(void)quote;
-	while (line[i] != quote)
+	//printf("line : %s\n", line);
+	//printf("input : %s\n", input);
+	while (input[i] != quote)
 	{
-		if (quote == '"' && line[i] == '$')
-			manage_expand(line, data);
+		if (quote == '"' && input[i] == '$')
+		{
+			new_line = manage_expand(line, data);
+			cmd = complete_parser(new_line, data);
+			return ;
+		}
 		i++;
 	}
 }
@@ -92,10 +96,10 @@ char	**parser(char *line, t_data *data)
 	i = 0;
 	while (line[i])
 	{
-		if (line[i] == '"' || line[i] == '\'')
-			manage_quotes(line, data, line[i]);
+		if ((line[i] == '"' || line[i] == '\'') && line[i + 1])
+			manage_quotes(line, &line[i + 1], data, line[i]);
 		if (line[i] == '|')
-			manage_pipe (&line[i + 1], data);
+			manage_pipe (line, i, data);
 		if (line[i] == '$')
 		{
 			new_line = manage_expand (line, data);

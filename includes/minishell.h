@@ -108,6 +108,7 @@ void 	exec_builtin(char **cmd, t_data *d);
 void 	exec_simple(char  **cmd, t_data *d);
 int 	is_builtins(char **cmd);
 void	get_path(char **cmd, t_data *d);
+void	exec_pipes(char *line, char *new_input, t_data *data);
 
 
 void	free_stack(t_list *top);
