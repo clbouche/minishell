@@ -135,7 +135,8 @@ void	export_var(char **cmd, t_data *d);
 int		ft_export(char **cmd, t_data *d);
 t_list	*ft_unset(char **cmd, t_data *d);
 int		ft_pwd(void);
-int		ft_exit(void);
+//int		ft_exit(char **cmd, t_data *d);
+int		ft_exit();
 int		ft_cd(char **cmd);
 int		ft_echo(char **cmd, t_data *d);
 
@@ -189,6 +190,6 @@ void	opening_error(char *error);
 ** signals
 */
 
-void    sig_handler(int sig);
+void sig_handler(int signo);
 
 #endif
