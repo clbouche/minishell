@@ -44,6 +44,7 @@
 ** ENUM
 */
 
+
 typedef struct	s_sig
 {
 	int				sigint;
@@ -53,28 +54,8 @@ typedef struct	s_sig
 	int 			prog;
 }				t_sig;
 
-<<<<<<< HEAD
-typedef enum	s_builtin
-=======
 extern t_sig g_sig;
-
-typedef struct		s_token 
-{
-	t_token_type	tok_type;
-	char			*data;
-}					t_token;
-
-typedef struct s_node
-{
-	struct s_node	*next;
-	struct s_node	*prev;
-	char			*value;
-	int				index;
-	t_token_type	token;
-}					t_node;
-
-typedef struct s_dlist
->>>>>>> signals
+typedef enum	s_builtin
 {
 	FT_CD = 2,
 	FT_ECHO,
@@ -82,7 +63,7 @@ typedef struct s_dlist
 	FT_EXPORT,
 	FT_PWD,
 	FT_UNSET,
-	FT_EXIT,
+	FT_EXIT
 }				t_builtin;
 /*
 ** STRUCTURES
@@ -137,11 +118,8 @@ t_list	*delete_node(t_list *head, char *var);
 t_list	*get_env(t_data *d, char **envp);
 t_dlist	*init_list(t_dlist *list);
 void	print_dlist(t_dlist *lst);
-<<<<<<< HEAD
-=======
 t_list	*init(t_data *d, char **envp);
 t_list *set_lvl(t_list *env, char * lvl);
->>>>>>> signals
 
 /*
 ** Built-in 

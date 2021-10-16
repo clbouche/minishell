@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   exec_simple.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucrece <lucrece@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:49:47 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/10/13 14:59:50 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/16 10:07:12 by lucrece          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-<<<<<<< HEAD
 extern t_sig sig;
 
 void    exec_child(char **cmd, t_data *d)
@@ -24,9 +23,6 @@ void    exec_child(char **cmd, t_data *d)
 // {
 //     //puts("caca");
 // }
-=======
-
->>>>>>> signals
 
 void exec_simple(char  **cmd, t_data *d)
 {
@@ -43,11 +39,3 @@ void exec_simple(char  **cmd, t_data *d)
     
 }
 
-<<<<<<< HEAD
-=======
-void    exec_child(char **cmd, t_data *d)
-{
-    //dup(0);
-    get_path(cmd, d);
-}
->>>>>>> signals

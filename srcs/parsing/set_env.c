@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucrece <lucrece@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 12:09:16 by ldes-cou@         #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/10/12 17:44:04 by clbouche         ###   ########.fr       */
-=======
-/*   Updated: 2021/10/14 16:26:09 by ldes-cou         ###   ########.fr       */
->>>>>>> signals
+/*   Updated: 2021/10/16 09:47:52 by lucrece          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +32,6 @@ t_list	*get_env(t_data *d, char **envp)
 		ft_lstadd_back(&d->env, new);
 		d->env_len++;
 	}
-<<<<<<< HEAD
-	return (d->env);
-}
-
-void	free_lst(t_list *lst)
-=======
 	//printf("%i\n", d->env_len);
 	return(d->env);
 }
@@ -70,7 +60,6 @@ void	free_lst(t_list *lst)
 // 	return(env);
 // }
 void free_lst(t_list *lst)
->>>>>>> signals
 {
 	t_list	*tofree;
 

@@ -31,16 +31,13 @@ static int handle_n(char **cmd, int i)
     {
         if (cmd[i + 2] != NULL)
         {
-            tmp = ft_strjoin(cmd[i + 1], " ");
-            str = ft_strjoin(str, tmp);
-            free(tmp);
+            ft_putstr_fd(cmd[i + 1], 1);
+            ft_putstr_fd(" ", 1);
         }
         else
-            str = ft_strjoin(str, cmd[i + 1]);
+            ft_putstr_fd(cmd[i + 1], 1);
         i++;
     }
-    ft_putstr_fd(str, 1);
-    free(str);
     return(0);
 }
 
@@ -55,16 +52,13 @@ static int handle_multiarg(char **cmd, int i)
     {
         if (cmd[i + 1] != NULL)
         {
-            tmp = ft_strjoin(cmd[i], " ");
-            str = ft_strjoin(str, tmp);
-            free(tmp);
+            ft_putchar_fd(' ', 1);
+            ft_putstr_fd(cmd[i], 1);
         }
         else
-            str = ft_strjoin(str, cmd[i]);
+            ft_putstr_fd(cmd[i], 1);
         i++;
     }
-    ft_putendl_fd(str, 1);
-    free(str);
     return(0);
 }
 

@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_binary.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucrece <lucrece@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 15:15:48 by ldes-cou          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/10/12 16:42:30 by clbouche         ###   ########.fr       */
-=======
-/*   Updated: 2021/10/13 15:23:21 by ldes-cou         ###   ########.fr       */
->>>>>>> signals
+/*   Updated: 2021/10/16 10:05:06 by lucrece          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,38 +40,11 @@ static char **convert_env(t_data *d)
 
 char	*find_bin(char **cmd, char **paths, char *bin, int i)
 {
-<<<<<<< HEAD
 	bin = (char *)ft_calloc(sizeof(char), (ft_strlen(paths[i]) + ft_strlen(cmd[0]) + 2));
 	ft_strcat(bin, paths[i]); //faire une fonction maison
 	ft_strcat(bin, "/");
 	ft_strcat(bin, cmd[0]);
 	return (bin);
-=======
-	char	*path;
-	char	**paths;
-	char	**envp;
-	int		i;
-
-	i = 0;
-	path = NULL;
-	paths = NULL;
-	envp = convert_env(d);
-	while (envp[i])
-	{
-		if (ft_strnstr(envp[i], "PATH=", 5) != 0)
-			break ;
-		i++;
-	}
-	if (envp[i] == NULL)
-	{
-		printf("minishell: %s: No such file or directory\n", cmd[0]);
-		return;
-	}
-	path = ft_substr(envp[i], 4, ft_strlen(envp[i]));
-	paths = ft_split(path, ':');
-	ft_memdel(&path);
-	test_path(paths, cmd, envp);
->>>>>>> signals
 }
 
 void	test_path(char **paths, char **cmd, char **env)

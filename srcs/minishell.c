@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: lucrece <lucrece@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/15 17:20:41 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/10/16 10:20:02 by lucrece          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 /*
 ** Ajoute les fonctions une a une a l'historique (utile pour la suite).
 */
+t_sig g_sig;
 void	manage_history(char *input)
 {
 	if (input)
@@ -25,7 +26,6 @@ void	minishell_loop(t_data *data)
 {
 	char	*line;
 	char	**cmd;
-	
 	
 	while (1)
 	{
