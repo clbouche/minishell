@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   variables.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 13:46:38 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/15 13:24:03 by claclou          ###   ########.fr       */
+/*   Updated: 2021/10/18 15:12:49 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	len_name(char *name)
 
 	len = 0;
 	// && check_unvalid_char(name[len] == SUCCESS))
-	while (name[len] != ' ' && name[len] != '=')
+	while (name[len] && name[len] != ' ' && name[len] != '=')
 		len++;
 	return (len);
 }
@@ -46,7 +46,6 @@ char	*find_content(char *name, t_data *data)
 	t_list	*tmp;
 
 	tmp = data->env;
-	//content = malloc(sizeof(char) * ft_strlen(tmp->content));
 	while (tmp != NULL)
 	{
 		name_var = find_name(tmp->content);
@@ -59,6 +58,20 @@ char	*find_content(char *name, t_data *data)
 	return (content);
 }
 
+char	*add_end_line(char *input, char *line)
+{
+	int i;
+	char	*new_input;
+
+	i = 0;
+	new_input = NULL;
+	while(line[i] && line[i] != '=')
+		i++;
+	if (line[i] == '=')
+		new_input = ft_strjoin_realloc(&input, &line[i]);
+	return(new_input);
+}
+
 /* 
 ** Va concatener le debut de la ligne en remplacant 
 ** le nom de la variable par son contenu puis 
@@ -68,14 +81,19 @@ char	*create_new_input(char *line, char *content)
 {
 	int 	i;
 	char	*new_input;
-
+	char	*tmp;
+	
 	i = 0;
-	while (line[i] != '$')
+	new_input = NULL;
+	while (line && line[i] != '$')
 		i++;
-	new_input = malloc(sizeof(char) * (i + ft_strlen(content) + 1));
-	ft_strlcat(new_input, line, i);
-	ft_strcat(new_input, " ");
-	ft_strcat(new_input, content);
+	tmp = ft_substr(line, 0, i);
+	new_input = ft_strjoin(tmp, content);
+	free(tmp);
+	while(line[i] && line[i] != '=')
+		i++;
+	if (line[i] == '=')
+		new_input = ft_strjoin_realloc(&new_input, &line[i]);
 	return (new_input);
 }
 
@@ -94,20 +112,13 @@ char	*manage_variable(char *line, t_data *data)
 
 	i = 0;
 	j = 0;
-	//printf("yolo\n");
+	new_input = NULL;
 	while(line[j] != '$')
 		j++;
 	len_n = len_name(&line[j + 1]);
-	name = malloc(sizeof(char) * (len_n));
-	//+ (check_unvalid_char(line[i]) == FAILURE)
-	j++;
-	while (line[j] != ' ' && line[j] != '=')
-		name[i++] = line[j++];
-	//name[i] = '\0';
+	name = ft_substr(line, (j + 1), len_n);
 	content = find_content(name, data);
 	free(name);
 	new_input = create_new_input(line, content);
-	if (line[j] != ' ' || line[j] != '\0')
-		ft_strcat(new_input, &line[j]);
 	return(new_input);
 }

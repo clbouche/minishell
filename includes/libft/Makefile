@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+         #
+#    By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 13:17:26 by clbouche          #+#    #+#              #
-#    Updated: 2021/10/15 17:20:56 by ldes-cou@st      ###   ########.fr        #
+#    Updated: 2021/10/18 14:56:01 by clbouche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,6 +90,7 @@ SRCS += ft_split.c
 SRCS += ft_strmapi.c
 SRCS += ft_strchr.c
 SRCS += ft_strjoin.c
+SRCS += ft_strjoin_realloc.c
 SRCS += ft_strcpy.c
 SRCS += ft_strcat.c
 
