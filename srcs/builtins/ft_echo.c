@@ -44,10 +44,11 @@ int	ft_echo(char **cmd, t_data *d)
 
     i = 1;
     (void)d;
-    if(!ft_strncmp(cmd[1], "$?", 2))
+    if (!ft_strncmp(cmd[i], "$?", 2))
         printf("%i\n", g_sig.status);
-    if (ft_strcmp(cmd[i], "-n") == 0)
+    else if (ft_strcmp(cmd[i], "-n") == 0)
     {
+        printf()
         while(ft_strcmp(cmd[i + 1], "-n") == 0)
             i++;
         handle_multiarg(cmd, i + 1);
@@ -57,5 +58,6 @@ int	ft_echo(char **cmd, t_data *d)
         handle_multiarg(cmd, i);
         ft_putchar_fd('\n', 1);
     }
+    free_array(cmd);
     return (0);
 }

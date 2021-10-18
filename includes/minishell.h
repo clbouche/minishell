@@ -80,6 +80,7 @@ typedef	struct s_data
 	int		ouput;
 	int 	ret;
 	int		env_len;
+	char **	envp;
 	t_node	*lexer;
 	t_dlist	*lst;
 }				t_data;
@@ -146,7 +147,8 @@ int		ft_echo(char **cmd, t_data *d);
 void	free_stack(t_list *top);
 void	free_array(char **array);
 void	free_lst(t_list *lst);
-void	free_exit(t_list *lst, char *error);
+void	free_exit(t_data *d, char *error);
+void	free_all(t_data *d);
 void	tests(t_list *env, char **cmd);
 void	opening_error(char *error);
 

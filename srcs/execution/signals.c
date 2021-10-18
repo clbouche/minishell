@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:36:42 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/10/18 12:23:13 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/18 15:14:54 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,22 @@ void sig_handler(int signo)
 {
     if (signo == SIGINT)
     {
-        ft_putchar_fd('\n', 1);
-        ft_putstr_fd("🍄 MINISHELL🍄 : ", 1);
+        g_sig.status = 130;
+        if (g_sig.prog == 0)
+        {
+            ft_putchar_fd('\n', 1);
+            rl_on_new_line();
+		    rl_replace_line("", 0);
+		    rl_redisplay();
+        }
+        else if (g_sig.prog == 1)
+        {
+            kill(g_sig.pid, SIGQUIT);
+            ft_putstr_fd("\n\b\b  \b\b", 1);
+        }
+        
     }
+    
     if (signo == SIGQUIT)
     {    
         if (g_sig.prog == 1)
@@ -30,6 +43,10 @@ void sig_handler(int signo)
             g_sig.status = 131;
             kill(g_sig.pid, SIGQUIT);
         }
-        ft_putstr_fd("\b\b  \b\bQuit (core dumped)\n", 1);
+        ft_putstr_fd("\b\b  \b\b", 1);
+        //rl_on_new_line();
+		//rl_replace_line("", 0);
+		//rl_redisplay();
+        
     } 
 }
