@@ -48,7 +48,7 @@ int	ft_echo(char **cmd, t_data *d)
         printf("%i\n", g_sig.status);
     else if (ft_strcmp(cmd[i], "-n") == 0)
     {
-        printf()
+        //printf()
         while(ft_strcmp(cmd[i + 1], "-n") == 0)
             i++;
         handle_multiarg(cmd, i + 1);
