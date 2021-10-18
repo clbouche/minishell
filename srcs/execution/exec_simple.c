@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:49:47 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/10/18 12:41:33 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/18 16:26:23 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void    exec_child(char **cmd, t_data *d)
 
 void exec_simple(char  **cmd, t_data *d)
 {
+    g_sig.prog = 1;
     g_sig.pid = fork();
     if (g_sig.pid == -1)
 	  	opening_error("Fork");
@@ -35,6 +36,7 @@ void exec_simple(char  **cmd, t_data *d)
         waitpid(-1, &g_sig.status, 0);
     if (WIFEXITED(g_sig.status))
         g_sig.status = WEXITSTATUS(g_sig.status);
+    g_sig.prog = 0;
     //printf("%i\n", g_sig.status);
     
 }

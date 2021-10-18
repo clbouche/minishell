@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 15:15:48 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/10/18 14:11:47 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/18 16:23:40 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	test_path(char **paths, char **cmd, char **env)
 		exit(127);//free_exit(cmd);
 	else
 	{
-		//puts("exec");
+		g_sig.prog = 1;
 		execve(bin, cmd, env);
 		exit(FAILURE);
 	}

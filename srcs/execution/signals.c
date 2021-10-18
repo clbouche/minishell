@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:36:42 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/10/18 15:14:54 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/18 16:28:42 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ void sig_handler(int signo)
         }
         else if (g_sig.prog == 1)
         {
-            kill(g_sig.pid, SIGQUIT);
-            ft_putstr_fd("\n\b\b  \b\b", 1);
+            //puts("la");
+            //kill(g_sig.pid, SIGQUIT);
+            //ft_putstr_fd("\b\b  \b\b\n", 1);
+            rl_redisplay();
         }
         
     }
