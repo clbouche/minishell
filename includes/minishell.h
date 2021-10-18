@@ -130,7 +130,7 @@ t_list *set_lvl(t_list *env, char * lvl);
 ** Built-in 
 */
 
-void	ft_env(t_data *d);
+void	ft_env(t_data *d, char **cmd);
 char	*find_var(char *name);
 char	*find_name(char *var);
 void	export_var(char **cmd, t_data *d);
