@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucrece <lucrece@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 12:09:16 by ldes-cou@         #+#    #+#             */
-/*   Updated: 2021/10/16 09:47:52 by lucrece          ###   ########.fr       */
+/*   Updated: 2021/10/18 10:53:41 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,20 @@ void free_lst(t_list *lst)
 	t_list	*tofree;
 
 	tofree = NULL;
-	while (lst != NULL)
+	if (lst)
 	{
-		tofree = lst;
-		if (tofree->content != NULL)
-			free(tofree->content);
-		free(tofree);
-		lst = lst->next;
+		while (lst != NULL)
+		{
+			tofree = lst;
+			if (tofree->content != NULL)
+			{
+				free(tofree->content);
+				tofree->content = NULL;
+			}
+			free(tofree);
+			tofree = NULL;
+			lst = lst->next;
+		}
 	}
 }
 
