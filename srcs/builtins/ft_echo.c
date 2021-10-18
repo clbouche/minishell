@@ -16,30 +16,6 @@
 ** to the standard output with a new line 
 ** unless the -n option is set. 
 */
-extern t_sig g_sig;
-
-static int handle_n(char **cmd, int i)
-{
-    char *str;
-    char*tmp;
-
-    str = NULL;
-    tmp = NULL;
-    while(ft_strncmp(cmd[i], "-n", 2))
-            i++;
-    while (cmd[i + 1] != NULL)
-    {
-        if (cmd[i + 2] != NULL)
-        {
-            ft_putstr_fd(cmd[i + 1], 1);
-            ft_putstr_fd(" ", 1);
-        }
-        else
-            ft_putstr_fd(cmd[i + 1], 1);
-        i++;
-    }
-    return(0);
-}
 
 static int handle_multiarg(char **cmd, int i)
 {
@@ -70,9 +46,17 @@ int	ft_echo(char **cmd, t_data *d)
     (void)d;
     if(!ft_strncmp(cmd[1], "$?", 2))
         printf("%i\n", g_sig.status);
-    if (!ft_strncmp(cmd[i], "-n", 2))
-        return (handle_n(cmd, i));
+    if (ft_strcmp(cmd[i], "-n") == 0)
+    {
+        //puts("here");
+        while(ft_strcmp(cmd[i + 1], "-n") == 0)
+            i++;
+        handle_multiarg(cmd, i + 1);
+    }
     else
+    {
         handle_multiarg(cmd, i);
+        ft_putchar_fd('\n', 1);
+    }
     return (0);
 }
