@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 12:08:22 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/10/07 11:37:26 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/18 14:40:34 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,55 @@ void	free_array(char **array)
 	int	i;
 
 	i = 0;
-	while (array[i])
+	if (array)
 	{
-		free(array[i]);
-		array[i] = NULL;
-		i++;
+		while (array[i])
+		{
+			ft_memdel(&array[i]);
+			i++;
+		}
+		free(array);
+		array = NULL;
 	}
-	free(array);
+}
+
+void free_lst(t_list *lst)
+{
+	t_list	*tofree;
+
+	tofree = NULL;
+	if (lst == NULL)
+		return;
+	while (lst)
+	{
+		//printf("%s\n", (char *)lst->content);
+		if (lst->content != NULL)
+		{
+			free(lst->content);
+			lst->content = NULL;
+		}
+		tofree = lst;
+		lst = lst->next;
+		free(tofree);
+		tofree = NULL;
+	}
+		// free(lst);
+		// lst = NULL;
+	return;
+}
+
+void	free_exit(t_data *d, char *error)
+{
+	perror(error);
+	free_lst(d->env);
+	free_array(d->envp);
+	exit(FAILURE);
+}
+
+void	free_all(t_data *d)
+{
+	if (d->env != NULL)
+		free_lst(d->env);
+	//if (d->envp != NULL)
+	//	free_array(d->envp);
 }

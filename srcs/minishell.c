@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/18 15:14:45 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/18 15:30:50 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	minishell_loop(t_data *data)
 	while (1)
 	{
 		line = readline("🍄 MINISHELL 🍄 : ");
+		if (line == NULL)
+			line = ft_strdup("exit");
 		manage_history(line);
 		cmd = parser(line, data);
 		free(line);
@@ -50,6 +52,5 @@ int	main(int argc, char **argv, char **envp)
 		init_datas(&data);
 		minishell_loop(&data);
 	}
-	ft_putstr_fd("exit\n", 1);
 	return (g_sig.status);
 }
