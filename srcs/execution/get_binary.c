@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_binary.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucrece <lucrece@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 15:15:48 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/10/16 10:05:06 by lucrece          ###   ########.fr       */
+/*   Updated: 2021/10/18 12:39:50 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char **convert_env(t_data *d)
 	
 	i = 0;
 	tmp = d->env;
-	env = malloc(sizeof(char *) * (d->env_len + 1));
+	env = malloc(sizeof(char *) * d->env_len + 1);
 	while(tmp != NULL)
 	{
 		env[i] = ft_strdup(tmp->content);

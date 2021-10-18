@@ -1,0 +1,11 @@
+in
+includes
+Makefile
+minishell
+minishell_test.log
+obj
+out
+sources.mk
+srcs
+tests.sh
+test.txt

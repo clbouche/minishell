@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 10:32:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/18 11:18:51 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/18 12:42:10 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ int     ft_exit(char **cmd, t_data *d)
     exit_code = 0;
     d->ret = 0;
     ft_putendl_fd("exit", 1);
-    if (cmd[2] != NULL)
-        ft_putendl_fd("minishell: exit: too many arguments", 2);
-    else if (is_numeric(cmd[1]) == 1)
+    // if (cmd[2] != NULL)
+    //     ft_putendl_fd("minishell: exit: too many arguments", 2);
+    if (is_numeric(cmd[1]) == 1)
         return(numeric_arg_required(cmd[1]));
     else
     {
@@ -61,7 +61,8 @@ int     ft_exit(char **cmd, t_data *d)
             exit_code = ft_atoi(cmd[1]);
             exit(exit_code);
         }
-    }  //free_lst(d->env);
+    }
+    free_lst(d->env);
     return(FAILURE);
 }
 
