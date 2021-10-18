@@ -10,6 +10,8 @@
 #define RESET "\001\e[0m\002"
 #define FAILURE 1
 #define SUCCESS 0
+#define TRUE 0
+#define FALSE 1
 //#define MAX 6
 #define BUILTIN "{cd, echo, exit, export, pwd, unset}"
 #define MAX 4096

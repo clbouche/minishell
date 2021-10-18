@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_builtins.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucrece <lucrece@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 10:14:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/10/16 09:48:17 by lucrece          ###   ########.fr       */
+/*   Updated: 2021/10/18 10:43:07 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ void exec_builtin(char **cmd, t_data *d)
     else if (is_builtins(cmd) == FT_UNSET)
        ft_unset(cmd, d);
     else if (is_builtins(cmd) == FT_EXIT)
-        ft_exit();
+        ft_exit(cmd, d);
     //ft_exit(cmd, d);
 }
