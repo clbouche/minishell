@@ -46,10 +46,10 @@ int	ft_echo(char **cmd, t_data *d)
     (void)d;
     if (!ft_strncmp(cmd[i], "$?", 2))
         printf("%i\n", g_sig.status);
-    else if (ft_strcmp(cmd[i], "-n") == 0)
+    else if (cmd[i] && ft_strcmp(cmd[i], "-n") == 0)
     {
-        //printf()
-        while(ft_strcmp(cmd[i + 1], "-n") == 0)
+        printf("cmd[i] == %s\n", cmd[i]);
+        while(cmd[i +1] && ft_strcmp(cmd[i + 1], "-n") == 0)
             i++;
         handle_multiarg(cmd, i + 1);
     }
