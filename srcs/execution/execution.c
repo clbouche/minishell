@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 09:02:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/10/07 11:37:26 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/15 13:23:06 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,3 +23,10 @@ void	execute(char **cmd, t_data *data)
         exec_simple(cmd, data);
 }
 
+void	exec_pipes(char *line, char *new_input, t_data *data)
+{
+	(void)line;
+	(void)new_input;
+	(void)data;
+	printf("pipe\n");
+}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   variables.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 13:46:38 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/14 14:19:35 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/15 13:24:03 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	len_name(char *name)
 {
 	int	len;
 
-	len = 1;
+	len = 0;
 	// && check_unvalid_char(name[len] == SUCCESS))
 	while (name[len] != ' ' && name[len] != '=')
 		len++;
@@ -36,27 +36,26 @@ int	len_name(char *name)
 }
 
 /*
-** Va remplacer la valeur $exemple par le contenu
-** de la variable $exemple dans un char **.
+** Cherche le contenu de la variable dans l'environnement
 */
 char	*find_content(char *name, t_data *data)
 {
 	char	*name_var;
 	char	*content;
+	char	*tmp_content;
 	t_list	*tmp;
 
 	tmp = data->env;
+	//content = malloc(sizeof(char) * ft_strlen(tmp->content));
 	while (tmp != NULL)
 	{
 		name_var = find_name(tmp->content);
 		if (ft_strcmp(name, name_var) == 0)
-			content = find_var(tmp->content);
+			tmp_content = find_var(tmp->content);
 		tmp = tmp->next;
 	}
-	// new input = la meme chose jusqu'a croiser $, 
-	//si $ : remplacer par le contenu 
-	//si $ suivi de rien, le contenu est "\n"
-	//remettre la suite normalement
+	content = malloc(sizeof(char) * ft_strlen(tmp_content));
+	content = tmp_content;
 	return (content);
 }
 
@@ -71,7 +70,6 @@ char	*create_new_input(char *line, char *content)
 	char	*new_input;
 
 	i = 0;
-	new_input = NULL;
 	while (line[i] != '$')
 		i++;
 	new_input = malloc(sizeof(char) * (i + ft_strlen(content) + 1));
@@ -96,15 +94,18 @@ char	*manage_variable(char *line, t_data *data)
 
 	i = 0;
 	j = 0;
+	//printf("yolo\n");
 	while(line[j] != '$')
 		j++;
 	len_n = len_name(&line[j + 1]);
-	name = malloc(sizeof(char) * (len_n + 1));
+	name = malloc(sizeof(char) * (len_n));
 	//+ (check_unvalid_char(line[i]) == FAILURE)
 	j++;
 	while (line[j] != ' ' && line[j] != '=')
 		name[i++] = line[j++];
+	//name[i] = '\0';
 	content = find_content(name, data);
+	free(name);
 	new_input = create_new_input(line, content);
 	if (line[j] != ' ' || line[j] != '\0')
 		ft_strcat(new_input, &line[j]);
