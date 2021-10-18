@@ -94,6 +94,7 @@ void	init_datas(t_data *data);
 */
 
 char	**parser(char *line, t_data *data);
+char	*clean_line(char *line);
 char	**complete_parser(char *line, t_data *data);
 char	**split_cmd(char *line);
 int		manage_redir(char **cmd, t_data *data);

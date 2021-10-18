@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:32:10 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/14 15:10:25 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/18 15:20:03 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ char	*split_args(char *str)
 	if (!arg)
 		exit(EXIT_FAILURE);
 	copy_arg(str, arg, quote);
-	//printf("arg = |%s|\n", arg);
 	return (arg);
 }
 
@@ -124,7 +123,6 @@ char	**split_cmd(char *line)
 	{
 		cmd[i++] = split_args(line);
 		line = next_cmd(line);
-		//printf("cmd[%d] = |%s|\n", i-1, cmd[i - 1]);
 	}
 	cmd[i] = NULL;
 	return (cmd);
