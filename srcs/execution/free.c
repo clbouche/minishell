@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 12:08:22 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/10/18 14:40:34 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/20 13:35:29 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,12 @@ void free_lst(t_list *lst)
 	return;
 }
 
-void	free_exit(t_data *d, char *error)
+void	free_exit(t_data *d, char *error, int exit_code)
 {
 	perror(error);
 	free_lst(d->env);
 	free_array(d->envp);
-	exit(FAILURE);
+	exit(exit_code);
 }
 
 void	free_all(t_data *d)

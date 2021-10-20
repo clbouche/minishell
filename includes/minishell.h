@@ -113,12 +113,23 @@ char    *manage_variable(char *line, t_data *data);
 void	execute(char **cmd, t_data *data);
 void 	exec_builtin(char **cmd, t_data *d);
 void 	exec_simple(char  **cmd, t_data *d);
-int 	is_builtins(char **cmd);
-void	get_path(char **cmd, t_data *d);
+void	exec_bin(char **cmd, char *bin, t_data *d);
 void	exec_pipes(char *line, char *new_input, t_data *data);
+int 	is_builtins(char **cmd);
+void	exec(char **cmd, t_data *d);
 
+/*
+** find_path
+*/
 
-void	free_stack(t_list *top);
+// char *find_bin(char **paths, char **cmd, char **env);
+char 	*test_path(char **cmd, char **paths, char *bin, int i);
+char	**get_path(t_data *d);
+char *find_bin(char **paths, char **cmd);
+
+/*
+** init
+*/
 t_list	*delete_node(t_list *head, char *var);
 t_list	*get_env(t_data *d, char **envp);
 t_dlist	*init_list(t_dlist *list);
@@ -130,7 +141,7 @@ t_list *set_lvl(t_list *env, char * lvl);
 ** Built-in 
 */
 
-void	ft_env(t_data *d);
+void	ft_env(t_data *d, char **cmd);
 char	*find_var(char *name);
 char	*find_name(char *var);
 void	export_var(char **cmd, t_data *d);
@@ -149,7 +160,7 @@ int		ft_echo(char **cmd, t_data *d);
 void	free_stack(t_list *top);
 void	free_array(char **array);
 void	free_lst(t_list *lst);
-void	free_exit(t_data *d, char *error);
+void	free_exit(t_data *d, char *error, int exit_code);
 void	free_all(t_data *d);
 void	tests(t_list *env, char **cmd);
 void	opening_error(char *error);

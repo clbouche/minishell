@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:38:59 by ldes-cou@         #+#    #+#             */
-/*   Updated: 2021/10/14 16:27:51 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/18 16:57:29 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 */
 #include "minishell.h"
 
-void	ft_env(t_data *d)
+void	ft_env(t_data *d, char **cmd)
 {
 	t_list *tmp;
 	
@@ -33,6 +33,7 @@ void	ft_env(t_data *d)
 	}
 	d->env = tmp;
 	d->ret = FAILURE;
+	free_array(cmd);
 }
 
 char *find_var(char *name)
@@ -54,5 +55,4 @@ char *find_name(char *var)
 		i++;
 	name = ft_substr(var, 0, i);
 	return(name);
-	
 }

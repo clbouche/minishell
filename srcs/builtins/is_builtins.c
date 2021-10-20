@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 10:14:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/10/18 10:43:07 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/18 16:57:18 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void exec_builtin(char **cmd, t_data *d)
     if (is_builtins(cmd) == FT_CD)
         ft_cd(cmd);
     else if (is_builtins(cmd) == FT_ENV)
-        ft_env(d);
+        ft_env(d, cmd);
     else if (is_builtins(cmd) == FT_ECHO)
         ft_echo(cmd, d);
     else if (is_builtins(cmd) == FT_EXPORT)

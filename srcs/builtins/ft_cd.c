@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 12:25:00 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/12 17:50:07 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/18 16:55:51 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,7 @@ int	ft_cd(char **cmd)
 		free(path);
 		return (FAILURE);
 	}
+	free(path);
+	free_array(cmd);
 	return (SUCCESS);
 }
