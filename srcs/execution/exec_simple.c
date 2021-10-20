@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:49:47 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/10/20 13:33:45 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/20 17:59:20 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,3 @@ void exec_simple(char  **cmd, t_data *d)
     //printf("%i\n", g_sig.status);
     
 }
-
-
