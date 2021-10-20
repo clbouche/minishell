@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/18 16:41:53 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/20 10:22:10 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+t_sig g_sig;
+
 /*
 ** Ajoute les fonctions une a une a l'historique (utile pour la suite).
 */
-t_sig g_sig;
 void	manage_history(char *input)
 {
 	if (input)
