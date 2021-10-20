@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/20 16:14:31 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/20 17:41:32 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,21 @@ void	redir_read_input(char *str, t_data *data)
 {
 	char	*delimiter;
 	int		pid;
-	//int		heredocs[2];
+	int		heredocs[2];
 
-	(void)data;
 	delimiter = str;
+	//retravailler le delimiter
 	//mute le signal ctlr + 
-	//pipe(heredocs);
+	pipe(heredocs);
 	pid = fork();
 	if (pid == 0)
 	{
-	 	heredoc_loop(delimiter, data);
+	 	heredoc_loop(delimiter, data, heredocs);
+		close(heredocs[1]);
 		exit(1);
-		// close(heredocs[1]);
 	}
 	waitpid(-1, &g_sig.status, 0);
+	close(heredocs[1]);
 }
 
 /*

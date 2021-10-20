@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/20 10:34:28 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/20 17:50:03 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,10 @@ char	**parser(char *line, t_data *data)
 		if ((line[i] == '"' || line[i] == '\'') && line[i + 1])
 			manage_quotes(line, &line[i + 1], data, line[i]);
 		if (line[i] == '|')
+		{
 			manage_pipe (line, i, data);
+			data->pipe = true;
+		}
 		if (line[i] == '$')
 		{
 			new_line = manage_expand (line, data);

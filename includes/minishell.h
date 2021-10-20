@@ -83,6 +83,7 @@ typedef	struct s_data
 	char **	envp;
 	t_node	*lexer;
 	t_dlist	*lst;
+	bool	pipe;
 }				t_data;
 
 /*
@@ -103,7 +104,7 @@ char	**split_cmd(char *line);
 int		manage_redir(char *input, t_data *data);
 void	check_redir(char *input, int i, t_data *data);
 void	redir_read_input(char *str, t_data *data);
-void	heredoc_loop(char *delimiter, t_data *data);
+void	heredoc_loop(char *delimiter, t_data *data, int *heredoc_pipe);
 void	redir_input(char *str, t_data *data);
 void	redir_output_append(char *str, t_data *data);
 void	redir_ouput(char *str, t_data *data);

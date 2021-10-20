@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 17:54:08 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/20 15:18:17 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/20 17:48:38 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ void	check_redir(char *input, int i, t_data *data)
 	else if (input[i] == '<' && input[i + 1] != '<')
 		redir_input(input, data);
 	else if (input[i] == '<' && input[i + 1] == '<')
+	{
 		redir_read_input(&input[i + 2], data);
-	//savoir si je supprime dans line a partir de la redirection pour envoyer 
-	//juste le debut (ex : echo bonjour >> out => echo bonjour)
-	//line[i + 1] = '\0';
+		input[i] = '\0';
+	}
 }
