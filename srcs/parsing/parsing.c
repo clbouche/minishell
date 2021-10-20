@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/18 11:14:34 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/20 17:50:03 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,21 +54,21 @@ void	manage_pipe(char *line, int pipe_pos, t_data *data)
 void	manage_quotes(char *line, char *input, t_data *data, char quote)
 {
 	int		i;
-	char	**cmd;
-	char	*new_line;
+	//char	*new_line;
 
 	i = 0;
+	(void)data;
+	(void)line;
 	//printf("line : %s\n", line);
 	//printf("input : %s\n", input);
-	while (input[i] != quote)
+	while (input[i] && input[i] != quote)
 	{
-		if (quote == '"' && input[i] == '$')
-		{
-			new_line = manage_expand(line, data);
-			cmd = complete_parser(new_line, data);
-			return ;
-		}
-		i++;
+		//if (input[i] == '$')
+		//	i++;
+		//if (quote == '"' && input[i] == '$')
+		//	new_line = manage_expand(line, data);
+	 	//else
+			i++;
 	}
 }
 
@@ -79,7 +79,7 @@ char	**complete_parser(char *line, t_data *data)
 {
 	char	**cmd;
 
-	manage_redir(&line, data);
+	manage_redir(line, data);
 	cmd = split_cmd(line);
 	return (cmd);
 }
@@ -99,12 +99,14 @@ char	**parser(char *line, t_data *data)
 		if ((line[i] == '"' || line[i] == '\'') && line[i + 1])
 			manage_quotes(line, &line[i + 1], data, line[i]);
 		if (line[i] == '|')
+		{
 			manage_pipe (line, i, data);
+			data->pipe = true;
+		}
 		if (line[i] == '$')
 		{
 			new_line = manage_expand (line, data);
-			cmd = complete_parser(new_line, data);
-			return (cmd);
+			line = new_line;
 		}
 		i++;
 	}

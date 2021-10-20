@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:54 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/15 17:16:22 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/10/20 12:15:03 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ extern	t_sig g_signal;
 
 void	init_datas(t_data *data)
 {
-	data->input = 0;
-	data->ouput = 1;
+	data->std_in = 0;
+	data->std_out = 1;
 }
 
 t_list	*init(t_data *data, char **envp)
