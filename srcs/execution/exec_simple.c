@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:49:47 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/10/18 16:54:27 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/20 13:33:45 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,15 @@
 
 extern t_sig sig;
 
+
 void    exec_child(char **cmd, t_data *d)
 {
-    //dup(0);
-    get_path(cmd, d);
+    char *bin;
+    char **paths;
+
+    paths = get_path(d);
+    bin = find_bin(paths, cmd);
+    exec_bin(cmd, bin, d);
 }
 // //void    exec_parent(char **cmd, t_data *d)
 // {
@@ -43,4 +48,5 @@ void exec_simple(char  **cmd, t_data *d)
     //printf("%i\n", g_sig.status);
     
 }
+
 

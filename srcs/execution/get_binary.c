@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 15:15:48 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/10/18 16:23:40 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/20 13:36:35 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,10 @@ static void convert_env(t_data *d)
 		tmp = tmp->next;
 		i++;
 	}
-	//printf("adress = %p\n", env[i]);
 	d->envp[i] = NULL;
-	// i = 0;
-	// while(env[i] != NULL)
-	// {
-	// 	printf("[%i] == %p\n", i, env[i]);
-	// 	i++;
-	// }
 }
 
-char	*find_bin(char **cmd, char **paths, char *bin, int i)
+char *test_path(char **cmd, char **paths, char *bin, int i)
 {
 	bin = (char *)ft_calloc(sizeof(char), (ft_strlen(paths[i]) + ft_strlen(cmd[0]) + 2));
 	ft_strcat(bin, paths[i]); //faire une fonction maison
@@ -45,44 +38,26 @@ char	*find_bin(char **cmd, char **paths, char *bin, int i)
 	return (bin);
 }
 
-void	test_path(char **paths, char **cmd, char **env)
+char *find_bin(char **paths, char **cmd)
 {
-	char	*bin;
+	char *bin;
 	int		i;
-	//(void)envp;
 	
 	i = 0;
 	bin = NULL;
 	while (paths[i] && bin == NULL)
 	{
-		bin = find_bin(cmd, paths, bin, i);
+		bin = test_path(cmd, paths, bin, i);
 		if (access(bin, F_OK) == 0)
 			break ;
 		ft_memdel(&bin);
-		// free(bin);
-		// bin = NULL;
 		i++;
 	}
 	free_array(paths);
-	free(cmd[0]);
-	cmd[0] = bin;
-	// printf("%s\n", bin);
-	// i = -1;
-	// while(envp[++i] != NULL)
-	// {
-	// 	printf("%s\n", envp[i]);
-	// }
-	if (bin == NULL)
-		exit(127);//free_exit(cmd);
-	else
-	{
-		g_sig.prog = 1;
-		execve(bin, cmd, env);
-		exit(FAILURE);
-	}
+	return(bin);
 }
 
-void	get_path(char **cmd, t_data *d)
+char	**get_path(t_data *d)
 {
 	char	*path;
 	char	**paths;
@@ -98,12 +73,22 @@ void	get_path(char **cmd, t_data *d)
 			break ;
 		i++;
 	}
-
-	//printf("%s\n", envp[i]);
 	path = ft_substr(d->envp[i], 4, ft_strlen(d->envp[i]));
 	paths = ft_split(path, ':');
-	free(path);
-	path = NULL;
-	test_path(paths, cmd, d->envp);
+	ft_memdel(&path);
+	return (paths);
 }
 
+void	exec_bin(char **cmd, char *bin, t_data *d)
+{
+	free(cmd[0]);
+	cmd[0] = bin;
+	if (bin == NULL)
+		free_exit(d, NULL, 127);//exit(127);//free_exit(cmd);
+	else
+	{
+		g_sig.prog = 1;
+		execve(bin, cmd, d->envp);
+		exit(FAILURE);
+	}
+}

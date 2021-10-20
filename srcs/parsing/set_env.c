@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 12:09:16 by ldes-cou@         #+#    #+#             */
-/*   Updated: 2021/10/18 14:13:51 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/20 13:38:55 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ t_list	*get_env(t_data *d, char **envp)
 	{
 		var = ft_strdup(envp[i]);
 		if (var == NULL)
-			free_exit(d, "malloc error");
+			free_exit(d, "malloc error", 1);
 		new = ft_lstnew(var);
 		if (new == NULL)
-			free_exit(d, "chained list error");
+			free_exit(d, "chained list error", 1);
 		ft_lstadd_back(&d->env, new);
 		d->env_len++;
 	}
