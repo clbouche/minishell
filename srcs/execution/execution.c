@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 09:02:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/10/20 11:45:53 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/20 17:51:55 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,19 @@ void	exec_pipes(char *line, char *new_input, t_data *data)
 	(void)line;
 	(void)new_input;
 	(void)data;
+	int fds[2];
+	// int	fd[2];
 	//printf("pipe\n");
 	printf("line == %s\n", line);
 	printf("new_input == %s\n", new_input);
+	if (pipe(fds) == -1)
+		puts("error_pipe attention oublie pas dexit proprement");
+	g_sig.pid = fork();
+	if (g_sig.pid == -1)
+		puts("error_pid attention oublie pas dexit proprement");//pening_error("Fork");	
+	dup2(fd[0], 0);
+	exec_simple(ft_split(line, ' '), data);
+	//swap_fd()
 	free(line);
 	line = NULL;
 	parser(new_input, data);

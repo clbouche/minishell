@@ -41,6 +41,7 @@
 #include <termios.h>
 #include <curses.h>
 #include <term.h>
+#include <stdbool.h>
 
 /*
 ** ENUM
@@ -76,8 +77,8 @@ typedef	struct s_data
 {
 	t_list	*env;
 	char	opt;
-	int		input;
-	int		ouput;
+	int		std_in;
+	int		std_out;
 	int 	ret;
 	int		env_len;
 	char **	envp;
@@ -112,7 +113,7 @@ char    *manage_variable(char *line, t_data *data);
 
 void	execute(char **cmd, t_data *data);
 void 	exec_builtin(char **cmd, t_data *d);
-void 	exec_simple(char  **cmd, t_data *d);
+void 	exec_simple(int *fd, char  **cmd, t_data *d);
 void	exec_bin(char **cmd, char *bin, t_data *d);
 void	exec_pipes(char *line, char *new_input, t_data *data);
 int 	is_builtins(char **cmd);

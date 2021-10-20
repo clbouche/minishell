@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 15:15:48 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/10/20 13:36:35 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/20 17:18:40 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,11 @@ char	**get_path(t_data *d)
 
 void	exec_bin(char **cmd, char *bin, t_data *d)
 {
+	if (bin == NULL)
+		free_exit(d, cmd[0], 127);//exit(127);//free_exit(cmd);
 	free(cmd[0]);
 	cmd[0] = bin;
-	if (bin == NULL)
-		free_exit(d, NULL, 127);//exit(127);//free_exit(cmd);
-	else
-	{
-		g_sig.prog = 1;
-		execve(bin, cmd, d->envp);
-		exit(FAILURE);
-	}
+	g_sig.prog = 1;
+	execve(bin, cmd, d->envp);
+	exit(FAILURE);
 }

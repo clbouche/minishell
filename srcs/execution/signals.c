@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucrece <lucrece@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:36:42 by ldes-cou          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/10/19 14:55:14 by lucrece          ###   ########.fr       */
-=======
-/*   Updated: 2021/10/20 10:45:15 by ldes-cou         ###   ########.fr       */
->>>>>>> master
+/*   Updated: 2021/10/20 13:42:29 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +43,7 @@ void sig_handler(int signo)
             kill(g_sig.pid, SIGQUIT);
             ft_putstr_fd("Quit (core dumped)\n", 2);
         }
-<<<<<<< HEAD
-        ft_putstr_fd("\b\b  \b\b", 1);
-=======
         else
             ft_putstr_fd("\b\b  \b\b", 1);
->>>>>>> master
     } 
 }
