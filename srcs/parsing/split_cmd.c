@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:32:10 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/18 15:20:03 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/20 10:24:52 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 /*
 ** Recupere le prochain argument.
 */
+
 char	*next_cmd(char *str)
 {
 	char	quote;
@@ -36,6 +37,7 @@ char	*next_cmd(char *str)
 /*
 ** Recupere l'arg pour le placer dans le tableau.
 */
+
 void	copy_arg(char *src, char *dst, char quote)
 {
 	while (*src && *src != ' ')
@@ -67,6 +69,7 @@ void	copy_arg(char *src, char *dst, char quote)
 /*
 ** Determiner chaque arg.
 */
+
 char	*split_args(char *str)
 {
 	int		len;
@@ -85,6 +88,7 @@ char	*split_args(char *str)
 /*
 ** Permet de faire le malloc.
 */
+
 int	count_args(char *line)
 {
 	int		i;
@@ -108,6 +112,7 @@ int	count_args(char *line)
 /*
 ** Creer le tableau de char * des arguments constituant la ligne de commande.
 */
+
 char	**split_cmd(char *line)
 {
 	char	**cmd;
