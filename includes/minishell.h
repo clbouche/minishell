@@ -76,8 +76,8 @@ typedef	struct s_data
 {
 	t_list	*env;
 	char	opt;
-	int		input;
-	int		ouput;
+	int		std_out;
+	int		std_in;
 	int 	ret;
 	int		env_len;
 	char **	envp;
@@ -100,7 +100,13 @@ char	**parser(char *line, t_data *data);
 char	*clean_line(char *line);
 char	**complete_parser(char *line, t_data *data);
 char	**split_cmd(char *line);
-int		manage_redir(char **cmd, t_data *data);
+int		manage_redir(char *input, t_data *data);
+void	check_redir(char *input, int i, t_data *data);
+void	redir_read_input(char *str, t_data *data);
+void	heredoc_loop(char *delimiter, t_data *data);
+void	redir_input(char *str, t_data *data);
+void	redir_output_append(char *str, t_data *data);
+void	redir_ouput(char *str, t_data *data);
 char	*recup_filename(char *str);
 int		recup_file_len(char *str);
 void	return_last_rtn(t_data	*data);

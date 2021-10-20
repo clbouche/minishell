@@ -6,114 +6,89 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/12 17:46:09 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/20 16:14:31 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 /*
-** E
+** Lit l'entree de la source actuelle 
+** jusqu'a ce que le delimiteur soit croise. 
 */
-void	redir_read_input(char *str, char **input, t_data *data)
+void	redir_read_input(char *str, t_data *data)
 {
-	(void)str;
-	(void)input;
+	char	*delimiter;
+	int		pid;
+	//int		heredocs[2];
+
 	(void)data;
-	//heredoc a se renseigner
+	delimiter = str;
+	//mute le signal ctlr + 
+	//pipe(heredocs);
+	pid = fork();
+	if (pid == 0)
+	{
+	 	heredoc_loop(delimiter, data);
+		exit(1);
+		// close(heredocs[1]);
+	}
+	waitpid(-1, &g_sig.status, 0);
 }
 
 /*
-** E
+** Redirige l'input.
 */
-void	redir_input(char *str, char **input, t_data *data)
+void	redir_input(char *str, t_data *data)
 {
-	(void)str;
-	(void)input;
-	(void)data;
-	//pas compris les moments ou c'est plus utile 
-	//que de juste rien mettre
+	char	*file_name;
+
+	file_name = recup_filename(str);
+	if (file_name)
+		data->std_in = open(file_name, O_RDONLY);
+	//if (data->std_in < 0)
+	//gerer le cas ou le file n'existe pas
+	free(file_name);
 }
 
 /*
 ** Redirige le contenu de l'information demandee vers un fichier
 ** sans ecraser son contenu (ajoute a la fin).
 */
-void	redir_output_append(char *str, char **input, t_data *data)
+void	redir_output_append(char *str, t_data *data)
 {
-	(void)str;
-	(void)input;
-	(void)data;
-	//si pas de fichier a ce nom, passer par redir_output
-	//else ajouter a la fin du fichier 
-}
-
-/*
-** Redirige le contenu de l'information demandee vers un fichier.
-*/
-void	redir_ouput(char *str, char **input, t_data *data)
-{
-	int		i;
 	char	*file_name;
 
-	(void)input;
-	(void)data;
-	i = 0;
 	file_name = recup_filename(str);
-/* aller chercher l'arg suivant 
-** recuperer le nom du fichier a creer 
-** creer ce fichier et lui donner tous les flags (je penses?)
-** changer l'output dans les datas 
-** si il n'y a pas d'arg avant la redir : 
-la creation du file fonctionne quand meme */
+	if (file_name)
+		data->std_out = open(file_name, O_CREAT | O_WRONLY | O_APPEND, 00700);
+	free(file_name);
 }
 
 /*
-** Verifie le type de redirections dont il s'agit 
-** pour envoyer a la bonne fonction.
+** Redirige le contenu de l'information demander vers un fichier.
 */
-void	check_redir(char **input, int i, t_data *data)
+void	redir_ouput(char *str, t_data *data)
 {
-	char	*str;
-	int		j;
+	char	*file_name;
 
-	str = *input;
-	j = i;
-	if (str[i] == '>' && str[i + 1] != '>')
-	{
-		redir_ouput(&str[i + 1], input, data);
-		printf(">\n");
-	}
-	else if (str[i] == '>' && str[i + 1] == '>')
-	{
-		//redir_output_append(str, i, input, data);
-		printf(">>\n");
-	}
-	else if (str[i] == '<' && str[i + 1] != '<')
-	{
-		//redir_input(str, i, input, data);
-		printf("<\n");
-	}
-	else if (str[i] == '<' && str[i + 1] == '<')
-	{
-		//redir_read_input(str, i, input, data);
-		printf("<<\n");
-	}
+	file_name = recup_filename(str);
+	if (file_name)
+		data->std_out = open(file_name, O_CREAT | O_WRONLY | O_TRUNC, 00700);
+	free(file_name);
 }
 
 /*
 ** Verifie si on rencontrer une redirection dans la ligne de commande.
 */
-int	manage_redir(char **input, t_data *data)
+int	manage_redir(char *input, t_data *data)
 {
 	int		i;
-	char	*str;
 
 	i = 0;
-	str = *input;
-	while (str[i++])
+	while (input[i++])
 	{
-		if (str[i] == '>' || str[i] == '<')
+		if (input[i] == '>' || input[i] == '<')
 		{
 			check_redir(input, i, data);
 			return (1);

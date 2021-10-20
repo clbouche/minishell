@@ -11,10 +11,12 @@ SOURCES		+=                           		\
 SOURCES		+=                           		\
 		srcs/parsing/variables.c            	\
 		srcs/parsing/split_cmd.c            	\
+		srcs/parsing/create_input.c         	\
 		srcs/parsing/init.c                 	\
-		srcs/parsing/redir_output.c         	\
 		srcs/parsing/set_env.c              	\
+		srcs/parsing/redir_utils.c          	\
 		srcs/parsing/parsing.c              	\
+		srcs/parsing/heredoc.c              	\
 		srcs/parsing/redir.c                	\
 
 
