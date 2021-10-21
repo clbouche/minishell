@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:49:47 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/10/20 17:55:24 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/21 12:04:10 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,26 +52,15 @@ void    exec_child(int *fd, char **cmd, t_data *d)
     exec_bin(cmd, bin, d);
 }
 
-void exec_simple(int *fd, char  **cmd, t_data *d)
+void exec_simple(int fd*, char  **cmd, t_data *d)
 {
-    g_sig.prog = 1;        
-    g_sig.pid = fork();
-    if (g_sig.pid == -1)
-	  	puts("error_pid attention oublie pas dexit proprement");///opening_error("Fork");
- 
+
     if (g_sig.pid == 0)
-        exec_child(cmd, d);
+        exec_child(fd, cmd, d);
     else
     {
         waitpid(-1, &g_sig.status, 0);
         free_array(cmd);
-        if (d->std_out != 1)
-            close(d->std_out);
-        if (d->pipe == true)
-        {
-            close(fd[1]);
-            dup2(fd[0], 0);
-        }
     }
     if (WIFEXITED(g_sig.status))
         g_sig.status = WEXITSTATUS(g_sig.status);

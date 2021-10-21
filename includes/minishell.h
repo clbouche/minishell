@@ -12,6 +12,9 @@
 #define SUCCESS 0
 #define TRUE 0
 #define FALSE 1
+#define OUT 1
+#define IN 2
+#define BOTH 3
 //#define MAX 6
 #define BUILTIN "{cd, echo, exit, export, pwd, unset}"
 #define MAX 4096
@@ -84,6 +87,7 @@ typedef	struct s_data
 	char **	envp;
 	t_node	*lexer;
 	t_dlist	*lst;
+	bool	pipe;
 }				t_data;
 
 /*
@@ -111,7 +115,7 @@ char    *manage_variable(char *line, t_data *data);
 ** Execution
 */
 
-void	execute(char **cmd, t_data *data);
+void	execute(int *fd, char **cmd, t_data *data);
 void 	exec_builtin(char **cmd, t_data *d);
 void 	exec_simple(int *fd, char  **cmd, t_data *d);
 void	exec_bin(char **cmd, char *bin, t_data *d);
