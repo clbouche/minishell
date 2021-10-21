@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 17:54:08 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/20 17:48:38 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/21 12:30:34 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		check_char(char c)
 {
-	if (c == '"' || c == '\'')
+	if (c == '"' || c == '\'' || c == '<' || c == '>' || c == ' ')
 		return (FALSE);
 	return(SUCCESS);
 }
@@ -29,6 +29,8 @@ int	recup_file_len(char *str)
 
 	i = 0;
 	j = 0;
+	while(str[i] == ' ')
+		i++;
 	while(str[i])
 	{
 		if (check_char(str[i]) == SUCCESS)
@@ -52,15 +54,25 @@ char	*recup_filename(char *str)
 	j = 0;
 	len = recup_file_len(str);
 	file_name = malloc(sizeof(char) * (len + 1));
+	while(str[i] == ' ')
+		i++;
 	while(str[i])
 	{
 		if (check_char(str[i]) == SUCCESS)
 			file_name[j++] = str[i++];
 		else
-			i++;
+		{
+			printf("check str[i] = %c\n", str[i]);
+			if (str[i] == '>')
+				{
+					printf("file_name 1 : %s\n", file_name);
+					return(file_name);
+				}
+
+		}
 	}
 	file_name[j] = '\0';
-	printf("file_name : %s\n", file_name);
+	printf("file_name 2: %s\n", file_name);
 	return (file_name);
 }
 
@@ -85,8 +97,6 @@ void	check_redir(char *input, int i, t_data *data)
 	else if (input[i] == '<' && input[i + 1] != '<')
 		redir_input(input, data);
 	else if (input[i] == '<' && input[i + 1] == '<')
-	{
 		redir_read_input(&input[i + 2], data);
-		input[i] = '\0';
-	}
+	input[i] = '\0';
 }

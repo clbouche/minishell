@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/20 17:41:32 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/21 12:13:52 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	redir_read_input(char *str, t_data *data)
 	int		pid;
 	int		heredocs[2];
 
-	delimiter = str;
-	//retravailler le delimiter
+	delimiter = define_delimiter(str);
+	//printf("delimiter : %s\n", delimiter);
 	//mute le signal ctlr + 
 	pipe(heredocs);
 	pid = fork();
