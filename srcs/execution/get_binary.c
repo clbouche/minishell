@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 15:15:48 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/10/20 17:18:40 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/21 14:08:19 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void convert_env(t_data *d)
 	
 	i = 0;
 	tmp = d->env;
+	
 	d->envp = malloc(sizeof(char *) * (d->env_len + 1));
 	while(tmp != NULL)
 	{
@@ -26,6 +27,7 @@ static void convert_env(t_data *d)
 		tmp = tmp->next;
 		i++;
 	}
+
 	d->envp[i] = NULL;
 }
 

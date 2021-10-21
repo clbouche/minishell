@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/21 12:23:19 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/21 13:58:42 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	manage_pipe(char *line, int pipe_pos, t_data *data)
 
 	new_input = ft_strdup(&line[pipe_pos + 1]);
 	line[pipe_pos] = '\0';
-	d->pipe = true;
+	data->pipe = true;
 	return (exec_pipes(line, new_input, data));
 }
 

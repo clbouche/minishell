@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 09:02:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/10/21 12:25:09 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/21 14:30:45 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@ int redirect(t_data *d)
 	int ret;
 	
 	ret = 0;
-	if (std_out != 1)
+	if (d->std_out != 1)
 		ret = 1;
-	if (std_in != 0)
+	if (d->std_in != 0)
 		ret += 2;
 	return (ret);
 }
-void	manage_fds(t_data *d)
+
+void	manage_fds(int *fd, t_data *d)
 {
 	if (d->std_out != 1)
 		close(d->std_out);
@@ -32,24 +33,18 @@ void	manage_fds(t_data *d)
 		close(fd[1]);
 		dup2(fd[0], 0);
 	}
-	g_sig.prog = 1;        
-    g_sig.pid = fork();
-    if (g_sig.pid == -1)
-	  	puts("error_pid attention oublie pas dexit proprement");
+	
 	///opening_error("Fork");
 }
-void	execute(int *fd, char **cmd, t_data *d)
+void	execute(int *fd, char **cmd, t_data *data)
 {
 	int	rtn;
 
 	rtn = is_builtins(cmd);
-	if (redirect(d) > 0 || d
-	->pipe == true)
-		manage_fds(d);
 	if (rtn != FAILURE)
-        exec_builtin(cmd, d);
+        exec_builtin(cmd, data);
     else
-        exec_simple(fd, cmd, d);
+        exec_simple(fd, cmd, data);
 }
 
 void	exec_pipes(char *line, char *new_input, t_data *data)
@@ -77,3 +72,6 @@ void	exec_pipes(char *line, char *new_input, t_data *data)
 	parser(new_input, data);
 }
 
+
+	// if (redirect(data) > 0 || data->pipe == true)
+	// 	manage_fds(fd, data);
