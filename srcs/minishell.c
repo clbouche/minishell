@@ -6,16 +6,17 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/21 14:18:06 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/21 15:06:43 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+t_sig g_sig;
+
 /*
 ** Ajoute les fonctions une a une a l'historique (utile pour la suite).
 */
-t_sig g_sig;
 void	manage_history(char *input)
 {
 	if (input)
