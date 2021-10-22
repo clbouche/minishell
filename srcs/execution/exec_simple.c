@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:49:47 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/10/21 15:09:44 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/22 11:05:28 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,5 @@ void exec_simple(int *fd, char  **cmd, t_data *d)
     if (WIFEXITED(g_sig.status))
         g_sig.status = WEXITSTATUS(g_sig.status);
     g_sig.prog = 0;
-    //printf("%i\n", g_sig.status);
-    
+    //printf("%i\n", g_sig.status);  
 }
