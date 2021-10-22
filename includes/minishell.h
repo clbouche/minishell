@@ -105,7 +105,6 @@ char	**split_cmd(char *line);
 /*
 ** redirections 
 */
-int		manage_redir(char *input, t_data *data);
 void	check_redir(char *input, int i, t_data *data);
 void	redir_read_input(char *str, t_data *data);
 void	heredoc_loop(char *delimiter, t_data *data, int *heredoc_pipe);
@@ -145,17 +144,17 @@ void	exec(char **cmd, t_data *d);
 // char *find_bin(char **paths, char **cmd, char **env);
 char 	*test_path(char **cmd, char **paths, char *bin, int i);
 char	**get_path(t_data *d);
-char *find_bin(char **paths, char **cmd);
+char 	*find_bin(char **paths, char **cmd);
 
 /*
 ** init
 */
-t_list	*delete_node(t_list *head, char *var);
-t_list	*get_env(t_data *d, char **envp);
-t_dlist	*init_list(t_dlist *list);
-void	print_dlist(t_dlist *lst);
-t_list	*init(t_data *d, char **envp);
-t_list *set_lvl(t_list *env, char * lvl);
+t_list		*delete_node(t_list *head, char *var);
+t_list		*get_env(t_data *d, char **envp);
+t_dlist		*init_list(t_dlist *list);
+void		print_dlist(t_dlist *lst);
+t_list		*init(t_data *d, char **envp);
+t_list		*set_lvl(t_list *env, char * lvl);
 
 /*
 ** Built-in 

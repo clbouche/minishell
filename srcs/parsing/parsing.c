@@ -6,11 +6,31 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/21 11:56:06 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/22 14:32:38 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+
+/*
+** Verifie si on rencontrer une redirection dans la ligne de commande.
+*/
+int	manage_redir(char *input, t_data *data)
+{
+	int		i;
+
+	i = 0;
+	while (input[i++])
+	{
+		if (input[i] == '>' || input[i] == '<')
+		{
+			check_redir(input, i, data);
+			return (1);
+		}
+	}
+	return (0);
+}
 
 /*
 ** Check le type de $ dont il s'agit
@@ -49,30 +69,6 @@ void	manage_pipe(char *line, int pipe_pos, t_data *data)
 }
 
 /*
-** Permet de faire les expands si double quote.
-*/
-void	manage_quotes(char *line, char *input, t_data *data, char quote)
-{
-	int		i;
-	//char	*new_line;
-
-	i = 0;
-	(void)data;
-	(void)line;
-	//printf("line : %s\n", line);
-	//printf("input : %s\n", input);
-	while (input[i] && input[i] != quote)
-	{
-		//if (input[i] == '$')
-		//	i++;
-		//if (quote == '"' && input[i] == '$')
-		//	new_line = manage_expand(line, data);
-	 	//else
-			i++;
-	}
-}
-
-/*
 ** Envoie aux dernieres fonctions avant d'obtenir un input propre.
 */
 char	**complete_parser(char *line, t_data *data)
@@ -96,8 +92,19 @@ char	**parser(char *line, t_data *data)
 	i = 0;
 	while (line[i])
 	{
-		if ((line[i] == '"' || line[i] == '\'') && line[i + 1])
-			manage_quotes(line, &line[i + 1], data, line[i]);
+		if (line[i] == '"')
+		{
+			i++;
+			while(line[i] != '"')
+			{
+				if (line[i] == '$')
+				{
+					new_line = manage_expand(line, data);
+					line = new_line;
+				}
+				i++;
+			}
+		}
 		if (line[i] == '|')
 		{
 			manage_pipe (line, i, data);

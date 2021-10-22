@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 14:12:46 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/21 12:11:22 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/22 13:51:26 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,17 @@ int		len_delimiter(char *str)
 	len = 0;
 	while (str[i] == ' ')
 		i++;
-	if (str[i] == '"' || str[i] == '\'')
+	if (str[i] && (str[i] == '"' || str[i] == '\''))
+	{
+		quote = str[i];
+		i++;
+		while(str[i + len] != quote)
+			len++;
+	}
+	else
 	{
 		i++;
-		quote = str[i];
-		while(str[i] != quote)
+		while(str[i + len] && (str[i] != ' ' || str[i] != '\0'))
 			len++;
 	}
 	return (len);
@@ -54,7 +60,7 @@ char	*define_delimiter(char *str)
 	{
 		quote = str[i];
 		i++;
-		while(str[i] != quote)
+		while(str[i] && str[i] != quote)
 			delimiter[j++] = str[i++];
 	}
 	else 
@@ -62,8 +68,10 @@ char	*define_delimiter(char *str)
 		while (str[i])
 			delimiter[j++] = str[i++];
 	}
+	delimiter[j] = '\0';
 	return (delimiter);
-	//comment gerer les quotes en pleins milieux ? 
+	//comment gerer les doubles quotes en pleins milieux
+	// = interpreter comme non existante
 	//accolades consideres comme char normal
 	//idem pour expand = ne pas exploiter la variable. 
 }

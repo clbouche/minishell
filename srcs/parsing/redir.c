@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/21 12:13:52 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/22 14:31:52 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	redir_read_input(char *str, t_data *data)
 	int		heredocs[2];
 
 	delimiter = define_delimiter(str);
-	//printf("delimiter : %s\n", delimiter);
 	//mute le signal ctlr + 
 	pipe(heredocs);
 	pid = fork();
@@ -80,20 +79,22 @@ void	redir_ouput(char *str, t_data *data)
 }
 
 /*
-** Verifie si on rencontrer une redirection dans la ligne de commande.
+** Verifie le type de redirections dont il s'agit 
+** pour envoyer a la bonne fonction.
 */
-int	manage_redir(char *input, t_data *data)
+void	check_redir(char *input, int i, t_data *data)
 {
-	int		i;
+	int		j;
 
-	i = 0;
-	while (input[i++])
-	{
-		if (input[i] == '>' || input[i] == '<')
-		{
-			check_redir(input, i, data);
-			return (1);
-		}
-	}
-	return (0);
+	j = i;
+	if (input[i] == '>' && input[i + 1] != '>')
+		redir_ouput(&input[i + 1], data);
+	else if (input[i] == '>' && input[i + 1] == '>')
+		redir_output_append(&input[i + 2], data);
+	else if (input[i] == '<' && input[i + 1] != '<')
+		redir_input(input, data);
+	else if (input[i] == '<' && input[i + 1] == '<')
+		redir_read_input(&input[i + 2], data);
+	input[i] = '\0';
+	//execute_redir(input, data);
 }
