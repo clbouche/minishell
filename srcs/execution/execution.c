@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 09:02:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/10/22 11:04:41 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/22 11:57:08 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	execute(int *fd, char **cmd, t_data *data)
 {
 	int	rtn;
 
-	dup2(data->std_in, 0);
-	dup2(data->std_out, 1);
+	//dup2(data->std_in, 0);
+	//dup2(data->std_out, 1);
 	rtn = is_builtins(cmd);
 	if (rtn != FAILURE)
         exec_builtin(cmd, data);

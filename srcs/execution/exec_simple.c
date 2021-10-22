@@ -6,30 +6,47 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:49:47 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/10/22 11:05:28 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/22 13:57:57 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 extern t_sig sig;
-
-// int redirect(t_data *d)
+// static void cmd_with_path(char **cmd)
 // {
-//     bool ret;
-
-//     ret = false; 
-//     if (d->std_in != 0)    
+//     char *path;
+//     char *cmd_name;
+//     int i;
+//     int b;
+    
+//     i = 0;
+//     b = 0;
+//     path = NULL;
+//     cmd_name = NULL;
+//     if (cmd[0][i] == '.' && cmd[0][i + 1] == '/')
 //     {
-//         dup2(d->std_in, 0);
-//         ret = true;
+//         path = ft_strcat(getcwd(path, SIZE_MAX), "minishell");
+//         printf("path == %s\n", path);
+//         //if (access())
 //     }
-//     if (d->std_out != 1)
-//     {
-//         dup2(d->std_out, 1);
-//         ret = true;
-//     }
-//     return(ret);
+    
+//     // else if (cmd[0][i] == '/')
+//     // {
+//     //     while (cmd[0][i])
+//     //     {
+//     //         if(cmd[0][i] == ' /')
+//     //             b++;
+//     //         i++;
+//     //     }
+//     //     i = 0;
+//     //     while(b > 0 && cmd[0][i])
+//     //     {
+//     //         if(cmd[0][i] == ' /')
+//     //             b--;
+//     //         i++;
+//     //     }
+//     //     path = ft_substr(cmd[0], 0, i);
 // }
 
 void    exec_child(int *fd, char **cmd, t_data *d)
@@ -50,14 +67,27 @@ void    exec_child(int *fd, char **cmd, t_data *d)
     // }
     // else 
     //     (void)fd;
+    // if (cmd[0][0] == '.' || cmd[0][0] == '/')
+    // {
+    //     cmd_with_path(cmd);
+    // }
     paths = get_path(d);
     bin = find_bin(paths, cmd);
     exec_bin(cmd, bin, d);
 }
 
 void exec_simple(int *fd, char  **cmd, t_data *d)
-{
-    g_sig.prog = 1;        
+{ 
+    g_sig.prog = 1;
+    // char path[MAX];
+    // if (cmd[0][0] == '.' && cmd[0][1] == '/')
+    // {
+    //     path = getcwd(path, MAX);
+    //     printf("path == %s\n", path);
+    //     path = ft_strcat(path, "minishell");
+    //     printf("path == %s\n", path);
+    //     //if (access())
+    // }
     g_sig.pid = fork();
     if (g_sig.pid == -1)
 	  	puts("error_pid attention oublie pas dexit proprement");
@@ -71,5 +101,4 @@ void exec_simple(int *fd, char  **cmd, t_data *d)
     if (WIFEXITED(g_sig.status))
         g_sig.status = WEXITSTATUS(g_sig.status);
     g_sig.prog = 0;
-    //printf("%i\n", g_sig.status);  
 }
