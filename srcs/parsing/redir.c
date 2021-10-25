@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/22 14:31:52 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/25 20:20:24 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,11 @@ void	redir_ouput(char *str, t_data *data)
 
 	file_name = recup_filename(str);
 	if (file_name)
+	{
 		data->std_out = open(file_name, O_CREAT | O_WRONLY | O_TRUNC, 00700);
+		dup2(data->std_out, 1);
+		close(data->std_out);
+	}	
 	free(file_name);
 }
 
@@ -96,5 +100,5 @@ void	check_redir(char *input, int i, t_data *data)
 	else if (input[i] == '<' && input[i + 1] == '<')
 		redir_read_input(&input[i + 2], data);
 	input[i] = '\0';
-	//execute_redir(input, data);
+	execute(ft_split(input, ' '), data);
 }
