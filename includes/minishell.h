@@ -59,6 +59,7 @@ typedef struct	s_sig
 }				t_sig;
 
 extern t_sig g_sig;
+
 typedef enum	s_builtin
 {
 	FT_CD = 2,
@@ -77,7 +78,6 @@ typedef enum	s_builtin
 typedef	struct s_data
 {
 	t_list	*env;
-	char	opt;
 	int		std_out;
 	int		std_in;
 	int 	ret;
@@ -103,17 +103,29 @@ char	**parser(char *line, t_data *data);
 char	*clean_line(char *line);
 char	**complete_parser(char *line, t_data *data);
 char	**split_cmd(char *line);
-int		manage_redir(char *input, t_data *data);
+
+/*
+** redirections 
+*/
 void	check_redir(char *input, int i, t_data *data);
 void	redir_read_input(char *str, t_data *data);
 void	heredoc_loop(char *delimiter, t_data *data, int *heredoc_pipe);
+char	*define_delimiter(char *str);
 void	redir_input(char *str, t_data *data);
 void	redir_output_append(char *str, t_data *data);
 void	redir_ouput(char *str, t_data *data);
 char	*recup_filename(char *str);
 int		recup_file_len(char *str);
-void	return_last_rtn(t_data	*data);
+
+
+//void	return_last_rtn(t_data	*data);
+
+/*
+** expands
+*/
+char	*manage_expand(char *line, t_data *data);
 char    *manage_variable(char *line, t_data *data);
+int		check_append(char *line);
 
 /*
 ** Execution
@@ -135,17 +147,17 @@ int		redirect(t_data *d);
 // char *find_bin(char **paths, char **cmd, char **env);
 char 	*test_path(char **cmd, char **paths, char *bin, int i);
 char	**get_path(t_data *d);
-char *find_bin(char **paths, char **cmd);
+char 	*find_bin(char **paths, char **cmd);
 
 /*
 ** init
 */
-t_list	*delete_node(t_list *head, char *var);
-t_list	*get_env(t_data *d, char **envp);
-t_dlist	*init_list(t_dlist *list);
-void	print_dlist(t_dlist *lst);
-t_list	*init(t_data *d, char **envp);
-t_list *set_lvl(t_list *env, char * lvl);
+t_list		*delete_node(t_list *head, char *var);
+t_list		*get_env(t_data *d, char **envp);
+t_dlist		*init_list(t_dlist *list);
+void		print_dlist(t_dlist *lst);
+t_list		*init(t_data *d, char **envp);
+t_list		*set_lvl(t_list *env, char * lvl);
 
 /*
 ** Built-in 

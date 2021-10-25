@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:32:10 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/20 10:24:52 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/22 12:20:54 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,7 @@ void	copy_arg(char *src, char *dst, char quote)
 		{
 			quote = *(src++);
 			while (*src && *src != quote)
-			{
-				// if (*(src + 1) == '$')
-				// 	src++;
 				*dst++ = *src++;
-			}
 			src++;
 		}
 		else
@@ -65,6 +61,37 @@ void	copy_arg(char *src, char *dst, char quote)
 	}
 	*dst = '\0';
 }
+
+
+void	copy_newsplit(char *src, char *dst, char quote)
+{
+	while (*src != ' ' && *src)
+	{
+		if (*src == '\'')
+		{
+			quote = *(src++);
+			while (*src != quote)
+				*(dst++) = *(src++);
+			src++;
+		}
+		else if (*src == '"')
+		{
+			quote = *(src++);
+			while (*src != quote)
+			{
+				if (*src == '\\' && (*(src + 1) == quote ||
+					*(src + 1) == '\\' || *(src + 1) == '$'))
+					src++;
+				*(dst++) = *(src++);
+			}
+			src++;
+		}
+		else
+			*(dst++) = *(src++);
+	}
+	*dst = '\0';
+}
+
 
 /*
 ** Determiner chaque arg.
@@ -109,6 +136,19 @@ int	count_args(char *line)
 	return (i);
 }
 
+
+void	print_cmd(char **cmd)
+{
+	int	i;
+
+	i = 0;
+	while(cmd[i])
+	{
+		printf("cmd[%i] : %s\n", i, cmd[i]);
+		i++;
+	}
+}
+
 /*
 ** Creer le tableau de char * des arguments constituant la ligne de commande.
 */
@@ -130,5 +170,6 @@ char	**split_cmd(char *line)
 		line = next_cmd(line);
 	}
 	cmd[i] = NULL;
+	//print_cmd(cmd);
 	return (cmd);
 }

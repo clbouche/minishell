@@ -6,23 +6,11 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 13:46:38 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/18 15:12:49 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/22 14:36:51 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-/*
-** Verifie les caracteres qui n'ont pas le droit de constituer 
-** le nom d'une variable
-*/
-int	check_unvalid_char(int i)
-{
-	if (i == '\\' || i == '$' || i == '"'
-		|| i == '\'' || i == '>' || i == '<')
-		return (FAILURE);
-	return (SUCCESS);
-}
 
 int	len_name(char *name)
 {
@@ -30,7 +18,7 @@ int	len_name(char *name)
 
 	len = 0;
 	// && check_unvalid_char(name[len] == SUCCESS))
-	while (name[len] && name[len] != ' ' && name[len] != '=')
+	while (name[len] && name[len] != ' ' && name[len] != '=' && name[len] != '"')
 		len++;
 	return (len);
 }
@@ -80,16 +68,22 @@ char	*add_end_line(char *input, char *line)
 char	*create_new_input(char *line, char *content)
 {
 	int 	i;
+	int		j;
 	char	*new_input;
 	char	*tmp;
 	
 	i = 0;
+	j = 0;
 	new_input = NULL;
 	while (line && line[i] != '$')
 		i++;
 	tmp = ft_substr(line, 0, i);
 	new_input = ft_strjoin(tmp, content);
 	free(tmp);
+	while(line[i] && line[i] != ' ')
+		i++;
+	if(line[i])
+		new_input = ft_strjoin_realloc(&new_input, &line[i]);
 	while(line[i] && line[i] != '=')
 		i++;
 	if (line[i] == '=')
