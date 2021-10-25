@@ -67,11 +67,11 @@ exec_test 'echo -n test tout'
 exec_test 'echo -n -n -n test tout'
 
 
-# CD TESTS
-exec_test 'cd .. '
-exec_test 'cd /Users '
-exec_test 'cd '
-exec_test 'mkdir test_dir'
+# # CD TESTS
+# exec_test 'cd .. '
+# exec_test 'cd /Users '
+# exec_test 'cd '
+# exec_test 'mkdir test_dir'
 
 
 # PIPE TESTS
@@ -81,82 +81,82 @@ exec_test 'mkdir test_dir'
 # exec_test 'ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls'
 # exec_test 'ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls'
 
-# ENV EXPANSIONS + ESCAPE
-exec_test 'echo test     \    test'
-exec_test 'echo \"test'
-exec_test 'echo $TEST'
-exec_test 'echo "$TEST"'
-exec_test "echo '$TEST'"
-exec_test 'echo "$TEST$TEST$TEST"'
-exec_test 'echo "$TEST$TEST=lol$TEST"'
-exec_test 'echo "   $TEST lol $TEST"'
-exec_test 'echo $TEST$TEST$TEST'
-exec_test 'echo $TEST$TEST=lol$TEST""lol'
-exec_test 'echo    $TEST lol $TEST'
-exec_test 'echo test "" test "" test'
-exec_test 'echo "\$TEST"'
-exec_test 'echo "$=TEST"'
-exec_test 'echo "$"'
-exec_test 'echo "$?TEST"'
-exec_test 'echo $TEST $TEST'
-exec_test 'echo "$1TEST"'
-exec_test 'echo "$T1TEST"'
+# # ENV EXPANSIONS + ESCAPE
+# exec_test 'echo test     \    test'
+# exec_test 'echo \"test'
+# exec_test 'echo $TEST'
+# exec_test 'echo "$TEST"'
+# exec_test "echo '$TEST'"
+# exec_test 'echo "$TEST$TEST$TEST"'
+# exec_test 'echo "$TEST$TEST=lol$TEST"'
+# exec_test 'echo "   $TEST lol $TEST"'
+# exec_test 'echo $TEST$TEST$TEST'
+# exec_test 'echo $TEST$TEST=lol$TEST""lol'
+# exec_test 'echo    $TEST lol $TEST'
+# exec_test 'echo test "" test "" test'
+# exec_test 'echo "\$TEST"'
+# exec_test 'echo "$=TEST"'
+# exec_test 'echo "$"'
+# exec_test 'echo "$?TEST"'
+# exec_test 'echo $TEST $TEST'
+# exec_test 'echo "$1TEST"'
+# exec_test 'echo "$T1TEST"'
 
-# ENV EXPANSIONS
-# ENV_SHOW="env | sort | grep -v SHLVL | grep -v _="
-# EXPORT_SHOW="export | sort | grep -v SHLVL | grep -v _= | grep -v OLDPWD"
-exec_test 'export ='
-exec_test 'export do =di'
-exec_test 'export 1TEST='
-exec_test 'export TEST'
-exec_test 'export ""=""' 
-exec_test 'export TES=T=""'
-exec_test 'export TE+S=T=""'
-exec_test 'export TEST=LOL'
-exec_test 'echo $TEST'
-exec_test 'export TEST=LOL'
-exec_test 'echo $TEST$TEST$TEST=lol$TEST'
-exec_test $ENV_SHOW
-exec_test $EXPORT_SHOW
-exec_test 'export TEST="ls       -l     - a"'
+# # ENV EXPANSIONS
+# # ENV_SHOW="env | sort | grep -v SHLVL | grep -v _="
+# # EXPORT_SHOW="export | sort | grep -v SHLVL | grep -v _= | grep -v OLDPWD"
+# exec_test 'export ='
+# exec_test 'export do =di'
+# exec_test 'export 1TEST='
+# exec_test 'export TEST'
+# exec_test 'export ""=""' 
+# exec_test 'export TES=T=""'
+# exec_test 'export TE+S=T=""'
+# exec_test 'export TEST=LOL'
+# exec_test 'echo $TEST'
+# exec_test 'export TEST=LOL'
+# exec_test 'echo $TEST$TEST$TEST=lol$TEST'
+# exec_test $ENV_SHOW
+# exec_test $EXPORT_SHOW
+# exec_test 'export TEST="ls       -l     - a"'
 
-# REDIRECTIONS
-exec_test 'echo test > ls'
-exec_test 'cat ls'
-exec_test 'echo test > ls >> ls >> ls' 
-exec_test 'echo test >> ls'
-exec_test 'cat ls'
-exec_test '> lol echo test lol'
-exec_test 'cat lol'
-exec_test '>lol echo > test>lol>test>>lol>test mdr >lol test >test'
-exec_test 'cat test'
-exec_test 'cat < ls'
-exec_test 'cat < ls > ls'
+# # REDIRECTIONS
+# exec_test 'echo test > ls'
+# exec_test 'cat ls'
+# exec_test 'echo test > ls >> ls >> ls' 
+# exec_test 'echo test >> ls'
+# exec_test 'cat ls'
+# exec_test '> lol echo test lol'
+# exec_test 'cat lol'
+# exec_test '>lol echo > test>lol>test>>lol>test mdr >lol test >test'
+# exec_test 'cat test'
+# exec_test 'cat < ls'
+# exec_test 'cat < ls > ls'
 
-# MULTI TESTS
-# exec_test 'echo testing multi ; echo "test 1 ; | and 2" ; cat tests/lorem.txt | grep Lorem'
+# # MULTI TESTS
+# # exec_test 'echo testing multi ; echo "test 1 ; | and 2" ; cat tests/lorem.txt | grep Lorem'
 
-# SYNTAX ERROR
-# exec_test ';; test'
-# exec_test '| test'
-# exec_test 'echo > <'
-# exec_test 'echo | |'
-# exec_test '<'
+# # SYNTAX ERROR
+# # exec_test ';; test'
+# # exec_test '| test'
+# # exec_test 'echo > <'
+# # exec_test 'echo | |'
+# # exec_test '<'
 
-# EXIT
-exec_test "exit 42"
-exec_test "exit 42 53 68"
-exec_test "exit 259"
-exec_test "exit 9223372036854775807"
-exec_test "exit -9223372036854775808"
-exec_test "exit 9223372036854775808"
-exec_test "exit -9223372036854775810"
-exec_test "exit -4"
-exec_test "exit wrong"
-exec_test "exit wrong_command"
-exec_test "gdagadgag"
-exec_test "ls -Z"
-exec_test "cd gdhahahad"
-exec_test "ls -la | wtf"
+# # EXIT
+# exec_test "exit 42"
+# exec_test "exit 42 53 68"
+# exec_test "exit 259"
+# exec_test "exit 9223372036854775807"
+# exec_test "exit -9223372036854775808"
+# exec_test "exit 9223372036854775808"
+# exec_test "exit -9223372036854775810"
+# exec_test "exit -4"
+# exec_test "exit wrong"
+# exec_test "exit wrong_command"
+# exec_test "gdagadgag"
+# exec_test "ls -Z"
+# exec_test "cd gdhahahad"
+# exec_test "ls -la | wtf"
 
-rm lol ls test
+# rm lol ls test

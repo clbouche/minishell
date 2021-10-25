@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 13:46:38 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/22 14:36:51 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/25 15:21:14 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	len_name(char *name)
 
 	len = 0;
 	// && check_unvalid_char(name[len] == SUCCESS))
-	while (name[len] && name[len] != ' ' && name[len] != '=' && name[len] != '"')
+	while (name[len] && name[len] != ' ' && name[len] != '=' && name[len] != '"' && name[len] != '$' && name[len] != '}')
 		len++;
 	return (len);
 }
@@ -75,19 +75,19 @@ char	*create_new_input(char *line, char *content)
 	i = 0;
 	j = 0;
 	new_input = NULL;
-	while (line && line[i] != '$')
+	while (line[i] && line[i] != '$')
 		i++;
 	tmp = ft_substr(line, 0, i);
 	new_input = ft_strjoin(tmp, content);
+	//printf("new input : %s\n", new_input);
+	//printf("line : %s\n", &line[i]);
 	free(tmp);
-	while(line[i] && line[i] != ' ')
+	while(line[i] && line[i] != ' ' && line[i] != '=' && line[i] != '"') //&& line[i] != '$' && line[i] != '}')
 		i++;
 	if(line[i])
 		new_input = ft_strjoin_realloc(&new_input, &line[i]);
-	while(line[i] && line[i] != '=')
-		i++;
-	if (line[i] == '=')
-		new_input = ft_strjoin_realloc(&new_input, &line[i]);
+	//printf("new input 2 : %s\n", new_input);
+	//exit(1);
 	return (new_input);
 }
 

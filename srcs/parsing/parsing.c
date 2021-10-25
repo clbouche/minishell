@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/22 14:32:38 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/25 14:44:41 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,23 +35,32 @@ int	manage_redir(char *input, t_data *data)
 /*
 ** Check le type de $ dont il s'agit
 */
+
+
 char	*manage_expand(char *line, t_data *data)
 {
 	int		i;
 	char	*new_line;
 
 	i = 0;
-	while (line[i] != '$')
-		i++;
-	if (line[i + 1])
+	while (line[i])
 	{
-		if (line[i + 1] == '?')
+		if (line[i] == '\'')
 			return (line);
-		else
+		if (line[i] == '$')
 		{
-			new_line = manage_variable(line, data);
-			return (new_line);
+			if (line[i + 1])
+			{
+				if (line[i + 1] == '?')
+					return (line);
+				else
+				{
+					new_line = manage_variable(line, data);
+					return (new_line);
+				}
+			}
 		}
+		i++;
 	}
 	return (line);
 }
@@ -90,30 +99,22 @@ char	**parser(char *line, t_data *data)
 	char	*new_line;
 
 	i = 0;
-	while (line[i])
+	while(line[i])
 	{
-		if (line[i] == '"')
-		{
-			i++;
-			while(line[i] != '"')
-			{
-				if (line[i] == '$')
-				{
-					new_line = manage_expand(line, data);
-					line = new_line;
-				}
-				i++;
-			}
-		}
-		if (line[i] == '|')
-		{
-			manage_pipe (line, i, data);
-			data->pipe = true;
-		}
 		if (line[i] == '$')
 		{
 			new_line = manage_expand(line, data);
 			line = new_line;
+		}
+		i++;
+	}
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] == '|')
+		{
+			manage_pipe (line, i, data);
+			data->pipe = true;
 		}
 		i++;
 	}
