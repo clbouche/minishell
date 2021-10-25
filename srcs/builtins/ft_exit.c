@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 10:32:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/18 16:51:32 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/25 16:43:26 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int     ft_exit(char **cmd, t_data *d)
 
     exit_code = 0;
     d->ret = 0;
-    ft_putendl_fd("exit", 1);
+    //ft_putendl_fd("exit", 1);
     if (cmd[1] && cmd[2] != NULL)
     {
         ft_putendl_fd("minishell: exit: too many arguments", 2);

@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/25 14:44:41 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/25 16:16:08 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,18 +99,13 @@ char	**parser(char *line, t_data *data)
 	char	*new_line;
 
 	i = 0;
-	while(line[i])
+	while (line[i])
 	{
 		if (line[i] == '$')
 		{
 			new_line = manage_expand(line, data);
 			line = new_line;
 		}
-		i++;
-	}
-	i = 0;
-	while (line[i])
-	{
 		if (line[i] == '|')
 		{
 			manage_pipe (line, i, data);

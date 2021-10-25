@@ -1,4 +1,6 @@
-# MINISHELL-TESTER
+# TESTER_NEW_MINISHELL
+
+@solaldunckel
 
 RESET="\033[0m"
 BLACK="\033[30m"
@@ -20,15 +22,15 @@ BOLDCYAN="\033[1m\033[36m"
 BOLDWHITE="\033[1m\033[37m"
 
 # Compile and set executable rights
-make -C ../ > /dev/null
+make -C ../
 cp ../minishell .
 chmod 755 minishell
 
 function exec_test()
 {
-	TEST1=$(echo $@ | ./minishell 2>&-)
+	TEST1=$($@ | ./minishell ; exit)
 	ES_1=$?
-	TEST2=$(echo $@ | bash 2>&-)
+	TEST2=$(echo $@ | bash --posix ; exit)
 	ES_2=$?
 	if [ "$TEST1" == "$TEST2" ] && [ "$ES_1" == "$ES_2" ]; then
 		printf " $BOLDGREEN%s$RESET" "✓ "
@@ -83,13 +85,13 @@ exec_test 'echo -n -n -n test tout'
 
 # # ENV EXPANSIONS + ESCAPE
 # exec_test 'echo test     \    test'
-# exec_test 'echo \"test'
+# #exec_test 'echo \"test'
 # exec_test 'echo $TEST'
-# exec_test 'echo "$TEST"'
-# exec_test "echo '$TEST'"
-# exec_test 'echo "$TEST$TEST$TEST"'
+# #exec_test 'echo "$TEST"'
+# #exec_test "echo '$TEST'"
+# #exec_test 'echo "$TEST$TEST$TEST"'
 # exec_test 'echo "$TEST$TEST=lol$TEST"'
-# exec_test 'echo "   $TEST lol $TEST"'
+# exec_test 'echo "   $TEST lol $TEST"'qq
 # exec_test 'echo $TEST$TEST$TEST'
 # exec_test 'echo $TEST$TEST=lol$TEST""lol'
 # exec_test 'echo    $TEST lol $TEST'
@@ -160,3 +162,17 @@ exec_test 'echo -n -n -n test tout'
 # exec_test "ls -la | wtf"
 
 # rm lol ls test
+
+
+# echo "'$PATH'"
+# cat << EOF << fin << super
+# cat << EOF
+# cat << "EOF"
+# cat << 'EOF'
+
+# cat << EOF
+# > The current working directory is : $PWD
+# > You are logged in as : $USER
+# > EOF
+
+# cat << END | echo prout | echo bonjour
