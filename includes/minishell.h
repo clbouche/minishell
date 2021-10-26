@@ -124,6 +124,10 @@ int		recup_file_len(char *str);
 char	*manage_expand(char *line, t_data *data);
 char    *manage_variable(char *line, t_data *data);
 int		check_append(char *line);
+bool	check_char_begin(char c);
+bool	check_char(char c);
+bool	spe_case(char c);
+
 
 /*
 ** Execution

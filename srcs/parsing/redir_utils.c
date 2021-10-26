@@ -6,17 +6,41 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 17:54:08 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/22 14:29:50 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/26 14:59:55 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		check_char(char c)
+bool	check_char_file(char c)
 {
-	if (c == '<' || c == '>' || c == '|' || c == ';' || c == ' ')
-		return (FALSE);
-	return(SUCCESS);
+	if (ft_isalpha(c) || c == '_' || ft_isalnum(c) || c == '$' || c == '%' 
+	|| c == '{' || c == '}')
+		return (true);
+	return (false);
+}
+//changer le sens : alpha + _ -> SUCCESS
+
+bool	check_char_begin(char c)
+{
+	if (c == '_' || ft_isalpha(c))
+		return (true);
+	return (false);
+}
+
+bool	check_char(char c)
+{
+	if (c == '_' || ft_isalnum(c))
+		return (true);
+	return (false);
+}
+
+bool	spe_case(char c)
+{
+	if (c == '<' || c == '>' || c == '|' || c == ' '
+		|| c == '\'' || c == '"')
+		return (true);
+	return (false);
 }
 
 /*
@@ -30,7 +54,7 @@ int	recup_file_len(char *str)
 	i = 0;
 	while(str[i] == ' ')
 		i++;
-	while(str[i] && check_char(str[i]) == SUCCESS)
+	while(str[i] && check_char_file(str[i]))
 	{
 		if (str[i] == '\'' || str[i] == '"')
 		{
@@ -60,7 +84,7 @@ char	*recup_filename(char *str)
 	file_name = malloc(sizeof(char) * (recup_file_len(str) + 1));
 	while(str[i] == ' ')
 		i++;
-	while(str[i] && check_char(str[i]) == SUCCESS)
+	while(str[i] && check_char_file(str[i]))
 	{
 		if (str[i] == '\'' || str[i] == '"')
 		{

@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/25 16:16:08 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/26 14:35:24 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ int	manage_redir(char *input, t_data *data)
 /*
 ** Check le type de $ dont il s'agit
 */
-
-
 char	*manage_expand(char *line, t_data *data)
 {
 	int		i;
@@ -49,16 +47,15 @@ char	*manage_expand(char *line, t_data *data)
 			return (line);
 		if (line[i] == '$')
 		{
-			if (line[i + 1])
+			if (line[i + 1] == '?')
+				return (line);
+			else if (line[i + 1] && check_char_begin(line[i + 1]))
 			{
-				if (line[i + 1] == '?')
-					return (line);
-				else
-				{
-					new_line = manage_variable(line, data);
-					return (new_line);
-				}
+				new_line = manage_variable(line, data);
+				return (new_line);
 			}
+			else
+				return (line);
 		}
 		i++;
 	}
@@ -73,7 +70,7 @@ void	manage_pipe(char *line, int pipe_pos, t_data *data)
 	char	*new_input;
 
 	new_input = ft_strdup(&line[pipe_pos + 1]);
-	line[pipe_pos] = '\0';
+	line[pipe_pos - 1] = '\0';
 	return (exec_pipes(line, new_input, data));
 }
 

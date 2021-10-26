@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/22 14:31:52 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/26 11:00:08 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,6 @@ void	check_redir(char *input, int i, t_data *data)
 	else if (input[i] == '<' && input[i + 1] == '<')
 		redir_read_input(&input[i + 2], data);
 	input[i] = '\0';
+	printf("input : %s\n", input);
 	//execute_redir(input, data);
 }

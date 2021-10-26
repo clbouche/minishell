@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/25 16:32:36 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/26 11:00:22 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	minishell_loop(t_data *data)
 	
 	while (1)
 	{
-		//line = readline("🍄 MINISHELL 🍄 : ");
-		line = readline("");
+		line = readline("🍄 MINISHELL 🍄 : ");
+		//line = readline("");
 		if (line == NULL)
 			line = ft_strdup("exit");
 		manage_history(line);

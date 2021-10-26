@@ -28,9 +28,9 @@ chmod 755 minishell
 
 function exec_test()
 {
-	TEST1=$($@ | ./minishell ; exit)
+	TEST1=$($@ | ./minishell)
 	ES_1=$?
-	TEST2=$(echo $@ | bash --posix ; exit)
+	TEST2=$(echo $@ | bash --posix)
 	ES_2=$?
 	if [ "$TEST1" == "$TEST2" ] && [ "$ES_1" == "$ES_2" ]; then
 		printf " $BOLDGREEN%s$RESET" "✓ "
@@ -70,7 +70,7 @@ exec_test 'echo -n -n -n test tout'
 
 
 # # CD TESTS
-# exec_test 'cd .. '
+exec_test 'cd .. '
 # exec_test 'cd /Users '
 # exec_test 'cd '
 # exec_test 'mkdir test_dir'
@@ -85,11 +85,11 @@ exec_test 'echo -n -n -n test tout'
 
 # # ENV EXPANSIONS + ESCAPE
 # exec_test 'echo test     \    test'
-# #exec_test 'echo \"test'
-# exec_test 'echo $TEST'
-# #exec_test 'echo "$TEST"'
-# #exec_test "echo '$TEST'"
-# #exec_test 'echo "$TEST$TEST$TEST"'
+# exec_test 'echo \"test'
+# exec_test 'echo $USER'
+# exec_test 'echo "$USER"'
+# exec_test "echo '$USER'"
+# exec_test 'echo "$USER$USER$USER"'
 # exec_test 'echo "$TEST$TEST=lol$TEST"'
 # exec_test 'echo "   $TEST lol $TEST"'qq
 # exec_test 'echo $TEST$TEST$TEST'
@@ -107,6 +107,7 @@ exec_test 'echo -n -n -n test tout'
 # # ENV EXPANSIONS
 # # ENV_SHOW="env | sort | grep -v SHLVL | grep -v _="
 # # EXPORT_SHOW="export | sort | grep -v SHLVL | grep -v _= | grep -v OLDPWD"
+exec_test 'export $USER=prout'
 # exec_test 'export ='
 # exec_test 'export do =di'
 # exec_test 'export 1TEST='
@@ -114,7 +115,7 @@ exec_test 'echo -n -n -n test tout'
 # exec_test 'export ""=""' 
 # exec_test 'export TES=T=""'
 # exec_test 'export TE+S=T=""'
-# exec_test 'export TEST=LOL'
+exec_test 'export TEST=LOL'
 # exec_test 'echo $TEST'
 # exec_test 'export TEST=LOL'
 # exec_test 'echo $TEST$TEST$TEST=lol$TEST'
