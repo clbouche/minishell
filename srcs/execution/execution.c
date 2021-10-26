@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 09:02:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/10/25 20:22:03 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/10/26 16:00:58 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	execute(char **cmd, t_data *data)
         exec_builtin(cmd, data);
     else
         exec_simple(cmd, data);
+	
 }
 
 void	exec_pipes(char *line, char *new_input, t_data *data)
@@ -43,7 +44,8 @@ void	exec_pipes(char *line, char *new_input, t_data *data)
 	execute(ft_split(line, ' '), data);
 	free(line);
 	line = NULL;
-	parser(new_input, data);
+	if (new_input != NULL)
+		parser(new_input, data);
 }
 
 

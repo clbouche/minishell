@@ -24,5 +24,4 @@ srcs
 tester_minishell
 tests_exec
 tests.sh
-la == 3
-la == 3
+🍄 MINISHELL 🍄 : exit
