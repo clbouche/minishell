@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/26 14:35:24 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/26 16:48:23 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ void	manage_pipe(char *line, int pipe_pos, t_data *data)
 	char	*new_input;
 
 	new_input = ft_strdup(&line[pipe_pos + 1]);
-	line[pipe_pos - 1] = '\0';
+	line[pipe_pos] = '\0';
+	data->pipe = true;
 	return (exec_pipes(line, new_input, data));
 }
 

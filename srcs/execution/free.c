@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 12:08:22 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/10/20 13:35:29 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/20 17:20:23 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,15 @@ void free_lst(t_list *lst)
 		free(tofree);
 		tofree = NULL;
 	}
-		// free(lst);
-		// lst = NULL;
 	return;
 }
 
 void	free_exit(t_data *d, char *error, int exit_code)
 {
-	perror(error);
+	//perror(error);
+	ft_putstr_fd("🍄 MINISHELL 🍄 : ", 2);
+	ft_putstr_fd(error, 2);
+	ft_putstr_fd(": command not found\n", 2);
 	free_lst(d->env);
 	free_array(d->envp);
 	exit(exit_code);

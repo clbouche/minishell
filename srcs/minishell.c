@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/26 11:00:22 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/26 16:48:25 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	minishell_loop(t_data *data)
 		manage_history(line);
 		cmd = parser(line, data);
 		free(line);
-		execute(cmd, data);
+		execute(NULL, cmd, data);
 	}
 }
 

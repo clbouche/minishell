@@ -12,8 +12,9 @@
 #define SUCCESS 0
 #define TRUE 0
 #define FALSE 1
-//#define MAX 6
-#define BUILTIN "{cd, echo, exit, export, pwd, unset}"
+#define OUT 1
+#define IN 2
+#define BOTH 3
 #define MAX 4096
 #define UNKNOWN_COMMAND 127 
 
@@ -41,6 +42,7 @@
 #include <termios.h>
 #include <curses.h>
 #include <term.h>
+#include <stdbool.h>
 
 /*
 ** ENUM
@@ -133,13 +135,14 @@ bool	spe_case(char c);
 ** Execution
 */
 
-void	execute(char **cmd, t_data *data);
+void	execute(int *fd, char **cmd, t_data *data);
 void 	exec_builtin(char **cmd, t_data *d);
-void 	exec_simple(char  **cmd, t_data *d);
+void 	exec_simple(int *fd, char  **cmd, t_data *d);
 void	exec_bin(char **cmd, char *bin, t_data *d);
 void	exec_pipes(char *line, char *new_input, t_data *data);
 int 	is_builtins(char **cmd);
 void	exec(char **cmd, t_data *d);
+int		redirect(t_data *d);
 
 /*
 ** find_path
