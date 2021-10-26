@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/25 14:34:38 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/10/26 15:18:04 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	manage_pipe(char *line, int pipe_pos, t_data *data)
 	char	*new_input;
 
 	new_input = ft_strdup(&line[pipe_pos + 1]);
-	line[pipe_pos] = '\0';
+	line[pipe_pos - 1] = '\0';
 	data->pipe = true;
 	return (exec_pipes(line, new_input, data));
 }

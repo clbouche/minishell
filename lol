@@ -1,0 +1,2 @@
+caca
+🍄 MINISHELL 🍄 : exit

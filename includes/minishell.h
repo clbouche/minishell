@@ -51,8 +51,6 @@
 
 typedef struct	s_sig
 {
-	int				sigint;
-	int				sigquit;
 	int				status;
 	pid_t			pid;
 	int 			prog;
@@ -86,6 +84,7 @@ typedef	struct s_data
 	t_node	*lexer;
 	t_dlist	*lst;
 	bool	pipe;
+	bool	redir;
 }				t_data;
 
 /*
