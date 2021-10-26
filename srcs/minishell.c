@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/26 15:46:45 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/26 16:33:58 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(int argc, char **argv, char **envp)
 	t_data	data;
 
 	(void)argv;
-	rl_outstream = stderr;	
+	//rl_outstream = stderr;
 	if (argc == 1)
 	{
 		signal(SIGINT, &sig_handler);
