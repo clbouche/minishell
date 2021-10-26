@@ -6,7 +6,7 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 09:02:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/10/25 20:22:03 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/10/25 20:45:09 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,22 @@ void	execute(char **cmd, t_data *data)
 {
 	int	rtn;
 
-	//dup2(data->std_in, 0);
-	//dup2(data->std_out, 1);
-	rtn = is_builtins(cmd);
-	if (rtn != FAILURE)
-        exec_builtin(cmd, data);
-    else
-        exec_simple(cmd, data);
+	g_sig.prog = 1;
+	g_sig.pid = fork();
+    if (g_sig.pid == -1)
+	  	puts("error_pid attention oublie pas dexit proprement");
+	if (g_sig.pid == 0)
+	{
+		dup2(data->std_in, 0);
+		dup2(data->std_out, 1);
+		//close(data->std_in);
+		//close(data->std_out);
+		rtn = is_builtins(cmd);
+		if (rtn != FAILURE)
+			exec_builtin(cmd, data);
+		else
+			exec_simple(cmd, data);
+	}
 }
 
 void	exec_pipes(char *line, char *new_input, t_data *data)
