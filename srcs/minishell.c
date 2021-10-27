@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/26 16:48:25 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/26 16:52:57 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	minishell_loop(t_data *data)
 {
 	char	*line;
 	char	**cmd;
-	
+
 	while (1)
 	{
 		line = readline("🍄 MINISHELL 🍄 : ");
@@ -37,7 +37,8 @@ void	minishell_loop(t_data *data)
 		manage_history(line);
 		cmd = parser(line, data);
 		free(line);
-		execute(NULL, cmd, data);
+		execute(cmd, data);
+
 	}
 }
 
@@ -46,6 +47,7 @@ int	main(int argc, char **argv, char **envp)
 	t_data	data;
 
 	(void)argv;
+	//rl_outstream = stderr;
 	if (argc == 1)
 	{
 		signal(SIGINT, &sig_handler);

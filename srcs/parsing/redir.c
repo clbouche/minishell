@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/26 11:00:08 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/26 16:52:56 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,11 @@ void	redir_ouput(char *str, t_data *data)
 
 	file_name = recup_filename(str);
 	if (file_name)
+	{
 		data->std_out = open(file_name, O_CREAT | O_WRONLY | O_TRUNC, 00700);
+		dup2(data->std_out, 1);
+		close(data->std_out);
+	}	
 	free(file_name);
 }
 
@@ -96,6 +100,5 @@ void	check_redir(char *input, int i, t_data *data)
 	else if (input[i] == '<' && input[i + 1] == '<')
 		redir_read_input(&input[i + 2], data);
 	input[i] = '\0';
-	printf("input : %s\n", input);
-	//execute_redir(input, data);
+	execute(ft_split(input, ' '), data);
 }

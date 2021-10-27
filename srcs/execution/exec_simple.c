@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:49:47 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/10/22 13:57:57 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/26 15:55:03 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,34 +49,17 @@ extern t_sig sig;
 //     //     path = ft_substr(cmd[0], 0, i);
 // }
 
-void    exec_child(int *fd, char **cmd, t_data *d)
+void    exec_child(char **cmd, t_data *d)
 {
     char *bin;
     char **paths;
-    (void)fd;
 
-    // if (redirect(d) == true)
-    // {
-    //     close(d->std_in);
-	//     dup2(d->std_out, 1);
-    // }
-    // else if (d->pipe == true)
-    // {
-    //     close(fd[0]);
-    //     dup2(fd[1], 1);
-    // }
-    // else 
-    //     (void)fd;
-    // if (cmd[0][0] == '.' || cmd[0][0] == '/')
-    // {
-    //     cmd_with_path(cmd);
-    // }
     paths = get_path(d);
     bin = find_bin(paths, cmd);
     exec_bin(cmd, bin, d);
 }
 
-void exec_simple(int *fd, char  **cmd, t_data *d)
+void exec_simple(char  **cmd, t_data *d)
 { 
     g_sig.prog = 1;
     // char path[MAX];
@@ -92,7 +75,7 @@ void exec_simple(int *fd, char  **cmd, t_data *d)
     if (g_sig.pid == -1)
 	  	puts("error_pid attention oublie pas dexit proprement");
     if (g_sig.pid == 0)
-        exec_child(fd, cmd, d);
+        exec_child(cmd, d);
     else
     {
         waitpid(-1, &g_sig.status, 0);
@@ -101,4 +84,6 @@ void exec_simple(int *fd, char  **cmd, t_data *d)
     if (WIFEXITED(g_sig.status))
         g_sig.status = WEXITSTATUS(g_sig.status);
     g_sig.prog = 0;
+    printf("la == %i\n", d->std_out);
+    close(d->std_out);
 }
