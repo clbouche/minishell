@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/26 16:52:56 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/27 16:21:20 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,25 +80,4 @@ void	redir_ouput(char *str, t_data *data)
 		close(data->std_out);
 	}	
 	free(file_name);
-}
-
-/*
-** Verifie le type de redirections dont il s'agit 
-** pour envoyer a la bonne fonction.
-*/
-void	check_redir(char *input, int i, t_data *data)
-{
-	int		j;
-
-	j = i;
-	if (input[i] == '>' && input[i + 1] != '>')
-		redir_ouput(&input[i + 1], data);
-	else if (input[i] == '>' && input[i + 1] == '>')
-		redir_output_append(&input[i + 2], data);
-	else if (input[i] == '<' && input[i + 1] != '<')
-		redir_input(input, data);
-	else if (input[i] == '<' && input[i + 1] == '<')
-		redir_read_input(&input[i + 2], data);
-	input[i] = '\0';
-	execute(ft_split(input, ' '), data);
 }

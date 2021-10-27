@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:32:10 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/25 12:08:50 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/27 17:12:52 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char	*next_cmd(char *str)
 {
 	char	quote;
 
-	while (*str)
+	while (*str++)
 	{
 		if (*str == '"' || *str == '\'')
 		{
@@ -28,9 +28,8 @@ static char	*next_cmd(char *str)
 			while (*str && *str != quote)
 				str++;
 		}
-		if (*str && *str == ' ')
+		if (*str == ' ')
 			return (str + 1);
-		str++;
 	}
 	return (str);
 }
@@ -41,12 +40,13 @@ static char	*next_cmd(char *str)
 
 void	copy_arg(char *src, char *dst, char quote)
 {
+	//printf("src : %s\n", src);
 	while (*src && *src != ' ')
 	{
 		if (*src == '\'' || *src == '"')
 		{
 			quote = *src++;
-			while (*src != quote)
+			while (*src && *src != quote)
 				*dst++ = *src++;
 			src++;
 		}
@@ -90,7 +90,7 @@ size_t	count_args(char *line)
 		if (*line == '"' || *line == '\'')
 		{
 			quote = *line++;
-			while (*line != quote)
+			while (*line && *line != quote)
 				line++;
 		}
 		if (*line == ' ')

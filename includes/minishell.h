@@ -100,13 +100,12 @@ void	init_datas(t_data *data);
 
 char	**parser(char *line, t_data *data);
 char	*clean_line(char *line);
-char	**complete_parser(char *line, t_data *data);
 char	**split_cmd(char *line);
 
 /*
 ** redirections 
 */
-void	check_redir(char *input, int i, t_data *data);
+void	manage_redir(char *input, int i, t_data *data);
 void	redir_read_input(char *str, t_data *data);
 void	heredoc_loop(char *delimiter, t_data *data, int *heredoc_pipe);
 char	*define_delimiter(char *str);
