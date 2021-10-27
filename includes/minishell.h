@@ -76,6 +76,8 @@ typedef enum	s_builtin
 typedef	struct s_data
 {
 	t_list	*env;
+	int		file_out;
+	int		file_in;
 	int		std_out;
 	int		std_in;
 	int 	ret;
@@ -129,7 +131,7 @@ int		check_append(char *line);
 /*
 ** Execution
 */
-
+void	close_fds(t_data *data);
 void	execute(char **cmd, t_data *data);
 void 	exec_builtin(char **cmd, t_data *d);
 void 	exec_simple(char  **cmd, t_data *d);

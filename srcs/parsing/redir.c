@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/25 20:20:24 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/10/27 16:51:35 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,15 +71,21 @@ void	redir_output_append(char *str, t_data *data)
 void	redir_ouput(char *str, t_data *data)
 {
 	char	*file_name;
-
 	file_name = recup_filename(str);
 	if (file_name)
 	{
-		data->std_out = open(file_name, O_CREAT | O_WRONLY | O_TRUNC, 00700);
-		dup2(data->std_out, 1);
-		close(data->std_out);
+		data->std_out = dup(1);
+		close(1);
+		data->file_out = open(file_name, O_CREAT | O_WRONLY | O_TRUNC, 00700);
+		free(file_name);
+		if (data->file_out < 0)
+			opening_error("problem while opening");
+		//dup2(data->std_out, STDOUT_FILENO);
+		//close(fd);
+		//close(0);
+		// STDOUT_FILENO = dup(fd);
+		data->redir = false;
 	}	
-	free(file_name);
 }
 
 /*
@@ -99,6 +105,7 @@ void	check_redir(char *input, int i, t_data *data)
 		redir_input(input, data);
 	else if (input[i] == '<' && input[i + 1] == '<')
 		redir_read_input(&input[i + 2], data);
-	input[i] = '\0';
-	execute(ft_split(input, ' '), data);
+	while (input[--i] == ' ')
+		input[i] = '\0';
+	//execute(ft_split(input, ' '), data);
 }

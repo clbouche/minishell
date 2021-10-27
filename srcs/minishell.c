@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/26 16:33:58 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/27 15:55:28 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	minishell_loop(t_data *data)
 		cmd = parser(line, data);
 		free(line);
 		execute(cmd, data);
-
 	}
 }
 

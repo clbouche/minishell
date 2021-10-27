@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:49:47 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/10/26 15:55:03 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/27 12:38:01 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,6 @@ void    exec_child(char **cmd, t_data *d)
 void exec_simple(char  **cmd, t_data *d)
 { 
     g_sig.prog = 1;
-    // char path[MAX];
-    // if (cmd[0][0] == '.' && cmd[0][1] == '/')
-    // {
-    //     path = getcwd(path, MAX);
-    //     printf("path == %s\n", path);
-    //     path = ft_strcat(path, "minishell");
-    //     printf("path == %s\n", path);
-    //     //if (access())
-    // }
     g_sig.pid = fork();
     if (g_sig.pid == -1)
 	  	puts("error_pid attention oublie pas dexit proprement");
@@ -78,12 +69,12 @@ void exec_simple(char  **cmd, t_data *d)
         exec_child(cmd, d);
     else
     {
-        waitpid(-1, &g_sig.status, 0);
+        waitpid(g_sig.pid, &g_sig.status, 0);
         free_array(cmd);
+        close_fds(d);
     }
     if (WIFEXITED(g_sig.status))
         g_sig.status = WEXITSTATUS(g_sig.status);
     g_sig.prog = 0;
-    printf("la == %i\n", d->std_out);
-    close(d->std_out);
+    //close(d->std_out);
 }
