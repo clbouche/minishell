@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/28 16:18:58 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/28 16:26:04 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	redir_input(char *str, t_data *data)
 		data->std_in = dup(0);
 		close(0);
 		data->file_in = open(file_name, O_RDONLY);
-		ft_putstr_fd(file_name, 1);
 		if (data->file_in == -1)
 		{
 			puts("file_in\n");

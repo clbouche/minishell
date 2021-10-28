@@ -1,0 +1,2 @@
+🍄 MINISHELL 🍄 : ^C
+🍄 MINISHELL 🍄 : 

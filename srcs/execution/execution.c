@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 09:02:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/10/28 16:23:37 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/28 16:45:23 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,13 @@ void  close_fds(t_data *d)
 		close(d->file_out);
 		dup2(d->std_out, 1);
 		close(d->std_out);
-		//close(d->file_out);
 		d->redir_out = false;
 	}
 	if (d->redir_in == true)
 	{
+		close(d->file_in);
 		dup2(d->std_in, 0);
 		close(d->std_in);
-		//close(d->file_in);
 		d->redir_in = false;	
 	}
 }
@@ -37,7 +36,9 @@ void	execute(char **cmd, t_data *data)
 	
 	rtn = is_builtins(cmd);
 	if (rtn != FAILURE)
-        exec_builtin(cmd, data);
+	{
+		exec_builtin(cmd, data);
+	}
     else
         exec_simple(cmd, data);	
 }
