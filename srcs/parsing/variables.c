@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 13:46:38 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/28 13:55:12 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/28 15:51:12 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ char	*create_new_input(char *line, char *content)
 	//printf("new input : %s\n", new_input);
 	//printf("line : %s\n", &line[i]);
 	free(tmp);
-	printf("line create new input : %s\n", &line[i]);
+	//printf("line create new input : %s\n", &line[i]);
 	while(line[i] && line[i] != ' ' && line[i] != '=' && line[i] != '"'  && line[i] != '}')// && line[i] != '$'
 		i++;
 	if(line[i])
@@ -133,9 +133,9 @@ char	*manage_variable(char *line, t_data *data)
 	while(line[j] != '$')
 		j++;
 	name = copy_name(&line[j + 1]);
-	printf("name : %s\n", name);
+	//printf("name : %s\n", name);
 	content = find_content(name, data);
-	printf("content : %s\n", content);
+	//printf("content : %s\n", content);
 	free(name);
 	new_input = create_new_input(line, content);
 	return(new_input);
