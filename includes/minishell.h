@@ -43,7 +43,7 @@
 #include <curses.h>
 #include <term.h>
 #include <stdbool.h>
-
+#include <errno.h>
 /*
 ** ENUM
 */
@@ -87,6 +87,8 @@ typedef	struct s_data
 	t_dlist	*lst;
 	bool	pipe;
 	bool	redir;
+	bool	redir_in;
+	bool	redir_out;
 }				t_data;
 
 /*
@@ -183,7 +185,7 @@ int		ft_echo(char **cmd, t_data *d);
 void	free_stack(t_list *top);
 void	free_array(char **array);
 void	free_lst(t_list *lst);
-void	free_exit(t_data *d, char *error, int exit_code);
+void	free_exit(t_data *d, char *error, int exit_code, char *pb);
 void	free_all(t_data *d);
 void	tests(t_list *env, char **cmd);
 void	opening_error(char *error);

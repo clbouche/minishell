@@ -8,9 +8,9 @@ oo
 oo > in
 out
 out > in
-out > o
 sources.mk
 srcs
 tester_minishell
 tests_exec
 tests.sh
+🍄 MINISHELL 🍄 : 

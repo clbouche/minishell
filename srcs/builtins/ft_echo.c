@@ -28,11 +28,11 @@ static int handle_multiarg(char **cmd, int i)
     {
         if (cmd[i + 1] != NULL)
         {
-            ft_putchar_fd(' ', 1);
-            ft_putstr_fd(cmd[i], 1);
+            ft_putchar_fd(' ', 2);
+            ft_putstr_fd(cmd[i], 2);
         }
         else
-            ft_putstr_fd(cmd[i], 1);
+            ft_putstr_fd(cmd[i], 2);
         i++;
     }
     return(0);
@@ -58,7 +58,7 @@ int	ft_echo(char **cmd, t_data *d)
     else
     {
         handle_multiarg(cmd, i);
-        ft_putchar_fd('\n', 1);
+        ft_putchar_fd('\n', 2);
     }
     free_array(cmd);
     return (0);

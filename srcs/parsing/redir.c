@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/28 13:24:23 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/28 15:33:58 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,18 @@ void	redir_input(char *str, t_data *data)
 
 	file_name = recup_filename(str);
 	if (file_name)
-		data->std_in = open(file_name, O_RDONLY);
+	{
+		data->redir_in = true;
+		data->std_in = dup(0);
+		close(0);
+		data->file_in = open(file_name, O_RDONLY);
+		free(file_name);
+		if (data->file_in == -1)
+			puts("file_in");
+		dup2(data->file_in, 0);
+	}
 	//if (data->std_in < 0)
 	//gerer le cas ou le file n'existe pas
-	free(file_name);
 }
 
 /*
@@ -61,8 +69,15 @@ void	redir_output_append(char *str, t_data *data)
 
 	file_name = recup_filename(str);
 	if (file_name)
+	{
+		data->redir_out = true;
+		data->std_out = dup(1);
+		close(1);
 		data->std_out = open(file_name, O_CREAT | O_WRONLY | O_APPEND, 00700);
-	free(file_name);
+		free(file_name);
+		if (data->file_out < 0)
+			puts("out_file");
+	}
 }
 
 /*
@@ -74,16 +89,15 @@ void	redir_ouput(char *str, t_data *data)
 	file_name = recup_filename(str);
 	if (file_name)
 	{
+		data->redir_out = true;
 		data->std_out = dup(1);
 		close(1);
 		data->file_out = open(file_name, O_CREAT | O_WRONLY | O_TRUNC, 00700);
 		free(file_name);
 		if (data->file_out < 0)
 			opening_error("problem while opening");
-		//dup2(data->std_out, STDOUT_FILENO);
-		//close(fd);
-		//close(0);
-		// STDOUT_FILENO = dup(fd);
+		//dup2(data->std_out);
+		//close(data->file_out);
 	}	
 }
 

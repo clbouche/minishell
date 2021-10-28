@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 12:09:16 by ldes-cou@         #+#    #+#             */
-/*   Updated: 2021/10/25 20:17:54 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/10/28 14:25:06 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ t_list	*get_env(t_data *d, char **envp)
 	{
 		var = ft_strdup(envp[i]);
 		if (var == NULL)
-			free_exit(d, "malloc error", 1);
+			free_exit(d, "env", 1, "malloc error");
 		new = ft_lstnew(var);
 		if (new == NULL)
-			free_exit(d, "chained list error", 1);
+			free_exit(d, "env", 1, "chained list error");
 		ft_lstadd_back(&d->env, new);
 		d->env_len++;
 	}
