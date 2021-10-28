@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 17:54:08 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/28 16:08:02 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/28 16:22:01 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,5 @@ char	*recup_filename(char *str)
 			file_name[j++] = str[i++];
 	}
 	file_name[j] = '\0';
-	printf("file name : %s\n", file_name);
 	return (file_name);
 }
