@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/28 13:29:48 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/28 15:33:56 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,28 @@ void	manage_pipe(char *line, int pipe_pos, t_data *data)
 	return (exec_pipes(line, new_input, data));
 }
 
+bool	check_closed_quotes(char *line)
+{
+	int	i;
+	int	nb_doble_quotes;
+	int	nb_simple_quotes;
+
+	i = 0;
+	nb_simple_quotes = 0;
+	nb_doble_quotes = 0;
+	while(line[i])
+	{
+		if (line[i] == '"')
+			nb_doble_quotes += 1;
+		if (line[i] == '\'')
+			nb_simple_quotes += 1;
+		i++;
+	}
+	if (nb_simple_quotes % 2 == 0 && nb_doble_quotes % 2 == 0)
+		return (true);
+	return (false);
+}
+
 /*
 ** Fais les memes etapes que bash : 
 ** - Verifie d'abord les expands pour modifier l'input en foncton. 
@@ -85,9 +107,11 @@ char	**parser(char *line, t_data *data)
 	char	quote;
 	char	**cmd;
 	char	*new_line;
+	bool	closed_quotes;
 
 	i = 0;
-	while (line[i++])
+	closed_quotes = check_closed_quotes(line);
+	while (line[i])
 	{
 		if (line[i] == '$')
 		{
@@ -101,22 +125,21 @@ char	**parser(char *line, t_data *data)
 		}
 		if (line[i] == '"' || line[i] == '\'')
 		{
-			printf("enter\n");
 			quote = line[i];
-			i++;
-			if (check_closed_quotes(&line[i]))
+			if (closed_quotes == true)
 			{
-				printf("enter 1\n");
 				if (line[i] == '$' && quote == '"')
 				{
 					new_line = manage_expand(line, data);
 					line = new_line;
 				}
-				i++;
 			}
+			else
+				exit(0);
 		}
 		if (line[i] == '>' || line[i] == '<')
 			manage_redir(line, i, data);
+		i++;
 	}
 	cmd = split_cmd(line);
 	return (cmd);

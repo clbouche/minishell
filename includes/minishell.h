@@ -130,7 +130,6 @@ int		check_append(char *line);
 bool	spe_case(char c);
 bool	check_char(char c);
 bool	check_char_begin(char c);
-bool	check_closed_quotes(char *line);
 bool	check_char_file(char c);
 bool	check_exist_var(char *name, t_data *data);
 

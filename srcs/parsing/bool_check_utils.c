@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:22:30 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/28 13:57:28 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/28 15:33:44 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,28 +26,6 @@ bool	check_exist_var(char *name, t_data *data)
 		tmp = tmp->next;
 	}
 	return (true);
-}
-
-bool	check_closed_quotes(char *line)
-{
-	int	i;
-	int	nb_doble_quotes;
-	int	nb_simple_quotes;
-
-	i = 0;
-	nb_doble_quotes = 1;
-	nb_simple_quotes = 1;
-	while(line[i])
-	{
-		if (line[i] == '"')
-			nb_doble_quotes += 1;
-		if (line[i] == '\'')
-			nb_simple_quotes += 1;
-		i++;
-	}
-	if (nb_simple_quotes % 2 == 0 && nb_doble_quotes % 2 == 0)
-		return (true);
-	return (false);
 }
 
 bool	check_char_file(char c)
