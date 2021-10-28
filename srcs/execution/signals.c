@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:36:42 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/10/28 10:46:09 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/28 13:42:00 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void sig_handler(int signo)
         if (g_sig.prog == 0)
         {
             ft_putchar_fd('\n', 1);
+            rl_replace_line("", 1);
             rl_on_new_line();
 		    rl_redisplay();
         }

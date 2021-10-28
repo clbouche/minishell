@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/28 10:04:00 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/28 13:42:01 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,5 @@ void	redir_ouput(char *str, t_data *data)
 		//close(fd);
 		//close(0);
 		// STDOUT_FILENO = dup(fd);
-		data->redir = false;
 	}	
 }
