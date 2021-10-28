@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/27 16:51:35 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/28 13:24:23 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void	redir_ouput(char *str, t_data *data)
 		//close(fd);
 		//close(0);
 		// STDOUT_FILENO = dup(fd);
-		data->redir = false;
 	}	
 }
 
