@@ -6,42 +6,11 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 17:54:08 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/27 16:21:34 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/28 11:23:16 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-bool	check_char_file(char c)
-{
-	if (ft_isalpha(c) || c == '_' || ft_isalnum(c) || c == '$' || c == '%' 
-	|| c == '{' || c == '}')
-		return (true);
-	return (false);
-}
-//changer le sens : alpha + _ -> SUCCESS
-
-bool	check_char_begin(char c)
-{
-	if (c == '_' || ft_isalpha(c))
-		return (true);
-	return (false);
-}
-
-bool	check_char(char c)
-{
-	if (c == '_' || ft_isalnum(c))
-		return (true);
-	return (false);
-}
-
-bool	spe_case(char c)
-{
-	if (c == '<' || c == '>' || c == '|' || c == ' '
-		|| c == '\'' || c == '"')
-		return (true);
-	return (false);
-}
 
 /*
 ** Utile pour le malloc.

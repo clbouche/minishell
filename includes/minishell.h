@@ -117,19 +117,21 @@ void	redir_ouput(char *str, t_data *data);
 char	*recup_filename(char *str);
 int		recup_file_len(char *str);
 
-
-//void	return_last_rtn(t_data	*data);
-
 /*
 ** expands
 */
 char	*manage_expand(char *line, t_data *data);
 char    *manage_variable(char *line, t_data *data);
 int		check_append(char *line);
-bool	check_char_begin(char c);
-bool	check_char(char c);
-bool	spe_case(char c);
 
+/*
+** utils parsing
+*/
+bool	spe_case(char c);
+bool	check_char(char c);
+bool	check_char_begin(char c);
+bool	check_closed_quotes(char *line);
+bool	check_char_file(char c);
 
 /*
 ** Execution
