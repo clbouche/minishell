@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/28 15:33:58 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/28 15:36:58 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,26 +99,4 @@ void	redir_ouput(char *str, t_data *data)
 		//dup2(data->std_out);
 		//close(data->file_out);
 	}	
-}
-
-/*
-** Verifie le type de redirections dont il s'agit 
-** pour envoyer a la bonne fonction.
-*/
-void	check_redir(char *input, int i, t_data *data)
-{
-	int		j;
-
-	j = i;
-	if (input[i] == '>' && input[i + 1] != '>')
-		redir_ouput(&input[i + 1], data);
-	else if (input[i] == '>' && input[i + 1] == '>')
-		redir_output_append(&input[i + 2], data);
-	else if (input[i] == '<' && input[i + 1] != '<')
-		redir_input(input, data);
-	else if (input[i] == '<' && input[i + 1] == '<')
-		redir_read_input(&input[i + 2], data);
-	while (input[--i] == ' ')
-		input[i] = '\0';
-	//execute(ft_split(input, ' '), data);
 }

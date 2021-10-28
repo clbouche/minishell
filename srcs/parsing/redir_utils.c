@@ -6,18 +6,11 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 17:54:08 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/22 14:29:50 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/28 11:23:16 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int		check_char(char c)
-{
-	if (c == '<' || c == '>' || c == '|' || c == ';' || c == ' ')
-		return (FALSE);
-	return(SUCCESS);
-}
 
 /*
 ** Utile pour le malloc.
@@ -30,7 +23,7 @@ int	recup_file_len(char *str)
 	i = 0;
 	while(str[i] == ' ')
 		i++;
-	while(str[i] && check_char(str[i]) == SUCCESS)
+	while(str[i] && check_char_file(str[i]))
 	{
 		if (str[i] == '\'' || str[i] == '"')
 		{
@@ -60,7 +53,7 @@ char	*recup_filename(char *str)
 	file_name = malloc(sizeof(char) * (recup_file_len(str) + 1));
 	while(str[i] == ' ')
 		i++;
-	while(str[i] && check_char(str[i]) == SUCCESS)
+	while(str[i] && check_char_file(str[i]))
 	{
 		if (str[i] == '\'' || str[i] == '"')
 		{

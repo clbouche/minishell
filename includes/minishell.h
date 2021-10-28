@@ -104,13 +104,12 @@ void	init_datas(t_data *data);
 
 char	**parser(char *line, t_data *data);
 char	*clean_line(char *line);
-char	**complete_parser(char *line, t_data *data);
 char	**split_cmd(char *line);
 
 /*
 ** redirections 
 */
-void	check_redir(char *input, int i, t_data *data);
+void	manage_redir(char *input, int i, t_data *data);
 void	redir_read_input(char *str, t_data *data);
 void	heredoc_loop(char *delimiter, t_data *data, int *heredoc_pipe);
 char	*define_delimiter(char *str);
@@ -120,15 +119,22 @@ void	redir_ouput(char *str, t_data *data);
 char	*recup_filename(char *str);
 int		recup_file_len(char *str);
 
-
-//void	return_last_rtn(t_data	*data);
-
 /*
 ** expands
 */
 char	*manage_expand(char *line, t_data *data);
 char    *manage_variable(char *line, t_data *data);
 int		check_append(char *line);
+
+/*
+** utils parsing
+*/
+bool	spe_case(char c);
+bool	check_char(char c);
+bool	check_char_begin(char c);
+bool	check_closed_quotes(char *line);
+bool	check_char_file(char c);
+bool	check_exist_var(char *name, t_data *data);
 
 /*
 ** Execution

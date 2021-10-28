@@ -6,21 +6,43 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 13:46:38 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/22 14:36:51 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/28 13:55:12 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	len_name(char *name)
+/*
+** - Verifie si les chars sont valides
+** - Fais une copie du nom de l'expand  
+*/
+char	*copy_name(char *line)
 {
-	int	len;
+	int		i;
+	int		len;
+	int		j;
+	char	*name;
 
+	i = 0;
 	len = 0;
-	// && check_unvalid_char(name[len] == SUCCESS))
-	while (name[len] && name[len] != ' ' && name[len] != '=' && name[len] != '"')
+	j = 0;
+	name = NULL;
+	while(line[i] && check_char(line[i]) && !spe_case(line[i]))
+	{
+		i++;
 		len++;
-	return (len);
+	}
+	if (len >= 1)
+	{
+		name = malloc(sizeof(char) * (len + 1));
+		if (!name)
+			return (0);
+		i = 0;
+		while(i < len)
+			name[i++] = line[j++];
+		name[i] = '\0';
+	}
+	return (name);
 }
 
 /*
@@ -34,7 +56,8 @@ char	*find_content(char *name, t_data *data)
 	t_list	*tmp;
 
 	tmp = data->env;
-	while (tmp != NULL)
+	tmp_content = NULL;
+	while (tmp != NULL && tmp_content == NULL)
 	{
 		name_var = find_name(tmp->content);
 		if (ft_strcmp(name, name_var) == 0)
@@ -75,19 +98,20 @@ char	*create_new_input(char *line, char *content)
 	i = 0;
 	j = 0;
 	new_input = NULL;
-	while (line && line[i] != '$')
+	while (line[i] && line[i] != '$')
 		i++;
 	tmp = ft_substr(line, 0, i);
 	new_input = ft_strjoin(tmp, content);
+	//printf("new input : %s\n", new_input);
+	//printf("line : %s\n", &line[i]);
 	free(tmp);
-	while(line[i] && line[i] != ' ')
+	printf("line create new input : %s\n", &line[i]);
+	while(line[i] && line[i] != ' ' && line[i] != '=' && line[i] != '"'  && line[i] != '}')// && line[i] != '$'
 		i++;
 	if(line[i])
 		new_input = ft_strjoin_realloc(&new_input, &line[i]);
-	while(line[i] && line[i] != '=')
-		i++;
-	if (line[i] == '=')
-		new_input = ft_strjoin_realloc(&new_input, &line[i]);
+	//printf("new input 2 : %s\n", new_input);
+	//exit(1);
 	return (new_input);
 }
 
@@ -102,16 +126,16 @@ char	*manage_variable(char *line, t_data *data)
 	char	*content;
 	int		i;
 	int		j;
-	int		len_n;
 
 	i = 0;
 	j = 0;
 	new_input = NULL;
 	while(line[j] != '$')
 		j++;
-	len_n = len_name(&line[j + 1]);
-	name = ft_substr(line, (j + 1), len_n);
+	name = copy_name(&line[j + 1]);
+	printf("name : %s\n", name);
 	content = find_content(name, data);
+	printf("content : %s\n", content);
 	free(name);
 	new_input = create_new_input(line, content);
 	return(new_input);
