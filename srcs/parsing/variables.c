@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 13:46:38 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/26 14:49:40 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/28 13:55:12 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ char	*find_content(char *name, t_data *data)
 			tmp_content = find_var(tmp->content);
 		tmp = tmp->next;
 	}
-		content = malloc(sizeof(char) * ft_strlen(tmp_content));
-		content = tmp_content;
+	content = malloc(sizeof(char) * ft_strlen(tmp_content));
+	content = tmp_content;
 	return (content);
 }
 
