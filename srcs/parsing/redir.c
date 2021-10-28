@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/28 15:36:58 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/28 16:08:15 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,20 @@ void	redir_input(char *str, t_data *data)
 	char	*file_name;
 
 	file_name = recup_filename(str);
+	ft_putstr_fd(str, 1);	
+	ft_putstr_fd(file_name, 1);
 	if (file_name)
 	{
 		data->redir_in = true;
 		data->std_in = dup(0);
 		close(0);
 		data->file_in = open(file_name, O_RDONLY);
-		free(file_name);
 		if (data->file_in == -1)
+		{
 			puts("file_in");
+		}
 		dup2(data->file_in, 0);
+		free(file_name);
 	}
 	//if (data->std_in < 0)
 	//gerer le cas ou le file n'existe pas

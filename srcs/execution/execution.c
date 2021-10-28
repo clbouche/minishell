@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 09:02:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/10/28 15:27:50 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/28 16:01:56 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,17 @@ void  close_fds(t_data *d)
 {
 	if (d->redir_out == true)
 	{
-		//close(d->file_out);
+		close(d->file_out);
 		dup2(d->std_out, 1);
 		close(d->std_out);
+		//close(d->file_out);
 		d->redir_out = false;
-		
 	}
 	if (d->redir_in == true)
 	{
 		dup2(d->std_in, 0);
 		close(d->std_in);
+		//close(d->file_in);
 		d->redir_in = false;	
 	}
 }
@@ -38,8 +39,7 @@ void	execute(char **cmd, t_data *data)
 	if (rtn != FAILURE)
         exec_builtin(cmd, data);
     else
-        exec_simple(cmd, data);
-	
+        exec_simple(cmd, data);	
 }
 
 void	exec_pipes(char *line, char *new_input, t_data *data)
