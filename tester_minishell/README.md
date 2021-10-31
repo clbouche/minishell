@@ -2,7 +2,8 @@
 
 ## Requirements
 
-- You must have your prompt and any other message/banner printed on ``STDERR`` (like bash)
+- Vous ne devez pas afficher de messages d'erreurs lors d'exit. 
+- Vous devez faire un readline("")
 
 ## Usage
 
@@ -16,7 +17,6 @@
 - ``pwd``
 - ``exit``
 - ``| pipes``
-- ``; separator``
 - ``> >> < redirections``
 - ``env expansions``
 - ``export``

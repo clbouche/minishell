@@ -3,34 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/26 16:31:14 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/28 16:09:01 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-
 /*
-** Verifie si on rencontrer une redirection dans la ligne de commande.
+** Verifie le type de redirections dont il s'agit 
+** pour envoyer a la bonne fonction.
 */
-int	manage_redir(char *input, t_data *data)
-{
-	int		i;
-
-	i = 0;
-	while (input[i++])
-	{
-		if (input[i] == '>' || input[i] == '<')
-		{
-			check_redir(input, i, data);
-
-			return (1);
-		}
-	}
-	return (0);
+void	manage_redir(char *input, int i, t_data *data)
+{	
+	if (input[i] == '>' && input[i + 1] != '>')
+		redir_ouput(&input[i + 1], data);
+	else if (input[i] == '>' && input[i + 1] == '>')
+		redir_output_append(&input[i + 2], data);
+	else if (input[i] == '<' && input[i + 1] != '<')
+		redir_input(&input[i + 1], data);
+	else if (input[i] == '<' && input[i + 1] == '<')
+		redir_read_input(&input[i + 2], data);
+	input[i] = '\0';
 }
 
 /*
@@ -42,17 +38,23 @@ char	*manage_expand(char *line, t_data *data)
 	char	*new_line;
 
 	i = 0;
-	while (line[i] != '$')
-		i++;
-	if (line[i + 1])
+	while (line[i])
 	{
-		if (line[i + 1] == '?')
+		if (line[i] == '\'')
 			return (line);
-		else
+		if (line[i] == '$')
 		{
-			new_line = manage_variable(line, data);
-			return (new_line);
+			if (line[i + 1] == '?')
+				return (line);
+			else if (line[i + 1] && check_char_begin(line[i + 1]))
+			{
+				new_line = manage_variable(line, data);
+				return (new_line);
+			}
+			else
+				return (line);
 		}
+		i++;
 	}
 	return (line);
 }
@@ -70,56 +72,75 @@ void	manage_pipe(char *line, int pipe_pos, t_data *data)
 	return (exec_pipes(line, new_input, data));
 }
 
-/*
-** Envoie aux dernieres fonctions avant d'obtenir un input propre.
-*/
-char	**complete_parser(char *line, t_data *data)
+bool	check_closed_quotes(char *line)
 {
-	char	**cmd;
+	int	i;
+	int	nb_doble_quotes;
+	int	nb_simple_quotes;
 
-	manage_redir(line, data);
-	cmd = split_cmd(line);
-	return (cmd);
+	i = 0;
+	nb_simple_quotes = 0;
+	nb_doble_quotes = 0;
+	while(line[i])
+	{
+		if (line[i] == '"')
+			nb_doble_quotes += 1;
+		if (line[i] == '\'')
+			nb_simple_quotes += 1;
+		i++;
+	}
+	if (nb_simple_quotes % 2 == 0 && nb_doble_quotes % 2 == 0)
+		return (true);
+	return (false);
 }
 
 /*
-** Verifie les caracteres particuliers que l'on peut rencontrer.
+** Fais les memes etapes que bash : 
+** - Verifie d'abord les expands pour modifier l'input en foncton. 
+** - Gere les pipes.
+** - S'occupe des redirections
+** - Tranforme l'input rendu propre en tableau de commandes.
 */
 char	**parser(char *line, t_data *data)
 {
 	int		i;
+	char	quote;
 	char	**cmd;
 	char	*new_line;
+	bool	closed_quotes;
 
 	i = 0;
+	closed_quotes = check_closed_quotes(line);
 	while (line[i])
 	{
-		if (line[i] == '"')
+		if (line[i] == '$')
 		{
-			i++;
-			while(line[i] != '"')
-			{
-				if (line[i] == '$')
-				{
-					new_line = manage_expand(line, data);
-					line = new_line;
-				}
-				i++;
-			}
+			new_line = manage_expand(line, data);
+			line = new_line;
 		}
 		if (line[i] == '|')
 		{
 			manage_pipe (line, i, data);
 			data->pipe = true;
 		}
-		if (line[i] == '$')
+		if (line[i] == '"' || line[i] == '\'')
 		{
-			new_line = manage_expand(line, data);
-			line = new_line;
+			quote = line[i];
+			if (closed_quotes == true)
+			{
+				if (line[i] == '$' && quote == '"')
+				{
+					new_line = manage_expand(line, data);
+					line = new_line;
+				}
+			}
+			else
+				exit(0);
 		}
+		if (line[i] == '>' || line[i] == '<')
+			manage_redir(line, i, data);
 		i++;
 	}
-	cmd = complete_parser(line, data);
-
+	cmd = split_cmd(line);
 	return (cmd);
 }

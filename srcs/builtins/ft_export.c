@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:04 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/18 17:00:14 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/28 15:37:03 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 void	export_var(char **cmd, t_data *d)
 {
 	t_list	*new_var;
+
 	int		i;
 
 	i = 0;
-	printf("%s\n", cmd[1]);
 	while (cmd[1][i])
 	{
 		if (cmd[1][i] == '=')
@@ -35,7 +35,7 @@ void	export_var(char **cmd, t_data *d)
 		}
 		i++;
 	}
-	d->ret = UNKNOWN_COMMAND;
+	g_sig.status = UNKNOWN_COMMAND;
 	return ;
 }
 
@@ -45,10 +45,19 @@ void	export_var(char **cmd, t_data *d)
 int	ft_export(char **cmd, t_data *d)
 {
 	t_list	*tmp;
+	char	**unset;
+	char	*name;
 
+	unset = NULL;
 	if (cmd[1] != NULL)
 	{
-		export_var(cmd, d);
+		name = find_name(cmd[1]);
+		if (check_exist_var(name, d))
+			export_var(cmd, d);
+		//else
+		//{
+		//	export_var(cmd, d);
+		//}
 		return (SUCCESS);
 	}
 	tmp = d->env;

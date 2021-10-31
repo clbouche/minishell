@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/26 16:33:58 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/28 10:08:51 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ void	minishell_loop(t_data *data)
 	while (1)
 	{
 		line = readline("🍄 MINISHELL 🍄 : ");
+		//line = readline("");
 		if (line == NULL)
 			line = ft_strdup("exit");
 		manage_history(line);
 		cmd = parser(line, data);
 		free(line);
 		execute(cmd, data);
-
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:32:10 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/22 12:20:54 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/10/28 15:30:05 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 ** Recupere le prochain argument.
 */
 
-char	*next_cmd(char *str)
+static char	*next_cmd(char *str)
 {
 	char	quote;
 
-	while (*(str++))
+	while (*str++)
 	{
 		if (*str == '"' || *str == '\'')
 		{
@@ -28,7 +28,7 @@ char	*next_cmd(char *str)
 			while (*str && *str != quote)
 				str++;
 		}
-		if (*str && *str == ' ')
+		if (*str == ' ')
 			return (str + 1);
 	}
 	return (str);
@@ -40,58 +40,26 @@ char	*next_cmd(char *str)
 
 void	copy_arg(char *src, char *dst, char quote)
 {
-	while (*src && *src != ' ')
+	int j;
+	int	i;
+	
+	j = 0;
+	i = 0;
+	//printf(" : %s\n", src);
+	while (src[i] && src[i] != ' ')
 	{
-		if (*src == '\'')
+		if (src[i] == '\'' || src[i] == '"')
 		{
-			quote = *src++;
-			while (*src && *src != quote)
-				*dst++ = *src++;
-			src++;
-		}
-		else if (*src == '"')
-		{
-			quote = *(src++);
-			while (*src && *src != quote)
-				*dst++ = *src++;
-			src++;
+			quote = src[i++];
+			while (src[i] && src[i] != quote)
+				dst[j++] = src[i++];
 		}
 		else
-			*dst++ = *src++;
+			dst[j++] = src[i];
+		i++;
 	}
-	*dst = '\0';
+	dst[j] = '\0';
 }
-
-
-void	copy_newsplit(char *src, char *dst, char quote)
-{
-	while (*src != ' ' && *src)
-	{
-		if (*src == '\'')
-		{
-			quote = *(src++);
-			while (*src != quote)
-				*(dst++) = *(src++);
-			src++;
-		}
-		else if (*src == '"')
-		{
-			quote = *(src++);
-			while (*src != quote)
-			{
-				if (*src == '\\' && (*(src + 1) == quote ||
-					*(src + 1) == '\\' || *(src + 1) == '$'))
-					src++;
-				*(dst++) = *(src++);
-			}
-			src++;
-		}
-		else
-			*(dst++) = *(src++);
-	}
-	*dst = '\0';
-}
-
 
 /*
 ** Determiner chaque arg.
@@ -116,9 +84,9 @@ char	*split_args(char *str)
 ** Permet de faire le malloc.
 */
 
-int	count_args(char *line)
+size_t	count_args(char *line)
 {
-	int		i;
+	size_t		i;
 	char	quote;
 
 	i = 1;
@@ -127,7 +95,7 @@ int	count_args(char *line)
 		if (*line == '"' || *line == '\'')
 		{
 			quote = *line++;
-			while (*line != quote)
+			while (*line && *line != quote)
 				line++;
 		}
 		if (*line == ' ')
@@ -156,8 +124,8 @@ void	print_cmd(char **cmd)
 char	**split_cmd(char *line)
 {
 	char	**cmd;
-	int		i;
-	int		count;
+	size_t		i;
+	size_t		count;
 
 	i = 0;
 	count = count_args(line);

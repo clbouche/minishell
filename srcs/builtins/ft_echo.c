@@ -44,6 +44,8 @@ int	ft_echo(char **cmd, t_data *d)
 
     i = 1;
     (void)d;
+    if (cmd[1] == NULL)
+        return(1);
     if (!ft_strncmp(cmd[i], "$?", 2))
         printf("%i\n", g_sig.status);
     else if (cmd[i] && ft_strcmp(cmd[i], "-n") == 0)

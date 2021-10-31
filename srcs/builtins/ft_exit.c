@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 10:32:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/26 15:53:45 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/10/28 15:37:06 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int numeric_arg_required(char *arg)
     return (g_sig.status);
 }
 
-int     ft_exit(char **cmd, t_data *d)
+int     ft_exit(char **cmd, t_data *d)//norme !!!!!!
 {
     int exit_code;
 
@@ -58,7 +58,7 @@ int     ft_exit(char **cmd, t_data *d)
     if (is_numeric(cmd[1]) == 1)
     {
         numeric_arg_required(cmd[1]);
-        exit(2);
+        exit(128);
     }
     else
     {

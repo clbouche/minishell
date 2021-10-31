@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/25 20:20:24 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/10/28 16:26:04 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,20 @@ void	redir_input(char *str, t_data *data)
 
 	file_name = recup_filename(str);
 	if (file_name)
-		data->std_in = open(file_name, O_RDONLY);
+	{
+		data->redir_in = true;
+		data->std_in = dup(0);
+		close(0);
+		data->file_in = open(file_name, O_RDONLY);
+		if (data->file_in == -1)
+		{
+			puts("file_in\n");
+		}
+		dup2(data->file_in, 0);
+		free(file_name);
+	}
 	//if (data->std_in < 0)
 	//gerer le cas ou le file n'existe pas
-	free(file_name);
 }
 
 /*
@@ -61,8 +71,15 @@ void	redir_output_append(char *str, t_data *data)
 
 	file_name = recup_filename(str);
 	if (file_name)
+	{
+		data->redir_out = true;
+		data->std_out = dup(1);
+		close(1);
 		data->std_out = open(file_name, O_CREAT | O_WRONLY | O_APPEND, 00700);
-	free(file_name);
+		free(file_name);
+		if (data->file_out < 0)
+			puts("out_file");
+	}
 }
 
 /*
@@ -71,34 +88,17 @@ void	redir_output_append(char *str, t_data *data)
 void	redir_ouput(char *str, t_data *data)
 {
 	char	*file_name;
-
 	file_name = recup_filename(str);
 	if (file_name)
 	{
-		data->std_out = open(file_name, O_CREAT | O_WRONLY | O_TRUNC, 00700);
-		dup2(data->std_out, 1);
-		close(data->std_out);
+		data->redir_out = true;
+		data->std_out = dup(1);
+		close(1);
+		data->file_out = open(file_name, O_CREAT | O_WRONLY | O_TRUNC, 00700);
+		free(file_name);
+		if (data->file_out < 0)
+			opening_error("problem while opening");
+		//dup2(data->std_out);
+		//close(data->file_out);
 	}	
-	free(file_name);
-}
-
-/*
-** Verifie le type de redirections dont il s'agit 
-** pour envoyer a la bonne fonction.
-*/
-void	check_redir(char *input, int i, t_data *data)
-{
-	int		j;
-
-	j = i;
-	if (input[i] == '>' && input[i + 1] != '>')
-		redir_ouput(&input[i + 1], data);
-	else if (input[i] == '>' && input[i + 1] == '>')
-		redir_output_append(&input[i + 2], data);
-	else if (input[i] == '<' && input[i + 1] != '<')
-		redir_input(input, data);
-	else if (input[i] == '<' && input[i + 1] == '<')
-		redir_read_input(&input[i + 2], data);
-	input[i] = '\0';
-	execute(ft_split(input, ' '), data);
 }
