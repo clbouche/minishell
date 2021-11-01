@@ -3,16 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/28 10:08:51 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/01 20:39:43 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 t_sig g_sig;
+
+int	parse_to_exec(char *input, t_data *data)
+{
+	char **cmd;
+
+	input = create_input(input);
+	cmd = split_cmd(input);
+	free(input);
+	execute(cmd, data);
+	return (0);
+}
 
 /*
 ** Ajoute les fonctions une a une a l'historique (utile pour la suite).
@@ -26,7 +37,6 @@ void	manage_history(char *input)
 void	minishell_loop(t_data *data)
 {
 	char	*line;
-	char	**cmd;
 
 	while (1)
 	{
@@ -35,9 +45,7 @@ void	minishell_loop(t_data *data)
 		if (line == NULL)
 			line = ft_strdup("exit");
 		manage_history(line);
-		cmd = parser(line, data);
-		free(line);
-		execute(cmd, data);
+		parser(line, data);
 	}
 }
 

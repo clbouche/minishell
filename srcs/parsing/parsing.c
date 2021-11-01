@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/28 16:09:01 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/01 20:37:45 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,11 +101,10 @@ bool	check_closed_quotes(char *line)
 ** - S'occupe des redirections
 ** - Tranforme l'input rendu propre en tableau de commandes.
 */
-char	**parser(char *line, t_data *data)
+int		parser(char *line, t_data *data)
 {
 	int		i;
 	char	quote;
-	char	**cmd;
 	char	*new_line;
 	bool	closed_quotes;
 
@@ -141,6 +140,5 @@ char	**parser(char *line, t_data *data)
 			manage_redir(line, i, data);
 		i++;
 	}
-	cmd = split_cmd(line);
-	return (cmd);
+	return (parse_to_exec(line, data));
 }

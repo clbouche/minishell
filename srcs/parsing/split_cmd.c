@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:32:10 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/28 15:30:05 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/01 20:43:05 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,25 +40,18 @@ static char	*next_cmd(char *str)
 
 void	copy_arg(char *src, char *dst, char quote)
 {
-	int j;
-	int	i;
-	
-	j = 0;
-	i = 0;
-	//printf(" : %s\n", src);
-	while (src[i] && src[i] != ' ')
+	while (*src && *src != ' ')
 	{
-		if (src[i] == '\'' || src[i] == '"')
+		if (*src == '\'' || *src == '"')
 		{
-			quote = src[i++];
-			while (src[i] && src[i] != quote)
-				dst[j++] = src[i++];
+			quote = *src++;
+			while (*src && *src != quote)
+				*dst++ = *src++;
 		}
 		else
-			dst[j++] = src[i];
-		i++;
+			*dst++ = *src++;
 	}
-	dst[j] = '\0';
+	*dst = '\0';
 }
 
 /*
@@ -138,6 +131,6 @@ char	**split_cmd(char *line)
 		line = next_cmd(line);
 	}
 	cmd[i] = NULL;
-	//print_cmd(cmd);
+	print_cmd(cmd);
 	return (cmd);
 }
