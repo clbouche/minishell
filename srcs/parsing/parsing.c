@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/28 16:09:01 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/02 14:46:08 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,16 @@
 */
 void	manage_redir(char *input, int i, t_data *data)
 {	
+	puts("manage redir input == ");
+	ft_putchar_fd(input[i], 2);
+	ft_putchar_fd(input[i + 1], 2);
 	if (input[i] == '>' && input[i + 1] != '>')
 		redir_ouput(&input[i + 1], data);
 	else if (input[i] == '>' && input[i + 1] == '>')
+	{
 		redir_output_append(&input[i + 2], data);
+		input[i + 1] = '\0';
+	}
 	else if (input[i] == '<' && input[i + 1] != '<')
 		redir_input(&input[i + 1], data);
 	else if (input[i] == '<' && input[i + 1] == '<')

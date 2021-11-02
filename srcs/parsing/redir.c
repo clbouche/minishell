@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/28 16:26:04 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/02 14:39:53 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,19 +68,21 @@ void	redir_input(char *str, t_data *data)
 void	redir_output_append(char *str, t_data *data)
 {
 	char	*file_name;
-
+	
 	file_name = recup_filename(str);
 	if (file_name)
 	{
 		data->redir_out = true;
 		data->std_out = dup(1);
-		close(1);
-		data->std_out = open(file_name, O_CREAT | O_WRONLY | O_APPEND, 00700);
+		data->file_out = open(file_name, O_CREAT | O_RDWR | O_APPEND, 0644);
 		free(file_name);
 		if (data->file_out < 0)
-			puts("out_file");
-	}
+			opening_error("problem while opening append");
+		dup2(data->file_out, 1);
+		close(data->file_out);
+	}	
 }
+
 
 /*
 ** Redirige le contenu de l'information demander vers un fichier.
@@ -93,12 +95,11 @@ void	redir_ouput(char *str, t_data *data)
 	{
 		data->redir_out = true;
 		data->std_out = dup(1);
-		close(1);
-		data->file_out = open(file_name, O_CREAT | O_WRONLY | O_TRUNC, 00700);
+		data->file_out = open(file_name, O_CREAT | O_RDWR | O_TRUNC, 0644);
 		free(file_name);
 		if (data->file_out < 0)
-			opening_error("problem while opening");
-		//dup2(data->std_out);
-		//close(data->file_out);
+			opening_error("problem while opening output");
+		dup2(data->file_out, 1);
+		close(data->file_out);
 	}	
 }
