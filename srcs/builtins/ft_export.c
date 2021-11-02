@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:04 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/28 15:37:03 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/02 15:46:31 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@
 ** export a new variable takes 2 arg, the name of the new_var and the var
 ** without arg, it list env variables, in alphabetical order
 */
-
+void	change_var(t_list *var)
+{
+	ft_putstr_fd(var->content, 1);
+}
 void	export_var(char **cmd, t_data *d)
 {
 	t_list	*new_var;
@@ -24,7 +27,7 @@ void	export_var(char **cmd, t_data *d)
 	int		i;
 
 	i = 0;
-	while (cmd[1][i])
+	while (cmd[1][i] && cmd[1])
 	{
 		if (cmd[1][i] == '=')
 		{
@@ -44,22 +47,32 @@ void	export_var(char **cmd, t_data *d)
 //==> don't forget to sort alphabetically the variables
 int	ft_export(char **cmd, t_data *d)
 {
-	t_list	*tmp;
+	//t_list	*tmp;
 	char	**unset;
-	char	*name;
+	//char	*name;
 
 	unset = NULL;
 	if (cmd[1] != NULL)
 	{
-		name = find_name(cmd[1]);
-		if (check_exist_var(name, d))
-			export_var(cmd, d);
-		//else
-		//{
-		//	export_var(cmd, d);
-		//}
+		//name = find_name(cmd[1]);
+		// tmp = check_exist_var(name, d);
+		// if (tmp != NULL)
+		// 	change_var(tmp);
+		// else
+		export_var(cmd, d);
 		return (SUCCESS);
 	}
+	else
+		print_export(d);
+	free_array(cmd);
+	g_sig.status = SUCCESS;
+	return(g_sig.status);
+}
+
+void	print_export(t_data *d)
+{
+	t_list	*tmp;
+	
 	tmp = d->env;
 	while (d->env != NULL) //print alphabetically
 	{
@@ -76,7 +89,4 @@ int	ft_export(char **cmd, t_data *d)
 		d->env = d->env->next;
 	}
 	d->env = tmp;
-	d->ret = SUCCESS;
-	free_array(cmd);
-	return (d->ret);
 }
