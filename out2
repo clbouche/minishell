@@ -1,4 +1,12 @@
-input 3 : [echo or]
-cmd[0] : [echo]
-cmd[1] : [or]
-or
+blah.sh
+file
+includes
+Makefile
+minishell
+obj
+out
+out2
+sources.mk
+srcs
+tester_minishell
+tests_exec

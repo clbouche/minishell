@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:04 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/02 15:46:31 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/02 17:54:32 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,12 @@ void	export_var(char **cmd, t_data *d)
 int	ft_export(char **cmd, t_data *d)
 {
 	//t_list	*tmp;
-	char	**unset;
 	//char	*name;
 
-	unset = NULL;
 	if (cmd[1] != NULL)
 	{
 		//name = find_name(cmd[1]);
+	
 		// tmp = check_exist_var(name, d);
 		// if (tmp != NULL)
 		// 	change_var(tmp);
