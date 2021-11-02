@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/01 20:39:43 by claclou          ###   ########.fr       */
+/*   Updated: 2021/11/02 12:58:17 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,31 @@
 
 t_sig g_sig;
 
+void	check_redir(char *line, t_data *data)
+{
+	int i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] == '<' || line[i] == '>')
+			manage_redir(line, i, data);
+		i++;
+	}
+}
+
+/*
+** Transition d'un input propre vers l'execution
+*/
 int	parse_to_exec(char *input, t_data *data)
 {
 	char **cmd;
 
 	input = create_input(input);
+	printf("input 2 : [%s]\n", input);
+	check_redir(input, data);
+	input = create_input(input);
+	printf("input 3 : [%s]\n", input);
 	cmd = split_cmd(input);
 	free(input);
 	execute(cmd, data);
@@ -37,6 +57,7 @@ void	manage_history(char *input)
 void	minishell_loop(t_data *data)
 {
 	char	*line;
+	char	*input;
 
 	while (1)
 	{
@@ -45,7 +66,9 @@ void	minishell_loop(t_data *data)
 		if (line == NULL)
 			line = ft_strdup("exit");
 		manage_history(line);
-		parser(line, data);
+		input = create_input(line);
+		printf("input 1 : [%s]\n", input);
+		parser(input, data);
 	}
 }
 

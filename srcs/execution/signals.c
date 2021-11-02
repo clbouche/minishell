@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:36:42 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/01 20:38:11 by claclou          ###   ########.fr       */
+/*   Updated: 2021/11/02 15:54:23 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void sig_handler(int signo)
         if (g_sig.prog == 0)
         {
             ft_putchar_fd('\n', 1);
-            //rl_replace_line("", 1);
+            rl_replace_line("", 1);
             rl_on_new_line();
 		    rl_redisplay();
         }

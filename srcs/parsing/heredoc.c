@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 14:12:46 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/22 13:51:26 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/02 15:58:52 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char	*define_delimiter(char *str)
 	}
 	else 
 	{
-		while (str[i])
+		while (str[i] && str[i] != ' ')
 			delimiter[j++] = str[i++];
 	}
 	delimiter[j] = '\0';

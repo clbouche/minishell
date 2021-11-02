@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_input.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 12:29:44 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/01 20:37:25 by claclou          ###   ########.fr       */
+/*   Updated: 2021/11/02 12:48:16 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	copy_input(char *dst, char *src)
 
 	while(*src)
 	{
-		if (*src == ' ' && (*(src + 1) == ' ' || *(src + 1) == '\0'))
+		if (ft_iswhitespace(*src) && (ft_iswhitespace(*(src + 1)) || *(src + 1) == '\0'))
 			src++;
 		if (*src == '"' || *src == '\'')
 		{
@@ -26,7 +26,7 @@ void	copy_input(char *dst, char *src)
 			quote = *(src++);
 			while(*src != quote)
 				*(dst)++ = *(src)++;
-			*(dst++) = *(src++);
+			// *(dst++) = *(src++);
 		}
 		else
 			*(dst++) = *(src++);
@@ -43,7 +43,7 @@ int		input_len(char *line)
 	i = 0;
 	while(*line)
 	{
-		if (*line == ' ' && (*(line + 1) == ' ' || *(line + 1) == '\0'))
+		if (ft_iswhitespace(*line) && (ft_iswhitespace(*(line + 1)) || *(line + 1) == '\0'))
 			line++;
 		if (*line == '"' || *line == '\'')
 		{
@@ -66,10 +66,10 @@ char	*create_input(char *line)
 {
 	int 	len;
 	char	*input;
-	
-	while (*line == ' ')
+
+	while (*line && ft_iswhitespace(*line))
 		line++;
-	len = input_len(line);
+	len = input_len(&*line);
 	input = malloc(sizeof(char) * (len + 1));
 	copy_input(input, line);
 	return(input);

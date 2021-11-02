@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/01 20:37:45 by claclou          ###   ########.fr       */
+/*   Updated: 2021/11/02 12:55:03 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ int		parser(char *line, t_data *data)
 
 	i = 0;
 	closed_quotes = check_closed_quotes(line);
+	//peut etre a supprimer, create input pourrait traiter ca ? 
 	while (line[i])
 	{
 		if (line[i] == '$')
@@ -117,7 +118,7 @@ int		parser(char *line, t_data *data)
 			new_line = manage_expand(line, data);
 			line = new_line;
 		}
-		if (line[i] == '|')
+		if (line[i] == '|' && line[i + 1])
 		{
 			manage_pipe (line, i, data);
 			data->pipe = true;
@@ -136,8 +137,6 @@ int		parser(char *line, t_data *data)
 			else
 				exit(0);
 		}
-		if (line[i] == '>' || line[i] == '<')
-			manage_redir(line, i, data);
 		i++;
 	}
 	return (parse_to_exec(line, data));
