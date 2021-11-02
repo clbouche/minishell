@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/02 14:46:08 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/02 14:59:12 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@
 */
 void	manage_redir(char *input, int i, t_data *data)
 {	
-	puts("manage redir input == ");
-	ft_putchar_fd(input[i], 2);
-	ft_putchar_fd(input[i + 1], 2);
 	if (input[i] == '>' && input[i + 1] != '>')
 		redir_ouput(&input[i + 1], data);
 	else if (input[i] == '>' && input[i + 1] == '>')
@@ -31,7 +28,10 @@ void	manage_redir(char *input, int i, t_data *data)
 	else if (input[i] == '<' && input[i + 1] != '<')
 		redir_input(&input[i + 1], data);
 	else if (input[i] == '<' && input[i + 1] == '<')
+	{
 		redir_read_input(&input[i + 2], data);
+		input[i + 1] = '\0';
+	}
 	input[i] = '\0';
 }
 
