@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 13:46:38 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/28 15:51:12 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/02 18:10:57 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ char	*create_new_input(char *line, char *content)
 		i++;
 	if(line[i])
 		new_input = ft_strjoin_realloc(&new_input, &line[i]);
-	//printf("new input 2 : %s\n", new_input);
+	printf("new input 2 : %s\n", new_input);
 	//exit(1);
 	return (new_input);
 }

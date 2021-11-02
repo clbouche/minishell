@@ -26,13 +26,13 @@ static int handle_multiarg(char **cmd, int i)
     tmp = NULL;
     while (cmd[i] != NULL)
     {
-        if (cmd[i + 1] != NULL)
+        if (i == 1)
+            ft_putstr_fd(cmd[i], 1);
+        else
         {
             ft_putchar_fd(' ', 1);
             ft_putstr_fd(cmd[i], 1);
         }
-        else
-            ft_putstr_fd(cmd[i], 1);
         i++;
     }
     return(0);
@@ -51,7 +51,7 @@ int	ft_echo(char **cmd, t_data *d)
     else if (cmd[i] && ft_strcmp(cmd[i], "-n") == 0)
     {
         //printf("cmd[i] == %s\n", cmd[i]);
-        while(cmd[i +1] && ft_strcmp(cmd[i + 1], "-n") == 0)
+        while(cmd[i + 1] && ft_strcmp(cmd[i + 1], "-n") == 0)
             i++;
         handle_multiarg(cmd, i + 1);
     }

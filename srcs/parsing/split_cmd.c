@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:32:10 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/02 16:06:23 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/02 16:23:46 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static char	*next_cmd(char *str)
 				str++;
 		}
 		if ((ft_iswhitespace(*str) && (!ft_iswhitespace(*(str + 1)) || !(*(str + 1) == '\0')))
-			|| (*str == '|'))
+			|| (*str == '|') || (*str == '$'))
 			return (str + 1);
 	}
 	return (str);
@@ -43,7 +43,7 @@ static char	*next_cmd(char *str)
 
 void	copy_arg(char *src, char *dst, char quote)
 {
-	while (*src && *src != ' ')
+	while (*src && *src != ' ' && *src != '|' && *src != '$')
 	{
 		if (*src == '\'' || *src == '"')
 		{
@@ -97,7 +97,7 @@ size_t	count_args(char *line)
 				line++;
 		}
 		if ((ft_iswhitespace(*line) && (!ft_iswhitespace(*(line + 1)) || !(*(line + 1) == '\0')))
-			|| (*line == '|'))
+			|| (*line == '|' ) || (*line == '$'))
 			i++;
 	}
 	return (i);

@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/02 16:06:36 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/02 17:57:15 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,13 @@ void	minishell_loop(t_data *data)
 		//line = readline("");
 		if (line == NULL)
 			line = ft_strdup("exit");
-		manage_history(line);
-		input = create_input(line);
-		printf("input 1 : [%s]\n", input);
-		parser(input, data);
+		if (*line)
+		{
+			manage_history(line);
+			input = create_input(line);
+			printf("input 1 : [%s]\n", input);
+			parser(input, data);
+		}
 	}
 }
 
