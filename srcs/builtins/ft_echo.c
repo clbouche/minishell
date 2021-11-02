@@ -24,12 +24,13 @@ static int handle_multiarg(char **cmd, int i)
 
     str = NULL;
     tmp = NULL;
+    //ft_putstr_fd(cmd[i], 1);
     while (cmd[i] != NULL)
     {
         if (cmd[i + 1] != NULL)
         {
-            ft_putchar_fd(' ', 1);
             ft_putstr_fd(cmd[i], 1);
+            ft_putchar_fd(' ', 1);
         }
         else
             ft_putstr_fd(cmd[i], 1);

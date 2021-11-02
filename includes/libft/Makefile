@@ -6,7 +6,7 @@
 #    By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 13:17:26 by clbouche          #+#    #+#              #
-#    Updated: 2021/10/18 14:56:01 by clbouche         ###   ########.fr        #
+#    Updated: 2021/11/02 12:46:02 by clbouche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,6 +100,7 @@ SRCS += ft_isdigit.c
 SRCS += ft_isalnum.c
 SRCS += ft_isascii.c
 SRCS += ft_isprint.c
+SRCS += ft_iswhitespace.c
 SRCS += ft_tolower.c
 SRCS += ft_toupper.c
 SRCS += ft_itoa.c

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 09:02:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/10/31 15:09:29 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/11/02 16:56:49 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	exec_pipes(char *line, char *new_input, t_data *data)
 	g_sig.pid = fork();
 	if (g_sig.pid == -1)
 		puts("error_pid attention oublie pas dexit proprement");//pening_error("Fork");	
-	dup2(fd[0], 0);
+	//dup2(fd[0], 0);
 	//exec_simple(ft_split(line, ' '), data);
 	//swap_fd()
 	execute(ft_split(line, ' '), data);

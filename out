@@ -1,0 +1,4 @@
+input 3 : [echo or]
+cmd[0] : [echo]
+cmd[1] : [or]
+or

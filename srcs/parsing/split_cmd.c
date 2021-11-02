@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:32:10 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/28 15:30:05 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/02 13:05:35 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,16 @@ static char	*next_cmd(char *str)
 
 	while (*str++)
 	{
+		if (ft_iswhitespace(*str) && (ft_iswhitespace(*(str + 1)) || *(str + 1) == '\0'))
+			str++;
 		if (*str == '"' || *str == '\'')
 		{
 			quote = *(str++);
 			while (*str && *str != quote)
 				str++;
 		}
-		if (*str == ' ')
+		if ((ft_iswhitespace(*str) && (!ft_iswhitespace(*(str + 1)) || !(*(str + 1) == '\0')))
+			|| (*str == '|'))
 			return (str + 1);
 	}
 	return (str);
@@ -40,25 +43,18 @@ static char	*next_cmd(char *str)
 
 void	copy_arg(char *src, char *dst, char quote)
 {
-	int j;
-	int	i;
-	
-	j = 0;
-	i = 0;
-	//printf(" : %s\n", src);
-	while (src[i] && src[i] != ' ')
+	while (*src && *src != ' ')
 	{
-		if (src[i] == '\'' || src[i] == '"')
+		if (*src == '\'' || *src == '"')
 		{
-			quote = src[i++];
-			while (src[i] && src[i] != quote)
-				dst[j++] = src[i++];
+			quote = *src++;
+			while (*src && *src != quote)
+				*dst++ = *src++;
 		}
 		else
-			dst[j++] = src[i];
-		i++;
+			*dst++ = *src++;
 	}
-	dst[j] = '\0';
+	*dst = '\0';
 }
 
 /*
@@ -92,13 +88,16 @@ size_t	count_args(char *line)
 	i = 1;
 	while (*line++)
 	{
+		if (ft_iswhitespace(*line) && (ft_iswhitespace(*(line + 1)) || *(line + 1) == '\0'))
+			line++;
 		if (*line == '"' || *line == '\'')
 		{
 			quote = *line++;
 			while (*line && *line != quote)
 				line++;
 		}
-		if (*line == ' ')
+		if ((ft_iswhitespace(*line) && (!ft_iswhitespace(*(line + 1)) || !(*(line + 1) == '\0')))
+			|| (*line == '|'))
 			i++;
 	}
 	return (i);
@@ -112,7 +111,7 @@ void	print_cmd(char **cmd)
 	i = 0;
 	while(cmd[i])
 	{
-		printf("cmd[%i] : %s\n", i, cmd[i]);
+		printf("cmd[%i] : [%s]\n", i, cmd[i]);
 		i++;
 	}
 }
@@ -138,6 +137,6 @@ char	**split_cmd(char *line)
 		line = next_cmd(line);
 	}
 	cmd[i] = NULL;
-	//print_cmd(cmd);
+	print_cmd(cmd);
 	return (cmd);
 }

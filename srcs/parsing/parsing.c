@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/02 14:59:12 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/02 16:02:46 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,16 +107,16 @@ bool	check_closed_quotes(char *line)
 ** - S'occupe des redirections
 ** - Tranforme l'input rendu propre en tableau de commandes.
 */
-char	**parser(char *line, t_data *data)
+int		parser(char *line, t_data *data)
 {
 	int		i;
 	char	quote;
-	char	**cmd;
 	char	*new_line;
 	bool	closed_quotes;
 
 	i = 0;
 	closed_quotes = check_closed_quotes(line);
+	//peut etre a supprimer, create input pourrait traiter ca ? 
 	while (line[i])
 	{
 		if (line[i] == '$')
@@ -124,7 +124,7 @@ char	**parser(char *line, t_data *data)
 			new_line = manage_expand(line, data);
 			line = new_line;
 		}
-		if (line[i] == '|')
+		if (line[i] == '|' && line[i + 1])
 		{
 			manage_pipe (line, i, data);
 			data->pipe = true;
@@ -143,10 +143,7 @@ char	**parser(char *line, t_data *data)
 			else
 				exit(0);
 		}
-		if (line[i] == '>' || line[i] == '<')
-			manage_redir(line, i, data);
 		i++;
 	}
-	cmd = split_cmd(line);
-	return (cmd);
+	return (parse_to_exec(line, data));
 }

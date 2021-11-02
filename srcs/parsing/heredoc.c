@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 14:12:46 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/02 15:55:58 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/02 16:02:52 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char	*define_delimiter(char *str)
 	}
 	else 
 	{
-		while (str[i])
+		while (str[i] && str[i] != ' ')
 			delimiter[j++] = str[i++];
 	}
 	delimiter[j] = '\0';
