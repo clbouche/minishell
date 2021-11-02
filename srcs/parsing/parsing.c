@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/02 12:55:03 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/02 16:07:16 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,17 @@ void	manage_redir(char *input, int i, t_data *data)
 	if (input[i] == '>' && input[i + 1] != '>')
 		redir_ouput(&input[i + 1], data);
 	else if (input[i] == '>' && input[i + 1] == '>')
+	{
 		redir_output_append(&input[i + 2], data);
+		input[i + 1] = '\0';
+	}
 	else if (input[i] == '<' && input[i + 1] != '<')
 		redir_input(&input[i + 1], data);
 	else if (input[i] == '<' && input[i + 1] == '<')
+	{
 		redir_read_input(&input[i + 2], data);
+		input[i + 1] = '\0';
+	}
 	input[i] = '\0';
 }
 
