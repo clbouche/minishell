@@ -105,7 +105,7 @@ void	init_datas(t_data *data);
 int		parser(char *line, t_data *data);
 char	*create_input(char *line);
 char	**split_cmd(char *line);
-int	parse_to_exec(char *input, t_data *data);
+int		parse_to_exec(char *input, t_data *data);
 
 /*
 ** redirections 
