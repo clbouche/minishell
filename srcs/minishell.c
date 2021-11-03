@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/11/02 16:08:54 by clbouche         ###   ########.fr       */
-=======
-/*   Updated: 2021/11/03 16:01:45 by claclou          ###   ########.fr       */
->>>>>>> new_parsing
+/*   Updated: 2021/11/03 18:02:30 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +22,8 @@ int	parse_to_exec(char *input, t_data *data)
 	char **cmd;
 
 	input = create_input(input);
-<<<<<<< HEAD
-	//printf("input 2 : [%s]\n", input);
 	check_redir(input, data);
 	input = create_input(input);
-	//printf("input 3 : [%s]\n", input);
-=======
-	check_redir(input, data);
-	input = create_input(input);
->>>>>>> new_parsing
 	cmd = split_cmd(input);
 	free(input);
 	execute(cmd, data);
