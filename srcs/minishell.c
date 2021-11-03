@@ -6,26 +6,13 @@
 /*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/03 10:47:28 by claclou          ###   ########.fr       */
+/*   Updated: 2021/11/03 16:01:45 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 t_sig g_sig;
-
-void	check_redir(char *line, t_data *data)
-{
-	int i;
-
-	i = 0;
-	while (line[i])
-	{
-		if (line[i] == '<' || line[i] == '>')
-			manage_redir(line, i, data);
-		i++;
-	}
-}
 
 /*
 ** Transition d'un input propre vers l'execution
@@ -67,6 +54,7 @@ void	minishell_loop(t_data *data)
 		{
 			manage_history(line);
 			input = create_input(line);
+			data->count_redir = count_redir(line);
 			parser(input, data);
 		}
 	}

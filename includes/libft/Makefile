@@ -6,7 +6,7 @@
 #    By: claclou <claclou@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 13:17:26 by clbouche          #+#    #+#              #
-#    Updated: 2021/11/03 11:34:57 by claclou          ###   ########.fr        #
+#    Updated: 2021/11/03 15:57:45 by claclou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,7 +103,6 @@ SRCS += ft_isprint.c
 SRCS += ft_iswhitespace.c
 SRCS += ft_tolower.c
 SRCS += ft_toupper.c
-SRCS += ft_itoa.c
 
 # MANIP MEMORY #
 SRCS += ft_memset.c
