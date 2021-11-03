@@ -6,7 +6,7 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:49:47 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/03 17:14:35 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/11/03 17:41:33 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ void    exec_child(char **cmd, t_data *d)
     else
     {
         convert_env(d);
-        bin = ft_strdup(cmd[0]);
+        if (cmd[0][0] == '.' && cmd[0][1] == '/')
+			cmd = get_absolute_path(cmd, d);
+        else
+            bin = ft_strdup(cmd[0]);
     }
     exec_bin(cmd, bin, d);
 }

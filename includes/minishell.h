@@ -83,6 +83,7 @@ typedef	struct s_data
 	char **	envp;
 	t_node	*lexer;
 	t_dlist	*lst;
+	char	pwd[MAX];
 	bool	have_path;
 	bool	pipe;
 	bool	redir;
@@ -156,6 +157,7 @@ int		redirect(t_data *d);
 char 	*test_path(char **cmd, char **paths, char *bin, int i);
 char	**get_path(t_data *d);
 char 	*find_bin(char **paths, char **cmd);
+char 	**get_absolute_path(char **cmd, t_data *d);
 
 /*
 ** init
