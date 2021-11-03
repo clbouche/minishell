@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   variables.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 13:46:38 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/02 18:10:57 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/03 10:46:36 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,16 +102,12 @@ char	*create_new_input(char *line, char *content)
 		i++;
 	tmp = ft_substr(line, 0, i);
 	new_input = ft_strjoin(tmp, content);
-	//printf("new input : %s\n", new_input);
-	//printf("line : %s\n", &line[i]);
 	free(tmp);
-	//printf("line create new input : %s\n", &line[i]);
-	while(line[i] && line[i] != ' ' && line[i] != '=' && line[i] != '"'  && line[i] != '}')// && line[i] != '$'
+	i++;
+	while(line[i] && check_char(line[i]) && !spe_case(line[i]))
 		i++;
 	if(line[i])
 		new_input = ft_strjoin_realloc(&new_input, &line[i]);
-	printf("new input 2 : %s\n", new_input);
-	//exit(1);
 	return (new_input);
 }
 
@@ -133,9 +129,7 @@ char	*manage_variable(char *line, t_data *data)
 	while(line[j] != '$')
 		j++;
 	name = copy_name(&line[j + 1]);
-	//printf("name : %s\n", name);
 	content = find_content(name, data);
-	//printf("content : %s\n", content);
 	free(name);
 	new_input = create_new_input(line, content);
 	return(new_input);

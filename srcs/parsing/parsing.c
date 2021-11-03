@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/02 17:45:53 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/03 10:47:41 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,6 @@ int		parser(char *line, t_data *data)
 		{
 			new_line = manage_expand(line, data);
 			line = new_line;
-			//return(parser(new_line, data));
 		}
 		if (line[i] == '|' && line[i + 1])
 		{
@@ -139,7 +138,6 @@ int		parser(char *line, t_data *data)
 				{
 					new_line = manage_expand(line, data);
 					line = new_line;
-					//return(parser(new_line, data));
 				}
 			}
 			else

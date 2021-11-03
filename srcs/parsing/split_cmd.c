@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:32:10 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/02 16:23:46 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/03 10:47:59 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,6 @@ char	**split_cmd(char *line)
 		line = next_cmd(line);
 	}
 	cmd[i] = NULL;
-	print_cmd(cmd);
+	//print_cmd(cmd);
 	return (cmd);
 }
