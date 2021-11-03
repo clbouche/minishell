@@ -3,29 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/11/02 16:08:54 by clbouche         ###   ########.fr       */
+=======
+/*   Updated: 2021/11/03 16:01:45 by claclou          ###   ########.fr       */
+>>>>>>> new_parsing
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 t_sig g_sig;
-
-void	check_redir(char *line, t_data *data)
-{
-	int i;
-
-	i = 0;
-	while (line[i])
-	{
-		if (line[i] == '<' || line[i] == '>')
-			manage_redir(line, i, data);
-		i++;
-	}
-}
 
 /*
 ** Transition d'un input propre vers l'execution
@@ -35,10 +26,15 @@ int	parse_to_exec(char *input, t_data *data)
 	char **cmd;
 
 	input = create_input(input);
+<<<<<<< HEAD
 	//printf("input 2 : [%s]\n", input);
 	check_redir(input, data);
 	input = create_input(input);
 	//printf("input 3 : [%s]\n", input);
+=======
+	check_redir(input, data);
+	input = create_input(input);
+>>>>>>> new_parsing
 	cmd = split_cmd(input);
 	free(input);
 	execute(cmd, data);
@@ -65,10 +61,13 @@ void	minishell_loop(t_data *data)
 		//line = readline("");
 		if (line == NULL)
 			line = ft_strdup("exit");
-		manage_history(line);
-		input = create_input(line);
-		//printf("input 1 : [%s]\n", input);
-		parser(input, data);
+		if (*line)
+		{
+			manage_history(line);
+			input = create_input(line);
+			data->count_redir = count_redir(line);
+			parser(input, data);
+		}
 	}
 }
 

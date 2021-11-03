@@ -26,7 +26,9 @@ static int handle_multiarg(char **cmd, int i)
     tmp = NULL;
     while (cmd[i] != NULL)
     {
-        if (cmd[i + 1] != NULL)
+        if (i == 1)
+            ft_putstr_fd(cmd[i], 1);
+        else
         {
             ft_putstr_fd(cmd[i], 1);
             ft_putchar_fd(' ', 1);

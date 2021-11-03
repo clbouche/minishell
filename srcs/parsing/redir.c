@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/02 14:39:53 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/03 16:06:52 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,16 +90,22 @@ void	redir_output_append(char *str, t_data *data)
 void	redir_ouput(char *str, t_data *data)
 {
 	char	*file_name;
+	static int		i = 1;
+	
 	file_name = recup_filename(str);
 	if (file_name)
 	{
-		data->redir_out = true;
-		data->std_out = dup(1);
 		data->file_out = open(file_name, O_CREAT | O_RDWR | O_TRUNC, 0644);
 		free(file_name);
-		if (data->file_out < 0)
-			opening_error("problem while opening output");
-		dup2(data->file_out, 1);
+		if (i == data->count_redir)
+		{
+			data->redir_out = true;
+			data->std_out = dup(1);
+			if (data->file_out < 0)
+				opening_error("problem while opening output");
+			dup2(data->file_out, 1);
+		}
+		i++;
 		close(data->file_out);
-	}	
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:54 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/03 17:45:26 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/11/03 17:59:58 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	init_datas(t_data *data)
 	data->std_out = 1;
 	data->have_path = false;
 	getcwd(data->pwd, MAX);
+	data->count_redir = 0;
 }
 
 t_list	*init(t_data *data, char **envp)

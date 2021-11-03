@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 17:54:08 by claclou           #+#    #+#             */
-/*   Updated: 2021/10/28 16:22:01 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/03 16:01:48 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,32 @@ char	*recup_filename(char *str)
 	}
 	file_name[j] = '\0';
 	return (file_name);
+}
+
+int		count_redir(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (*line)
+	{
+		//est ce que je dois differencier le type de redirection? -> a voir 
+		if (*line == '<' || *line == '>')
+			i++;
+		line++;
+	}
+	return (i);
+}
+
+void	check_redir(char *line, t_data *data)
+{
+	int i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] == '<' || line[i] == '>')
+			manage_redir(line, i, data);
+		i++;
+	}
 }

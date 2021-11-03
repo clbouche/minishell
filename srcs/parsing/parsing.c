@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/02 17:10:27 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/03 18:01:28 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,7 @@ char	*manage_expand(char *line, t_data *data)
 			return (line);
 		if (line[i] == '$')
 		{
-			if (line[i + 1] == '?')
-				return (line);
-			else if (line[i + 1] && check_char_begin(line[i + 1]))
+			if (line[i + 1] && (line[i + 1] == '?' || check_char_begin(line[i + 1])))
 			{
 				new_line = manage_variable(line, data);
 				return (new_line);
