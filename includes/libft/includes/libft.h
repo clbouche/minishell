@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 11:56:59 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/02 12:45:40 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/03 11:34:48 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ typedef struct s_dlist
 /* BASICS */
 size_t	ft_strlen(const char *s);
 int		ft_atoi(const char *str);
+char	*ft_itoa(int n);
 void	ft_error(char *error);
 size_t	ft_intlen(int n);
 // void	print_index(t_dlist *stack_a);

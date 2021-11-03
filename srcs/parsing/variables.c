@@ -6,7 +6,7 @@
 /*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 13:46:38 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/03 10:46:36 by claclou          ###   ########.fr       */
+/*   Updated: 2021/11/03 11:39:26 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ char	*add_end_line(char *input, char *line)
 ** le nom de la variable par son contenu puis 
 ** garder la fin de la ligne tel quel.
 */
-char	*create_new_input(char *line, char *content)
+char	*create_new_input(char *line, char *content, int type)
 {
 	int 	i;
 	int		j;
@@ -104,8 +104,13 @@ char	*create_new_input(char *line, char *content)
 	new_input = ft_strjoin(tmp, content);
 	free(tmp);
 	i++;
-	while(line[i] && check_char(line[i]) && !spe_case(line[i]))
+	if (type == 0)
 		i++;
+	else
+	{
+		while(line[i] && check_char(line[i]) && !spe_case(line[i]))
+			i++;
+	}
 	if(line[i])
 		new_input = ft_strjoin_realloc(&new_input, &line[i]);
 	return (new_input);
@@ -120,17 +125,25 @@ char	*manage_variable(char *line, t_data *data)
 	char	*new_input;
 	char	*name;
 	char	*content;
-	int		i;
+	int 	type;
 	int		j;
 
-	i = 0;
 	j = 0;
 	new_input = NULL;
 	while(line[j] != '$')
 		j++;
-	name = copy_name(&line[j + 1]);
-	content = find_content(name, data);
-	free(name);
-	new_input = create_new_input(line, content);
+	if (line[j + 1] == '?')
+	{
+		type = 0;
+		content = ft_itoa(g_sig.status);
+	}
+	else
+	{
+		type = 1;
+		name = copy_name(&line[j + 1]);
+		content = find_content(name, data);
+		free(name);
+	}
+	new_input = create_new_input(line, content, type);
 	return(new_input);
 }

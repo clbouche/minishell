@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+         #
+#    By: claclou <claclou@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/05 13:17:26 by clbouche          #+#    #+#              #
-#    Updated: 2021/11/02 12:46:02 by clbouche         ###   ########.fr        #
+#    Updated: 2021/11/03 11:34:57 by claclou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,7 @@ PATH_SRCS = srcs
 # BASICS #
 SRCS += ft_strlen.c
 SRCS += ft_atoi.c
-#SRCS += ft_itoa.c
+SRCS += ft_itoa.c
 SRCS += ft_error.c
 SRCS += ft_intlen.c
 
