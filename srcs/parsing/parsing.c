@@ -6,7 +6,7 @@
 /*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/03 11:35:15 by claclou          ###   ########.fr       */
+/*   Updated: 2021/11/03 11:44:20 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,7 @@ char	*manage_expand(char *line, t_data *data)
 			return (line);
 		if (line[i] == '$')
 		{
-			if (line[i + 1] == '?')
-			{
-				new_line = manage_variable(line, data);
-				return (new_line);
-			}
-			else if (line[i + 1] && check_char_begin(line[i + 1]))
+			if (line[i + 1] && (line[i + 1] == '?' || check_char_begin(line[i + 1])))
 			{
 				new_line = manage_variable(line, data);
 				return (new_line);
