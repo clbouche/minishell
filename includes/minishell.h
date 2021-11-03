@@ -10,8 +10,6 @@
 #define RESET "\001\e[0m\002"
 #define FAILURE 1
 #define SUCCESS 0
-#define TRUE 0
-#define FALSE 1
 #define OUT 1
 #define IN 2
 #define BOTH 3
@@ -85,6 +83,7 @@ typedef	struct s_data
 	char **	envp;
 	t_node	*lexer;
 	t_dlist	*lst;
+	bool	have_path;
 	bool	pipe;
 	bool	redir;
 	bool	redir_in;
@@ -173,6 +172,7 @@ t_list		*set_lvl(t_list *env, char * lvl);
 */
 
 void	ft_env(t_data *d, char **cmd);
+void	convert_env(t_data *d);
 char	*find_var(char *name);
 char	*find_name(char *var);
 void	export_var(char **cmd, t_data *d);

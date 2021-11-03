@@ -6,7 +6,7 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:49:47 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/10/31 15:10:48 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/11/03 17:14:35 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,37 @@
 
 extern t_sig sig;
 
+void	exec_bin(char **cmd, char *bin, t_data *d)
+{
+	if (bin == NULL)
+		free_exit(d, cmd[0], 127, ": command not found\n");
+	g_sig.prog = 1;
+    free(cmd[0]);
+    cmd[0] = bin;
+	if (execve(bin, cmd, d->envp) == -1)
+		free_exit(d, cmd[0], 126, ": file is not an excutable\n");
+}
+
 void    exec_child(char **cmd, t_data *d)
 {
     char *bin;
     char **paths;
 
-    paths = get_path(d);
-    bin = find_bin(paths, cmd);
+    bin = NULL;
+    if (d->have_path == false)
+    {
+        paths = get_path(d);
+        bin = find_bin(paths, cmd);
+    }
+    else
+    {
+        convert_env(d);
+        bin = ft_strdup(cmd[0]);
+    }
     exec_bin(cmd, bin, d);
 }
 
-void exec_simple(char  **cmd, t_data *d)
+void exec_simple(char **cmd, t_data *d)
 { 
     g_sig.prog = 1;
     g_sig.pid = fork();

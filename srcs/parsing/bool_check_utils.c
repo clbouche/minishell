@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bool_check_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:22:30 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/02 15:33:51 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/03 16:26:10 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,19 @@
 t_list *check_exist_var(char *name, t_data *data)
 {
 	t_list	*tmp;
-	char	*name_var;
+	//char	*name_var;
 
 	tmp = data->env;
-	while(tmp != NULL)
+	ft_putstr_fd(name, 1);
+	while(tmp->next != NULL)
 	{
-		name_var = find_name(tmp->content);
-		if (ft_strcmp(name, name_var) == 1)
+		//name_var = find_name(tmp->content);
+		//ft_putstr_fd(name_var, 1);
+		if (ft_strncmp(name, tmp->content, ft_strlen(name)) == 1)
+		{
+			ft_putstr_fd(tmp->content, 1);
 			return (tmp);
+		}
 		tmp = tmp->next;
 	}
 	return (NULL);

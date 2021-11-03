@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_binary.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 15:15:48 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/10/28 14:25:32 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/03 17:13:00 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void convert_env(t_data *d)
+void convert_env(t_data *d)
 {
 	t_list *tmp;
 	int i;
@@ -81,13 +81,3 @@ char	**get_path(t_data *d)
 	return (paths);
 }
 
-void	exec_bin(char **cmd, char *bin, t_data *d)
-{
-	if (bin == NULL)
-		free_exit(d, cmd[0], 127, ": command not found\n");
-	free(cmd[0]);
-	cmd[0] = bin;
-	g_sig.prog = 1;
-	if (execve(bin, cmd, d->envp) == -1)
-		free_exit(d, cmd[0], 126, ": file is not an excutable\n");
-}

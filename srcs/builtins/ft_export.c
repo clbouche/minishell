@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:04 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/02 17:54:32 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/03 16:26:14 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@
 ** export a new variable takes 2 arg, the name of the new_var and the var
 ** without arg, it list env variables, in alphabetical order
 */
-void	change_var(t_list *var)
-{
-	ft_putstr_fd(var->content, 1);
-}
+// void	change_var(t_list *var)
+// {
+// 	ft_putstr_fd(var->content, 1);
+// }
+
+//void is_there_an_egal
 void	export_var(char **cmd, t_data *d)
 {
 	t_list	*new_var;
@@ -51,9 +53,8 @@ int	ft_export(char **cmd, t_data *d)
 	//char	*name;
 
 	if (cmd[1] != NULL)
-	{
+	{	
 		//name = find_name(cmd[1]);
-	
 		// tmp = check_exist_var(name, d);
 		// if (tmp != NULL)
 		// 	change_var(tmp);
