@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:04 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/03 16:26:14 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/11/04 15:29:33 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,26 @@
 // }
 
 //void is_there_an_egal
-void	export_var(char **cmd, t_data *d)
+void	export_var(char **cmd, t_data *d, int j)
 {
 	t_list	*new_var;
 
 	int		i;
 
 	i = 0;
-	while (cmd[1][i] && cmd[1])
+	while(cmd[j])
 	{
-		if (cmd[1][i] == '=')
+		while (cmd[j][i])
 		{
-			new_var = ft_lstnew(cmd[1]);
-			ft_lstadd_back(&d->env, new_var);
-			d->ret = SUCCESS;
-			return ;
+			if (cmd[j][i] == '=')
+			{
+				new_var = ft_lstnew(cmd[j]);
+				ft_lstadd_back(&d->env, new_var);
+				d->ret = SUCCESS;
+			}
+			i++;
 		}
-		i++;
+		j++;
 	}
 	g_sig.status = UNKNOWN_COMMAND;
 	return ;
@@ -51,18 +54,24 @@ int	ft_export(char **cmd, t_data *d)
 {
 	//t_list	*tmp;
 	//char	*name;
-
-	if (cmd[1] != NULL)
-	{	
-		//name = find_name(cmd[1]);
-		// tmp = check_exist_var(name, d);
-		// if (tmp != NULL)
-		// 	change_var(tmp);
-		// else
-		export_var(cmd, d);
+	int i;
+	
+	i = 1;
+	if (cmd[i])
+	{
+		while (cmd[i])
+		{	
+			//name = find_name(cmd[1]);
+			// tmp = check_exist_var(name, d);
+			// if (tmp != NULL)
+			// 	change_var(tmp);
+			// else
+			export_var(cmd, d, i);
+			i++;
+		}
 		return (SUCCESS);
 	}
-	else
+	if (cmd[1] == NULL)
 		print_export(d);
 	free_array(cmd);
 	g_sig.status = SUCCESS;

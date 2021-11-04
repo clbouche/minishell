@@ -6,7 +6,7 @@
 /*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/04 14:03:09 by claclou          ###   ########.fr       */
+/*   Updated: 2021/11/04 15:43:10 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,10 +110,11 @@ int		parser(char *line, t_data *data)
 	int		i;
 	char	quote;
 	char	*new_line;
-	//bool	closed_quotes;
+	bool	closed_quotes;
 
 	i = 0;
-	//closed_quotes = check_closed_quotes(line);
+	closed_quotes = check_closed_quotes(line);
+	//printf("closed quote bool : %i\n", closed_quotes);
 	//peut etre a supprimer, create input pourrait traiter ca ? 
 	while (line[i])
 	{
@@ -130,16 +131,14 @@ int		parser(char *line, t_data *data)
 		if (line[i] == '"' || line[i] == '\'')
 		{
 			quote = line[i];
-			//if (closed_quotes == true)
-			//{
+			if (closed_quotes == true)
+			{
 				if (line[i] == '$' && quote == '"')
 				{
 					new_line = manage_expand(line, data);
 					line = new_line;
 				}
-			//}
-			//else
-			//	exit(0);
+			}
 		}
 		i++;
 	}
