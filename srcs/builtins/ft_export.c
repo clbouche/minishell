@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:04 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/03 16:26:14 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/11/04 15:16:26 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,12 @@ int	ft_export(char **cmd, t_data *d)
 	//t_list	*tmp;
 	//char	*name;
 
-	if (cmd[1] != NULL)
+	if (ft_isdigit(cmd[1][0]))
+	{
+		g_sig.status = 1;
+		return(g_sig.status); //free_exit(d, cmd[1], 1, ": not a valid identifier");
+	}
+	else if (cmd[1] != NULL)
 	{	
 		//name = find_name(cmd[1]);
 		// tmp = check_exist_var(name, d);

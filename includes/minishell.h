@@ -133,6 +133,7 @@ int		check_append(char *line);
 /*
 ** utils parsing
 */
+int		is_numeric(char *input);
 bool	spe_case(char c);
 bool	check_char(char c);
 bool	check_char_begin(char c);
