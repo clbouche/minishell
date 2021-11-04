@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 09:02:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/11/04 13:59:15 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/04 18:03:17 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,10 @@ void	execute(char **cmd, t_data *data)
 {
 	int	rtn;
 	
+	data->have_path = false;
 	rtn = is_builtins(cmd);
-	if (cmd[0][0] == '/' || (cmd[0][0] == '.' && (cmd[0][1] == '/' )) ||  (cmd[0][0] == '.' && (cmd[0][1] == '.')))
-	{
+	if (ft_strchr(cmd[0], '/'))
 		data->have_path = true;
-	}
 	if (rtn != FAILURE)
 		exec_builtin(cmd, data);
     else

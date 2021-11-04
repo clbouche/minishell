@@ -3,17 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-<<<<<<< HEAD
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:04 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/04 15:16:26 by ldes-cou         ###   ########.fr       */
-=======
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/09 13:37:04 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/04 15:29:33 by claclou          ###   ########.fr       */
->>>>>>> new_parsing
+/*   Updated: 2021/11/04 16:21:16 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,20 +52,20 @@ void	export_var(char **cmd, t_data *d, int j)
 //==> don't forget to sort alphabetically the variables
 int	ft_export(char **cmd, t_data *d)
 {
-	//t_list	*tmp;
-	//char	*name;
 	int i;
 	
 	i = 1;
 	if (cmd[i])
 	{
+		if (ft_isdigit(cmd[i][0] == 1))
+		{
+			ft_putstr_fd("not a valid identifier", 2);
+			g_sig.status = FAILURE;
+			return(g_sig.status);
+		}
+		printf("return ft_isdigit == %i\n", ft_isdigit(cmd[i][0]));
 		while (cmd[i])
 		{	
-			//name = find_name(cmd[1]);
-			// tmp = check_exist_var(name, d);
-			// if (tmp != NULL)
-			// 	change_var(tmp);
-			// else
 			export_var(cmd, d, i);
 			i++;
 		}

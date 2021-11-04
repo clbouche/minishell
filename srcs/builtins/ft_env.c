@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:38:59 by ldes-cou@         #+#    #+#             */
-/*   Updated: 2021/10/18 16:57:29 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/04 16:16:41 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ char *find_var(char *name)
 
 	var = NULL;
 	var = ft_strchr(name, '=');
+	if (!var)
+		return(NULL);
 	return(var + 1);
 }
 
@@ -51,7 +53,7 @@ char *find_name(char *var)
 	int i;
 
 	i = 0;
-	while (var[i] != '=')
+	while (var[i] != '=' && var[i])
 		i++;
 	name = ft_substr(var, 0, i);
 	return(name);
