@@ -22,7 +22,7 @@ static int handle_multiarg(char **cmd, int i)
     char *str;
     char*tmp;
 
-    str = NULL;
+    str = NULL; //don't forget to protect sterrror(errno) 
     tmp = NULL;
     while (cmd[i] != NULL)
     {
@@ -33,8 +33,6 @@ static int handle_multiarg(char **cmd, int i)
             ft_putstr_fd(cmd[i], 1);
             ft_putchar_fd(' ', 1);
         }
-        else
-                ft_putstr_fd(cmd[i], 1);
         i++;
     }
     return(0);

@@ -6,13 +6,24 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:49:47 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/03 17:41:33 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/11/04 10:58:17 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 extern t_sig sig;
+
+// t_list  *change_shlvl(t_data *d)
+// {
+//     t_list *tmp;
+//     char *shlvl;
+    
+//     tmp = d->env;
+//     d->env = delete_node(d->env, "SHLVL");
+    
+    
+// }
 
 void	exec_bin(char **cmd, char *bin, t_data *d)
 {
@@ -38,11 +49,10 @@ void    exec_child(char **cmd, t_data *d)
     }
     else
     {
+        //if (!(ft_strcmp(cmd[0], "./minishell"))
+        //change_shlvl(d);
         convert_env(d);
-        if (cmd[0][0] == '.' && cmd[0][1] == '/')
-			cmd = get_absolute_path(cmd, d);
-        else
-            bin = ft_strdup(cmd[0]);
+        bin = ft_strdup(cmd[0]);
     }
     exec_bin(cmd, bin, d);
 }

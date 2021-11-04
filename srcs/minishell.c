@@ -6,7 +6,7 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/03 18:02:30 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/11/04 10:59:55 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	minishell_loop(t_data *data)
 int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;
-
+	
 	(void)argv;
 	//rl_outstream = stderr;
 	if (argc == 1)

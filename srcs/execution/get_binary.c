@@ -6,25 +6,26 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 15:15:48 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/03 17:45:47 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/11/04 10:34:37 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char **get_absolute_path(char **cmd, t_data *d)
-{
-	char *name;
-	char **path;
-
-	path = NULL;
-	name = NULL;
-	*cmd += 1;
-	name = ft_strcpy(*cmd, name);
-	path[0] = ft_strjoin(d->pwd, name);
-	free_array(cmd);
-	return(path);
-}
+// char **get_absolute_path(char **cmd, t_data *d)
+// {
+// 	char *name;
+// 	char **path;
+	
+// 	path = NULL;
+// 	name = NULL;
+// 	name = ft_substr(cmd[0], 1, (ft_strlen(cmd[0]) - 1));
+// 	path[0] = ft_strjoin(d->pwd, name);
+// 	ft_putendl_fd(path[0], 2);
+// 	free(name);
+// 	free_array(cmd);
+// 	return(path);
+// }
 
 void convert_env(t_data *d)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_input.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 12:29:44 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/02 17:55:07 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/04 10:36:06 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		input_len(char *line)
 	i = 0;
 	while(*line)
 	{
-		if (ft_iswhitespace(*line) && (ft_iswhitespace(*(line + 1)) || *(line + 1) == '\0'))
+		if (ft_iswhitespace(*line) && ((ft_iswhitespace(*(line + 1)) || *(line + 1) == '\0')))
 			line++;
 		if (*line == '"' || *line == '\'')
 		{
