@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/03 18:01:28 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/11/04 15:43:10 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ int		parser(char *line, t_data *data)
 
 	i = 0;
 	closed_quotes = check_closed_quotes(line);
+	//printf("closed quote bool : %i\n", closed_quotes);
 	//peut etre a supprimer, create input pourrait traiter ca ? 
 	while (line[i])
 	{
@@ -138,8 +139,6 @@ int		parser(char *line, t_data *data)
 					line = new_line;
 				}
 			}
-			else
-				exit(0);
 		}
 		i++;
 	}

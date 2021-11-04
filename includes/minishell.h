@@ -138,7 +138,7 @@ bool	spe_case(char c);
 bool	check_char(char c);
 bool	check_char_begin(char c);
 bool	check_char_file(char c);
-t_list *check_exist_var(char *name, t_data *data);
+t_list 	*check_exist_var(char *name, t_data *data);
 
 /*
 ** Execution
@@ -181,7 +181,7 @@ void	ft_env(t_data *d, char **cmd);
 void	convert_env(t_data *d);
 char	*find_var(char *name);
 char	*find_name(char *var);
-void	export_var(char **cmd, t_data *d);
+void	export_var(char **cmd, t_data *d, int j);
 int		ft_export(char **cmd, t_data *d);
 void	print_export(t_data *d);
 t_list	*ft_unset(char **cmd, t_data *d);

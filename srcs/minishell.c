@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/03 18:02:30 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/11/04 14:59:32 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,11 @@ void	minishell_loop(t_data *data)
 		{
 			manage_history(line);
 			input = create_input(line);
-			data->count_redir = count_redir(line);
-			parser(input, data);
+			if (input)
+			{
+				data->count_redir = count_redir(line);
+				parser(input, data);
+			}
 		}
 	}
 }
