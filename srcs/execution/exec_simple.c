@@ -6,7 +6,7 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:49:47 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/07 13:27:31 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/11/07 15:11:12 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	exec_bin(char **cmd, char *bin, t_data *d)
 	g_sig.status = 1;
 	g_sig.prog = 0;
 	free(bin);
+	free_array(cmd);
 	exit(FAILURE);
 }
 

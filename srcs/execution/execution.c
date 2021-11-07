@@ -6,7 +6,7 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 09:02:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/11/07 13:36:00 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/11/07 15:02:32 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	execute(char **cmd, t_data *d)
 {
-	d->std_in = dup(0);
-	d->std_out = dup(1);	
 	d->have_path = false;
 	if (ft_strchr(cmd[0], '/'))
 		d->have_path = true;
@@ -33,6 +31,8 @@ void	exec_pipes(char *line, char *new_input, t_data *d)
 	(void)d;
 	char **input;
 
+	d->std_out = dup(1);
+	d->std_in = dup(0);
 	d->piped = true;
 	if (pipe(d->fds) == -1)
 		puts("error_pipe attention oublie pas dexit proprement");
@@ -53,8 +53,8 @@ void	exec_pipes(char *line, char *new_input, t_data *d)
 		ft_memdel(&line);
 		switch_fds(d);
 		execute(input, d);
-		if (new_input != NULL)
-			parser(new_input, d);//est ce au'on peut pas plutot rappeler exec_pipe tant
+		//if (new_input != NULL)
+		parser(new_input, d);//est ce au'on peut pas plutot rappeler exec_pipe tant
 		//quil y a des pipes ?? 
 		return;
 	}
