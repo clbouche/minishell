@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/03 16:06:52 by claclou          ###   ########.fr       */
+/*   Updated: 2021/11/07 14:42:26 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,16 @@ void	redir_input(char *str, t_data *data)
 	file_name = recup_filename(str);
 	if (file_name)
 	{
-		data->redir_in = true;
-		data->std_in = dup(0);
-		close(0);
+		// data->redir_in = true;
+		// data->std_in = dup(0);
+		// close(0);
 		data->file_in = open(file_name, O_RDONLY);
 		if (data->file_in == -1)
 		{
 			puts("file_in\n");
 		}
 		dup2(data->file_in, 0);
+		close(data->file_in);
 		free(file_name);
 	}
 	//if (data->std_in < 0)

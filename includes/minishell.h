@@ -74,6 +74,7 @@ typedef enum	s_builtin
 typedef	struct s_data
 {
 	t_list	*env;
+	int		fds[2];
 	int		file_out;
 	int		file_in;
 	int		std_out;
@@ -89,6 +90,7 @@ typedef	struct s_data
 	bool	redir;
 	bool	redir_in;
 	bool	redir_out;
+	bool	piped;
 	int		count_redir;
 }				t_data;
 
@@ -133,15 +135,18 @@ int		check_append(char *line);
 /*
 ** utils parsing
 */
+int		is_numeric(char *input);
 bool	spe_case(char c);
 bool	check_char(char c);
 bool	check_char_begin(char c);
 bool	check_char_file(char c);
-t_list *check_exist_var(char *name, t_data *data);
+t_list 	*check_exist_var(char *name, t_data *data);
 
 /*
 ** Execution
 */
+void	open_fds(t_data *d);
+void	switch_fds(t_data *d);
 void	close_fds(t_data *data);
 void	execute(char **cmd, t_data *data);
 void 	exec_builtin(char **cmd, t_data *d);
@@ -149,8 +154,8 @@ void 	exec_simple(char  **cmd, t_data *d);
 void	exec_bin(char **cmd, char *bin, t_data *d);
 void	exec_pipes(char *line, char *new_input, t_data *data);
 int 	is_builtins(char **cmd);
-void	exec(char **cmd, t_data *d);
-int		redirect(t_data *d);
+//void	exec(char **cmd, t_data *d);
+//int		redirect(t_data *d);
 
 /*
 ** find_path
@@ -175,12 +180,11 @@ t_list		*set_lvl(t_list *env, char * lvl);
 /*
 ** Built-in 
 */
-
 void	ft_env(t_data *d, char **cmd);
 void	convert_env(t_data *d);
 char	*find_var(char *name);
 char	*find_name(char *var);
-void	export_var(char **cmd, t_data *d);
+void	export_var(char **cmd, t_data *d, int j);
 int		ft_export(char **cmd, t_data *d);
 void	print_export(t_data *d);
 t_list	*ft_unset(char **cmd, t_data *d);

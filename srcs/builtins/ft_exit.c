@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 10:32:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/28 15:37:06 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/04 15:12:37 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,11 @@
 ** make a function to ctrl numbers of arg
 */
 
+/* if its piped should not exit
+**  shuould return the last arg of exit
+*/
 
-static int	is_numeric(char *input)
+int	is_numeric(char *input)
 {
 	int	i;
 

@@ -6,7 +6,7 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/04 10:59:55 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/11/05 13:56:06 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,11 @@ void	minishell_loop(t_data *data)
 		{
 			manage_history(line);
 			input = create_input(line);
-			data->count_redir = count_redir(line);
-			parser(input, data);
+			if (input)
+			{
+				data->count_redir = count_redir(line);
+				parser(input, data);
+			}
 		}
 	}
 }
@@ -66,6 +69,7 @@ int	main(int argc, char **argv, char **envp)
 	
 	(void)argv;
 	//rl_outstream = stderr;
+	puts("hello you, welcome !");
 	if (argc == 1)
 	{
 		signal(SIGINT, &sig_handler);

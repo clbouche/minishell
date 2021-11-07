@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:04 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/03 16:26:14 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/11/04 16:21:16 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,26 @@
 // }
 
 //void is_there_an_egal
-void	export_var(char **cmd, t_data *d)
+void	export_var(char **cmd, t_data *d, int j)
 {
 	t_list	*new_var;
 
 	int		i;
 
 	i = 0;
-	while (cmd[1][i] && cmd[1])
+	while(cmd[j])
 	{
-		if (cmd[1][i] == '=')
+		while (cmd[j][i])
 		{
-			new_var = ft_lstnew(cmd[1]);
-			ft_lstadd_back(&d->env, new_var);
-			d->ret = SUCCESS;
-			return ;
+			if (cmd[j][i] == '=')
+			{
+				new_var = ft_lstnew(cmd[j]);
+				ft_lstadd_back(&d->env, new_var);
+				d->ret = SUCCESS;
+			}
+			i++;
 		}
-		i++;
+		j++;
 	}
 	g_sig.status = UNKNOWN_COMMAND;
 	return ;
@@ -49,20 +52,26 @@ void	export_var(char **cmd, t_data *d)
 //==> don't forget to sort alphabetically the variables
 int	ft_export(char **cmd, t_data *d)
 {
-	//t_list	*tmp;
-	//char	*name;
-
-	if (cmd[1] != NULL)
-	{	
-		//name = find_name(cmd[1]);
-		// tmp = check_exist_var(name, d);
-		// if (tmp != NULL)
-		// 	change_var(tmp);
-		// else
-		export_var(cmd, d);
+	int i;
+	
+	i = 1;
+	if (cmd[i])
+	{
+		if (ft_isdigit(cmd[i][0] == 1))
+		{
+			ft_putstr_fd("not a valid identifier", 2);
+			g_sig.status = FAILURE;
+			return(g_sig.status);
+		}
+		printf("return ft_isdigit == %i\n", ft_isdigit(cmd[i][0]));
+		while (cmd[i])
+		{	
+			export_var(cmd, d, i);
+			i++;
+		}
 		return (SUCCESS);
 	}
-	else
+	if (cmd[1] == NULL)
 		print_export(d);
 	free_array(cmd);
 	g_sig.status = SUCCESS;

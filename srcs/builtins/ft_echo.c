@@ -19,14 +19,14 @@
 
 static int handle_multiarg(char **cmd, int i)
 {
-    char *str;
-    char*tmp;
+    char    *str;
+    char    *tmp;
 
     str = NULL; //don't forget to protect sterrror(errno) 
     tmp = NULL;
     while (cmd[i] != NULL)
     {
-        if (i == 1)
+        if (cmd[i + 1] == NULL)
             ft_putstr_fd(cmd[i], 1);
         else
         {
@@ -37,6 +37,7 @@ static int handle_multiarg(char **cmd, int i)
     }
     return(0);
 }
+//ajouter le fait de ne pas faire d'espace pour le dernier arg
 
 int	ft_echo(char **cmd, t_data *d)
 {

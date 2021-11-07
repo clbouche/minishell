@@ -6,7 +6,7 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 12:29:44 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/04 10:36:06 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/11/05 13:56:24 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	copy_input(char *dst, char *src)
 			quote = *(src++);
 			while(*src != quote)
 				*(dst)++ = *(src)++;
-			// *(dst++) = *(src++);
+			*(dst++) = *(src++);
 		}
 		else
 			*(dst++) = *(src++);
@@ -70,6 +70,8 @@ char	*create_input(char *line)
 	while (*line && ft_iswhitespace(*line))
 		line++;
 	len = input_len(&*line);
+	if (len == 0)
+		return(NULL);
 	input = malloc(sizeof(char) * (len + 1));
 	copy_input(input, line);
 	return(input);
