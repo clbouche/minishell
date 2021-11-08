@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/04 13:53:59 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/08 11:20:58 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,17 +95,24 @@ void	redir_ouput(char *str, t_data *data)
 	file_name = recup_filename(str);
 	if (file_name)
 	{
-		data->file_out = open(file_name, O_CREAT | O_RDWR | O_TRUNC, 0644);
+		data->file_out = open(file_name, O_RDWR | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
 		free(file_name);
 		if (i == data->count_redir)
 		{
 			data->redir_out = true;
 			data->std_out = dup(1);
-			if (data->file_out < 0)
-				opening_error("problem while opening output");
 			dup2(data->file_out, 1);
 		}
-		i++;
+		if (data->file_out < 0)
+		{
+			perror("file");
+			data->count_redir = -1;
+			data->redir_out = false;
+			//je dois quitter le processus pour ne pas creer les fichiers suivants
+			// et je ne dois pas afficher en sortie standard le rslt attendu 
+			return ;
+		}
 		close(data->file_out);
+		i++;
 	}
 }

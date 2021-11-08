@@ -6,7 +6,7 @@
 /*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/04 14:59:32 by claclou          ###   ########.fr       */
+/*   Updated: 2021/11/08 10:26:10 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,19 @@ void	minishell_loop(t_data *data)
 	while (1)
 	{
 		line = readline("🍄 MINISHELL 🍄 : ");
-		//line = readline("");
 		if (line == NULL)
 			line = ft_strdup("exit");
 		if (*line)
 		{
 			manage_history(line);
 			input = create_input(line);
-			if (input)
+			if (input == 0)
 			{
-				data->count_redir = count_redir(line);
-				parser(input, data);
+				ft_putstr_fd("unclosed quotes", 1);
+				return ;
 			}
+			data->count_redir = count_redir(line);
+			parser(input, data);
 		}
 	}
 }

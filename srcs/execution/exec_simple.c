@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_simple.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:49:47 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/04 13:47:26 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/08 10:24:31 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void    exec_child(char **cmd, t_data *d)
 }
 
 void exec_simple(char **cmd, t_data *d)
-{ 
+{
     g_sig.prog = 1;
     g_sig.pid = fork();
     if (g_sig.pid == -1)
