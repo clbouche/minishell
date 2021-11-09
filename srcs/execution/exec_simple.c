@@ -71,10 +71,14 @@ void    exec_child(char **cmd, t_data *d)
 void exec_simple(char **cmd, t_data *d)
 { 
 	g_sig.prog = 1;
+	dprintf(2, "Exec here\n");
 	g_sig.pid = fork();
 	if (g_sig.pid == -1)
+	{
 		puts("error_pid attention oublie pas dexit proprement");
-	if (g_sig.pid == 0)
+		exit(FAILURE);
+	}
+	else if (g_sig.pid == 0)
 		exec_child(cmd, d);
 	else
 	{
@@ -84,4 +88,5 @@ void exec_simple(char **cmd, t_data *d)
 	if (WIFEXITED(g_sig.status))
 		g_sig.status = WEXITSTATUS(g_sig.status);
 	g_sig.prog = 0;
+	return;
 }

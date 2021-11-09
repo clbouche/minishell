@@ -58,13 +58,14 @@ char *find_bin(char **paths, char **cmd)
 {
 	char *bin;
 	int		i;
+	struct  stat stat_b;
 	
 	i = 0;
 	bin = NULL;
 	while (paths[i] && bin == NULL)
 	{
 		bin = test_path(cmd, paths, bin, i);
-		if (access(bin, F_OK) == 0)
+		if (stat(bin, &stat_b) == 0)
 			break ;
 		ft_memdel(&bin);
 		i++;

@@ -21,6 +21,7 @@ void	init_datas(t_data *data)
 	data->have_path = false;
 	getcwd(data->pwd, MAX);
 	data->count_redir = 0;
+	data->piped = false;
 }
 
 t_list	*init(t_data *data, char **envp)

@@ -152,7 +152,7 @@ void	execute(char **cmd, t_data *data);
 void 	exec_builtin(char **cmd, t_data *d);
 void 	exec_simple(char  **cmd, t_data *d);
 void	exec_bin(char **cmd, char *bin, t_data *d);
-void	exec_pipes(char *line, char *new_input, t_data *data);
+char	*exec_pipes(char *line, char *new_input, t_data *data);
 int 	is_builtins(char **cmd);
 //void	exec(char **cmd, t_data *d);
 //int		redirect(t_data *d);

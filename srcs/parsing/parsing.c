@@ -66,14 +66,14 @@ char	*manage_expand(char *line, t_data *data)
 /*
 ** Envoie les commandes correctement a l'execution pour les pipes.
 */
-void	manage_pipe(char *line, int pipe_pos, t_data *data)
+char	*manage_pipe(char *line, int pipe_pos, t_data *data)
 {
 	char	*new_input;
 
 	new_input = ft_strdup(&line[pipe_pos + 1]);
 	line[pipe_pos - 1] = '\0';
 	data->pipe = true;
-	return (exec_pipes(line, new_input, data));
+	return(exec_pipes(line, new_input, data));
 }
 
 bool	check_closed_quotes(char *line)
@@ -123,12 +123,14 @@ int		parser(char *line, t_data *data)
 			new_line = manage_expand(line, data);
 			line = new_line;
 		}
-		if (line[i] == '|' && line[i + 1])
+		else if (line[i] == '|' && line[i + 1])
 		{
-			manage_pipe (line, i, data);
+			line = manage_pipe (line, i, data);
+			i = -1;
+			dprintf(2, "line%s\n", line);
 			data->pipe = true;
 		}
-		if (line[i] == '"' || line[i] == '\'')
+		else if (line[i] == '"' || line[i] == '\'')
 		{
 			quote = line[i];
 			if (closed_quotes == true)

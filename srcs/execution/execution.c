@@ -24,7 +24,7 @@ void	execute(char **cmd, t_data *d)
 	close_fds(d);
 }
 
-void	exec_pipes(char *line, char *new_input, t_data *d)
+char	*exec_pipes(char *line, char *new_input, t_data *d)
 {
 	(void)line;
 	(void)new_input;
@@ -37,25 +37,19 @@ void	exec_pipes(char *line, char *new_input, t_data *d)
 	if (pipe(d->fds) == -1)
 		puts("error_pipe attention oublie pas dexit proprement");
 	input = ft_split(line, ' ');
+	ft_memdel(&line);
 	g_sig.pid = fork();
 	if (g_sig.pid == -1)
 		puts("error_pid attention oublie pas dexit proprement");//pening_error("Fork");	
 	if (g_sig.pid == 0)
 	{
-		ft_memdel(&line);
+		//free(line);
 		open_fds(d);
 		execute(input, d);
 	}
 	else if (g_sig.pid < 0)
 		exit(FAILURE);
-	else
-	{
-		ft_memdel(&line);
-		switch_fds(d);
-		execute(input, d);
-		//if (new_input != NULL)
-		parser(new_input, d);//est ce au'on peut pas plutot rappeler exec_pipe tant
-		//quil y a des pipes ?? 
-		return;
-	}
+	switch_fds(d);
+	//execute(input, d);
+	return (new_input);
 }

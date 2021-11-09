@@ -35,12 +35,12 @@ cflags.debug		:= -Wall -Werror -Wextra -DDEBUG -ggdb -fsanitize=address -fno-omi
 CFLAGS				:= $(cflags.$(BUILD))
 CPPFLAGS			:= $(cflags.$(BUILD))
 
-lib.release			:=  -Lincludes/libft -lft -lreadline
+lib.release			:=  -Lincludes/libft -lft -lreadline -L/Users/ldes-cou/.brew/opt/readline/lib
 lib.valgrind		:= $(lib.release)
 lib.debug			:= $(lib.release) -fsanitize=address -fno-omit-frame-pointer
 LIB					:= $(lib.$(BUILD))
 
-INC					:= -I$(INCDIR) -I/usr/local/include
+INC					:= -I$(INCDIR) -I/usr/local/include -I/Users/ldes-cou/.brew/opt/readline/include
 INCDEP				:= -I$(INCDIR)
 
 # Colors
