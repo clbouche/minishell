@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_binary.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 15:15:48 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/04 10:34:37 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/11/09 15:20:15 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ char	**get_path(t_data *d)
 			break ;
 		i++;
 	}
+	if (d->envp[i] == NULL)
+		return(NULL);
 	path = ft_substr(d->envp[i], 4, ft_strlen(d->envp[i]));
 	paths = ft_split(path, ':');
 	ft_memdel(&path);

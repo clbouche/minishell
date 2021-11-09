@@ -6,11 +6,30 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 12:09:16 by ldes-cou@         #+#    #+#             */
-/*   Updated: 2021/10/28 14:25:06 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/09 16:18:31 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char *change_shlvl(char *var)
+{
+	int lvl;
+	char *new_lvl;
+	char *tmp;
+
+	lvl = 0;
+	tmp = var;
+	while (*var != '=')
+		var++;
+	var++;
+	lvl = ft_atoi(var);
+	new_lvl = ft_itoa(lvl + 1);
+	free(tmp);
+	var = ft_strjoin("SHLVL=", new_lvl);
+	free(new_lvl);
+	return(var);
+}
 
 t_list	*get_env(t_data *d, char **envp)
 {
@@ -24,6 +43,8 @@ t_list	*get_env(t_data *d, char **envp)
 	while (envp[++i])
 	{
 		var = ft_strdup(envp[i]);
+		if (ft_strncmp(var, "SHLVL", 5) == 0)
+			var = change_shlvl(var);
 		if (var == NULL)
 			free_exit(d, "env", 1, "malloc error");
 		new = ft_lstnew(var);
@@ -32,31 +53,5 @@ t_list	*get_env(t_data *d, char **envp)
 		ft_lstadd_back(&d->env, new);
 		d->env_len++;
 	}
-	//printf("%i\n", d->env_len);	
-	//printf("%i\n", d->env_len);
 	return(d->env);
 }
-
-// t_list *set_lvl(t_list *env, char *lvl)
-// {
-// 	t_list *tmp;
-// 	char *shlvl;
-
-// 	tmp = env;
-// 	while(tmp->next != NULL)
-// 	{
-// 		if (ft_strncmp("SHLVL", tmp->content, 5))
-// 		{
-// 			//
-// 			// free(tmp->content);
-// 			// shlvl = malloc(sizeof(char) * ft_intlen(lvl) + 7);
-// 			// if (shlvl == NULL)
-// 			// 	return (NULL);
-// 			// shlvl = ft_strcpy("SHLVL=", shlvl);
-// 			// shlvl = ft_strcat(shlvl, (char*)lvl);
-// 			// tmp->content = ft_strdup(shlvl);
-// 			// free(shlvl);
-// 		}
-// 	}
-// 	return(env);
-// }

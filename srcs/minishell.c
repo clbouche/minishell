@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/05 13:56:06 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/11/09 16:19:22 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	minishell_loop(t_data *data)
 {
 	char	*line;
 	char	*input;
-
+	
 	while (1)
 	{
 		line = readline("🍄 MINISHELL 🍄 : ");
@@ -68,7 +68,6 @@ int	main(int argc, char **argv, char **envp)
 	t_data	data;
 	
 	(void)argv;
-	//rl_outstream = stderr;
 	puts("hello you, welcome !");
 	if (argc == 1)
 	{

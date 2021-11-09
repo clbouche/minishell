@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:49:47 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/09 13:58:28 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/09 15:21:44 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void    exec_child(char **cmd, t_data *d)
 void exec_simple(char **cmd, t_data *d)
 { 
 	g_sig.prog = 1;
-	dprintf(2, "Exec here\n");
 	g_sig.pid = fork();
 	if (g_sig.pid == -1)
 	{
