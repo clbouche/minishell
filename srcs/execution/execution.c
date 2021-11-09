@@ -6,7 +6,7 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 09:02:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/11/07 15:02:32 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/11/09 13:35:05 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	execute(char **cmd, t_data *d)
 		d->have_path = true;
 	if (is_builtins(cmd) != FAILURE)
 		exec_builtin(cmd, d);
-    else
-        exec_simple(cmd, d);
+	else
+		exec_simple(cmd, d);
 	close_fds(d);
 }
 
