@@ -6,7 +6,7 @@
 /*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/08 11:42:28 by claclou          ###   ########.fr       */
+/*   Updated: 2021/11/09 14:28:10 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int		parser(char *line, t_data *data)
 		}
 		if (line[i] == '|' && line[i + 1])
 		{
-			manage_pipe (line, i, data);
+			manage_pipe(line, i, data);
 			data->pipe = true;
 		}
 		if (line[i] == '"' || line[i] == '\'')

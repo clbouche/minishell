@@ -6,7 +6,7 @@
 /*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/08 11:20:58 by claclou          ###   ########.fr       */
+/*   Updated: 2021/11/09 14:24:47 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	redir_ouput(char *str, t_data *data)
 	{
 		data->file_out = open(file_name, O_RDWR | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
 		free(file_name);
-		if (i == data->count_redir)
+		if (i == data->count_redir_out)
 		{
 			data->redir_out = true;
 			data->std_out = dup(1);
@@ -106,7 +106,7 @@ void	redir_ouput(char *str, t_data *data)
 		if (data->file_out < 0)
 		{
 			perror("file");
-			data->count_redir = -1;
+			data->count_redir_out = -1;
 			data->redir_out = false;
 			//je dois quitter le processus pour ne pas creer les fichiers suivants
 			// et je ne dois pas afficher en sortie standard le rslt attendu 

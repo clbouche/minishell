@@ -89,7 +89,8 @@ typedef	struct s_data
 	bool	redir;
 	bool	redir_in;
 	bool	redir_out;
-	int		count_redir;
+	int		count_redir_in;
+	int		count_redir_out;
 }				t_data;
 
 /*
@@ -111,7 +112,7 @@ int		parse_to_exec(char *input, t_data *data);
 /*
 ** redirections 
 */
-int		count_redir(char *line);
+void	count_redir(char *line, t_data *data);
 void	check_redir(char *line, t_data *data);
 void	manage_redir(char *input, int i, t_data *data);
 void	redir_read_input(char *str, t_data *data);

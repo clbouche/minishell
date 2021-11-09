@@ -6,7 +6,7 @@
 /*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/08 10:26:10 by claclou          ###   ########.fr       */
+/*   Updated: 2021/11/09 14:28:52 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	minishell_loop(t_data *data)
 				ft_putstr_fd("unclosed quotes", 1);
 				return ;
 			}
-			data->count_redir = count_redir(line);
+			count_redir(line, data);
 			parser(input, data);
 		}
 	}
