@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_input.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 12:29:44 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/08 10:21:35 by claclou          ###   ########.fr       */
+/*   Updated: 2021/11/10 11:36:25 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ char	*create_input(char *line)
 	int 	len;
 	char	*input;
 
+	if (!line)
+		return (NULL);
 	while (*line && ft_iswhitespace(*line))
 		line++;
 	len = input_len(&*line);

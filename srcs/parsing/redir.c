@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/09 14:24:47 by claclou          ###   ########.fr       */
+/*   Updated: 2021/11/10 11:46:13 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,14 +90,13 @@ void	redir_output_append(char *str, t_data *data)
 void	redir_ouput(char *str, t_data *data)
 {
 	char	*file_name;
-	static int		i = 1;
+	static int		count = 1;
 	
 	file_name = recup_filename(str);
 	if (file_name)
 	{
 		data->file_out = open(file_name, O_RDWR | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
-		free(file_name);
-		if (i == data->count_redir_out)
+		if (count == data->count_redir_out)
 		{
 			data->redir_out = true;
 			data->std_out = dup(1);
@@ -105,14 +104,15 @@ void	redir_ouput(char *str, t_data *data)
 		}
 		if (data->file_out < 0)
 		{
-			perror("file");
+			perror(file_name);
+			free(file_name);
 			data->count_redir_out = -1;
 			data->redir_out = false;
-			//je dois quitter le processus pour ne pas creer les fichiers suivants
-			// et je ne dois pas afficher en sortie standard le rslt attendu 
+			data->bad_redir = true;
 			return ;
 		}
+		free(file_name);
 		close(data->file_out);
-		i++;
+		count++;
 	}
 }

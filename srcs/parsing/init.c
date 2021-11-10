@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:54 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/09 14:24:18 by claclou          ###   ########.fr       */
+/*   Updated: 2021/11/10 11:15:44 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	init_datas(t_data *data)
 	getcwd(data->pwd, MAX);
 	data->count_redir_in = 0;
 	data->count_redir_out = 0;
+	data->bad_redir = false;
 }
 
 t_list	*init(t_data *data, char **envp)

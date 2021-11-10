@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 17:54:08 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/09 14:26:11 by claclou          ###   ########.fr       */
+/*   Updated: 2021/11/10 11:43:45 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void		count_redir(char *line, t_data *data)
 	}
 }
 
-void	check_redir(char *line, t_data *data)
+char	*check_redir(char *line, t_data *data)
 {
 	int i;
 
@@ -101,4 +101,11 @@ void	check_redir(char *line, t_data *data)
 			manage_redir(line, i, data);
 		i++;
 	}
+	if (data->bad_redir == true)
+	{
+		free(line);
+		line = NULL;
+		data->bad_redir = false;
+	}
+	return (line);
 }

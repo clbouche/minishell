@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/09 14:28:52 by claclou          ###   ########.fr       */
+/*   Updated: 2021/11/10 11:50:55 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ int	parse_to_exec(char *input, t_data *data)
 	char **cmd;
 
 	input = create_input(input);
-	check_redir(input, data);
+	input = check_redir(input, data);
+	if (!input)
+		return (1);
 	input = create_input(input);
 	cmd = split_cmd(input);
 	free(input);
