@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 09:02:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/11/10 12:17:10 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/10 13:08:52 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ char	*exec_pipes(char *line, char *new_input, t_data *d)
 	if (g_sig.pid == 0)
 	{
 		//free(line);
-		puts("ohehoooooooooooooooooooooooooo");
+		//puts("ohehoooooooooooooooooooooooooo");
 		open_fds(d);
 		parse_to_exec(line, d);
 		exit(g_sig.status);
 	}
 	else if (g_sig.pid < 0)
 		exit(FAILURE);
-	puts("lol");
+	//puts("lol");
 	switch_fds(d);
 	//execute(input, d);
 	return (new_input);
