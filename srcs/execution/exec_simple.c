@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:49:47 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/10 13:17:56 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/10 16:39:04 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,16 @@ void	exec_bin(char **cmd, char *bin, t_data *d)
     cmd[0] = bin;
 	if ((stat(bin, &stat_b) == 0 && stat_b.st_mode & S_IXUSR))
 	{
-		if (execve(bin, cmd, d->envp) != -1)
+		if (execve(bin, cmd, d->envp) == -1)
 		{
 			write(1, "123\n", 4);
 			g_sig.prog = 1;
 			g_sig.status = 0;
+			free(bin);
+			free_array(cmd);
+			exit(FAILURE);
 		}
 	}
-	g_sig.status = 1;
-	g_sig.prog = 0;
-	free(bin);
-	free_array(cmd);
-	exit(FAILURE);
 }
 
 void    exec_child(char **cmd, t_data *d)

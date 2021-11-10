@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 17:54:08 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/10 11:43:45 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/10 15:02:53 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,20 +73,26 @@ char	*recup_filename(char *str)
 
 void		count_redir(char *line, t_data *data)
 {
-	while (*line)
+	int i;
+
+	i = 0;
+	if (line[i] == '\0')
 	{
-		//est ce que je dois differencier le type de redirection? -> a voir 
-		if (*line == '<')
+		while (line && line[i])
 		{
-			data->count_redir_in++;
-			data->redir_in = true;
+			//est ce que je dois differencier le type de redirection? -> a voir 
+			if (line[i] == '<')
+			{
+				data->count_redir_in++;
+				data->redir_in = true;
+			}
+			if (line[i] == '>')
+			{
+				data->count_redir_out++;
+				data->redir_out = true;
+			}
+			i++;
 		}
-		if (*line == '>')
-		{
-			data->count_redir_out++;
-			data->redir_out = true;
-		}
-		line++;
 	}
 }
 

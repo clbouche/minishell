@@ -6,15 +6,17 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:36:42 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/09 15:57:27 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/10 16:33:36 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /*  KILL(int pid, int signal)
-    if pid > 0 signal si sent to pid
-    if pid == 0 signal is sent to the entire process group
+**  if pid > 0 signal si sent to pid
+**  if pid == 0 signal is sent to the entire process group
+**  @param signo Signal code
+**  @return C'est un void connard
 */
 void sig_handler(int signo)
 {

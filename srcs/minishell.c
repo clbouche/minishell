@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/10 13:17:36 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/10 17:03:55 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	parse_to_exec(char *input, t_data *data)
 	input = create_input(input);
 	cmd = split_cmd(input);
 	free(input);
+	input = NULL;
 	execute(cmd, data);
 	return (0);
 }
@@ -43,15 +44,19 @@ void	manage_history(char *input)
 
 void	minishell_loop(t_data *data)
 {
-	char	*line;
+	static char	*line = (char *) NULL;
 	char	*input;
 	
 	while (1)
 	{
+		if (line)
+			line = (char *) NULL;
+		rl_catch_signals = 0;
 		line = readline("🍄 MINISHELL 🍄 : ");
-		if (line == NULL)
+		printf("line === %s\n", line);
+		if (!line)
 			line = ft_strdup("exit");
-		if (*line)
+		if (line != NULL)
 		{
 			manage_history(line);
 			input = create_input(line);
@@ -60,7 +65,7 @@ void	minishell_loop(t_data *data)
 				ft_putstr_fd("unclosed quotes", 1);
 				return ;
 			}
-			count_redir(line, data);
+			count_redir(input, data);
 			parser(input, data);
 		}
 	}

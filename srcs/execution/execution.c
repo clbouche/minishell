@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 09:02:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/11/10 13:08:52 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/10 16:37:12 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,6 @@ char	*exec_pipes(char *line, char *new_input, t_data *d)
 	//puts("lol");
 	switch_fds(d);
 	//execute(input, d);
+	dprintf(2, " New input ==== %s\n", new_input);
 	return (new_input);
 }

@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 12:29:44 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/10 13:17:00 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/10 17:00:18 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,9 @@ char	*create_input(char *line)
 {
 	int 	len;
 	char	*input;
+	char	*tmp;
 
+	tmp = line;
 	if (!line)
 		return (NULL);
 	while (*line && ft_iswhitespace(*line))
@@ -77,6 +79,9 @@ char	*create_input(char *line)
 	if (len == -1)
 		return(0);
 	input = malloc(sizeof(char) * (len + 1));
+	if (input == NULL)
+		exit(FAILURE);
 	copy_input(input, line);
+	ft_memdel(&tmp);
 	return(input);
 }
