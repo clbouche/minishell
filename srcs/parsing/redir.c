@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/07 15:11:30 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/11/10 13:17:30 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,22 +91,29 @@ void	redir_output_append(char *str, t_data *data)
 void	redir_ouput(char *str, t_data *data)
 {
 	char	*file_name;
-	static int		i = 1;
+	static int		count = 1;
 	
 	file_name = recup_filename(str);
 	if (file_name)
 	{
-		data->file_out = open(file_name, O_CREAT | O_RDWR | O_TRUNC, 0644);
-		free(file_name);
-		if (i == data->count_redir)
+		data->file_out = open(file_name, O_RDWR | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
+		if (count == data->count_redir_out)
 		{
 			data->redir_out = true;
 			data->std_out = dup(1);
-			if (data->file_out < 0)
-				opening_error("problem while opening output");
 			dup2(data->file_out, 1);
 		}
-		i++;
+		if (data->file_out < 0)
+		{
+			perror(file_name);
+			free(file_name);
+			data->count_redir_out = -1;
+			data->redir_out = false;
+			data->bad_redir = true;
+			return ;
+		}
+		free(file_name);
 		close(data->file_out);
+		count++;
 	}
 }

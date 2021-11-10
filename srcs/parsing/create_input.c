@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_input.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 12:29:44 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/05 13:56:24 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/11/10 13:17:00 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	copy_input(char *dst, char *src)
 	{
 		if (ft_iswhitespace(*src) && (ft_iswhitespace(*(src + 1)) || *(src + 1) == '\0'))
 			src++;
-		if (*src == '"' || *src == '\'')
+		else if (*src == '"' || *src == '\'')
 		{
 			*(dst++) = *src;
 			quote = *(src++);
@@ -53,6 +53,8 @@ int		input_len(char *line)
 				i++;
 				line++;
 			}
+			if (!*line)
+				return (-1);
 			line++;
 			i += 2;
 		}
@@ -67,11 +69,13 @@ char	*create_input(char *line)
 	int 	len;
 	char	*input;
 
+	if (!line)
+		return (NULL);
 	while (*line && ft_iswhitespace(*line))
 		line++;
 	len = input_len(&*line);
-	if (len == 0)
-		return(NULL);
+	if (len == -1)
+		return(0);
 	input = malloc(sizeof(char) * (len + 1));
 	copy_input(input, line);
 	return(input);

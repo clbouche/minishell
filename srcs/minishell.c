@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/09 16:19:22 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/10 13:17:36 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ int	parse_to_exec(char *input, t_data *data)
 	char **cmd;
 
 	input = create_input(input);
-	check_redir(input, data);
+	input = check_redir(input, data);
+	if (!input)
+		return (1);
 	input = create_input(input);
 	cmd = split_cmd(input);
 	free(input);
@@ -47,18 +49,19 @@ void	minishell_loop(t_data *data)
 	while (1)
 	{
 		line = readline("🍄 MINISHELL 🍄 : ");
-		//line = readline("");
 		if (line == NULL)
 			line = ft_strdup("exit");
 		if (*line)
 		{
 			manage_history(line);
 			input = create_input(line);
-			if (input)
+			if (input == 0)
 			{
-				data->count_redir = count_redir(line);
-				parser(input, data);
+				ft_putstr_fd("unclosed quotes", 1);
+				return ;
 			}
+			count_redir(line, data);
+			parser(input, data);
 		}
 	}
 }
