@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 17:54:08 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/10 14:27:55 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/10 18:11:39 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,31 @@ char	*recup_filename(char *str)
 
 void		count_redir(char *line, t_data *data)
 {
-	while (*line)
+	int i;
+
+	i = 0;
+	while (line[i])
 	{
-		if (*line == '<')
+		if (line[i] == '<' && line[i + 1] != '<')
 		{
 			data->count_redir_in++;
 			data->redir_in = true;
 		}
-		if (*line == '>')
+		else if (line[i] == '>' && line[i + 1] != '>')
 		{
 			data->count_redir_out++;
 			data->redir_out = true;
+		}
+		else if (line[i] == '>' && line[i + 1] == '>')
+		{
+			data->count_redir_append++;
+			data->redir_out = true;
+			i += 1;
+		}
+		else if (line[i] == '<' && line[i + 1] == '<')
+		{
+			data->count_redir_heredoc++;
+			i += 1;
 		}
 		line++;
 	}
@@ -97,10 +111,7 @@ char	*check_redir(char *line, t_data *data)
 	while (line[i] && (data->redir_out == true || data->redir_in == true))
 	{
 		if (line[i] == '<' || line[i] == '>')
-		{
-			printf("enter\n");
 			manage_redir(line, i, data);
-		}
 		i++;
 	}
 	if (data->bad_redir == true)

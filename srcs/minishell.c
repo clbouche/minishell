@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/10 14:28:00 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/10 18:11:31 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	parse_to_exec(char *input, t_data *data)
 
 	input = create_input(input);
 	input = check_redir(input, data);
-	printf("input : [%s]\n", input);
 	if (!input)
 		return (1);
 	input = create_input(input);
