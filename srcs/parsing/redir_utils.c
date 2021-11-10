@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 17:54:08 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/10 11:43:45 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/10 14:27:55 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ void		count_redir(char *line, t_data *data)
 {
 	while (*line)
 	{
-		//est ce que je dois differencier le type de redirection? -> a voir 
 		if (*line == '<')
 		{
 			data->count_redir_in++;
@@ -98,7 +97,10 @@ char	*check_redir(char *line, t_data *data)
 	while (line[i] && (data->redir_out == true || data->redir_in == true))
 	{
 		if (line[i] == '<' || line[i] == '>')
+		{
+			printf("enter\n");
 			manage_redir(line, i, data);
+		}
 		i++;
 	}
 	if (data->bad_redir == true)

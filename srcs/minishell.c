@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/10 13:17:36 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/10 14:28:00 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	parse_to_exec(char *input, t_data *data)
 
 	input = create_input(input);
 	input = check_redir(input, data);
+	printf("input : [%s]\n", input);
 	if (!input)
 		return (1);
 	input = create_input(input);
@@ -60,7 +61,7 @@ void	minishell_loop(t_data *data)
 				ft_putstr_fd("unclosed quotes", 1);
 				return ;
 			}
-			count_redir(line, data);
+			count_redir(input, data);
 			parser(input, data);
 		}
 	}
