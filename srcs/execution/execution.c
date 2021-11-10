@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 09:02:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/11/09 13:35:05 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/10 12:17:10 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,26 +29,28 @@ char	*exec_pipes(char *line, char *new_input, t_data *d)
 	(void)line;
 	(void)new_input;
 	(void)d;
-	char **input;
+	//char **input;
 
 	d->std_out = dup(1);
 	d->std_in = dup(0);
 	d->piped = true;
 	if (pipe(d->fds) == -1)
 		puts("error_pipe attention oublie pas dexit proprement");
-	input = ft_split(line, ' ');
-	ft_memdel(&line);
+	//input = ft_split(line, ' ');
 	g_sig.pid = fork();
 	if (g_sig.pid == -1)
 		puts("error_pid attention oublie pas dexit proprement");//pening_error("Fork");	
 	if (g_sig.pid == 0)
 	{
 		//free(line);
+		puts("ohehoooooooooooooooooooooooooo");
 		open_fds(d);
-		execute(input, d);
+		parse_to_exec(line, d);
+		exit(g_sig.status);
 	}
 	else if (g_sig.pid < 0)
 		exit(FAILURE);
+	puts("lol");
 	switch_fds(d);
 	//execute(input, d);
 	return (new_input);
