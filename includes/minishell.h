@@ -91,9 +91,18 @@ typedef	struct s_data
 	bool	redir;
 	bool	redir_in;
 	bool	redir_out;
+<<<<<<< HEAD
 	bool	bad_redir;
 	int		count_redir_in;
 	int		count_redir_out;
+=======
+	bool	piped;
+	bool	bad_redir;
+	int		count_redir_in;
+	int		count_redir_out;
+	int		count_redir_append;
+	int		count_redir_heredoc;
+>>>>>>> end_parsing
 }				t_data;
 
 /*
@@ -123,7 +132,7 @@ void	heredoc_loop(char *delimiter, t_data *data, int *heredoc_pipe);
 char	*define_delimiter(char *str);
 void	redir_input(char *str, t_data *data);
 void	redir_output_append(char *str, t_data *data);
-void	redir_ouput(char *str, t_data *data);
+void	redir_output(char *str, t_data *data);
 char	*recup_filename(char *str);
 int		recup_file_len(char *str);
 

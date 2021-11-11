@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 17:54:08 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/10 15:02:53 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/11 11:25:06 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,23 +76,30 @@ void		count_redir(char *line, t_data *data)
 	int i;
 
 	i = 0;
-	if (line[i] == '\0')
+	while (line[i])
 	{
-		while (line && line[i])
+		if (line[i] == '<' && line[i + 1] != '<')
 		{
-			//est ce que je dois differencier le type de redirection? -> a voir 
-			if (line[i] == '<')
-			{
-				data->count_redir_in++;
-				data->redir_in = true;
-			}
-			if (line[i] == '>')
-			{
-				data->count_redir_out++;
-				data->redir_out = true;
-			}
-			i++;
+			data->count_redir_in++;
+			data->redir_in = true;
 		}
+		else if (line[i] == '>' && line[i + 1] != '>')
+		{
+			data->count_redir_out++;
+			data->redir_out = true;
+		}
+		else if (line[i] == '>' && line[i + 1] == '>')
+		{
+			data->count_redir_append++;
+			data->redir_out = true;
+			i += 1;
+		}
+		else if (line[i] == '<' && line[i + 1] == '<')
+		{
+			data->count_redir_heredoc++;
+			i += 1;
+		}
+		line++;
 	}
 }
 
