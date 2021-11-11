@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 17:54:08 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/03 16:01:48 by claclou          ###   ########.fr       */
+/*   Updated: 2021/11/11 11:25:06 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,30 +71,54 @@ char	*recup_filename(char *str)
 	return (file_name);
 }
 
-int		count_redir(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (*line)
-	{
-		//est ce que je dois differencier le type de redirection? -> a voir 
-		if (*line == '<' || *line == '>')
-			i++;
-		line++;
-	}
-	return (i);
-}
-
-void	check_redir(char *line, t_data *data)
+void		count_redir(char *line, t_data *data)
 {
 	int i;
 
 	i = 0;
 	while (line[i])
 	{
+		if (line[i] == '<' && line[i + 1] != '<')
+		{
+			data->count_redir_in++;
+			data->redir_in = true;
+		}
+		else if (line[i] == '>' && line[i + 1] != '>')
+		{
+			data->count_redir_out++;
+			data->redir_out = true;
+		}
+		else if (line[i] == '>' && line[i + 1] == '>')
+		{
+			data->count_redir_append++;
+			data->redir_out = true;
+			i += 1;
+		}
+		else if (line[i] == '<' && line[i + 1] == '<')
+		{
+			data->count_redir_heredoc++;
+			i += 1;
+		}
+		line++;
+	}
+}
+
+char	*check_redir(char *line, t_data *data)
+{
+	int i;
+
+	i = 0;
+	while (line[i] && (data->redir_out == true || data->redir_in == true))
+	{
 		if (line[i] == '<' || line[i] == '>')
 			manage_redir(line, i, data);
 		i++;
 	}
+	if (data->bad_redir == true)
+	{
+		free(line);
+		line = NULL;
+		data->bad_redir = false;
+	}
+	return (line);
 }

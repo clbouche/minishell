@@ -87,11 +87,15 @@ typedef	struct s_data
 	char	pwd[MAX];
 	bool	have_path;
 	bool	pipe;
+	bool	piped;
 	bool	redir;
 	bool	redir_in;
 	bool	redir_out;
-	bool	piped;
-	int		count_redir;
+	bool	bad_redir;
+	int		count_redir_in;
+	int		count_redir_out;
+	int		count_redir_append;
+	int		count_redir_heredoc;
 }				t_data;
 
 /*
@@ -113,15 +117,15 @@ int		parse_to_exec(char *input, t_data *data);
 /*
 ** redirections 
 */
-int		count_redir(char *line);
-void	check_redir(char *line, t_data *data);
+void	count_redir(char *line, t_data *data);
+char	*check_redir(char *line, t_data *data);
 void	manage_redir(char *input, int i, t_data *data);
 void	redir_read_input(char *str, t_data *data);
 void	heredoc_loop(char *delimiter, t_data *data, int *heredoc_pipe);
 char	*define_delimiter(char *str);
 void	redir_input(char *str, t_data *data);
 void	redir_output_append(char *str, t_data *data);
-void	redir_ouput(char *str, t_data *data);
+void	redir_output(char *str, t_data *data);
 char	*recup_filename(char *str);
 int		recup_file_len(char *str);
 

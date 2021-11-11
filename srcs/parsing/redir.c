@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/07 15:11:30 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/11/10 18:11:27 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,18 +69,29 @@ void	redir_input(char *str, t_data *data)
 void	redir_output_append(char *str, t_data *data)
 {
 	char	*file_name;
+	static int	count = 1;
 	
 	file_name = recup_filename(str);
 	if (file_name)
 	{
-		data->redir_out = true;
-		data->std_out = dup(1);
-		data->file_out = open(file_name, O_CREAT | O_RDWR | O_APPEND, 0644);
+		data->file_out =  open(file_name, O_RDWR | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
+		if (count == data->count_redir_append)
+		{
+			data->std_out = dup(1);
+			dup2(data->file_out, 1);
+		}
+		else if (data->file_out < 0)
+		{
+			perror(file_name);
+			free(file_name);
+			data->count_redir_out = -1;
+			data->redir_out = false;
+			data->bad_redir = true;
+			return ;
+		}
 		free(file_name);
-		if (data->file_out < 0)
-			opening_error("problem while opening append");
-		dup2(data->file_out, 1);
 		close(data->file_out);
+		count++;
 	}	
 }
 
@@ -88,25 +99,31 @@ void	redir_output_append(char *str, t_data *data)
 /*
 ** Redirige le contenu de l'information demander vers un fichier.
 */
-void	redir_ouput(char *str, t_data *data)
+void	redir_output(char *str, t_data *data)
 {
 	char	*file_name;
-	static int		i = 1;
+	static int		count = 1;
 	
 	file_name = recup_filename(str);
 	if (file_name)
 	{
-		data->file_out = open(file_name, O_CREAT | O_RDWR | O_TRUNC, 0644);
-		free(file_name);
-		if (i == data->count_redir)
+		data->file_out = open(file_name, O_RDWR | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
+		if (count == data->count_redir_out)
 		{
-			data->redir_out = true;
 			data->std_out = dup(1);
-			if (data->file_out < 0)
-				opening_error("problem while opening output");
 			dup2(data->file_out, 1);
 		}
-		i++;
+		if (data->file_out < 0)
+		{
+			perror(file_name);
+			free(file_name);
+			data->count_redir_out = -1;
+			data->redir_out = false;
+			data->bad_redir = true;
+			return ;
+		}
+		free(file_name);
 		close(data->file_out);
+		count++;
 	}
 }

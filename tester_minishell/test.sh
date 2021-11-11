@@ -107,7 +107,7 @@ exec_test 'cd .. '
 # # ENV EXPANSIONS
 # # ENV_SHOW="env | sort | grep -v SHLVL | grep -v _="
 # # EXPORT_SHOW="export | sort | grep -v SHLVL | grep -v _= | grep -v OLDPWD"
-exec_test 'export $USER=prout'
+exec_test 'export $USER=test'
 # exec_test 'export ='
 # exec_test 'export do =di'
 # exec_test 'export 1TEST='

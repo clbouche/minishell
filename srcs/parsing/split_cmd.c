@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:32:10 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/03 18:01:33 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/11/10 11:50:32 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,8 @@ char	**split_cmd(char *line)
 	size_t		count;
 
 	i = 0;
+	if (!line)
+		return (NULL);
 	count = count_args(line);
 	cmd = malloc(sizeof(char *) * (count + 1));
 	if (!cmd)
