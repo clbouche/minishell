@@ -6,21 +6,11 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:49:47 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/10 12:16:38 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/11 15:10:59 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-extern t_sig sig;
-
-// static int is_regular_file(const char *bin)
-// {
-// 	struct  stat bin_stat;
-	
-// 	stat(bin, &bin_stat);
-// 	return(S_ISREG(bin_stat.st_mode));
-// }
 
 void	exec_bin(char **cmd, char *bin, t_data *d)
 {

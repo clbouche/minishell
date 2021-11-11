@@ -6,13 +6,12 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:54 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/09 15:33:19 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/11 15:14:47 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern	t_sig g_signal;
 
 void	init_datas(t_data *data)
 {

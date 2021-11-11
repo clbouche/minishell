@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/09 16:19:22 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/11 15:14:05 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	minishell_loop(t_data *data)
 	while (1)
 	{
 		line = readline("🍄 MINISHELL 🍄 : ");
-		//line = readline("");
 		if (line == NULL)
 			line = ft_strdup("exit");
 		if (*line)
