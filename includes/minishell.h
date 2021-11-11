@@ -91,18 +91,11 @@ typedef	struct s_data
 	bool	redir;
 	bool	redir_in;
 	bool	redir_out;
-<<<<<<< HEAD
-	bool	bad_redir;
-	int		count_redir_in;
-	int		count_redir_out;
-=======
-	bool	piped;
 	bool	bad_redir;
 	int		count_redir_in;
 	int		count_redir_out;
 	int		count_redir_append;
 	int		count_redir_heredoc;
->>>>>>> end_parsing
 }				t_data;
 
 /*

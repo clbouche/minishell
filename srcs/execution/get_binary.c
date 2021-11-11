@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 15:15:48 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/10 16:38:46 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/11 14:26:56 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,18 @@ char *find_bin(char **paths, char **cmd)
 	
 	i = 0;
 	bin = NULL;
-	while (paths[i] && bin == NULL)
+	if (paths)
 	{
-		bin = test_path(cmd, paths, bin, i);
-		if (stat(bin, &stat_b) == 0)
-			break ;
-		ft_memdel(&bin);
-		i++;
+		while (paths[i] && bin == NULL)
+		{
+			bin = test_path(cmd, paths, bin, i);
+			if (stat(bin, &stat_b) == 0)
+				break ;
+			ft_memdel(&bin);
+			i++;
+		}
 	}
-	free_array(paths);
+	//free_array(paths);
 	return(bin);
 }
 
@@ -93,7 +96,9 @@ char	**get_path(t_data *d)
 	if (d->envp[i] == NULL)
 		return(NULL);
 	path = ft_substr(d->envp[i], 4, ft_strlen(d->envp[i]));
+	//printf("path == %s\n", path);
 	paths = ft_split(path, ':');
+	//printf("paths == %p\n", path);
 	ft_memdel(&path);
 	return (paths);
 }
