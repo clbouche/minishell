@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_input.c                                     :+:      :+:    :+:   */
+/*   clean_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/19 12:29:44 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/11 14:58:12 by ldes-cou         ###   ########.fr       */
+/*   Created: 2021/11/12 13:48:26 by clbouche          #+#    #+#             */
+/*   Updated: 2021/11/12 13:49:45 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int		input_len(char *line)
 	return (i);
 }
 
-char	*create_input(char *line)
+char	*clean_input(char *line)
 {
 	int 	len;
 	char	*input;
