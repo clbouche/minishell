@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/12 12:20:21 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/12 15:37:22 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** Lit l'entree de la source actuelle 
 ** jusqu'a ce que le delimiteur soit croise. 
 */
-void	redir_heredoc(char *str, t_data *data)
+void redir_heredoc(char *str, t_data *data)
 {
 	char	*delimiter;
 	int		pid;
@@ -24,7 +24,7 @@ void	redir_heredoc(char *str, t_data *data)
 
 	delimiter = define_delimiter(str);
 	printf("delimiter : %s\n", delimiter);
-	//mute le signal ctlr + 
+	g_sig.heredoc = true;
 	pipe(heredocs);
 	pid = fork();
 	if (pid == 0)
@@ -33,8 +33,11 @@ void	redir_heredoc(char *str, t_data *data)
 		close(heredocs[1]);
 		exit(1);
 	}
+	puts("here");
 	waitpid(-1, &g_sig.status, 0);
 	close(heredocs[1]);
+	
+	// 	exit(FAILURE);
 }
 
 /*

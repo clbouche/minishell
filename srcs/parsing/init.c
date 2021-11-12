@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:54 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/11 15:15:43 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/12 15:10:17 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	init_datas(t_data *data)
 	data->redir_in = false;
 	data->redir_out = false;
 	data->bad_redir = false;
+	g_sig.heredoc = false;
 }
 
 t_list	*init(t_data *data, char **envp)

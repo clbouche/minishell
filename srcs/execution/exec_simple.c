@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:49:47 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/12 11:33:39 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/12 15:20:54 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	exec_bin(char **cmd, char *bin, t_data *d)
 	
 	if (bin == NULL)
 	{
-		puts("youhouuuuu");
 		free_exit(d, cmd[0], 127, ": command not found\n");
 		free_array(cmd);
 		g_sig.pid = 1;

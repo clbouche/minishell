@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 14:12:46 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/12 12:20:06 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/12 15:44:18 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,23 +100,25 @@ void	heredoc_loop(char *delimiter, t_data *data, int *heredocs)
 {
 	char	*input;
 	char	*new_input;
+	(void)heredocs;
 
 	while(1)
 	{
+		g_sig.prog = 1;
 		input = readline("> ");
-		if (ft_strcmp(input, delimiter) == 0)
+		if (ft_strcmp(input, delimiter) == 0 || g_sig.sigint == 1)
 		{
+			if (g_sig.sigint == 1)
+				data->heredoc_int = true;
 			free(input);
+			input = NULL;
 			break;
 		}
 		if (check_expand(input) == 0)
 		{
 			new_input = manage_expand(input, data);
 			input = new_input;
-			//free(input);
 		}
-		write(heredocs[1], input, ft_strlen(input));
-		write(heredocs[1], "\n", 1);
 		free(input);
 	}
 }
