@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/11 15:17:28 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/12 09:15:25 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	parse_to_exec(char *input, t_data *data)
 {
 	char **cmd;
 
+	
 	input = create_input(input);
 	input = check_redir(input, data);
 	if (!input || input[0] == 0)

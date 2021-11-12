@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/11 11:58:14 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/12 09:16:23 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,7 @@ int		parser(char *line, t_data *data)
 		}
 		i++;
 	}
+	// data->std_out = dup(1);
+	// data->std_in = dup(0);
 	return (parse_to_exec(line, data));
 }
