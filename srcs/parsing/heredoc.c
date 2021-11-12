@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 14:12:46 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/12 15:44:18 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/12 15:51:39 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,6 @@ void	heredoc_loop(char *delimiter, t_data *data, int *heredocs)
 		input = readline("> ");
 		if (ft_strcmp(input, delimiter) == 0 || g_sig.sigint == 1)
 		{
-			if (g_sig.sigint == 1)
-				data->heredoc_int = true;
 			free(input);
 			input = NULL;
 			break;
