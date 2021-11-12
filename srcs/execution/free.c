@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 12:08:22 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/11/11 13:28:36 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/12 10:14:22 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void free_lst(t_list *lst)
 void	free_exit(t_data *d, char *error, int exit_code, char *pb)
 {
 	//perror(error);
-	ft_putstr_fd("🍄 MINISHELL 🍄 : ", 2);
+	//ft_putstr_fd("🍄 MINISHELL 🍄 : ", 2);
 	ft_putstr_fd(error, 2);
 	ft_putstr_fd(pb, 2);
 	free_lst(d->env);

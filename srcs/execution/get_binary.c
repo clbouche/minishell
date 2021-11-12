@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 15:15:48 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/11 14:26:56 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/12 11:12:02 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,7 @@ char	**get_path(t_data *d)
 	if (d->envp[i] == NULL)
 		return(NULL);
 	path = ft_substr(d->envp[i], 4, ft_strlen(d->envp[i]));
-	//printf("path == %s\n", path);
 	paths = ft_split(path, ':');
-	//printf("paths == %p\n", path);
 	ft_memdel(&path);
 	return (paths);
 }

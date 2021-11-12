@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 09:02:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/11/11 12:41:40 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/12 11:12:43 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,22 @@
 
 void	execute(char **cmd, t_data *d)
 {
+	
 	d->have_path = false;
 	if (ft_strchr(cmd[0], '/'))
 		d->have_path = true;
 	if (is_builtins(cmd) != FAILURE)
 		exec_builtin(cmd, d);
 	else
-	{
 		exec_simple(cmd, d);
-	}
 	close_fds(d);
 	
 }
 
 char	*exec_pipes(char *line, char *new_input, t_data *d)
 {
-	printf("%i  %i\n", d->std_out, d->std_in);
 	d->std_out = dup(1);
-	d->std_in = dup(0);
-	printf("%i  %i\n", d->std_out, d->std_in);
-	printf("%s\n", line);
-	
+	d->std_in = dup(0);	
 	if (pipe(d->fds) == -1)
 		puts("error_pipe attention oublie pas dexit proprement");
 	g_sig.pid = fork();
@@ -50,6 +45,7 @@ char	*exec_pipes(char *line, char *new_input, t_data *d)
 		exit(FAILURE);
 	switch_fds(d);
 	//execute(input, d);
-	dprintf(2, " New input ==== %s\n", new_input);
+	free(line);
+	//close_fds(d);
 	return (new_input);
 }

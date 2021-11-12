@@ -1,0 +1,12 @@
+a.out
+blah.sh
+includes
+Makefile
+minishell
+obj
+out
+sources.mk
+srcs
+test.c
+tester_minishell
+tests_exec

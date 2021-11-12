@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 11:36:04 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/11/11 12:02:24 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/12 11:08:42 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void switch_fds(t_data *d)
 
 void  close_fds(t_data *d)
 {
-	if (d->redir_out == true)
+	if (d->redir_out == true || d->piped == true)
 	{
 		close(d->file_out);
 		//d->std_out = 1;
@@ -40,7 +40,7 @@ void  close_fds(t_data *d)
 		close(d->std_out);
 		d->redir_out = false;
 	}
-	if (d->redir_in == true)
+	if (d->redir_in == true || d->piped == true)
 	{
 		close(d->file_in);
 		//d->std_in = 0;

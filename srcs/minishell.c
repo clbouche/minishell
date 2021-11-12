@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/12 09:15:25 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/12 11:35:20 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ t_sig g_sig;
 int	parse_to_exec(char *input, t_data *data)
 {
 	char **cmd;
-
 	
 	input = create_input(input);
 	input = check_redir(input, data);
@@ -28,8 +27,7 @@ int	parse_to_exec(char *input, t_data *data)
 		return (1);
 	input = create_input(input);
 	cmd = split_cmd(input);
-	free(input);
-	input = NULL;
+	ft_memdel(&input);
 	execute(cmd, data);
 	return (0);
 }

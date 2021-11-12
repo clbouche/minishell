@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:49:47 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/11 15:17:14 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/12 11:33:39 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,11 @@ void	exec_bin(char **cmd, char *bin, t_data *d)
 		puts("youhouuuuu");
 		free_exit(d, cmd[0], 127, ": command not found\n");
 		free_array(cmd);
+		g_sig.pid = 1;
+		if (d->piped == true)
+			close_fds(d);
 		//free(d);
-		exit(FAILURE);
+		exit(g_sig.status);
 	}
 	free(cmd[0]);
 	cmd[0] = bin;
@@ -36,10 +39,10 @@ void	exec_bin(char **cmd, char *bin, t_data *d)
 		}
 	}
 	g_sig.prog = 1;
-	g_sig.status = 0;
+	g_sig.status = 1;
 	free_array(cmd);
 	cmd = NULL;
-	exit(FAILURE);
+	exit(g_sig.pid);
 }
 
 void    exec_child(char **cmd, t_data *d)
