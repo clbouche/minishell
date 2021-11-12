@@ -87,10 +87,10 @@ typedef	struct s_data
 	char	pwd[MAX];
 	bool	have_path;
 	bool	pipe;
+	bool	piped;
 	bool	redir;
 	bool	redir_in;
 	bool	redir_out;
-	bool	piped;
 	bool	bad_redir;
 	int		count_redir_in;
 	int		count_redir_out;

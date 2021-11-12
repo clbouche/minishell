@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:49:47 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/10 13:17:56 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/11 14:26:05 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,28 @@ void	exec_bin(char **cmd, char *bin, t_data *d)
 	struct  stat stat_b;
 	
 	if (bin == NULL)
+	{
+		puts("youhouuuuu");
 		free_exit(d, cmd[0], 127, ": command not found\n");
+		free_array(cmd);
+		//free(d);
+		exit(FAILURE);
+	}
 	free(cmd[0]);
-    cmd[0] = bin;
+	cmd[0] = bin;
 	if ((stat(bin, &stat_b) == 0 && stat_b.st_mode & S_IXUSR))
 	{
-		if (execve(bin, cmd, d->envp) != -1)
+		if (execve(bin, cmd, d->envp) == -1)
 		{
 			write(1, "123\n", 4);
-			g_sig.prog = 1;
-			g_sig.status = 0;
+			free_array(cmd);
+			cmd = NULL;
 		}
 	}
-	g_sig.status = 1;
-	g_sig.prog = 0;
-	free(bin);
+	g_sig.prog = 1;
+	g_sig.status = 0;
 	free_array(cmd);
+	cmd = NULL;
 	exit(FAILURE);
 }
 
@@ -51,6 +57,7 @@ void    exec_child(char **cmd, t_data *d)
 	char *bin;
 	char **paths;
 
+	paths = NULL;
 	bin = NULL;
 	if (d->have_path == false)
 	{
@@ -63,6 +70,7 @@ void    exec_child(char **cmd, t_data *d)
 		bin = ft_strdup(cmd[0]);
 	}
 	exec_bin(cmd, bin, d);
+	//free(bin);
 }
 
 

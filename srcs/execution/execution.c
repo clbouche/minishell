@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 09:02:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/11/10 14:53:26 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/11 12:41:40 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,21 @@ void	execute(char **cmd, t_data *d)
 	if (is_builtins(cmd) != FAILURE)
 		exec_builtin(cmd, d);
 	else
+	{
 		exec_simple(cmd, d);
+	}
 	close_fds(d);
+	
 }
 
 char	*exec_pipes(char *line, char *new_input, t_data *d)
 {
+	printf("%i  %i\n", d->std_out, d->std_in);
 	d->std_out = dup(1);
 	d->std_in = dup(0);
-	d->piped = true;
+	printf("%i  %i\n", d->std_out, d->std_in);
+	printf("%s\n", line);
+	
 	if (pipe(d->fds) == -1)
 		puts("error_pipe attention oublie pas dexit proprement");
 	g_sig.pid = fork();
@@ -43,6 +49,7 @@ char	*exec_pipes(char *line, char *new_input, t_data *d)
 	else if (g_sig.pid < 0)
 		exit(FAILURE);
 	switch_fds(d);
-	printf("new input == [%s]\n", new_input);
+	//execute(input, d);
+	dprintf(2, " New input ==== %s\n", new_input);
 	return (new_input);
 }

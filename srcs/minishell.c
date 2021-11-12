@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/10 18:11:31 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/11 14:33:02 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,12 @@ int	parse_to_exec(char *input, t_data *data)
 
 	input = create_input(input);
 	input = check_redir(input, data);
-	if (!input)
+	if (!input || input[0] == 0)
 		return (1);
 	input = create_input(input);
 	cmd = split_cmd(input);
 	free(input);
+	input = NULL;
 	execute(cmd, data);
 	return (0);
 }
@@ -43,15 +44,19 @@ void	manage_history(char *input)
 
 void	minishell_loop(t_data *data)
 {
-	char	*line;
+	static char	*line = (char *) NULL;
 	char	*input;
 	
 	while (1)
 	{
+		if (line)
+			line = (char *) NULL;
+		rl_catch_signals = 0;
 		line = readline("🍄 MINISHELL 🍄 : ");
-		if (line == NULL)
+		//printf("line === %s\n", line);
+		if (!line)
 			line = ft_strdup("exit");
-		if (*line)
+		if (line != NULL)
 		{
 			manage_history(line);
 			input = create_input(line);

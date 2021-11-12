@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_input.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 12:29:44 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/10 14:40:29 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/11 14:58:12 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		input_len(char *line)
 	char	quote;
 
 	i = 0;
-	while(*line && line)
+	while(line && *line)
 	{
 		if (ft_iswhitespace(*line) && ((ft_iswhitespace(*(line + 1)) || *(line + 1) == '\0')))
 			line++;
@@ -79,9 +79,9 @@ char	*create_input(char *line)
 	if (len == -1)
 		return(0);
 	input = malloc(sizeof(char) * (len + 1));
-	if (!input)
-		exit(EXIT_FAILURE);
+	// if (!input)
+	// 	exit(EXIT_FAILURE);
 	copy_input(input, line);
-	free(tmp);
+	//free(tmp);
 	return(input);
 }
