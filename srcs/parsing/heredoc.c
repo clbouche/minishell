@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 14:12:46 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/02 17:10:51 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/12 12:20:06 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,20 @@ char	*define_delimiter(char *str)
 	if (str[i] == '"' || str[i] == '\'')
 	{
 		quote = str[i];
-		i++;
+		str[i++] = ' ';
 		while(str[i] && str[i] != quote)
-			delimiter[j++] = str[i++];
+		{
+			delimiter[j++] = str[i];
+			str[i++] = ' ';
+		}
 	}
 	else 
 	{
 		while (str[i] && str[i] != ' ')
-			delimiter[j++] = str[i++];
+		{
+			delimiter[j++] = str[i];
+			str[i++] = ' ';
+		}
 	}
 	delimiter[j] = '\0';
 	return (delimiter);
