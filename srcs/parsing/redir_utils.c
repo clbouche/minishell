@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 17:54:08 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/11 11:25:06 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/12 12:23:35 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,20 @@ char	*recup_filename(char *str)
 		if (str[i] == '\'' || str[i] == '"')
 		{
 			quote = str[i];
-			i++;
+			str[i++] = ' ';
 			while(str[i] && str[i] != quote)
-				file_name[j++] = str[i++];
+			{
+				file_name[j++] = str[i];
+				str[i++] = ' ';
+			}
 			file_name[j] = '\0';
 			return (file_name);
 		}
 		else
-			file_name[j++] = str[i++];
+		{
+			file_name[j++] = str[i];
+			str[i++] = ' ';
+		}
 	}
 	file_name[j] = '\0';
 	return (file_name);
@@ -97,6 +103,7 @@ void		count_redir(char *line, t_data *data)
 		else if (line[i] == '<' && line[i + 1] == '<')
 		{
 			data->count_redir_heredoc++;
+			data->redir_in = true;
 			i += 1;
 		}
 		line++;

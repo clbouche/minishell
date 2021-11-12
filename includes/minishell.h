@@ -120,7 +120,7 @@ int		parse_to_exec(char *input, t_data *data);
 void	count_redir(char *line, t_data *data);
 char	*check_redir(char *line, t_data *data);
 void	manage_redir(char *input, int i, t_data *data);
-void	redir_read_input(char *str, t_data *data);
+void	redir_heredoc(char *str, t_data *data);
 void	heredoc_loop(char *delimiter, t_data *data, int *heredoc_pipe);
 char	*define_delimiter(char *str);
 void	redir_input(char *str, t_data *data);
