@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   variables.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 13:46:38 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/03 11:44:18 by claclou          ###   ########.fr       */
+/*   Updated: 2021/11/15 11:19:54 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ char	*manage_variable(char *line, t_data *data)
 
 	j = 0;
 	new_input = NULL;
+	name = NULL;
 	while(line[j] != '$')
 		j++;
 	if (line[j + 1] == '?')
@@ -142,8 +143,8 @@ char	*manage_variable(char *line, t_data *data)
 		type = 1;
 		name = copy_name(&line[j + 1]);
 		content = find_content(name, data);
-		free(name);
 	}
 	new_input = create_new_input(line, content, type);
+	free(name);
 	return(new_input);
 }

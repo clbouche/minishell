@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 14:12:46 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/12 15:18:07 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/15 11:19:26 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,16 +90,17 @@ int		check_expand(char *str)
 	while(str[i])
 	{
 		if (str[i] == '$')
-			return (0);
+			return (i);
 		i++;
 	}
-	return (1);
+	return (-1);
 }
 
 void	heredoc_loop(char *delimiter, t_data *data, int *heredocs)
 {
 	char	*input;
 	char	*new_input;
+	int		i;
 
 	(void)heredocs;
 	while(1)
@@ -117,7 +118,8 @@ void	heredoc_loop(char *delimiter, t_data *data, int *heredocs)
 			ft_strjoin_realloc(&new_input, "\n");
 			ft_strjoin_realloc(&new_input, input);
 		}
-		if (check_expand(input) == 0)
+		i = check_expand(input);
+		if (i >= 0)
 		{
 			new_input = manage_expand(input, data);
 			input = new_input;

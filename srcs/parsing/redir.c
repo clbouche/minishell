@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/12 13:40:13 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/15 10:36:00 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	redir_input(char *str, t_data *data)
 	file_name = recup_filename(str);
 	if (file_name)
 	{
-		data->redir_in = true;
+		data->redir->r_in = true;
 		data->std_in = dup(0);
 		data->file_in = open(file_name, O_RDWR);
 		if (data->file_in == -1)
@@ -75,7 +75,7 @@ void	redir_output_append(char *str, t_data *data)
 	if (file_name)
 	{
 		data->file_out =  open(file_name, O_RDWR | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
-		if (count == data->count_redir_append)
+		if (count == data->redir->count_append)
 		{
 			data->std_out = dup(1);
 			dup2(data->file_out, 1);
@@ -84,9 +84,9 @@ void	redir_output_append(char *str, t_data *data)
 		{
 			perror(file_name);
 			free(file_name);
-			data->count_redir_out = -1;
-			data->redir_out = false;
-			data->bad_redir = true;
+			data->redir->count_out = -1;
+			data->redir->r_out = false;
+			data->redir->bad_r = true;
 			return ;
 		}
 		free(file_name);
@@ -108,7 +108,7 @@ void	redir_output(char *str, t_data *data)
 	if (file_name)
 	{
 		data->file_out = open(file_name, O_RDWR | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
-		if (count == data->count_redir_out)
+		if (count == data->redir->count_out)
 		{
 			data->std_out = dup(1);
 			dup2(data->file_out, 1);
@@ -117,9 +117,9 @@ void	redir_output(char *str, t_data *data)
 		{
 			perror(file_name);
 			free(file_name);
-			data->count_redir_out = -1;
-			data->redir_out = false;
-			data->bad_redir = true;
+			data->redir->count_out = -1;
+			data->redir->r_out = false;
+			data->redir->bad_r = true;
 			return ;
 		}
 		free(file_name);

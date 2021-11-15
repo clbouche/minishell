@@ -70,6 +70,17 @@ typedef enum	s_builtin
 ** STRUCTURES
 */
 
+typedef struct s_redir
+{
+	bool	r;
+	bool	r_in;
+	bool	r_out;
+	bool	bad_r;
+	int		count_in;
+	int		count_out;
+	int		count_append;
+	int		count_heredoc;
+}				t_redir;
 
 typedef	struct s_data
 {
@@ -88,15 +99,10 @@ typedef	struct s_data
 	bool	have_path;
 	bool	pipe;
 	bool	piped;
-	bool	redir;
-	bool	redir_in;
-	bool	redir_out;
-	bool	bad_redir;
-	int		count_redir_in;
-	int		count_redir_out;
-	int		count_redir_append;
-	int		count_redir_heredoc;
+	t_redir		*redir;
 }				t_data;
+
+
 
 /*
 ** Init

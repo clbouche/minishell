@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 09:02:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/11/12 15:35:54 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/15 10:38:55 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	execute(char **cmd, t_data *d)
 {
-	
 	d->have_path = false;
 	if (ft_strchr(cmd[0], '/'))
 		d->have_path = true;
