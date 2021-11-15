@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/15 11:20:43 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/15 14:41:03 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	parse_to_exec(char *input, t_data *data)
 	char **cmd;
 	
 	input = clean_input(input);
+	//ici
+	printf("return clean input : [%s]\n", input);
 	input = check_redir(input, data);
 	if (!input || input[0] == 0)
 		return (1);
@@ -43,18 +45,19 @@ void	manage_history(char *input)
 
 void	minishell_loop(t_data *data)
 {
-	char *line;
+	char *line;// = (char *) NULL;
 	char	*input;
-	
 	while (1)
 	{
 		line = readline("🍄 MINISHELL 🍄 : ");
 		if (line == NULL)
 			line = ft_strdup("exit");
+		printf("line : [%s]\n", line);
 		if (line != NULL)
 		{
 			manage_history(line);
 			input = clean_input(line);
+			//free(line);
 			if (input == 0)
 			{
 				ft_putstr_fd("unclosed quotes", 1);

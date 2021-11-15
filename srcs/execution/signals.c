@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:36:42 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/10 16:33:36 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/15 13:42:30 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,5 @@ void sig_handler(int signo)
         }
         else
             ft_putstr_fd("\b\b  \b\b", 1);
-    } 
+    }
 }
