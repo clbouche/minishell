@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_fds.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 11:36:04 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/11/12 11:08:42 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/15 12:58:33 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,24 @@ void switch_fds(t_data *d)
 
 void  close_fds(t_data *d)
 {
-	if (d->redir_out == true || d->piped == true)
+	//static int close_fd = 1;
+	if (d->redir_out == true)
 	{
+		//write(2, "\n===close_out\n", 13);
 		close(d->file_out);
 		//d->std_out = 1;
 		dup2(d->std_out, 1);
 		close(d->std_out);
 		d->redir_out = false;
 	}
-	if (d->redir_in == true || d->piped == true)
+	if (d->redir_in == true)
 	{
+		
+		//write(2, "\n===close_in\n", 13);
 		close(d->file_in);
 		//d->std_in = 0;
 		dup2(d->std_in, 0);
 		close(d->std_in);
 		d->redir_in = false;
-	}
+	}	
 }

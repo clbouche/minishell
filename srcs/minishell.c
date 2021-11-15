@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/12 15:45:06 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/15 13:10:34 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ int	parse_to_exec(char *input, t_data *data)
 	input = create_input(input);
 	cmd = split_cmd(input);
 	ft_memdel(&input);
+	printf("d->std_in == %i\n", data->std_in);
+	printf("d->std_out == %i\n", data->std_out);
 	execute(cmd, data);
+	close_fds(data);
 	return (0);
 }
 
@@ -43,9 +46,10 @@ void	manage_history(char *input)
 
 void	minishell_loop(t_data *data)
 {
-	char *line;
+	char	*line;
 	char	*input;
 	
+	line = NULL;
 	while (1)
 	{
 		line = readline("🍄 MINISHELL 🍄 : ");
