@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 14:12:46 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/15 11:19:26 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/15 15:26:25 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ int		len_delimiter(char *str)
 		i++;
 	if (str[i] && (str[i] == '"' || str[i] == '\''))
 	{
-		quote = str[i];
-		i++;
+		quote = str[i++];
 		while(str[i + len] != quote)
 			len++;
+		i++;
 	}
 	else
 	{
-		i++;
+		//i++;
 		while(str[i + len] && (str[i] != ' ' || str[i] != '\0'))
 			len++;
 	}
@@ -49,11 +49,13 @@ char	*define_delimiter(char *str)
 	int 	i;
 	int		j;
 	char	quote;
-	char	*delimiter;
+	char *delimiter;
 
 	i = 0;
 	j = 0;
 	delimiter = malloc(sizeof(char) * (len_delimiter(str) + 1));
+	if (!delimiter)
+		exit(EXIT_FAILURE);
 	while (str[i] == ' ')
 		i++;
 	if (str[i] == '"' || str[i] == '\'')
@@ -113,8 +115,10 @@ void	heredoc_loop(char *delimiter, t_data *data, int *heredocs)
 			// ou non (comme echo)
 			break;
 		}
-		else if (ft_strcmp(input, delimiter)!= 0)
+		else if (ft_strcmp(input, delimiter) != 0)
 		{
+			//ft_strcat(new_input, "\n");
+			//ft_strcat(new_input, input);
 			ft_strjoin_realloc(&new_input, "\n");
 			ft_strjoin_realloc(&new_input, input);
 		}

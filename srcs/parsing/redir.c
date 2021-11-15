@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/15 10:36:00 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/15 15:19:21 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	redir_heredoc(char *str, t_data *data)
 	int		pid;
 	int		heredocs[2];
 
+	delimiter = NULL;
 	delimiter = define_delimiter(str);
 	//mute le signal ctlr + 
 	pipe(heredocs);
