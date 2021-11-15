@@ -101,14 +101,6 @@ typedef	struct s_data
 	bool	have_path;
 	bool	pipe;
 	bool	piped;
-	//bool	redir;
-	bool	redir_in;
-	bool	redir_out;
-	bool	bad_redir;
-	int		count_redir_in;
-	int		count_redir_out;
-	int		count_redir_append;
-	int		count_redir_heredoc;
 	bool	heredoc_int;
 	t_redir		*redir;
 }				t_data;

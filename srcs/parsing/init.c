@@ -6,7 +6,7 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:54 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/15 13:14:35 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/11/15 14:53:26 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,6 @@ void	init_datas(t_data *data)
 	getcwd(data->pwd, MAX);
 	data->piped = false;
 	data->pipe = false;
-	data->count_redir_in = 0;
-	data->count_redir_out = 0;
-	data->count_redir_append = 0;
-	data->count_redir_heredoc = 0;
-	data->redir_in = false;
-	data->redir_out = false;
-	data->bad_redir = false;
 	g_sig.heredoc = false;
 	init_redir(data);
 }
