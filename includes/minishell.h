@@ -101,7 +101,7 @@ typedef	struct s_data
 	bool	have_path;
 	bool	pipe;
 	bool	piped;
-	bool	redir;
+	//bool	redir;
 	bool	redir_in;
 	bool	redir_out;
 	bool	bad_redir;
