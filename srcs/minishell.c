@@ -6,7 +6,7 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/15 13:10:34 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/11/15 13:15:16 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ int	parse_to_exec(char *input, t_data *data)
 {
 	char **cmd;
 	
-	input = create_input(input);
+	input = clean_input(input);
 	input = check_redir(input, data);
 	if (!input || input[0] == 0)
 		return (1);
-	input = create_input(input);
+	input = clean_input(input);
 	cmd = split_cmd(input);
 	ft_memdel(&input);
 	printf("d->std_in == %i\n", data->std_in);
@@ -58,7 +58,7 @@ void	minishell_loop(t_data *data)
 		if (line != NULL)
 		{
 			manage_history(line);
-			input = create_input(line);
+			input = clean_input(line);
 			if (input == 0)
 			{
 				ft_putstr_fd("unclosed quotes", 1);

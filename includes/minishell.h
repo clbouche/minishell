@@ -72,6 +72,17 @@ typedef enum	s_builtin
 ** STRUCTURES
 */
 
+typedef struct s_redir
+{
+	bool	r;
+	bool	r_in;
+	bool	r_out;
+	bool	bad_r;
+	int		count_in;
+	int		count_out;
+	int		count_append;
+	int		count_heredoc;
+}				t_redir;
 
 typedef	struct s_data
 {
@@ -99,7 +110,10 @@ typedef	struct s_data
 	int		count_redir_append;
 	int		count_redir_heredoc;
 	bool	heredoc_int;
+	t_redir		*redir;
 }				t_data;
+
+
 
 /*
 ** Init
@@ -113,7 +127,7 @@ void	init_datas(t_data *data);
 */
 
 int		parser(char *line, t_data *data);
-char	*create_input(char *line);
+char	*clean_input(char *line);
 char	**split_cmd(char *line);
 int		parse_to_exec(char *input, t_data *data);
 

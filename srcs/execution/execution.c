@@ -6,7 +6,7 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 09:02:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/11/15 12:36:18 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/11/15 13:13:44 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	execute(char **cmd, t_data *d)
 {
-	
 	d->have_path = false;
 	if (ft_strchr(cmd[0], '/'))
 		d->have_path = true;

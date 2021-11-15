@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 14:12:46 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/12 15:51:39 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/15 13:14:26 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,10 @@ int		check_expand(char *str)
 	while(str[i])
 	{
 		if (str[i] == '$')
-			return (0);
+			return (i);
 		i++;
 	}
-	return (1);
+	return (-1);
 }
 
 void	heredoc_loop(char *delimiter, t_data *data, int *heredocs)
@@ -101,7 +101,9 @@ void	heredoc_loop(char *delimiter, t_data *data, int *heredocs)
 	char	*input;
 	char	*new_input;
 	(void)heredocs;
+	int		i;
 
+	(void)heredocs;
 	while(1)
 	{
 		g_sig.prog = 1;
@@ -110,13 +112,25 @@ void	heredoc_loop(char *delimiter, t_data *data, int *heredocs)
 		{
 			free(input);
 			input = NULL;
+			//afficher l'input qu'on a concatener dans la sortie standard
+			// ou la fonction s'en preoccupe (comme cat)
+			// ou non (comme echo)
 			break;
 		}
-		if (check_expand(input) == 0)
+		else if (ft_strcmp(input, delimiter)!= 0)
+		{
+			ft_strjoin_realloc(&new_input, "\n");
+			ft_strjoin_realloc(&new_input, input);
+		}
+		i = check_expand(input);
+		if (i >= 0)
 		{
 			new_input = manage_expand(input, data);
 			input = new_input;
 		}
+		//printf("new input : %s\n", new_input);
+		//write(heredocs[1], new_input, ft_strlen(new_input));
+		//write(heredocs[1], "\n", 1);
 		free(input);
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bool_check_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:22:30 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/03 16:26:10 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/11/15 11:23:04 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_list *check_exist_var(char *name, t_data *data)
 bool	check_char_file(char c)
 {
 	if (ft_isalpha(c) || c == '_' || ft_isalnum(c) || c == '$' || c == '%' 
-	|| c == '{' || c == '}')
+	|| c == '{' || c == '}' || c == '.')
 		return (true);
 	return (false);
 }

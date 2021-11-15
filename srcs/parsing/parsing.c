@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/12 15:39:24 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/15 13:14:46 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char	*manage_quotes(char *line, int i, int quote, t_data *data)
+{
+	char	*new_line;
+
+	while(line[i] != quote)
+	{
+		if (line[i] == '$' && quote == '"')
+		{
+			new_line = manage_expand(line, data);
+			line = new_line;
+		}
+		i++;
+	}
+	return (line);
+}
 
 /*
 ** Verifie le type de redirections dont il s'agit 
@@ -46,12 +62,14 @@ char	*manage_expand(char *line, t_data *data)
 	i = 0;
 	while (line[i])
 	{
-		if (line[i] == '\'')
-			return (line);
+		//if (line[i] == '\'')
+		//	return (line);
+		// nul comme condition, il faut verifier si l'expand est ENTRE les simples quotes.
 		if (line[i] == '$' && (line[i + 1] == '?' || check_char_begin(line[i + 1])))
 		{
 			new_line = manage_variable(line, data);
-			return (new_line);
+			line = new_line;
+			//return (new_line);
 		}
 		i++;
 	}
@@ -65,7 +83,15 @@ char	*manage_pipe(char *line, int pipe_pos, t_data *data)
 {
 	char	*new_input;
 
-	new_input = ft_strdup(&line[pipe_pos + 1]);
+	new_input = NULL;
+	if (line[pipe_pos - 1] && line[pipe_pos + 1] != '|')
+		new_input = ft_strdup(&line[pipe_pos + 1]);
+	else
+	{
+		ft_putstr_fd("syntax error\n", 1);
+		line = "";
+		return (line);
+	}
 	line[pipe_pos] = '\0';
 	return(exec_pipes(line, new_input, data));
 }
@@ -84,28 +110,30 @@ int		parser(char *line, t_data *data)
 	char	*new_line;
 
 	i = 0;
-	//printf("closed quote bool : %i\n", closed_quotes);
-	//peut etre a supprimer, create input pourrait traiter ca ? 
 	while (line[i])
 	{
-		if (line[i] == '$')
+		if (line[i] == '$' && line[i + 1] != ' ')
 		{
 			new_line = manage_expand(line, data);
 			line = new_line;
 		}
 		else if (line[i] == '|' && line[i + 1])
 		{
-			line = manage_pipe (line, i, data);
+			line = manage_pipe(line, i, data);
 			i = -1;
 			data->piped = true;
 		}
 		else if (line[i] == '"' || line[i] == '\'')
 		{
-			quote = line[i];
-			if (line[i] == '$' && quote == '"')
+			quote = line[i++];
+			while(line[i] != quote)
 			{
-				new_line = manage_expand(line, data);
-				line = new_line;
+				if (line[i] == '$' && quote == '"')
+				{
+					new_line = manage_expand(line, data);
+					line = new_line;
+				}
+				i++;
 			}
 		}
 		i++;

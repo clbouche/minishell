@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 17:54:08 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/12 12:23:35 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/15 11:10:43 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,30 +80,37 @@ char	*recup_filename(char *str)
 void		count_redir(char *line, t_data *data)
 {
 	int i;
+	int quote;
 
 	i = 0;
 	while (line[i])
 	{
+		if (line[i] == '"' || line[i] == '\'')
+		{
+			quote = line[i++];
+			while(line[i] != quote)
+				i++;
+		}
 		if (line[i] == '<' && line[i + 1] != '<')
 		{
-			data->count_redir_in++;
-			data->redir_in = true;
+			data->redir->count_in++;
+			data->redir->r_in = true;
 		}
 		else if (line[i] == '>' && line[i + 1] != '>')
 		{
-			data->count_redir_out++;
-			data->redir_out = true;
+			data->redir->count_out++;
+			data->redir->r_out = true;
 		}
 		else if (line[i] == '>' && line[i + 1] == '>')
 		{
-			data->count_redir_append++;
-			data->redir_out = true;
+			data->redir->count_append++;
+			data->redir->r_out = true;
 			i += 1;
 		}
 		else if (line[i] == '<' && line[i + 1] == '<')
 		{
-			data->count_redir_heredoc++;
-			data->redir_in = true;
+			data->redir->count_heredoc++;
+			data->redir->r_in = true;
 			i += 1;
 		}
 		line++;
@@ -115,17 +122,17 @@ char	*check_redir(char *line, t_data *data)
 	int i;
 
 	i = 0;
-	while (line[i] && (data->redir_out == true || data->redir_in == true))
+	while (line[i] && (data->redir->r_out == true || data->redir->r_in == true))
 	{
 		if (line[i] == '<' || line[i] == '>')
 			manage_redir(line, i, data);
 		i++;
 	}
-	if (data->bad_redir == true)
+	if (data->redir->bad_r == true)
 	{
 		free(line);
 		line = NULL;
-		data->bad_redir = false;
+		data->redir->bad_r = false;
 	}
 	return (line);
 }
