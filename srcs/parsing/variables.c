@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 13:46:38 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/15 11:19:54 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/15 17:03:57 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,20 @@ char	*find_content(char *name, t_data *data)
 
 	tmp = data->env;
 	tmp_content = NULL;
+	content = NULL;
 	while (tmp != NULL && tmp_content == NULL)
 	{
 		name_var = find_name(tmp->content);
 		if (ft_strcmp(name, name_var) == 0)
 			tmp_content = find_var(tmp->content);
+		else
+			free(name_var);
 		tmp = tmp->next;
 	}
-	content = malloc(sizeof(char) * ft_strlen(tmp_content));
-	content = tmp_content;
+	content = ft_strdup(tmp_content);
+	//content = malloc(sizeof(char) * ft_strlen(tmp_content));
+	//content = tmp_content;
+	free(name_var);
 	return (content);
 }
 
@@ -103,6 +108,7 @@ char	*create_new_input(char *line, char *content, int type)
 	tmp = ft_substr(line, 0, i);
 	new_input = ft_strjoin(tmp, content);
 	free(tmp);
+	free(content);
 	i++;
 	if (type == 0)
 		i++;

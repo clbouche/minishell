@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/15 15:19:21 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/15 17:18:03 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,24 +43,30 @@ void	redir_heredoc(char *str, t_data *data)
 void	redir_input(char *str, t_data *data)
 {
 	char	*file_name;
+	static int	count = 1;
 
 	file_name = recup_filename(str);
 	if (file_name)
 	{
-		data->redir->r_in = true;
-		data->std_in = dup(0);
 		data->file_in = open(file_name, O_RDWR);
-		if (data->file_in == -1)
+		if (count == data->redir->count_in)
 		{
-			puts("pb opening\n");
-			exit(FAILURE);
+			data->std_in = dup(0);
+			dup2(data->file_in, 0);
 		}
-		dup2(data->file_in, 0);
-		close(data->file_in);
+		if (data->file_in < 0)
+		{
+			perror(file_name);
+			free(file_name);
+			data->redir->count_in = -1;
+			data->redir->r_in = false;
+			data->redir->bad_r = true;
+			return ;
+		}
 		free(file_name);
+		close(data->file_in);
+		count++;
 	}
-	//if (data->std_in < 0)
-	//gerer le cas ou le file n'existe pas
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/15 11:20:15 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/15 17:07:09 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ char	*manage_expand(char *line, t_data *data)
 		if (line[i] == '$' && (line[i + 1] == '?' || check_char_begin(line[i + 1])))
 		{
 			new_line = manage_variable(line, data);
+			free(line);
 			line = new_line;
-			//return (new_line);
 		}
 		i++;
 	}

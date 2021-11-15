@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 14:12:46 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/15 15:26:25 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/15 17:25:06 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,12 +113,12 @@ void	heredoc_loop(char *delimiter, t_data *data, int *heredocs)
 			//afficher l'input qu'on a concatener dans la sortie standard
 			// ou la fonction s'en preoccupe (comme cat)
 			// ou non (comme echo)
+			free(input);
+			free(delimiter);
 			break;
 		}
 		else if (ft_strcmp(input, delimiter) != 0)
 		{
-			//ft_strcat(new_input, "\n");
-			//ft_strcat(new_input, input);
 			ft_strjoin_realloc(&new_input, "\n");
 			ft_strjoin_realloc(&new_input, input);
 		}
@@ -128,9 +128,11 @@ void	heredoc_loop(char *delimiter, t_data *data, int *heredocs)
 			new_input = manage_expand(input, data);
 			input = new_input;
 		}
+		free(input);
 		//printf("new input : %s\n", new_input);
 		//write(heredocs[1], new_input, ft_strlen(new_input));
 		//write(heredocs[1], "\n", 1);
-		free(input);
+		//free(input);
+		//free(new_input);
 	}
 }
