@@ -1,6 +1,18 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+#ifndef DEFINE_DEBUG_ONCE
+#define DEFINE_DEBUG_ONCE
+
+#if DEBUG
+  #include <stdio.h>
+  #define debug(x, ...)      do{fprintf(stderr, "%s:%s(%u): " x "\n", __FILE__, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);}while(0)
+#else
+  #define debug(x, ...)      /* x */
+#endif
+
+#endif
+
 /*
 ** DEFINE
 */
@@ -159,9 +171,9 @@ t_list 	*check_exist_var(char *name, t_data *data);
 /*
 ** Execution
 */
-void	open_fds(t_data *d);
-void	switch_fds(t_data *d);
-void	close_fds(t_data *data);
+void	pipe_out(t_data *d);
+void	pipe_in(t_data *d);
+void	restore_fds(t_data *data);
 void	execute(char **cmd, t_data *data);
 void 	exec_builtin(char **cmd, t_data *d);
 void 	exec_simple(char  **cmd, t_data *d);

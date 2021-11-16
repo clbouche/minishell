@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/16 12:12:58 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/16 15:01:51 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	parse_to_exec(char *input, t_data *data)
 	// printf("d->std_in == %i\n", data->std_in);
 	// printf("d->std_out == %i\n", data->std_out);
 	execute(cmd, data);
+
 	return (0);
 }
 
@@ -56,6 +57,7 @@ void	minishell_loop(t_data *data)
 			line = ft_strdup("exit");
 		if (line != NULL)
 		{
+			g_sig.sigint = 0;
 			manage_history(line);
 			input = clean_input(line);
 			if (input == 0)
@@ -69,7 +71,7 @@ void	minishell_loop(t_data *data)
 				data->std_out = dup(1);
 				data->std_in = dup(0);	
 				parser(input, data);
-				close_fds(data);
+				restore_fds(data);
 			}
 		}
 	}

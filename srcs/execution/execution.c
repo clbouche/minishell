@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 09:02:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/11/16 11:22:15 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/16 15:17:39 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 void	execute(char **cmd, t_data *d)
 {
+	if (g_sig.sigint == 1)
+	{
+		free_array(cmd);
+		return;
+	}
 	d->have_path = false;
 	if (ft_strchr(cmd[0], '/'))
 		d->have_path = true;
@@ -34,13 +39,13 @@ char	*exec_pipes(char *line, char *new_input, t_data *d)
 		puts("error_pid attention oublie pas dexit proprement");//pening_error("Fork");	
 	if (g_sig.pid == 0)
 	{
-		open_fds(d);
+		pipe_out(d);
 		parse_to_exec(line, d);
 		exit(g_sig.status);
 	}
 	else if (g_sig.pid < 0)
 		exit(FAILURE);
-	switch_fds(d);
+	pipe_in(d);
 	//execute(input, d);
 	free(line);
 	//close_fds(d);

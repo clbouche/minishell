@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 14:12:46 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/16 11:05:47 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/16 15:20:58 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,25 +116,18 @@ void	heredoc_loop(char *delimiter, t_data *data, int *heredocs)
 	{
 		g_sig.heredoc = true;
 		g_sig.prog = 1;
+		//rl_catch_signals = 0;
 		input = readline("> ");
-		printf("input == %p\n", input);
-		if (input == NULL)
+		if (ft_strcmp(input, delimiter) == 0 || g_sig.sigint == 1 || input == NULL)
 		{
-			heredoc_quit(delimiter);
-			puts("caca");
-			break;
-		}
-		else if (ft_strcmp(input, delimiter) == 0 || g_sig.sigint == 1)
-		{
+			if (input == NULL)
+				heredoc_quit(delimiter);
 			free(input);
 			input = NULL;
-			puts("here");
-			//if (g_sig.sigquit == 1)
 			break;
 		}
 		else if (ft_strcmp(input, delimiter) != 0)
 		{
-			puts("lol");
 			ft_strjoin_realloc(&new_input, "\n");
 			ft_strjoin_realloc(&new_input, input);
 		}
