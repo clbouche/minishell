@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 09:02:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/11/15 13:22:46 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/11/16 11:22:15 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,12 @@ void	execute(char **cmd, t_data *d)
 		exec_builtin(cmd, d);
 	else
 		exec_simple(cmd, d);
-	close_fds(d);	
+	//close_fds(d);	
 }
 
 char	*exec_pipes(char *line, char *new_input, t_data *d)
 {
-	d->std_out = dup(1);
-	d->std_in = dup(0);	
+
 	if (pipe(d->fds) == -1)
 		puts("error_pipe attention oublie pas dexit proprement");
 	g_sig.pid = fork();
