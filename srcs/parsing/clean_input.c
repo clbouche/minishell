@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 13:48:26 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/15 17:04:54 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/16 11:20:33 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	copy_input(char *dst, char *src)
 		{
 			*(dst++) = *src;
 			quote = *(src++);
-			while(*src != quote)
+			while(*src && *src != quote)
 				*(dst)++ = *(src)++;
 			*(dst++) = *(src++);
 		}
@@ -50,8 +50,12 @@ int		input_len(char *line)
 		if (line[j] == '"' ||line[j] == '\'')
 		{
 			quote = line[j++];
-			while (line[j] && line[j++] != quote)
+			while (line[j++] != quote)
+			{
+				if (line[j] == '\0')
+					return (-1);
 				i++;
+			}
 			i += 2;
 		}
 		i++;
@@ -66,14 +70,13 @@ char	*clean_input(char *line)
 	char	*tmp;
 
 	tmp = line;
-	//input = NULL;
-	//if (!line)
-	//	return (NULL);
 	while (*line && ft_iswhitespace(*line))
 		line++;
 	len = input_len(line);
 	if (len == -1)
-		return(0);
+		return(NULL);
+	if (len == 0)
+		return ("");
 	input = malloc(sizeof(char) * (len + 1));
 	if (!input)
 	 	exit(EXIT_FAILURE);

@@ -46,7 +46,7 @@ static void	ft_form_tab(char **tab, const char *s, char c)
 			len = 0;
 			while (s[i + len] != c && s[i + len] != '\0')
 				len++;
-			tab[count] = (char *)malloc(sizeof(char *) * (len + 1));
+			tab[count] = malloc(sizeof(char *) * (len + 1));
 			tab[count] = ft_substr(s, i, len);
 			i = i + len;
 			count++;
