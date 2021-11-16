@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_simple.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:49:47 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/12 11:33:39 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/15 12:48:47 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	exec_bin(char **cmd, char *bin, t_data *d)
 	
 	if (bin == NULL)
 	{
-		puts("youhouuuuu");
-		free_exit(d, cmd[0], 127, ": command not found\n");
+		ft_putstr_fd(": command not found\n", 2);
+		//free_exit(d, cmd[0], 127, ": command not found\n");
 		free_array(cmd);
 		g_sig.pid = 1;
 		if (d->piped == true)

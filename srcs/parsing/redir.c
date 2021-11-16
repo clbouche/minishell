@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/15 17:18:03 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/16 09:55:43 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** Lit l'entree de la source actuelle 
 ** jusqu'a ce que le delimiteur soit croise. 
 */
-void	redir_heredoc(char *str, t_data *data)
+void redir_heredoc(char *str, t_data *data)
 {
 	char	*delimiter;
 	int		pid;
@@ -24,6 +24,8 @@ void	redir_heredoc(char *str, t_data *data)
 
 	delimiter = NULL;
 	delimiter = define_delimiter(str);
+	printf("delimiter : %s\n", delimiter);
+	g_sig.heredoc = true;
 	//mute le signal ctlr + 
 	pipe(heredocs);
 	pid = fork();
@@ -33,8 +35,11 @@ void	redir_heredoc(char *str, t_data *data)
 		close(heredocs[1]);
 		exit(1);
 	}
+	puts("here");
 	waitpid(-1, &g_sig.status, 0);
 	close(heredocs[1]);
+	
+	// 	exit(FAILURE);
 }
 
 /*

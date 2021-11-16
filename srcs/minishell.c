@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/15 14:44:40 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/16 09:56:08 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ int	parse_to_exec(char *input, t_data *data)
 	input = clean_input(input);
 	cmd = split_cmd(input);
 	ft_memdel(&input);
+	// printf("d->std_in == %i\n", data->std_in);
+	// printf("d->std_out == %i\n", data->std_out);
 	execute(cmd, data);
+	
 	return (0);
 }
 
@@ -46,6 +49,7 @@ void	minishell_loop(t_data *data)
 	char 	*line;
 	char	*input;
 	
+	line = NULL;
 	while (1)
 	{
 		line = readline("🍄 MINISHELL 🍄 : ");
@@ -57,11 +61,14 @@ void	minishell_loop(t_data *data)
 			input = clean_input(line);
 			if (input == 0)
 			{
-				ft_putstr_fd("unclosed quotes", 1);
-				return ;
+				ft_putstr_fd("unclosed quotes\n", 1);
+				//return ;
 			}
-			count_redir(input, data);
-			parser(input, data);
+			if (input)
+			{
+				count_redir(input, data);
+				parser(input, data);
+			}
 		}
 	}
 }

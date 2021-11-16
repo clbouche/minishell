@@ -1,0 +1,2 @@
+d->std_in == 10
+d->std_out == 11

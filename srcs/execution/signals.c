@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:36:42 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/15 13:42:30 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/16 09:56:13 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,16 @@ void sig_handler(int signo)
         }
         else if (g_sig.prog == 1)
         {
+            g_sig.sigint = 1;
             rl_redisplay();
         } 
     }
     
     if (signo == SIGQUIT)
     {    
+        g_sig.status = 131;
         if (g_sig.prog == 1)
         {
-            g_sig.status = 131;
             kill(g_sig.pid, SIGQUIT);
             ft_putstr_fd("Quit (core dumped)\n", 2);
         }

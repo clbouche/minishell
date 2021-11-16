@@ -49,9 +49,11 @@
 
 typedef struct	s_sig
 {
-	int				status;
-	pid_t			pid;
-	int 			prog;
+	int		status;
+	pid_t	pid;
+	int 	prog;
+	int		sigint;
+	bool	heredoc;	
 }				t_sig;
 
 extern t_sig g_sig;
@@ -99,6 +101,7 @@ typedef	struct s_data
 	bool	have_path;
 	bool	pipe;
 	bool	piped;
+	bool	heredoc_int;
 	t_redir		*redir;
 }				t_data;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 09:02:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/11/15 10:38:55 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/15 13:22:46 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ void	execute(char **cmd, t_data *d)
 		exec_builtin(cmd, d);
 	else
 		exec_simple(cmd, d);
-	close_fds(d);
-	
+	close_fds(d);	
 }
 
 char	*exec_pipes(char *line, char *new_input, t_data *d)
