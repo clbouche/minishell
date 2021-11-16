@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/16 11:32:48 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/16 12:21:11 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,14 @@ void	minishell_loop(t_data *data)
 			input = clean_input(line);
 			if (input == NULL)
 				ft_putstr_fd("unclosed quotes\n", 1);
-			else
+			else if (input[0])
 			{
 				count_redir(input, data);
 				parser(input, data);
 			}
+			else
+				free(input);
 		}
-		free(line);
 	}
 }
 
