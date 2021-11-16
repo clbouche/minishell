@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:36:42 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/12 15:54:13 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/16 10:04:33 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void sig_handler(int signo)
         g_sig.status = 131;
         if (g_sig.prog == 1)
         {
+            g_sig.sigquit = 1;
             kill(g_sig.pid, SIGQUIT);
             ft_putstr_fd("Quit (core dumped)\n", 2);
         }

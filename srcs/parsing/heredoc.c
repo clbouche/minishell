@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 14:12:46 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/15 13:14:26 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/11/16 11:05:47 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*define_delimiter(char *str)
 	i = 0;
 	j = 0;
 	delimiter = malloc(sizeof(char) * (len_delimiter(str) + 1));
-	while (str[i] == ' ')
+	while (str[i] && str[i] == ' ')
 		i++;
 	if (str[i] == '"' || str[i] == '\'')
 	{
@@ -74,7 +74,7 @@ char	*define_delimiter(char *str)
 			str[i++] = ' ';
 		}
 	}
-	delimiter[j] = '\0';
+	//delimiter[j] = '\0';
 	return (delimiter);
 	//comment gerer les doubles quotes en pleins milieux
 	// = interpreter comme non existante
@@ -95,6 +95,14 @@ int		check_expand(char *str)
 	}
 	return (-1);
 }
+void	heredoc_quit(char *delimiter)
+{
+	char *message;
+	
+	message = ft_strcat("🍄 MINISHELL 🍄 : warning: here-document at line 1 delimited by end-of-file (wanted ", delimiter);
+	message = ft_strcat(message, ")");
+	ft_putstr_fd(message, 2);
+}
 
 void	heredoc_loop(char *delimiter, t_data *data, int *heredocs)
 {
@@ -106,19 +114,27 @@ void	heredoc_loop(char *delimiter, t_data *data, int *heredocs)
 	(void)heredocs;
 	while(1)
 	{
+		g_sig.heredoc = true;
 		g_sig.prog = 1;
 		input = readline("> ");
-		if (ft_strcmp(input, delimiter) == 0 || g_sig.sigint == 1)
+		printf("input == %p\n", input);
+		if (input == NULL)
+		{
+			heredoc_quit(delimiter);
+			puts("caca");
+			break;
+		}
+		else if (ft_strcmp(input, delimiter) == 0 || g_sig.sigint == 1)
 		{
 			free(input);
 			input = NULL;
-			//afficher l'input qu'on a concatener dans la sortie standard
-			// ou la fonction s'en preoccupe (comme cat)
-			// ou non (comme echo)
+			puts("here");
+			//if (g_sig.sigquit == 1)
 			break;
 		}
-		else if (ft_strcmp(input, delimiter)!= 0)
+		else if (ft_strcmp(input, delimiter) != 0)
 		{
+			puts("lol");
 			ft_strjoin_realloc(&new_input, "\n");
 			ft_strjoin_realloc(&new_input, input);
 		}
@@ -128,9 +144,6 @@ void	heredoc_loop(char *delimiter, t_data *data, int *heredocs)
 			new_input = manage_expand(input, data);
 			input = new_input;
 		}
-		//printf("new input : %s\n", new_input);
-		//write(heredocs[1], new_input, ft_strlen(new_input));
-		//write(heredocs[1], "\n", 1);
 		free(input);
 	}
 }

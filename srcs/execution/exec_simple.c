@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_simple.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:49:47 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/15 12:48:47 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/11/16 09:32:52 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,6 @@ void exec_simple(char **cmd, t_data *d)
 	if (WIFEXITED(g_sig.status))
 		g_sig.status = WEXITSTATUS(g_sig.status);
 	g_sig.prog = 0;
+	//close_fds(d);
 	return;
 }

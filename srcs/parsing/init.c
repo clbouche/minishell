@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:54 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/15 14:53:26 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/11/16 11:37:41 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ void	init_redir(t_data *data)
 
 void	init_datas(t_data *data)
 {
-	data->std_in = dup(0);
-	data->std_out = dup(1);
 	data->file_out = 0;
 	data->file_in = 0;
 	data->have_path = false;

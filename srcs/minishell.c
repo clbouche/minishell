@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/15 13:22:25 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/11/16 12:12:58 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	parse_to_exec(char *input, t_data *data)
 	// printf("d->std_in == %i\n", data->std_in);
 	// printf("d->std_out == %i\n", data->std_out);
 	execute(cmd, data);
-	
 	return (0);
 }
 
@@ -67,7 +66,10 @@ void	minishell_loop(t_data *data)
 			if (input)
 			{
 				count_redir(input, data);
+				data->std_out = dup(1);
+				data->std_in = dup(0);	
 				parser(input, data);
+				close_fds(data);
 			}
 		}
 	}

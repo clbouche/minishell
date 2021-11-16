@@ -53,6 +53,7 @@ typedef struct	s_sig
 	pid_t	pid;
 	int 	prog;
 	int		sigint;
+	int		sigquit;
 	bool	heredoc;	
 }				t_sig;
 

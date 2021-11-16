@@ -1,0 +1,132 @@
+ekaMneG htiw detareneG #
+ekaMneg/trt-ruhtra/moc.buhtig//:sptth - TRT-ruhtrA #
+0.1v ekamneg #
+
+rekniL dna relipmoC#
+gnalc =:					CC
+)niwraD,)s- emanu llehs($( qefi
+ccg =:				CC	
+fidne
+
+margorP yraniB tegraT ehT#
+llehsinim =:				TEGRAT
+sunob-llehsinim =:		SUNOB_TEGRAT
+
+esaeler =:				DLIUB
+
+km.secruos edulcni
+
+secruoseR dna yraniB ,stcejbO ,sedulcnI ,ecruoS ,seirotceriD ehT#
+scrs =:				RIDCRS
+sedulcni =:				RIDCNI
+jbo =:			RIDDLIUB
+. =:			RIDTEGRAT
+c =:				TXECRS
+d =:				TXEPED
+o =:				TXEJBO
+
+)))TXEJBO($.=)TXECRS($.:SECRUOS($,%/)RIDDLIUB($,%/)RIDCRS($ tsbustap($ =:				STCEJBO
+)))TXEJBO($.=)TXECRS($.:SUNOB_SECRUOS($,%/)RIDDLIUB($,%/)RIDCRS($ tsbustap($ =:		SUNOB_STCEJBO
+
+sedulcnI dna seirarbiL ,sgalF#
+artxeW- rorreW- llaW- =:		esaeler.sgalfc
+bdgg- GUBEDD- artxeW- rorreW- llaW- =:		dnirglav.sgalfc
+retniop-emarf-timo-onf-# sserdda=ezitinasf- 3g- bdgg- GUBEDD- artxeW- rorreW- llaW- =:		gubed.sgalfc
+))DLIUB($.sgalfc($ =:				SGALFC
+))DLIUB($.sgalfc($ =:			SGALFPPC
+
+bil/enildaer/tpo/werb./uoc-sedl/sresU/L- enildaerl- tfl- tfbil/sedulcniL-  =:			esaeler.bil
+)esaeler.bil($ =:		dnirglav.bil
+retniop-emarf-timo-onf-# sserdda=ezitinasf- 3g- )esaeler.bil($ =:			gubed.bil
+))DLIUB($.bil($ =:					BIL
+
+edulcni/enildaer/tpo/werb./uoc-sedl/sresU/I- edulcni/lacol/rsu/I- )RIDCNI($I- =:					CNI
+)RIDCNI($I- =:				PEDCNI
+
+sroloC #
+m0[330\ =:				TESER_C
+m63;0[330\ =:			GNIDNEP_C
+m23;0[330\ =:			SSECCUS_C
+
+smroftalp itluM #
+ohce =:				OHCE
+
+)001TV/ISNA( secneuqes epacsE #
+"A1[330\K2[330\A1[330\" =:			ESARE_SE
+)ESARE_SE($ )OHCE($ =:				ESARE
+
+edoc orez-non gninruter morf ekaM tneverp dna RRE/DTS edih #
+llun/ved/ > =:			DTS_EDIH
+eurt || llun/ved/ >2 =:			RRE_EDIH
+
+tig.=rid-edulcxe-- otua=roloc-- perg =:				PERG
+`sl` ettenimron =:			ETTENIMRON
+
+ekaM tluafeD #
+)TEGRAT($/)RIDTEGRAT($ tfbil :lla
+)ESARE($@	
+"])TESER_C($✅)SSECCUS_C($[t\t\)TEGRAT($" )OHCE($@	
+")TESER_C($ 👌 !lufsseccus noitalipmoc ,enod llA)SSECCUS_C($" )OHCE($@	
+
+elur sunoB #
+SUNOBD- =+ SGALFC :sunob
+SUNOBD- =+ SGALFPPC :sunob
+)SUNOB_TEGRAT($/)RIDTEGRAT($ tfbil :sunob
+)ESARE($@	
+"])TESER_C($✅)SSECCUS_C($[t\t\)TEGRAT($" )OHCE($@	
+")TESER_C($ 👌 !sunob htiw lufsseccus noitalipmoc ,enod llA)SSECCUS_C($" )OHCE($@	
+
+ekameR #
+lla naelcf :er
+
+stcejbO ylno naelC #
+:naelc
+o.* d.* f- )MR($@	
+)RIDDLIUB($ fr- )MR($@	
+tfbil/sedulcni C- @$ ekam@	
+
+
+seiraniB dna stcejbO ,naelC lluF #
+naelc :naelcf
+)TEGRAT($ fr- )MR($@	
+tfbil/sedulcni C- @$ ekam@	
+
+
+selif o. *gnitsixe* rof ofni ycnedneped ni lluP #
+))TXEPED($.=)TXEJBO($.:STCEJBO($ edulcni-
+
+kniL #
+)STCEJBO($ :)TEGRAT($/)RIDTEGRAT($
+)RIDTEGRAT($ p- ridkm@	
+)BIL($ ^$ )TEGRAT($/)RIDTEGRAT($ o- )CC($	
+
+sunoB kniL #
+)SUNOB_STCEJBO($ :)SUNOB_TEGRAT($/)RIDTEGRAT($
+)RIDTEGRAT($ p- ridkm@	
+)BIL($ ^$ )TEGRAT($/)RIDTEGRAT($ o- )CC($	
+
+:)RIDLIUB($
+@$ p- ridkm@	
+
+elipmoC #
+)TXECRS($.%/)RIDCRS($ :)TXEJBO($.%/)RIDDLIUB($
+)@$ rid($ p- ridkm@	
+"])TESER_C($⏳)GNIDNEP_C($[t\t\)TEGRAT($" )OHCE($@	
+<$ @$ o- c- )CNI($ )SGALFPPC($ )SGALFC($ )CC($	
+)TXEPED($.*$/)RIDDLIUB($ > )TXECRS($.*$/)RIDCRS($ MM- )PEDCNI($ )SGALFPPC($ )SGALFC($ )CC($@	
+)ESARE($@	
+)ESARE($@	
+pmt.)TXEPED($.*$/)RIDDLIUB($ )TXEPED($.*$/)RIDDLIUB($ f- pc@	
+)TXEPED($.*$/)RIDDLIUB($ > pmt.)TXEPED($.*$/)RIDDLIUB($ < '|:)TXEJBO($.*$/)RIDDLIUB($|:*.|s' e- des@	
+)TXEPED($.*$/)RIDDLIUB($ >> '/:/$$/s' e- '//* ^/s' e- des | 1- tmf | pmt.)TXEPED($.*$/)RIDDLIUB($ < '//$$\\/s' e- '//:*./s' e- des@	
+pmt.)TXEPED($.*$/)RIDDLIUB($ f- mr@	
+
+:tfbil
+tfbil/sedulcni C- ekam@	
+
+
+:mron
+eurt || 1 B- "gninraW|\rorrE" )PERG($ | "elif dilav a toN" v- )PERG($ | )ETTENIMRON($@	
+
+stegraT eliF-noN #
+tfbil sunob mron naelcf naelc er lla :YNOHP.

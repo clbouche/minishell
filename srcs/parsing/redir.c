@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/15 13:15:07 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/11/16 10:52:09 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void redir_heredoc(char *str, t_data *data)
 	int		heredocs[2];
 
 	delimiter = define_delimiter(str);
-	printf("delimiter : %s\n", delimiter);
+	//printf("delimiter : %s\n", delimiter);
 	g_sig.heredoc = true;
 	//mute le signal ctlr + 
 	pipe(heredocs);
