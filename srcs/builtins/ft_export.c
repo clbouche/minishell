@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:04 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/04 16:21:16 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/16 15:57:10 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,24 +25,27 @@
 void	export_var(char **cmd, t_data *d, int j)
 {
 	t_list	*new_var;
-
+	//bool	exist_var;
 	int		i;
+	char	**var_unset;
 
 	i = 0;
-	while(cmd[j])
+	var_unset = malloc(sizeof(char *) * 2);
+	if (!var_unset)
+		exit(EXIT_FAILURE);
+	while (cmd[j][i])
 	{
-		while (cmd[j][i])
+		if (cmd[j][i] == '=')
 		{
-			if (cmd[j][i] == '=')
-			{
-				new_var = ft_lstnew(cmd[j]);
-				ft_lstadd_back(&d->env, new_var);
-				d->ret = SUCCESS;
-			}
-			i++;
+			var_unset[1] = ft_substr(cmd[j], 0, i);
+			ft_unset(var_unset, d);
+			new_var = ft_lstnew(cmd[j]);
+			ft_lstadd_back(&d->env, new_var);
+			d->ret = SUCCESS;
 		}
-		j++;
+		i++;
 	}
+		j++;
 	g_sig.status = UNKNOWN_COMMAND;
 	return ;
 }

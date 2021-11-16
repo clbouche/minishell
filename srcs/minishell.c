@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/16 12:28:52 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/16 14:53:32 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	main(int argc, char **argv, char **envp)
 	{
 		signal(SIGINT, &sig_handler);
 		signal(SIGQUIT, &sig_handler);
-		data.env = init(&data, envp);
+		data.env = init_env(&data, envp);
 		init_datas(&data);
 		minishell_loop(&data);
 	}

@@ -112,7 +112,7 @@ typedef	struct s_data
 ** Init
 */
 
-t_list	*init(t_data *data, char **envp);
+t_list	*init_env(t_data *data, char **envp);
 void	init_datas(t_data *data);
 
 /*
@@ -154,7 +154,7 @@ bool	spe_case(char c);
 bool	check_char(char c);
 bool	check_char_begin(char c);
 bool	check_char_file(char c);
-t_list 	*check_exist_var(char *name, t_data *data);
+bool	check_exist_var(char *arg, int i, t_data *data);
 
 /*
 ** Execution

@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 13:48:26 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/16 12:22:17 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/16 14:12:26 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	copy_input(char *dst, char *src)
 		{
 			*(dst++) = *src;
 			quote = *(src++);
-			while(*src && *src != quote)
+			while(*src != quote)
 				*(dst)++ = *(src)++;
 			*(dst++) = *(src++);
 		}
@@ -38,27 +38,28 @@ void	copy_input(char *dst, char *src)
 int		input_len(char *line)
 {
 	int		i;
-	int		j;
 	char	quote;
 
 	i = 0;
-	j = 0;
-	while(line[j++])
+	while(line && *line)
 	{
-		if (ft_iswhitespace(line[j]) && ((ft_iswhitespace(line[j + 1]) || line[j + 1] == '\0')))
-			j++;
-		if (line[j] == '"' ||line[j] == '\'')
+		if (ft_iswhitespace(*line) && ((ft_iswhitespace(*(line + 1)) || *(line + 1) == '\0')))
+			line++;
+		if (*line == '"' || *line == '\'')
 		{
-			quote = line[j++];
-			while (line[j++] != quote)
+			quote = *(line++);
+			while (*line && *line != quote)
 			{
-				if (line[j] == '\0')
-					return (-1);
 				i++;
+				line++;
 			}
+			if (!*line)
+				return (-1);
+			line++;
 			i += 2;
 		}
-		i++;
+		else if (line++)
+			i++;
 	}
 	return (i);
 }
@@ -67,23 +68,20 @@ char	*clean_input(char *line)
 {
 	int 	len;
 	char	*input;
-	int 	i;
-	
-	i = 0;
-	while (line[i] && ft_iswhitespace(line[i]))
-		i++;
+	char	*tmp;
+
+	tmp = line;
+	if (!line)
+		return (NULL);
+	while (*line && ft_iswhitespace(*line))
+		line++;
 	len = input_len(line);
 	if (len == -1)
-	{
-		free(line);
-		return(NULL);
-	}
+		return(0);
 	input = malloc(sizeof(char) * (len + 1));
 	if (!input)
-	 	exit(EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	copy_input(input, line);
-	free(line);
+	//free(tmp);
 	return(input);
 }
-
-
