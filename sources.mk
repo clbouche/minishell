@@ -17,7 +17,6 @@ SOURCES		+=                            		\
 		srcs/parsing/redir_utils.c           	\
 		srcs/parsing/bool_check_utils.c      	\
 		srcs/parsing/parsing.c               	\
-		srcs/parsing/heredoc.c               	\
 		srcs/parsing/utils_expands.c         	\
 		srcs/parsing/redir.c                 	\
 
