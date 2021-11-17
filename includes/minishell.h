@@ -200,7 +200,7 @@ t_list		*delete_node(t_list *head, char *var);
 t_list		*get_env(t_data *d, char **envp);
 t_dlist		*init_list(t_dlist *list);
 void		print_dlist(t_dlist *lst);
-t_list		*init(t_data *d, char **envp);
+t_list		*init_env(t_data *d, char **envp);
 t_list		*set_lvl(t_list *env, char * lvl);
 
 /*
