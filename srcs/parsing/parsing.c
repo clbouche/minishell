@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/16 14:17:08 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/17 11:10:23 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,11 @@ char	*manage_expand(char *line, t_data *data)
 	i = 0;
 	while (line[i])
 	{
-		//if (line[i] == '\'')
-		//	return (line);
-		// nul comme condition, il faut verifier si l'expand est ENTRE les simples quotes.
 		if (line[i] == '$' && (line[i + 1] == '?' || check_char_begin(line[i + 1])))
 		{
 			new_line = manage_variable(line, data);
-			free(line);
+			//i = 0;
+			//free(line);
 			line = new_line;
 		}
 		i++;
@@ -87,7 +85,7 @@ char	*manage_pipe(char *line, int pipe_pos, t_data *data)
 	if (line[pipe_pos - 1] != '|' && line[pipe_pos + 1] != '|')
 	{
 		new_input = ft_strdup(&line[pipe_pos + 1]);
-		printf("new input pipe : [%s]\n", new_input);
+		//printf("new input pipe : [%s]\n", new_input);
 	}
 	else
 	{
