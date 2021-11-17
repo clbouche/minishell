@@ -202,6 +202,7 @@ void	export_var(char **cmd, t_data *d, int j);
 int		ft_export(char **cmd, t_data *d);
 void	print_export(t_data *d);
 t_list	*ft_unset(char **cmd, t_data *d);
+void	unset_var(char *var, t_data *d);
 int		ft_pwd(void);
 //int		ft_exit(char **cmd, t_data *d);
 int		ft_exit();

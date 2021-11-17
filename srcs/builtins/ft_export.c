@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:04 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/16 16:00:58 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/17 12:08:37 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,22 @@
 void	export_var(char **cmd, t_data *d, int j)
 {
 	t_list	*new_var;
-	//bool	exist_var;
 	int		i;
-	char	**var_unset;
+	char	*var_unset;
 
 	i = 0;
-	var_unset = malloc(sizeof(char *) * 2);
-	if (!var_unset)
-		exit(EXIT_FAILURE);
 	while (cmd[j][i])
 	{
 		if (cmd[j][i] == '=')
 		{
-			var_unset[1] = ft_substr(cmd[j], 0, i);
-			ft_unset(var_unset, d);
+			var_unset = ft_substr(cmd[j], 0, i);
+			unset_var(var_unset, d);
 			new_var = ft_lstnew(cmd[j]);
 			ft_lstadd_back(&d->env, new_var);
 			d->ret = SUCCESS;
 		}
 		i++;
 	}
-		j++;
 	g_sig.status = UNKNOWN_COMMAND;
 	return ;
 }
@@ -80,6 +75,8 @@ int	ft_export(char **cmd, t_data *d)
 	g_sig.status = SUCCESS;
 	return(g_sig.status);
 }
+
+
 
 void	print_export(t_data *d)
 {
