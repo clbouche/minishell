@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 13:48:26 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/17 11:10:01 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/17 17:18:48 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ int		input_len(char *line)
 	char	quote;
 
 	i = 0;
-	while(line && *line)
+	while(*line)
 	{
 		if (ft_iswhitespace(*line) && ((ft_iswhitespace(*(line + 1)) || *(line + 1) == '\0')))
 			line++;
-		if (*line == '"' || *line == '\'')
+		else if (*line == '"' || *line == '\'')
 		{
 			quote = *(line++);
 			while (*line && *line != quote)
@@ -68,13 +68,13 @@ char	*clean_input(char *line)
 {
 	int 	len;
 	char	*input;
-	int 	i;
-
-	i = 0;
+	char 	*tmp;
+	
+	tmp = line;
 	if (!line)
 		return (NULL);
-	while (line[i] && ft_iswhitespace(line[i]))
-		i++;
+	while (*line && ft_iswhitespace(*line))
+		line++;
 	len = input_len(line);
 	if (len == -1)
 		return(0);
@@ -82,6 +82,6 @@ char	*clean_input(char *line)
 	if (!input)
 		exit(EXIT_FAILURE);
 	copy_input(input, line);
-	free(line);
+	free(tmp);
 	return(input);
 }

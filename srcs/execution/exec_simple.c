@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:49:47 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/17 15:37:22 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/17 15:50:15 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	exec_bin(char **cmd, char *bin, t_data *d)
 		if (execve(bin, cmd, d->envp) == -1)
 		{
 			write(1, "exec_error\n", 11);
+			ft_putstr_fd(bin, 2);
 			free_array(cmd);
 			cmd = NULL;
 		}

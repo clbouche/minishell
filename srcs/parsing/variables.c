@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 13:46:38 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/17 11:10:11 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/17 17:22:43 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ char	*create_new_input(char *line, char *content, int type)
 	tmp = ft_substr(line, 0, i);
 	new_input = ft_strjoin(tmp, content);
 	free(tmp);
+	free(content);
 	i++;
 	if (type == 0)
 		i++;
