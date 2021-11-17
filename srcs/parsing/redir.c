@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/17 14:12:43 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/17 15:32:57 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void redir_heredoc(char *str, t_data *data)
 	int		pid;
 	int		heredocs[2];
 
+	delimiter = NULL;
 	delimiter = define_delimiter(str);
 	g_sig.heredoc = true;
 	g_sig.prog = 1;
@@ -46,24 +47,30 @@ void redir_heredoc(char *str, t_data *data)
 void	redir_input(char *str, t_data *data)
 {
 	char	*file_name;
+	static int	count = 1;
 
 	file_name = recup_filename(str);
 	if (file_name)
 	{
-		data->redir->r_in = true;
-		data->std_in = dup(0);
 		data->file_in = open(file_name, O_RDWR);
-		if (data->file_in == -1)
+		if (count == data->redir->count_in)
 		{
-			puts("pb opening\n");
-			exit(FAILURE);
+			data->std_in = dup(0);
+			dup2(data->file_in, 0);
 		}
-		dup2(data->file_in, 0);
-		close(data->file_in);
+		if (data->file_in < 0)
+		{
+			perror(file_name);
+			free(file_name);
+			data->redir->count_in = -1;
+			data->redir->r_in = false;
+			data->redir->bad_r = true;
+			return ;
+		}
 		free(file_name);
+		close(data->file_in);
+		count++;
 	}
-	//if (data->std_in < 0)
-	//gerer le cas ou le file n'existe pas
 }
 
 /*

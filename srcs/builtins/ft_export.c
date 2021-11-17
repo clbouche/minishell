@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:04 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/04 16:21:16 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/17 12:08:37 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,21 @@
 void	export_var(char **cmd, t_data *d, int j)
 {
 	t_list	*new_var;
-
 	int		i;
+	char	*var_unset;
 
 	i = 0;
-	while(cmd[j])
+	while (cmd[j][i])
 	{
-		while (cmd[j][i])
+		if (cmd[j][i] == '=')
 		{
-			if (cmd[j][i] == '=')
-			{
-				new_var = ft_lstnew(cmd[j]);
-				ft_lstadd_back(&d->env, new_var);
-				d->ret = SUCCESS;
-			}
-			i++;
+			var_unset = ft_substr(cmd[j], 0, i);
+			unset_var(var_unset, d);
+			new_var = ft_lstnew(cmd[j]);
+			ft_lstadd_back(&d->env, new_var);
+			d->ret = SUCCESS;
 		}
-		j++;
+		i++;
 	}
 	g_sig.status = UNKNOWN_COMMAND;
 	return ;
@@ -77,6 +75,8 @@ int	ft_export(char **cmd, t_data *d)
 	g_sig.status = SUCCESS;
 	return(g_sig.status);
 }
+
+
 
 void	print_export(t_data *d)
 {

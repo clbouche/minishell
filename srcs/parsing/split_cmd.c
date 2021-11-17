@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:32:10 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/12 16:19:52 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/16 10:37:01 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	copy_arg(char *src, char *dst, char quote)
 			quote = *src++;
 			while (*src && *src != quote)
 				*dst++ = *src++;
+			src++;
 		}
 		else
 			*dst++ = *src++;

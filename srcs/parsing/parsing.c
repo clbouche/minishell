@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/15 13:14:46 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/11/17 11:10:23 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,12 @@ char	*manage_expand(char *line, t_data *data)
 	i = 0;
 	while (line[i])
 	{
-		//if (line[i] == '\'')
-		//	return (line);
-		// nul comme condition, il faut verifier si l'expand est ENTRE les simples quotes.
 		if (line[i] == '$' && (line[i + 1] == '?' || check_char_begin(line[i + 1])))
 		{
 			new_line = manage_variable(line, data);
+			//i = 0;
+			//free(line);
 			line = new_line;
-			//return (new_line);
 		}
 		i++;
 	}
@@ -84,12 +82,15 @@ char	*manage_pipe(char *line, int pipe_pos, t_data *data)
 	char	*new_input;
 
 	new_input = NULL;
-	if (line[pipe_pos - 1] && line[pipe_pos + 1] != '|')
+	if (line[pipe_pos - 1] != '|' && line[pipe_pos + 1] != '|')
+	{
 		new_input = ft_strdup(&line[pipe_pos + 1]);
+		//printf("new input pipe : [%s]\n", new_input);
+	}
 	else
 	{
 		ft_putstr_fd("syntax error\n", 1);
-		line = "";
+		ft_memdel(&line);
 		return (line);
 	}
 	line[pipe_pos] = '\0';
@@ -121,7 +122,10 @@ int		parser(char *line, t_data *data)
 		{
 			line = manage_pipe(line, i, data);
 			i = -1;
-			data->piped = true;
+			if (line)
+				data->piped = true;
+			else
+				return (0);
 		}
 		else if (line[i] == '"' || line[i] == '\'')
 		{

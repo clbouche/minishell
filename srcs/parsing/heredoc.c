@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 14:12:46 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/17 14:12:52 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/17 15:33:11 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ int		len_delimiter(char *str)
 		i++;
 	if (str[i] && (str[i] == '"' || str[i] == '\''))
 	{
-		quote = str[i];
-		i++;
+		quote = str[i++];
 		while(str[i + len] != quote)
 			len++;
+		i++;
 	}
 	else
 	{
-		i++;
+		//i++;
 		while(str[i + len] && (str[i] != ' ' || str[i] != '\0'))
 			len++;
 	}
@@ -49,11 +49,13 @@ char	*define_delimiter(char *str)
 	int 	i;
 	int		j;
 	char	quote;
-	char	*delimiter;
+	char *delimiter;
 
 	i = 0;
 	j = 0;
 	delimiter = malloc(sizeof(char) * (len_delimiter(str) + 1));
+	if (!delimiter)
+		exit(EXIT_FAILURE);
 	while (str[i] && str[i] == ' ')
 		i++;
 	if (str[i] == '"' || str[i] == '\'')

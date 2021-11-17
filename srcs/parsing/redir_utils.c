@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 17:54:08 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/15 11:10:43 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/15 12:32:11 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ char	*check_redir(char *line, t_data *data)
 	int i;
 
 	i = 0;
-	while (line[i] && (data->redir->r_out == true || data->redir->r_in == true))
+	while (line && line[i] && (data->redir->r_out == true || data->redir->r_in == true))
 	{
 		if (line[i] == '<' || line[i] == '>')
 			manage_redir(line, i, data);

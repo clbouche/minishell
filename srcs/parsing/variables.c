@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 13:46:38 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/15 11:19:54 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/17 11:10:11 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,20 @@ char	*find_content(char *name, t_data *data)
 
 	tmp = data->env;
 	tmp_content = NULL;
+	content = " ";
 	while (tmp != NULL && tmp_content == NULL)
 	{
 		name_var = find_name(tmp->content);
 		if (ft_strcmp(name, name_var) == 0)
 			tmp_content = find_var(tmp->content);
+		free(name_var);
 		tmp = tmp->next;
 	}
-	content = malloc(sizeof(char) * ft_strlen(tmp_content));
-	content = tmp_content;
+	if (tmp_content)
+		content = ft_strdup(tmp_content);
 	return (content);
 }
+
 
 char	*add_end_line(char *input, char *line)
 {
@@ -115,6 +118,7 @@ char	*create_new_input(char *line, char *content, int type)
 		new_input = ft_strjoin_realloc(&new_input, &line[i]);
 	return (new_input);
 }
+
 
 /*
 ** Recuperer le nom et le contenu de la variable.

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:31 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/12 16:10:45 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/17 12:10:44 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,30 +41,40 @@ static t_list	*delete_last(t_list *h, t_list *hn, char *name)
 	return(h);
 }
 
-t_list  *ft_unset(char **cmd, t_data *d)
+void	unset_var(char *var, t_data *d)
 {
 	t_list *tmp;
 	char *name_var;
-	int pos;
-	
-	pos = 0;
+
 	tmp = d->env;
 	while (tmp != NULL)
 	{
 		name_var = find_name(tmp->content);
-		if (ft_strncmp(cmd[1], name_var, (ft_strlen(name_var))) == 0)
+		if (ft_strncmp(var, name_var, (ft_strlen(name_var))) == 0)
 		{
-			d->env = delete_node(d->env, cmd[1]);
+			d->env = delete_node(d->env, var);
 			d->ret = SUCCESS;
-			return(d->env);
 			free(name_var);
+			return ;
 		}
 		tmp = tmp->next;
-		pos++;
 	}
 	d->ret = FAILURE;
 	free(name_var);
-	return(NULL);
+	return ;
+}
+
+t_list  *ft_unset(char **cmd, t_data *d)
+{
+	int	i;
+
+	i = 1;
+	while(cmd[i])
+	{
+		unset_var(cmd[i], d);
+		i++;
+	}
+	return (d->env);
 }
 
 t_list *delete_node(t_list *head, char *var)

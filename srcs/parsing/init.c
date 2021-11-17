@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:54 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/16 11:37:41 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/16 14:53:29 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	init_datas(t_data *data)
 	init_redir(data);
 }
 
-t_list	*init(t_data *data, char **envp)
+t_list	*init_env(t_data *data, char **envp)
 {
 	data->env = NULL;
 	ft_memset(data, 0, sizeof(data));

@@ -124,7 +124,7 @@ typedef	struct s_data
 ** Init
 */
 
-t_list	*init(t_data *data, char **envp);
+t_list	*init_env(t_data *data, char **envp);
 void	init_datas(t_data *data);
 
 /*
@@ -166,7 +166,7 @@ bool	spe_case(char c);
 bool	check_char(char c);
 bool	check_char_begin(char c);
 bool	check_char_file(char c);
-t_list 	*check_exist_var(char *name, t_data *data);
+bool	check_exist_var(char *arg, int i, t_data *data);
 
 /*
 ** Execution
@@ -214,6 +214,7 @@ void	export_var(char **cmd, t_data *d, int j);
 int		ft_export(char **cmd, t_data *d);
 void	print_export(t_data *d);
 t_list	*ft_unset(char **cmd, t_data *d);
+void	unset_var(char *var, t_data *d);
 int		ft_pwd(void);
 //int		ft_exit(char **cmd, t_data *d);
 int		ft_exit();
