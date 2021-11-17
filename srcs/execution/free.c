@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 12:08:22 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/11/17 15:12:57 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/17 15:25:01 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,4 @@ void	free_all(t_data *d)
 {
 	if (d->env != NULL)
 		free_lst(d->env);
-	//if (d->envp != NULL)
-	//	free_array(d->envp);
 }
