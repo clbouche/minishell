@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 14:12:46 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/16 15:20:58 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/17 14:12:52 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,41 +95,31 @@ int		check_expand(char *str)
 	}
 	return (-1);
 }
-void	heredoc_quit(char *delimiter)
-{
-	char *message;
-	
-	message = ft_strcat("🍄 MINISHELL 🍄 : warning: here-document at line 1 delimited by end-of-file (wanted ", delimiter);
-	message = ft_strcat(message, ")");
-	ft_putstr_fd(message, 2);
-}
 
 void	heredoc_loop(char *delimiter, t_data *data, int *heredocs)
 {
+
 	char	*input;
-	char	*new_input;
-	(void)heredocs;
+	char *new_input;
 	int		i;
 
 	(void)heredocs;
-	while(1)
+	while(true)
 	{
-		g_sig.heredoc = true;
-		g_sig.prog = 1;
 		//rl_catch_signals = 0;
 		input = readline("> ");
-		if (ft_strcmp(input, delimiter) == 0 || g_sig.sigint == 1 || input == NULL)
+		if (!input)
 		{
-			if (input == NULL)
-				heredoc_quit(delimiter);
+			ft_putstr_fd("bash: avertissement : « here-document »\n", 2);
+			break ;
+		}
+		if (ft_strcmp(input, delimiter) == 0) //|| g_sig.sigint == 1 || input == NULL)
+		{
+			// if (input == NULL)
+			// 	heredoc_quit(delimiter);
 			free(input);
 			input = NULL;
 			break;
-		}
-		else if (ft_strcmp(input, delimiter) != 0)
-		{
-			ft_strjoin_realloc(&new_input, "\n");
-			ft_strjoin_realloc(&new_input, input);
 		}
 		i = check_expand(input);
 		if (i >= 0)

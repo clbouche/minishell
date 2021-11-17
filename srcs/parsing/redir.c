@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/16 15:20:50 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/17 14:12:43 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,17 @@ void redir_heredoc(char *str, t_data *data)
 
 	delimiter = define_delimiter(str);
 	g_sig.heredoc = true;
+	g_sig.prog = 1;
+	signal(SIGQUIT, &sig_heredoc);
 	pipe(heredocs);
 	pid = fork();
 	if (pid == 0)
 	{
-
 	 	heredoc_loop(delimiter, data, heredocs);
 		close(heredocs[1]);
 		exit(1);
 	}
-	waitpid(-1, &g_sig.status, 0);
+	waitpid(-1, &g_sig.status, 0);//trouver un moyen pour stocker le retour du heredoc	
 	g_sig.prog = 0;
 	close(heredocs[1]);	
 	// 	exit(FAILURE);

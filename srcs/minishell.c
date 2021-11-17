@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/16 15:01:51 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/17 14:43:22 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ int	main(int argc, char **argv, char **envp)
 	puts("hello you, welcome !");
 	if (argc == 1)
 	{
-		signal(SIGINT, &sig_handler);
-		signal(SIGQUIT, &sig_handler);
+		signal(SIGINT, &sig_int);
+		signal(SIGQUIT, &sig_quit);
 		data.env = init(&data, envp);
 		init_datas(&data);
 		minishell_loop(&data);

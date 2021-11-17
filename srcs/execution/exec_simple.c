@@ -6,33 +6,24 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:49:47 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/16 14:23:56 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/17 15:14:48 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
+	
 void	exec_bin(char **cmd, char *bin, t_data *d)
 {
 	struct  stat stat_b;
-	
 	if (bin == NULL)
-	{
-		ft_putstr_fd(": command not found\n", 2);
-		free_array(cmd);
-		cmd = NULL;
-		g_sig.pid = 1;
-		if (d->piped == true)
-			restore_fds(d);
-		exit(g_sig.status);
-	}
+		free_exit(d, cmd[0], 127, ": command not found\n");
 	free(cmd[0]);
 	cmd[0] = bin;
 	if ((stat(bin, &stat_b) == 0 && stat_b.st_mode & S_IXUSR))
 	{
 		if (execve(bin, cmd, d->envp) == -1)
 		{
-			write(1, "123\n", 4);
+			write(1, "exec_error\n", 11);
 			free_array(cmd);
 			cmd = NULL;
 		}
@@ -41,7 +32,7 @@ void	exec_bin(char **cmd, char *bin, t_data *d)
 	g_sig.status = 1;
 	free_array(cmd);
 	cmd = NULL;
-	exit(g_sig.pid);
+	exit(g_sig.status);
 }
 
 void    exec_child(char **cmd, t_data *d)
