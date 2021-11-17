@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/17 15:33:26 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/17 15:41:32 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	main(int argc, char **argv, char **envp)
 	{
 		signal(SIGINT, &sig_int);
 		signal(SIGQUIT, &sig_quit);
-		data.env = init(&data, envp);
+		data.env = init_env(&data, envp);
 		init_datas(&data);
 		minishell_loop(&data);
 	}

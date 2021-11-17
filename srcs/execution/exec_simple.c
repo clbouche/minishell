@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_simple.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:49:47 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/17 15:32:33 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/17 15:45:54 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	exec_bin(char **cmd, char *bin, t_data *d)
 		if (execve(bin, cmd, d->envp) == -1)
 		{
 			write(1, "exec_error\n", 11);
+			ft_putstr_fd(bin, 2);
 			free_array(cmd);
 			cmd = NULL;
 		}
