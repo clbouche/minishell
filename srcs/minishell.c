@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/17 15:51:29 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/17 16:10:29 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,7 @@ void	minishell_loop(t_data *data)
 		{
 			g_sig.sigint = 0;
 			manage_history(line);
-			//printf("line : [%s]\n", line);
 			input = clean_input(line);
-			//printf("input : [%s]\n", input);
 			if (input == NULL)
 				ft_putstr_fd("unclosed quotes\n", 1);
 			else if (input[0])

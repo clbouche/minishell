@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:49:47 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/17 15:51:17 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/17 17:47:00 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void	exec_bin(char **cmd, char *bin, t_data *d)
 		if (execve(bin, cmd, d->envp) == -1)
 		{
 			write(1, "exec_error\n", 11);
-			ft_putstr_fd(bin, 2);
+			//utiliser errno pour catch l'erreur
 			free_array(cmd);
 			cmd = NULL;
 		}
 	}
 	g_sig.prog = 1;
-	g_sig.status = 1;
+	g_sig.status = 126;
 	free_array(cmd);
 	cmd = NULL;
 	exit(g_sig.status);
