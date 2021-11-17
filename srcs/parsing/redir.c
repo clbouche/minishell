@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/16 12:27:45 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/17 15:25:28 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void redir_heredoc(char *str, t_data *data)
 	delimiter = NULL;
 	delimiter = define_delimiter(str);
 	g_sig.heredoc = true;
-	//mute le signal ctlr + 
+	g_sig.prog = 1;
+	signal(SIGQUIT, &sig_heredoc);
 	pipe(heredocs);
 	pid = fork();
 	if (pid == 0)
@@ -34,11 +35,9 @@ void redir_heredoc(char *str, t_data *data)
 		close(heredocs[1]);
 		exit(1);
 	}
-	free(delimiter);
-	puts("here");
-	waitpid(-1, &g_sig.status, 0);
-	close(heredocs[1]);
-	
+	waitpid(-1, &g_sig.status, 0);//trouver un moyen pour stocker le retour du heredoc	
+	g_sig.prog = 0;
+	close(heredocs[1]);	
 	// 	exit(FAILURE);
 }
 

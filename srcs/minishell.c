@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/17 11:10:58 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/17 15:28:05 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	parse_to_exec(char *input, t_data *data)
 	// printf("d->std_in == %i\n", data->std_in);
 	// printf("d->std_out == %i\n", data->std_out);
 	execute(cmd, data);
+
 	return (0);
 }
 
@@ -56,6 +57,7 @@ void	minishell_loop(t_data *data)
 			line = ft_strdup("exit");
 		if (line != NULL)
 		{
+			g_sig.sigint = 0;
 			manage_history(line);
 			//printf("line : [%s]\n", line);
 			input = clean_input(line);
@@ -68,7 +70,7 @@ void	minishell_loop(t_data *data)
 				data->std_out = dup(1);
 				data->std_in = dup(0);	
 				parser(input, data);
-				close_fds(data);
+				restore_fds(data);
 			}
 			else
 				free(input);
@@ -84,8 +86,8 @@ int	main(int argc, char **argv, char **envp)
 	puts("hello you, welcome !");
 	if (argc == 1)
 	{
-		signal(SIGINT, &sig_handler);
-		signal(SIGQUIT, &sig_handler);
+		signal(SIGINT, &sig_int);
+		signal(SIGQUIT, &sig_quit);
 		data.env = init_env(&data, envp);
 		init_datas(&data);
 		minishell_loop(&data);

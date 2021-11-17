@@ -1,6 +1,18 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+#ifndef DEFINE_DEBUG_ONCE
+#define DEFINE_DEBUG_ONCE
+
+#if DEBUG
+  #include <stdio.h>
+  #define debug(x, ...)      do{fprintf(stderr, "%s:%s(%u): " x "\n", __FILE__, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);}while(0)
+#else
+  #define debug(x, ...)      /* x */
+#endif
+
+#endif
+
 /*
 ** DEFINE
 */
@@ -159,9 +171,9 @@ bool	check_exist_var(char *arg, int i, t_data *data);
 /*
 ** Execution
 */
-void	open_fds(t_data *d);
-void	switch_fds(t_data *d);
-void	close_fds(t_data *data);
+void	pipe_out(t_data *d);
+void	pipe_in(t_data *d);
+void	restore_fds(t_data *data);
 void	execute(char **cmd, t_data *data);
 void 	exec_builtin(char **cmd, t_data *d);
 void 	exec_simple(char  **cmd, t_data *d);
@@ -188,7 +200,7 @@ t_list		*delete_node(t_list *head, char *var);
 t_list		*get_env(t_data *d, char **envp);
 t_dlist		*init_list(t_dlist *list);
 void		print_dlist(t_dlist *lst);
-t_list		*init(t_data *d, char **envp);
+t_list		*init_env(t_data *d, char **envp);
 t_list		*set_lvl(t_list *env, char * lvl);
 
 /*
@@ -224,7 +236,8 @@ void	opening_error(char *error);
 /*
 ** signals
 */
-
-void sig_handler(int signo);
+void	sig_heredoc(int signo);
+void	sig_int(int signo);
+void	sig_quit(int signo);
 
 #endif
