@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:49:47 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/17 15:49:30 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/17 15:51:17 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ void	exec_bin(char **cmd, char *bin, t_data *d)
 		if (execve(bin, cmd, d->envp) == -1)
 		{
 			write(1, "exec_error\n", 11);
-
-			printf("|%s|", cmd[0]);
+			ft_putstr_fd(bin, 2);
 			free_array(cmd);
 			cmd = NULL;
 		}
@@ -55,7 +54,6 @@ void    exec_child(char **cmd, t_data *d)
 		bin = ft_strdup(cmd[0]);
 	}
 	exec_bin(cmd, bin, d);
-	//free(bin);
 }
 
 
