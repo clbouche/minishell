@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:04 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/17 12:08:37 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/18 11:00:23 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int	ft_export(char **cmd, t_data *d)
 			g_sig.status = FAILURE;
 			return(g_sig.status);
 		}
-		printf("return ft_isdigit == %i\n", ft_isdigit(cmd[i][0]));
 		while (cmd[i])
 		{	
 			export_var(cmd, d, i);

@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 12:25:00 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/28 13:44:49 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/18 10:51:14 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,18 @@ int	ft_cd(char **cmd)
 {
 	char	*path;
 
-	path = NULL;
 	if (cmd[1] == NULL)
-		return (FAILURE);
-	path = ft_strdup(cmd[1]);
+		path = ft_strdup(getenv("HOME"));
+	else
+		path = ft_strdup(cmd[1]);
 	if (chdir(path) == -1)
 	{
 		perror("cd");
 		free(path);
-		g_sig.status = 1;
-		return (FAILURE);
+		g_sig.status = FAILURE;
+		return (g_sig.status);
 	}
 	free(path);
 	free_array(cmd);
-	g_sig.status = 0;
-	return (SUCCESS);
+	return (g_sig.status);
 }

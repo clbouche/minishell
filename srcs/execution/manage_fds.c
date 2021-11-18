@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 11:36:04 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/11/16 12:33:14 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/18 11:25:27 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void  restore_fds(t_data *d)
 	{
 		close(d->file_out);
 		dup2(d->std_out, 1);
-		close(d->std_out);
 		d->redir->r_out = false;
 	}
 	if (d->redir->r_in == true) //|| d->piped == true)
@@ -44,9 +43,10 @@ void  restore_fds(t_data *d)
 		
 		close(d->file_in);
 		dup2(d->std_in, 0);
-		close(d->std_in);
 		d->redir->r_in = false;
 	}
+	close(d->std_out);
+	close(d->std_in);
 }
 // void restore_fds(t_data *data)
 // {
