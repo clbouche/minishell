@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/18 11:25:42 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/18 14:37:27 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void	minishell_loop(t_data *data)
 				data->std_in = dup(0);	
 				parser(input, data);
 				restore_fds(data);
+				waitpid(-1, &g_sig.status, 0);
+				waitpid(-1, &g_sig.status, 0);
 			}
 			else
 				free(input);

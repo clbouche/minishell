@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:49:47 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/17 17:47:00 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/18 14:16:46 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void    exec_child(char **cmd, t_data *d)
 
 	paths = NULL;
 	bin = NULL;
+	
 	if (d->have_path == false)
 	{
 		paths = get_path(d);
@@ -69,11 +70,10 @@ void exec_simple(char **cmd, t_data *d)
 	}
 	else if (g_sig.pid == 0)
 		exec_child(cmd, d);
-	else
-	{
-		waitpid(g_sig.pid, &g_sig.status, 0);
-		free_array(cmd);
-	}
+	// else
+	// {
+	waitpid(g_sig.pid, &g_sig.status, 0);
+	free_array(cmd);
 	if (WIFEXITED(g_sig.status))
 		g_sig.status = WEXITSTATUS(g_sig.status);
 	g_sig.prog = 0;
