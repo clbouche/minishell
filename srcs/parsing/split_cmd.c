@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:32:10 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/16 10:37:01 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/18 15:38:27 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,16 @@ static char	*next_cmd(char *str)
 {
 	char	quote;
 
-	while (*str++)
+	str--;
+	while (*++str)
 	{
-		if (ft_iswhitespace(*str) && (ft_iswhitespace(*(str + 1)) || *(str + 1) == '\0'))
-			str++;
 		if (*str == '"' || *str == '\'')
 		{
 			quote = *(str++);
 			while (*str && *str != quote)
 				str++;
 		}
-		if ((ft_iswhitespace(*str) && (!ft_iswhitespace(*(str + 1)) || !(*(str + 1) == '\0')))
-			|| (*str == '|') || (*str == '$'))
+		if (*str == ' ')
 			return (str + 1);
 	}
 	return (str);
@@ -43,12 +41,12 @@ static char	*next_cmd(char *str)
 
 void	copy_arg(char *src, char *dst, char quote)
 {
-	while (*src && *src != ' ' && *src != '|' && *src != '$')
+	while (*src && *src != ' ')
 	{
 		if (*src == '\'' || *src == '"')
 		{
 			quote = *src++;
-			while (*src && *src != quote)
+			while (*src != quote)
 				*dst++ = *src++;
 			src++;
 		}
@@ -89,16 +87,13 @@ size_t	count_args(char *line)
 	i = 1;
 	while (*line++)
 	{
-		if (ft_iswhitespace(*line) && (ft_iswhitespace(*(line + 1)) || *(line + 1) == '\0'))
-			line++;
 		if (*line == '"' || *line == '\'')
 		{
 			quote = *line++;
 			while (*line && *line != quote)
 				line++;
 		}
-		if ((ft_iswhitespace(*line) && (!ft_iswhitespace(*(line + 1)) || !(*(line + 1) == '\0')))
-			|| (*line == '|' ) || (*line == '$'))
+		if (*line == ' ')
 			i++;
 	}
 	return (i);

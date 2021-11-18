@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/17 17:22:55 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/18 13:55:13 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ int	parse_to_exec(char *input, t_data *data)
 	
 	input = clean_input(input);
 	input = check_redir(input, data);
+	input = clean_input(input);
 	if (!input || input[0] == 0)
 		return (1);
-	input = clean_input(input);
 	cmd = split_cmd(input);
 	ft_memdel(&input);
 	// printf("d->std_in == %i\n", data->std_in);

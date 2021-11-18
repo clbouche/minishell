@@ -6,13 +6,13 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/17 17:25:18 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/18 15:36:18 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*manage_quotes(char *line, int i, int quote, t_data *data)
+/*char	*manage_quotes(char *line, int i, int quote, t_data *data)
 {
 	char	*new_line;
 
@@ -26,7 +26,7 @@ char	*manage_quotes(char *line, int i, int quote, t_data *data)
 		i++;
 	}
 	return (line);
-}
+}*/
 
 /*
 ** Verifie le type de redirections dont il s'agit 
@@ -54,21 +54,16 @@ void	manage_redir(char *input, int i, t_data *data)
 /*
 ** Check le type de $ dont il s'agit
 */
-char	*manage_expand(char *line, t_data *data)
+char	*manage_expand(char *line, int i, t_data *data)
 {
-	int		i;
+	int		j;
 	char	*new_line;
 
-	i = 0;
-	while (line[i])
+	j = 0;
+	if (line[i] == '$' && (line[i + 1] == '?' || check_char_begin(line[i + 1])))
 	{
-		if (line[i] == '$' && (line[i + 1] == '?' || check_char_begin(line[i + 1])))
-		{
-			new_line = manage_variable(line, data);
-			free(line);
-			line = new_line;
-		}
-		i++;
+		new_line = manage_variable(line, i, data);
+		line = new_line;
 	}
 	return (line);
 }
@@ -106,18 +101,18 @@ char	*manage_pipe(char *line, int pipe_pos, t_data *data)
 int		parser(char *line, t_data *data)
 {
 	int		i;
-	char	quote;
+	//char	quote;
 	char	*new_line;
 
 	i = 0;
 	while (line[i])
 	{
-		if (line[i] == '$' && line[i + 1] != ' ')
+		if (line[i] == '$' && line[i + 1] !=  ' ')
 		{
-			new_line = manage_expand(line, data);
+			new_line = manage_expand(line, i, data);
 			line = new_line;
 		}
-		else if (line[i] == '|' && line[i + 1])
+		if (line[i] == '|' && line[i + 1])
 		{
 			line = manage_pipe(line, i, data);
 			i = -1;
@@ -126,18 +121,24 @@ int		parser(char *line, t_data *data)
 			else
 				return (0);
 		}
-		else if (line[i] == '"' || line[i] == '\'')
+		if (line[i] == '"')
 		{
-			quote = line[i++];
-			while(line[i] != quote)
+			i++;
+			while(line[i] && line[i] != '"')
 			{
-				if (line[i] == '$' && quote == '"')
+				if (line[i] == '$' && line[i + 1] !=  ' ')
 				{
-					new_line = manage_expand(line, data);
+					new_line = manage_expand(line, i, data);
 					line = new_line;
 				}
 				i++;
 			}
+		}
+		if (line[i] == '\'')
+		{
+			i++;
+			while (line[i] != '\'')
+				i++;
 		}
 		i++;
 	}

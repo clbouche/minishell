@@ -49,7 +49,7 @@ int	ft_echo(char **cmd, t_data *d)
         return(1);
     else if (cmd[i] && ft_strcmp(cmd[i], "-n") == 0)
     {
-        while(cmd[i +1] && ft_strcmp(cmd[i + 1], "-n") == 0)
+        while(cmd[i + 1] && ft_strcmp(cmd[i + 1], "-n") == 0)
             i++;
         handle_multiarg(cmd, i + 1);
     }

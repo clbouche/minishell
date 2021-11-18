@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 13:48:26 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/17 17:18:48 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/18 14:09:44 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ char	*clean_input(char *line)
 	char 	*tmp;
 	
 	tmp = line;
+	//printf("line : %s\n", line);
 	if (!line)
 		return (NULL);
 	while (*line && ft_iswhitespace(*line))
