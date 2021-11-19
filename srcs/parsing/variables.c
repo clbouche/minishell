@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 13:46:38 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/17 11:10:11 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/18 15:45:59 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ char	*find_content(char *name, t_data *data)
 
 	tmp = data->env;
 	tmp_content = NULL;
-	content = " ";
 	while (tmp != NULL && tmp_content == NULL)
 	{
 		name_var = find_name(tmp->content);
@@ -68,6 +67,8 @@ char	*find_content(char *name, t_data *data)
 	}
 	if (tmp_content)
 		content = ft_strdup(tmp_content);
+	else 
+		content = ft_strdup(" ");
 	return (content);
 }
 
@@ -91,31 +92,26 @@ char	*add_end_line(char *input, char *line)
 ** le nom de la variable par son contenu puis 
 ** garder la fin de la ligne tel quel.
 */
-char	*create_new_input(char *line, char *content, int type)
+char	*create_new_input(char *line, int i, char *content, int type)
 {
-	int 	i;
-	int		j;
 	char	*new_input;
 	char	*tmp;
 	
-	i = 0;
-	j = 0;
 	new_input = NULL;
-	while (line[i] && line[i] != '$')
-		i++;
 	tmp = ft_substr(line, 0, i);
 	new_input = ft_strjoin(tmp, content);
 	free(tmp);
 	i++;
 	if (type == 0)
 		i++;
-	else
+	else if (type == 1)
 	{
 		while(line[i] && check_char(line[i]) && !spe_case(line[i]))
 			i++;
 	}
 	if(line[i])
 		new_input = ft_strjoin_realloc(&new_input, &line[i]);
+	free(line);
 	return (new_input);
 }
 
@@ -124,31 +120,31 @@ char	*create_new_input(char *line, char *content, int type)
 ** Recuperer le nom et le contenu de la variable.
 ** Et eliminer les caracteres interdit.
 */
-char	*manage_variable(char *line, t_data *data)
+char	*manage_variable(char *line, int i, t_data *data)
 {
 	char	*new_input;
 	char	*name;
 	char	*content;
 	int 	type;
-	int		j;
-
-	j = 0;
+	
 	new_input = NULL;
 	name = NULL;
-	while(line[j] != '$')
-		j++;
-	if (line[j + 1] == '?')
+	content = NULL;
+	type = -1;
+	if (line[i + 1] == '?')
 	{
 		type = 0;
 		content = ft_itoa(g_sig.status);
 	}
-	else
+	else if (check_char_begin(line[i + 1]))
 	{
 		type = 1;
-		name = copy_name(&line[j + 1]);
+		name = copy_name(&line[i + 1]);
 		content = find_content(name, data);
 	}
-	new_input = create_new_input(line, content, type);
+	if (line[i])
+		new_input = create_new_input(line, i, content, type);
 	free(name);
+	free(content);
 	return(new_input);
 }

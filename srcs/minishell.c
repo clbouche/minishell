@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/18 14:37:27 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/19 16:31:58 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ int	parse_to_exec(char *input, t_data *data)
 	
 	input = clean_input(input);
 	input = check_redir(input, data);
+	input = clean_input(input);
 	if (!input || input[0] == 0)
 		return (1);
-	input = clean_input(input);
 	cmd = split_cmd(input);
 	ft_memdel(&input);
 	// printf("d->std_in == %i\n", data->std_in);

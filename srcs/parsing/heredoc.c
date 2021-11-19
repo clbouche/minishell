@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 14:12:46 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/17 15:33:11 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/18 15:51:16 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char	*define_delimiter(char *str)
 			str[i++] = ' ';
 		}
 	}
-	//delimiter[j] = '\0';
+	delimiter[j] = '\0';
 	return (delimiter);
 	//comment gerer les doubles quotes en pleins milieux
 	// = interpreter comme non existante
@@ -126,7 +126,7 @@ void	heredoc_loop(char *delimiter, t_data *data, int *heredocs)
 		i = check_expand(input);
 		if (i >= 0)
 		{
-			new_input = manage_expand(input, data);
+			new_input = manage_expand(input, i, data);
 			input = new_input;
 		}
 		free(input);
