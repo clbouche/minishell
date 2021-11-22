@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:04 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/22 11:28:35 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/22 11:38:19 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,10 @@ int	export_var(char **cmd, t_data *d, int j)
 			unset_var(var_unset, d);
 			new_var = ft_lstnew(cmd[j]);
 			ft_lstadd_back(&d->env, new_var);
-			g_sig.status = SUCCESS;
-			return (g_sig.status);
 		}
 		i++;
 	}
-	g_sig.status = 2;
+	g_sig.status = SUCCESS;
 	return(g_sig.status);
 }
 
@@ -56,7 +54,9 @@ int	ft_export(char **cmd, t_data *d)
 	i = 1;
 	if (cmd[i])
 	{
-		if (ft_isdigit(cmd[i][0] == 1))
+		if(cmd[i][0] == '-')
+			g_sig.status = INVALID_OPTION;
+		else if (ft_isdigit(cmd[i][0] == 1))
 		{
 			ft_putstr_fd("not a valid identifier", 2);
 			g_sig.status = FAILURE;

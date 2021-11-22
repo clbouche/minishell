@@ -102,6 +102,7 @@ typedef	struct s_data
 {
 	t_list	*env;
 	t_list	*pid_lst;
+	int		pipes;
 	int		fds[2];
 	int		file_out;
 	int		file_in;
