@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 09:02:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/11/18 15:30:34 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/22 14:42:00 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,20 @@ void	execute(char **cmd, t_data *d)
 	else
 		exec_simple(cmd, d);
 }
-// void add_pid_lst(t_data *d, int pid)
-// {
-// 	t_list *new_pid;
-	
-// 	new_pid = ft_lstnew(pid);
-// 	if (new_pid == NULL)
-// 		free_exit(d, "env", 1, "chained list error");
-// 	ft_lstadd_back(&d->pid_lst, pid);	
-// }
+
+void add_to_array(t_data *d, pid_t pid)
+{
+	d->pid_array[d->pid] = pid;
+	d->pid++;
+} 
 char	*exec_pipes(char *line, char *new_input, t_data *d)
 {
-	//int pid;
+	pid_t pid;
 	
 	if (pipe(d->fds) == -1)
 		puts("error_pipe attention oublie pas dexit proprement");
-	g_sig.pid = fork();
-	//add_pid_lst(d, pid);
+	pid = fork();
+	add_to_array(d, pid);
 	if (g_sig.pid == -1)
 		puts("error_pid attention oublie pas dexit proprement");//pening_error("Fork");	
 	if (g_sig.pid == 0)

@@ -101,7 +101,8 @@ typedef struct s_redir
 typedef	struct s_data
 {
 	t_list	*env;
-	t_list	*pid_lst;
+	pid_t	*pid_array;
+	int		pid;
 	int		pipes;
 	int		fds[2];
 	int		file_out;
@@ -129,6 +130,7 @@ typedef	struct s_data
 
 t_list	*init_env(t_data *data, char **envp);
 void	init_datas(t_data *data);
+void	malloc_pid_array(t_data *data);
 
 /*
 ** Parsing
@@ -174,6 +176,7 @@ bool	check_exist_var(char *arg, int i, t_data *data);
 /*
 ** Execution
 */
+void	count_childs(char *cmd, t_data *data);
 void	pipe_out(t_data *d);
 void	pipe_in(t_data *d);
 void	restore_fds(t_data *data);
