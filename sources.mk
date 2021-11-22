@@ -18,7 +18,6 @@ SOURCES		+=                            		\
 		srcs/parsing/bool_check_utils.c      	\
 		srcs/parsing/parsing.c               	\
 		srcs/parsing/heredoc.c               	\
-		srcs/parsing/utils_expands.c         	\
 		srcs/parsing/redir.c                 	\
 
 
@@ -31,6 +30,7 @@ SOURCES		+=                            		\
 		srcs/builtins/ft_echo.c              	\
 		srcs/builtins/is_builtins.c          	\
 		srcs/builtins/ft_unset.c             	\
+		srcs/builtins/utils_builtins.c       	\
 		srcs/builtins/ft_env.c               	\
 		srcs/builtins/ft_pwd.c               	\
 

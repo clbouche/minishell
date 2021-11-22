@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/22 12:09:47 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/22 14:51:16 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,30 @@ void	manage_history(char *input)
 		add_history(input);
 }
 
+void	minishell_to_parser(char *line, t_data *data)
+{
+	char	*input;
+
+	g_sig.sigint = 0;
+	manage_history(line);
+	input = clean_input(line);
+	if (input == NULL)
+		ft_putstr_fd("unclosed quotes\n", 1);
+	else if (input[0])
+	{
+		count_redir(input, data);
+		data->std_out = dup(1);
+		data->std_in = dup(0);
+		parser(input, data);
+		restore_fds(data);
+	}
+	else
+		free(input);
+}
+
 void	minishell_loop(t_data *data)
 {
 	char	*line;
-	char	*input;
 
 	line = NULL;
 	while (1)
@@ -55,23 +75,7 @@ void	minishell_loop(t_data *data)
 		if (line == NULL)
 			line = ft_strdup("exit");
 		if (line != NULL)
-		{
-			g_sig.sigint = 0;
-			manage_history(line);
-			input = clean_input(line);
-			if (input == NULL)
-				ft_putstr_fd("unclosed quotes\n", 1);
-			else if (input[0])
-			{
-				count_redir(input, data);
-				data->std_out = dup(1);
-				data->std_in = dup(0);
-				parser(input, data);
-				restore_fds(data);
-			}
-			else
-				free(input);
-		}
+			minishell_to_parser(line, data);
 	}
 }
 

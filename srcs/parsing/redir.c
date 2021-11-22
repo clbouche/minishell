@@ -6,11 +6,18 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/22 11:55:25 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/22 14:59:16 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+void	re_init_redir(t_data *data)
+{
+	data->redir->count_out = -1;
+	data->redir->r_out = false;
+	data->redir->bad_r = true;
+}
 
 /*
 ** Lit l'entree de la source actuelle 
@@ -35,7 +42,8 @@ void	redir_heredoc(char *str, t_data *data)
 		close(heredocs[1]);
 		exit(1);
 	}
-	waitpid(-1, &g_sig.status, 0);//trouver un moyen pour stocker le retour du heredoc	
+	waitpid(-1, &g_sig.status, 0);
+	//trouver un moyen pour stocker le retour du heredoc	
 	g_sig.prog = 0;
 	close(heredocs[1]);
 	// 	exit(FAILURE);
@@ -85,7 +93,8 @@ void	redir_output_append(char *str, t_data *data)
 	file_name = recup_filename(str);
 	if (file_name)
 	{
-		data->file_out = open(file_name, O_RDWR | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
+		data->file_out = open(file_name, O_RDWR | O_CREAT
+				| O_APPEND, S_IRUSR | S_IWUSR);
 		if (count == data->redir->count_append)
 		{
 			data->std_out = dup(1);
@@ -95,9 +104,7 @@ void	redir_output_append(char *str, t_data *data)
 		{
 			perror(file_name);
 			free(file_name);
-			data->redir->count_out = -1;
-			data->redir->r_out = false;
-			data->redir->bad_r = true;
+			re_init_redir(data);
 			return ;
 		}
 		free(file_name);
@@ -117,7 +124,8 @@ void	redir_output(char *str, t_data *data)
 	file_name = recup_filename(str);
 	if (file_name)
 	{
-		data->file_out = open(file_name, O_RDWR | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
+		data->file_out = open(file_name, O_RDWR | O_CREAT
+				| O_TRUNC, S_IRUSR | S_IWUSR);
 		if (count == data->redir->count_out)
 		{
 			data->std_out = dup(1);
@@ -127,9 +135,7 @@ void	redir_output(char *str, t_data *data)
 		{
 			perror(file_name);
 			free(file_name);
-			data->redir->count_out = -1;
-			data->redir->r_out = false;
-			data->redir->bad_r = true;
+			re_init_redir(data);
 			return ;
 		}
 		free(file_name);
