@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   set_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 12:09:16 by ldes-cou@         #+#    #+#             */
-/*   Updated: 2021/11/09 16:18:31 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/22 12:03:02 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char *change_shlvl(char *var)
+char	*change_shlvl(char *var)
 {
-	int lvl;
-	char *new_lvl;
-	char *tmp;
+	int		lvl;
+	char	*new_lvl;
+	char	*tmp;
 
 	lvl = 0;
 	tmp = var;
@@ -28,7 +28,7 @@ char *change_shlvl(char *var)
 	free(tmp);
 	var = ft_strjoin("SHLVL=", new_lvl);
 	free(new_lvl);
-	return(var);
+	return (var);
 }
 
 t_list	*get_env(t_data *d, char **envp)
@@ -53,5 +53,5 @@ t_list	*get_env(t_data *d, char **envp)
 		ft_lstadd_back(&d->env, new);
 		d->env_len++;
 	}
-	return(d->env);
+	return (d->env);
 }

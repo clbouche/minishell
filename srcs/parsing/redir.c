@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/17 15:32:57 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/22 11:55:25 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** Lit l'entree de la source actuelle 
 ** jusqu'a ce que le delimiteur soit croise. 
 */
-void redir_heredoc(char *str, t_data *data)
+void	redir_heredoc(char *str, t_data *data)
 {
 	char	*delimiter;
 	int		pid;
@@ -31,13 +31,13 @@ void redir_heredoc(char *str, t_data *data)
 	pid = fork();
 	if (pid == 0)
 	{
-	 	heredoc_loop(delimiter, data, heredocs);
+		heredoc_loop(delimiter, data, heredocs);
 		close(heredocs[1]);
 		exit(1);
 	}
 	waitpid(-1, &g_sig.status, 0);//trouver un moyen pour stocker le retour du heredoc	
 	g_sig.prog = 0;
-	close(heredocs[1]);	
+	close(heredocs[1]);
 	// 	exit(FAILURE);
 }
 
@@ -46,7 +46,7 @@ void redir_heredoc(char *str, t_data *data)
 */
 void	redir_input(char *str, t_data *data)
 {
-	char	*file_name;
+	char		*file_name;
 	static int	count = 1;
 
 	file_name = recup_filename(str);
@@ -79,13 +79,13 @@ void	redir_input(char *str, t_data *data)
 */
 void	redir_output_append(char *str, t_data *data)
 {
-	char	*file_name;
+	char		*file_name;
 	static int	count = 1;
-	
+
 	file_name = recup_filename(str);
 	if (file_name)
 	{
-		data->file_out =  open(file_name, O_RDWR | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
+		data->file_out = open(file_name, O_RDWR | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
 		if (count == data->redir->count_append)
 		{
 			data->std_out = dup(1);
@@ -106,15 +106,14 @@ void	redir_output_append(char *str, t_data *data)
 	}	
 }
 
-
 /*
 ** Redirige le contenu de l'information demander vers un fichier.
 */
 void	redir_output(char *str, t_data *data)
 {
-	char	*file_name;
-	static int		count = 1;
-	
+	char		*file_name;
+	static int	count = 1;
+
 	file_name = recup_filename(str);
 	if (file_name)
 	{

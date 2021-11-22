@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_fds.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 11:36:04 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/11/16 12:33:14 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/22 11:12:50 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void	pipe_in(t_data *d)
 	close(d->fds[0]);
 }
 
-void  restore_fds(t_data *d)
+void	restore_fds(t_data *d)
 {
 	//static int close_fd = 1;
-	if (d->redir->r_out == true)//|| d->piped == true)
+	if (d->redir->r_out == true) //|| d->piped == true)
 	{
 		close(d->file_out);
 		dup2(d->std_out, 1);
@@ -41,7 +41,6 @@ void  restore_fds(t_data *d)
 	}
 	if (d->redir->r_in == true) //|| d->piped == true)
 	{
-		
 		close(d->file_in);
 		dup2(d->std_in, 0);
 		close(d->std_in);

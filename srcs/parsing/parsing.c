@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/17 11:10:23 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/22 11:59:00 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*manage_quotes(char *line, int i, int quote, t_data *data)
 {
 	char	*new_line;
 
-	while(line[i] != quote)
+	while (line[i] != quote)
 	{
 		if (line[i] == '$' && quote == '"')
 		{
@@ -62,11 +62,10 @@ char	*manage_expand(char *line, t_data *data)
 	i = 0;
 	while (line[i])
 	{
-		if (line[i] == '$' && (line[i + 1] == '?' || check_char_begin(line[i + 1])))
+		if (line[i] == '$' && (line[i + 1] == '?'
+				|| check_char_begin(line[i + 1])))
 		{
 			new_line = manage_variable(line, data);
-			//i = 0;
-			//free(line);
 			line = new_line;
 		}
 		i++;
@@ -83,10 +82,7 @@ char	*manage_pipe(char *line, int pipe_pos, t_data *data)
 
 	new_input = NULL;
 	if (line[pipe_pos - 1] != '|' && line[pipe_pos + 1] != '|')
-	{
 		new_input = ft_strdup(&line[pipe_pos + 1]);
-		//printf("new input pipe : [%s]\n", new_input);
-	}
 	else
 	{
 		ft_putstr_fd("syntax error\n", 1);
@@ -94,7 +90,7 @@ char	*manage_pipe(char *line, int pipe_pos, t_data *data)
 		return (line);
 	}
 	line[pipe_pos] = '\0';
-	return(exec_pipes(line, new_input, data));
+	return (exec_pipes(line, new_input, data));
 }
 
 /*
@@ -104,7 +100,7 @@ char	*manage_pipe(char *line, int pipe_pos, t_data *data)
 ** - S'occupe des redirections
 ** - Tranforme l'input rendu propre en tableau de commandes.
 */
-int		parser(char *line, t_data *data)
+int	parser(char *line, t_data *data)
 {
 	int		i;
 	char	quote;
@@ -130,7 +126,7 @@ int		parser(char *line, t_data *data)
 		else if (line[i] == '"' || line[i] == '\'')
 		{
 			quote = line[i++];
-			while(line[i] != quote)
+			while (line[i] != quote)
 			{
 				if (line[i] == '$' && quote == '"')
 				{

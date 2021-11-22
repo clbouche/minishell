@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 12:25:32 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/07 11:37:26 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/22 11:24:40 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,19 @@
 ** to the standard output.
 ** -> there is a max size of 6 octets for the path
 ** ->
-*/ 
-
+*/
 int	ft_pwd(void)
 {
-    char path[MAX];
+	char	path[MAX];
 
-    if (getcwd(path, MAX))
-    {
-        ft_putendl_fd(path, 1);
-        return(SUCCESS);
-    }
-    else
-    {
-        perror("pwd");
-        exit(FAILURE);
-    }  
+	if (getcwd(path, MAX))
+	{
+		ft_putendl_fd(path, 1);
+		return (SUCCESS);
+	}
+	else
+	{
+		perror("pwd");
+		exit (FAILURE);
+	}
 }

@@ -6,21 +6,21 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/17 15:41:32 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/22 12:09:47 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_sig g_sig;
+t_sig	g_sig;
 
 /*
 ** Transition d'un input propre vers l'execution
 */
 int	parse_to_exec(char *input, t_data *data)
 {
-	char **cmd;
-	
+	char	**cmd;
+
 	input = clean_input(input);
 	input = check_redir(input, data);
 	if (!input || input[0] == 0)
@@ -31,7 +31,6 @@ int	parse_to_exec(char *input, t_data *data)
 	// printf("d->std_in == %i\n", data->std_in);
 	// printf("d->std_out == %i\n", data->std_out);
 	execute(cmd, data);
-
 	return (0);
 }
 
@@ -46,9 +45,9 @@ void	manage_history(char *input)
 
 void	minishell_loop(t_data *data)
 {
-	char 	*line;
+	char	*line;
 	char	*input;
-	
+
 	line = NULL;
 	while (1)
 	{
@@ -59,16 +58,14 @@ void	minishell_loop(t_data *data)
 		{
 			g_sig.sigint = 0;
 			manage_history(line);
-			//printf("line : [%s]\n", line);
 			input = clean_input(line);
-			//printf("input : [%s]\n", input);
 			if (input == NULL)
 				ft_putstr_fd("unclosed quotes\n", 1);
 			else if (input[0])
 			{
 				count_redir(input, data);
 				data->std_out = dup(1);
-				data->std_in = dup(0);	
+				data->std_in = dup(0);
 				parser(input, data);
 				restore_fds(data);
 			}
@@ -81,7 +78,7 @@ void	minishell_loop(t_data *data)
 int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;
-	
+
 	(void)argv;
 	puts("hello you, welcome !");
 	if (argc == 1)

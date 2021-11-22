@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 13:06:58 by claclou           #+#    #+#             */
-/*   Updated: 2021/09/24 14:47:28 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/22 11:04:08 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_dlist	*ft_dlstadd_front(t_dlist *lst, char *content, int index)
 {
-	t_node	 *new_node;
+	t_node	*new_node;
 
 	new_node = malloc(sizeof(t_node));
 	if (new_node == NULL || lst == NULL)

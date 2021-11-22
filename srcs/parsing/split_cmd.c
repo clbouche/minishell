@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:32:10 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/16 10:37:01 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/22 12:07:00 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ static char	*next_cmd(char *str)
 
 	while (*str++)
 	{
-		if (ft_iswhitespace(*str) && (ft_iswhitespace(*(str + 1)) || *(str + 1) == '\0'))
+		if (ft_iswhitespace(*str) && (ft_iswhitespace(*(str + 1))
+				|| *(str + 1) == '\0'))
 			str++;
 		if (*str == '"' || *str == '\'')
 		{
@@ -30,7 +31,8 @@ static char	*next_cmd(char *str)
 			while (*str && *str != quote)
 				str++;
 		}
-		if ((ft_iswhitespace(*str) && (!ft_iswhitespace(*(str + 1)) || !(*(str + 1) == '\0')))
+		if ((ft_iswhitespace(*str) && (!ft_iswhitespace(*(str + 1))
+					|| !(*(str + 1) == '\0')))
 			|| (*str == '|') || (*str == '$'))
 			return (str + 1);
 	}
@@ -83,13 +85,14 @@ char	*split_args(char *str)
 
 size_t	count_args(char *line)
 {
-	size_t		i;
+	size_t	i;
 	char	quote;
 
 	i = 1;
 	while (*line++)
 	{
-		if (ft_iswhitespace(*line) && (ft_iswhitespace(*(line + 1)) || *(line + 1) == '\0'))
+		if (ft_iswhitespace(*line) && (ft_iswhitespace(*(line + 1))
+				|| *(line + 1) == '\0'))
 			line++;
 		if (*line == '"' || *line == '\'')
 		{
@@ -97,20 +100,20 @@ size_t	count_args(char *line)
 			while (*line && *line != quote)
 				line++;
 		}
-		if ((ft_iswhitespace(*line) && (!ft_iswhitespace(*(line + 1)) || !(*(line + 1) == '\0')))
+		if ((ft_iswhitespace(*line) && (!ft_iswhitespace(*(line + 1))
+					|| !(*(line + 1) == '\0')))
 			|| (*line == '|' ) || (*line == '$'))
 			i++;
 	}
 	return (i);
 }
 
-
 void	print_cmd(char **cmd)
 {
 	int	i;
 
 	i = 0;
-	while(cmd[i])
+	while (cmd[i])
 	{
 		printf("cmd[%i] : [%s]\n", i, cmd[i]);
 		i++;
@@ -124,8 +127,8 @@ void	print_cmd(char **cmd)
 char	**split_cmd(char *line)
 {
 	char	**cmd;
-	size_t		i;
-	size_t		count;
+	size_t	i;
+	size_t	count;
 
 	i = 0;
 	if (!line)

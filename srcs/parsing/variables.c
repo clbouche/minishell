@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 13:46:38 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/17 11:10:11 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/22 12:08:29 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*copy_name(char *line)
 	len = 0;
 	j = 0;
 	name = NULL;
-	while(line[i] && check_char(line[i]) && !spe_case(line[i]))
+	while (line[i] && check_char(line[i]) && !spe_case(line[i]))
 	{
 		i++;
 		len++;
@@ -38,7 +38,7 @@ char	*copy_name(char *line)
 		if (!name)
 			return (0);
 		i = 0;
-		while(i < len)
+		while (i < len)
 			name[i++] = line[j++];
 		name[i] = '\0';
 	}
@@ -71,19 +71,18 @@ char	*find_content(char *name, t_data *data)
 	return (content);
 }
 
-
 char	*add_end_line(char *input, char *line)
 {
-	int i;
+	int		i;
 	char	*new_input;
 
 	i = 0;
 	new_input = NULL;
-	while(line[i] && line[i] != '=')
+	while (line[i] && line[i] != '=')
 		i++;
 	if (line[i] == '=')
 		new_input = ft_strjoin_realloc(&input, &line[i]);
-	return(new_input);
+	return (new_input);
 }
 
 /* 
@@ -93,11 +92,11 @@ char	*add_end_line(char *input, char *line)
 */
 char	*create_new_input(char *line, char *content, int type)
 {
-	int 	i;
+	int		i;
 	int		j;
 	char	*new_input;
 	char	*tmp;
-	
+
 	i = 0;
 	j = 0;
 	new_input = NULL;
@@ -111,14 +110,13 @@ char	*create_new_input(char *line, char *content, int type)
 		i++;
 	else
 	{
-		while(line[i] && check_char(line[i]) && !spe_case(line[i]))
+		while (line[i] && check_char(line[i]) && !spe_case(line[i]))
 			i++;
 	}
-	if(line[i])
+	if (line[i])
 		new_input = ft_strjoin_realloc(&new_input, &line[i]);
 	return (new_input);
 }
-
 
 /*
 ** Recuperer le nom et le contenu de la variable.
@@ -129,13 +127,13 @@ char	*manage_variable(char *line, t_data *data)
 	char	*new_input;
 	char	*name;
 	char	*content;
-	int 	type;
+	int		type;
 	int		j;
 
 	j = 0;
 	new_input = NULL;
 	name = NULL;
-	while(line[j] != '$')
+	while (line[j] != '$')
 		j++;
 	if (line[j + 1] == '?')
 	{
@@ -150,5 +148,5 @@ char	*manage_variable(char *line, t_data *data)
 	}
 	new_input = create_new_input(line, content, type);
 	free(name);
-	return(new_input);
+	return (new_input);
 }
