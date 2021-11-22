@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/19 16:31:58 by claclou          ###   ########.fr       */
+/*   Updated: 2021/11/22 13:53:59 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ int	parse_to_exec(char *input, t_data *data)
 		return (1);
 	cmd = split_cmd(input);
 	ft_memdel(&input);
-	// printf("d->std_in == %i\n", data->std_in);
-	// printf("d->std_out == %i\n", data->std_out);
 	execute(cmd, data);
 
 	return (0);
@@ -69,8 +67,11 @@ void	minishell_loop(t_data *data)
 				data->std_in = dup(0);	
 				parser(input, data);
 				restore_fds(data);
-				waitpid(-1, &g_sig.status, 0);
-				waitpid(-1, &g_sig.status, 0);
+				while(data->pipes > 0)
+				{
+					waitpid(-1, &g_sig.status, 0);
+					data->pipes--;
+				}
 			}
 			else
 				free(input);

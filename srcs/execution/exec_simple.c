@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_simple.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:49:47 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/19 16:32:02 by claclou          ###   ########.fr       */
+/*   Updated: 2021/11/22 13:54:43 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	exec_bin(char **cmd, char *bin, t_data *d)
 		{
 			write(1, "exec_error\n", 11);
 			//utiliser errno pour catch l'erreur
-			free_array(cmd);
-			cmd = NULL;
+			//free_array(cmd);
+			//cmd = NULL;
 		}
 	}
 	g_sig.prog = 1;
