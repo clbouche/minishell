@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:04 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/18 11:00:23 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/22 11:28:35 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 // }
 
 //void is_there_an_egal
-void	export_var(char **cmd, t_data *d, int j)
+int	export_var(char **cmd, t_data *d, int j)
 {
 	t_list	*new_var;
 	int		i;
@@ -37,12 +37,13 @@ void	export_var(char **cmd, t_data *d, int j)
 			unset_var(var_unset, d);
 			new_var = ft_lstnew(cmd[j]);
 			ft_lstadd_back(&d->env, new_var);
-			d->ret = SUCCESS;
+			g_sig.status = SUCCESS;
+			return (g_sig.status);
 		}
 		i++;
 	}
-	g_sig.status = UNKNOWN_COMMAND;
-	return ;
+	g_sig.status = 2;
+	return(g_sig.status);
 }
 
 //=>export_var
@@ -66,7 +67,7 @@ int	ft_export(char **cmd, t_data *d)
 			export_var(cmd, d, i);
 			i++;
 		}
-		return (SUCCESS);
+		return (g_sig.status);
 	}
 	if (cmd[1] == NULL)
 		print_export(d);
