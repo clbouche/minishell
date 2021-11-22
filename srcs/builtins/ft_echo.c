@@ -41,14 +41,16 @@ static int	handle_multiarg(char **cmd, int i)
 int	ft_echo(char **cmd, t_data *d)
 {
 	int	i;
+	int	j;
 
 	i = 1;
+	j = 1;
 	(void)d;
 	if (cmd[1] == NULL)
 		return (1);
-	else if (cmd[i] && ft_strcmp(cmd[i], "-n") == 0)
+	else if (cmd[i] && ft_strncmp("-n", cmd[i], 2) == 0)
 	{
-		while (cmd[i +1] && ft_strcmp(cmd[i + 1], "-n") == 0)
+		while (cmd[i + 1] && ft_strncmp(cmd[i + 1], "-n", 2) == 0)
 			i++;
 		handle_multiarg(cmd, i + 1);
 	}
