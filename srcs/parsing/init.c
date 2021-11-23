@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:54 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/23 12:31:10 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/23 13:53:12 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,3 @@ t_list	*init_env(t_data *data, char **envp)
 	return (data->env);
 }
 
-void	malloc_pid_array(t_data *data)
-{
-	data->pid_array = (pid_t *)malloc(sizeof(pid_t) * data->pipes + 1);	
-}

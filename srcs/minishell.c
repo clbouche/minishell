@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/23 12:31:56 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/23 14:02:36 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,25 +65,9 @@ void	minishell_loop(t_data *data)
 				count_redir(input, data);
 				count_childs(input, data);
 				malloc_pid_array(data);
-				data->std_out = dup(1);
-				data->std_in = dup(0);	
+				save_std_fds(data);
 				parser(input, data);
 				restore_fds(data);
-				printf("data->pipes %i\n", data->pipes);
-				while(data->pipes >= 0)
-				{
-					waitpid(-1, &g_sig.status, 0);
-					data->pipes--;
-				}
-				//puts("pipi");
-				// while(data->pipes > 0)
-				// {
-				// 	puts("caca");
-				// 	debug("waiting for : [%d]", data->pid_array[data->pid]);
-				// 	waitpid(data->pid_array[data->pid], &g_sig.status, 0);
-				// 	data->pipes--;
-				// 	data->pid--;
-				// }
 			}
 			else
 				free(input);
