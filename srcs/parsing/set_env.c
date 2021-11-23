@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 12:09:16 by ldes-cou@         #+#    #+#             */
-/*   Updated: 2021/11/23 09:47:58 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/23 15:16:52 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ t_list	*env_null(t_data *d)
 	ft_lstadd_back(&d->env, new);
 	new = ft_lstnew("SHLV=1");
 	ft_lstadd_back(&d->env, new);
-	//set OLDPWD a partir du premier cd et a chaque cd
 	return (d->env);
 }
 

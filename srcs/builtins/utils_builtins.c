@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 14:24:35 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/22 14:38:20 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/23 15:39:59 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@ void	unset_var(char *var, t_data *d)
 	t_list	*tmp;
 	char	*name_var;
 
+	printf("var : %s\n", var);
 	tmp = d->env;
 	while (tmp != NULL)
 	{
 		name_var = find_name(tmp->content);
-		if (ft_strncmp(var, name_var, (ft_strlen(name_var))) == 0)
+		if (ft_strncmp(var, name_var, (ft_strlen(var))) == 0)
 		{
 			d->env = delete_node(d->env, var);
 			d->ret = SUCCESS;
