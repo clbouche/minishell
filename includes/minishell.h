@@ -245,6 +245,7 @@ void	opening_error(char *error);
 /*
 ** signals
 */
+void    sig_child();
 void	sig_heredoc(int signo);
 void	sig_int(int signo);
 void	sig_quit(int signo);

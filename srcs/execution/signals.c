@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:36:42 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/17 15:37:18 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/23 16:07:07 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ void sig_int(int signo)
     if (signo == SIGINT)
     {
         g_sig.status = 130;
-        //debug("g_sig.pid [%d]", g_sig.pid);
-        //debug("g_sig.prog [%d]", g_sig.prog);
         if (g_sig.prog == 0)
         {
             ft_putchar_fd('\n', 1);
@@ -51,14 +49,25 @@ void sig_quit(int signo)
 {
     if (signo == SIGQUIT)
     {
+	    //signal(SIGCHLD, SIG_IGN);
         g_sig.status = 131;
         if (g_sig.prog == 1)
         {
+            //signal(SIGQUIT, SIG_IGN);
             g_sig.sigquit = 1;
             kill(g_sig.pid, SIGQUIT);
             ft_putstr_fd("Quit (core dumped)\n", 2);
+            //ft_putstr_fd("\n ================= prout", 1);
         }
         else
+        {
             ft_putstr_fd("\b\b  \b\b", 1);
+        }
+        g_sig.prog = 0;
     }
 }
+// void    sig_child()
+// {
+//     signal(SIGINT, &sig_int);
+//     signal(SIGQUIT, &sig_quit);
+// }
