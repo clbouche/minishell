@@ -234,9 +234,22 @@ void			unset_var(char *var, t_data *d);
 */
 int		ft_pwd(void);
 //int		ft_exit(char **cmd, t_data *d);
-int		ft_exit();
-int		ft_cd(char **cmd);
+
+/*
+** echo 
+*/
 int		ft_echo(char **cmd, t_data *d);
+
+/*
+** exit
+*/
+int		ft_exit();
+
+/*
+** cd
+*/
+int		ft_cd(char **cmd, t_data *d);
+
 
 /*
 ** utils

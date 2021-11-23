@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 10:14:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/11/22 11:39:10 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/23 11:51:22 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	is_builtins(char **cmd)
 void	exec_builtin(char **cmd, t_data *d)
 {
 	if (is_builtins(cmd) == FT_CD)
-		ft_cd(cmd);
+		ft_cd(cmd, d);
 	else if (is_builtins(cmd) == FT_ENV)
 		ft_env(d, cmd);
 	else if (is_builtins(cmd) == FT_ECHO)
