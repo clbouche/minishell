@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 12:25:00 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/23 12:15:57 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/23 14:14:25 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,33 @@
 ** -> utilisation de chdir
 */
 
-/*void	change_oldpwd(t_data *d)
+void	change_oldpwd(t_data *d, char *old_pwd)
 {
+	t_list	*new_oldpwd;
 	
+	unset_var("OLDPWD=", d);
+	old_pwd = ft_strjoin("OLDPWD=", old_pwd);
+	new_oldpwd = ft_lstnew(old_pwd);
+	ft_lstadd_back(&d->env, new_oldpwd);
 }
-*/
-/*void	change_pwd(t_data *d, char **cmd)
-{
-	
-	
-}*/
 
+void	change_pwd(t_data *d)
+{
+	t_list	*new_pwd;
+	char	*pwd;
+	
+	unset_var("PWD=", d);
+	pwd = ft_strjoin("PWD=", getcwd(NULL, 0));
+	new_pwd = ft_lstnew(pwd);
+	ft_lstadd_back(&d->env, new_pwd);
+}
 
 int	ft_cd(char **cmd, t_data *d)
 {
 	char	*path;
+	char	*old_pwd;
 
-	(void)d;
+	old_pwd = find_content("PWD", d);
 	path = NULL;
 	if (cmd[1] && cmd[2])
 	{
@@ -52,20 +62,16 @@ int	ft_cd(char **cmd, t_data *d)
 	else if (cmd[1])
 		path = cmd[1];
 	if (chdir(path) == -1)
-		{
-			perror("cd");
-			free(path);
-			g_sig.status = 1;
-			return (FAILURE);
-		}
-	//else if (ft_strcmp(cmd[1], "-") == 0)
-	//	cd_oldpwd();
-	//change_oldpwd(data, cmd[1]);
-	//change_pwd(d, cmd);
+	{
+		perror("cd");
+		free(path);
+		g_sig.status = 1;
+		return (FAILURE);
+	}
+	change_oldpwd(d, old_pwd);
+	change_pwd(d);
 	free_array(cmd);
 	g_sig.status = 0;
 	return (SUCCESS);
 }
 
-//besoin de mettre a jour le OLDPWD a chaque fois qu'on fait cd 
-//besoin aussi de mettre a jour le PWD

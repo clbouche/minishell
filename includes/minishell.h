@@ -156,6 +156,7 @@ int		recup_file_len(char *str);
 */
 char	*manage_expand(char *line, t_data *data);
 char    *manage_variable(char *line, t_data *data);
+char	*find_content(char *name, t_data *data);
 int		check_append(char *line);
 
 /*
