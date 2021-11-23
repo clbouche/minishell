@@ -183,7 +183,7 @@ void	restore_fds(t_data *data);
 void	execute(char **cmd, t_data *data);
 void 	exec_builtin(char **cmd, t_data *d);
 void 	exec_simple(char  **cmd, t_data *d);
-void	exec_bin(char **cmd, char *bin, t_data *d);
+//void	exec_bin(char **cmd, char *bin, t_data *d);
 char	*exec_pipes(char *line, char *new_input, t_data *data);
 int 	is_builtins(char **cmd);
 //void	exec(char **cmd, t_data *d);

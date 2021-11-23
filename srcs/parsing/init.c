@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:54 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/22 14:44:24 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/23 12:31:10 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ void	init_redir(t_data *data)
 
 void	init_datas(t_data *data)
 {
-	data->pid = 0;
-	data->pipes = 0;
+
 	data->file_out = 0;
 	data->file_in = 0;
 	data->have_path = false;

@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/22 14:43:59 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/23 12:31:31 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ void count_childs(char *cmd, t_data *data)
 {
     int    i;
 	
+	data->pid = 0;
+	data->pipes = 0;
     i = 0;
     while (cmd[i] != '\0')
     {
