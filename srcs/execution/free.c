@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 12:08:22 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/11/18 13:28:36 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/23 14:43:56 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	free_exit(t_data *d, char *error, int exit_code, char *pb)
 	free_lst(d->env);
 	free_array(d->envp);
 	g_sig.status = exit_code;
-	exit(g_sig.status);
+	exit(exit_code);
 }
 
 void	free_all(t_data *d)

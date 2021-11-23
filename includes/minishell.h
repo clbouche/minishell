@@ -177,17 +177,20 @@ bool	check_exist_var(char *arg, int i, t_data *data);
 ** Execution
 */
 void	count_childs(char *cmd, t_data *data);
-void	pipe_out(t_data *d);
-void	pipe_in(t_data *d);
-void	restore_fds(t_data *data);
 void	execute(char **cmd, t_data *data);
 void 	exec_builtin(char **cmd, t_data *d);
 void 	exec_simple(char  **cmd, t_data *d);
-//void	exec_bin(char **cmd, char *bin, t_data *d);
 char	*exec_pipes(char *line, char *new_input, t_data *data);
 int 	is_builtins(char **cmd);
-//void	exec(char **cmd, t_data *d);
-//int		redirect(t_data *d);
+void    wait_for_childs(t_data *data);
+
+/*
+** manage_fds
+*/
+void	save_std_fds(t_data *data);
+void	pipe_out(t_data *d);
+void	pipe_in(t_data *d);
+void	restore_fds(t_data *data);
 
 /*
 ** find_path

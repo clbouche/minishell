@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/23 12:31:31 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/23 14:07:18 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,21 +97,7 @@ char	*manage_pipe(char *line, int pipe_pos, t_data *data)
 ** - S'occupe des redirections
 ** - Tranforme l'input rendu propre en tableau de commandes.
 */
-void count_childs(char *cmd, t_data *data)
-{
-    int    i;
-	
-	data->pid = 0;
-	data->pipes = 0;
-    i = 0;
-    while (cmd[i] != '\0')
-    {
-        if (cmd[i] == '|')
-            data->pipes++;
-        i++;
-    }
-	printf("data->pipes %i\n", data->pipes);
-}
+
 
 int		parser(char *line, t_data *data)
 {
