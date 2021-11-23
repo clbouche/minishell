@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 09:02:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/11/23 16:07:33 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/23 16:25:37 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void exec_simple(char **cmd, t_data *d)
 		//sig_child();
 		exec_child(cmd, d);
 	}
+	signal(SIGQUIT, &sig_quit);
 	waitpid(g_sig.pid, &g_sig.status, 0);
 	free_array(cmd);
 	if (WIFEXITED(g_sig.status))
