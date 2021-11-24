@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 09:02:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/11/23 16:25:37 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/24 13:30:07 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ static void	exec_bin(char **cmd, char *bin, t_data *d)
 	g_sig.status = 126;
 	free_array(cmd);
 	cmd = NULL;
-	exit(g_sig.status);
 	g_sig.prog = 0;
+	exit(g_sig.status);
 }
 
 static void    exec_child(char **cmd, t_data *d)
@@ -85,21 +85,14 @@ void exec_simple(char **cmd, t_data *d)
 	g_sig.pid = fork();
 	g_sig.prog = 1;
 	if (g_sig.pid == -1)
-	{
-		puts("error_pid attention oublie pas dexit proprement");
-		exit(FAILURE);
-	}
+		free_exit(d, cmd[0], 1, ": error while forking\n");
 	else if (g_sig.pid == 0)
-	{	
-		//sig_child();
 		exec_child(cmd, d);
-	}
 	signal(SIGQUIT, &sig_quit);
 	waitpid(g_sig.pid, &g_sig.status, 0);
 	free_array(cmd);
 	if (WIFEXITED(g_sig.status))
 		g_sig.status = WEXITSTATUS(g_sig.status);
 	g_sig.prog = 0;
-	//close_fds(d);
 	return;
 }

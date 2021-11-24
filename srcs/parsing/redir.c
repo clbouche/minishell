@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/18 15:50:17 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/24 13:44:20 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,27 +19,25 @@
 void redir_heredoc(char *str, t_data *data)
 {
 	char	*delimiter;
-	int		pid;
-	int		heredocs[2];
+	pid_t	pid;
 
 	delimiter = NULL;
 	delimiter = define_delimiter(str);
-	g_sig.heredoc = true;
+	pipe(data->fds);
 	g_sig.prog = 1;
-	signal(SIGQUIT, &sig_heredoc);
-	pipe(heredocs);
 	pid = fork();
+	add_to_array(data, pid);
 	if (pid == 0)
 	{
-	 	heredoc_loop(delimiter, data, heredocs);
-		close(heredocs[1]);
+		signal(SIGINT, &sig_heredoc);
+	 	heredoc_loop(delimiter, data);
 		exit(1);
 	}
-	free(delimiter);
+	//data->redir->r_in = true;
+	pipe_in(data);//essayer de read(sur fds[0]);
 	waitpid(-1, &g_sig.status, 0);//trouver un moyen pour stocker le retour du heredoc	
+	free(delimiter);
 	g_sig.prog = 0;
-	close(heredocs[1]);	
-	// 	exit(FAILURE);
 }
 
 /*

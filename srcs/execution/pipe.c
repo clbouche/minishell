@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 12:37:16 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/23 14:41:52 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/24 13:06:46 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void count_childs(char *cmd, t_data *data)
             data->pipes++;
         i++;
     }
-	//printf("data->pipes %i\n", data->pipes);
+	data->pipes += data->redir->count_heredoc;
 }
 
 void	malloc_pid_array(t_data *data)
@@ -73,11 +73,9 @@ void    wait_for_childs(t_data *data)
     while(i <= data->pid)
     {
         waitpid(data->pid_array[i], &g_sig.status, 0);
-        //debug(" Ret : [%d]", WEXITSTATUS(g_sig.status));
         if (WIFEXITED(g_sig.status))
 		    g_sig.status = WEXITSTATUS(g_sig.status);
         i++;
-    }
-    
+    }    
     free(data->pid_array);
 }

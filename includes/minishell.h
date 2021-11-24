@@ -148,7 +148,7 @@ void	count_redir(char *line, t_data *data);
 char	*check_redir(char *line, t_data *data);
 void	manage_redir(char *input, int i, t_data *data);
 void	redir_heredoc(char *str, t_data *data);
-void	heredoc_loop(char *delimiter, t_data *data, int *heredoc_pipe);
+void	heredoc_loop(char *delimiter, t_data *data);
 char	*define_delimiter(char *str);
 void	redir_input(char *str, t_data *data);
 void	redir_output_append(char *str, t_data *data);
@@ -176,6 +176,7 @@ bool	check_exist_var(char *arg, int i, t_data *data);
 /*
 ** Execution
 */
+void	add_to_array(t_data *d, pid_t pid);
 void	count_childs(char *cmd, t_data *data);
 void	execute(char **cmd, t_data *data);
 void 	exec_builtin(char **cmd, t_data *d);

@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:36:42 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/23 16:07:07 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/24 11:05:36 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@
 void    sig_heredoc(int signo)
 {
     (void)signo;
-    ft_putstr_fd("\b\b  \b\b", 1);
+    ft_putchar_fd('\n', 1);
+    rl_replace_line("", 1);
+    rl_on_new_line();
+	exit(0);
+    
 }
 
 void sig_int(int signo)
@@ -49,15 +53,12 @@ void sig_quit(int signo)
 {
     if (signo == SIGQUIT)
     {
-	    //signal(SIGCHLD, SIG_IGN);
         g_sig.status = 131;
         if (g_sig.prog == 1)
         {
-            //signal(SIGQUIT, SIG_IGN);
             g_sig.sigquit = 1;
             kill(g_sig.pid, SIGQUIT);
             ft_putstr_fd("Quit (core dumped)\n", 2);
-            //ft_putstr_fd("\n ================= prout", 1);
         }
         else
         {
@@ -66,8 +67,3 @@ void sig_quit(int signo)
         g_sig.prog = 0;
     }
 }
-// void    sig_child()
-// {
-//     signal(SIGINT, &sig_int);
-//     signal(SIGQUIT, &sig_quit);
-// }
