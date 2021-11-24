@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/24 13:44:20 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/24 13:52:11 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void redir_heredoc(char *str, t_data *data)
 		exit(1);
 	}
 	//data->redir->r_in = true;
-	pipe_in(data);//essayer de read(sur fds[0]);
 	waitpid(-1, &g_sig.status, 0);//trouver un moyen pour stocker le retour du heredoc	
+	pipe_in(data);//essayer de read(sur fds[0]);
 	free(delimiter);
 	g_sig.prog = 0;
 }

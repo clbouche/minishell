@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 14:12:46 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/24 13:42:16 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/24 13:54:05 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ void	heredoc_loop(char *delimiter, t_data *data)
 
 	while(true)
 	{
+		rl_outstream = stderr;
 		input = readline("> ");
 		if (!input)
 		{
