@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 14:12:46 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/17 15:33:11 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/26 16:13:13 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 ** Il ne doit pas juste "faire partie" de la ligne.
 */
 
-int		len_delimiter(char *str)
+int	len_delimiter(char *str)
 {
-	int i;
-	int	len;
+	int		i;
+	int		len;
 	char	quote;
 
 	i = 0;
@@ -31,14 +31,13 @@ int		len_delimiter(char *str)
 	if (str[i] && (str[i] == '"' || str[i] == '\''))
 	{
 		quote = str[i++];
-		while(str[i + len] != quote)
+		while (str[i + len] != quote)
 			len++;
 		i++;
 	}
 	else
 	{
-		//i++;
-		while(str[i + len] && (str[i] != ' ' || str[i] != '\0'))
+		while (str[i + len] && (str[i] != ' ' || str[i] != '\0'))
 			len++;
 	}
 	return (len);
@@ -46,10 +45,10 @@ int		len_delimiter(char *str)
 
 char	*define_delimiter(char *str)
 {
-	int 	i;
+	int		i;
 	int		j;
 	char	quote;
-	char *delimiter;
+	char	*delimiter;
 
 	i = 0;
 	j = 0;
@@ -62,13 +61,13 @@ char	*define_delimiter(char *str)
 	{
 		quote = str[i];
 		str[i++] = ' ';
-		while(str[i] && str[i] != quote)
+		while (str[i] && str[i] != quote)
 		{
 			delimiter[j++] = str[i];
 			str[i++] = ' ';
 		}
 	}
-	else 
+	else
 	{
 		while (str[i] && str[i] != ' ')
 		{
@@ -86,10 +85,10 @@ char	*define_delimiter(char *str)
 
 int		check_expand(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
 		if (str[i] == '$')
 			return (i);
@@ -100,13 +99,12 @@ int		check_expand(char *str)
 
 void	heredoc_loop(char *delimiter, t_data *data, int *heredocs)
 {
-
 	char	*input;
-	char *new_input;
+	char	*new_input;
 	int		i;
 
 	(void)heredocs;
-	while(true)
+	while (true)
 	{
 		//rl_catch_signals = 0;
 		input = readline("> ");
@@ -121,7 +119,7 @@ void	heredoc_loop(char *delimiter, t_data *data, int *heredocs)
 			// 	heredoc_quit(delimiter);
 			free(input);
 			input = NULL;
-			break;
+			break ;
 		}
 		i = check_expand(input);
 		if (i >= 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:04 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/23 13:50:27 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/26 15:08:20 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	print_export(t_data *d)
 	t_list	*tmp;
 
 	tmp = d->env;
-	while (d->env != NULL) //print alphabetically
+	while (d->env != NULL)
 	{
 		if (d->env->next == NULL)
 		{

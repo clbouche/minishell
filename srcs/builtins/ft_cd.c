@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 12:25:00 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/23 16:01:06 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/26 15:05:49 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 void	change_oldpwd(t_data *d, char *old_pwd)
 {
 	t_list	*new_oldpwd;
-	
+
 	unset_var("OLDPWD", d);
 	old_pwd = ft_strjoin("OLDPWD=", old_pwd);
 	new_oldpwd = ft_lstnew(old_pwd);
@@ -80,4 +80,3 @@ int	ft_cd(char **cmd, t_data *d)
 	g_sig.status = 0;
 	return (SUCCESS);
 }
-

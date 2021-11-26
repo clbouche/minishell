@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 12:09:16 by ldes-cou@         #+#    #+#             */
-/*   Updated: 2021/11/23 15:16:52 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/26 15:29:20 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ char	*change_shlvl(char *var)
 
 t_list	*env_null(t_data *d)
 {
-	t_list *new;
-	char 	*tmp;
+	t_list	*new;
+	char	*tmp;
 	char	path[MAX];
 
 	getcwd(path, MAX);

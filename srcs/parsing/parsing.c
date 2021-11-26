@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/22 11:59:00 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/26 15:18:48 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ int	parser(char *line, t_data *data)
 		}
 		else if (line[i] == '"' || line[i] == '\'')
 		{
+			//manage_quotes(line, i, quote, data);
 			quote = line[i++];
 			while (line[i] != quote)
 			{

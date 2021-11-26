@@ -36,7 +36,6 @@ static int	handle_multiarg(char **cmd, int i)
 	}
 	return (0);
 }
-//ajouter le fait de ne pas faire d'espace pour le dernier arg
 
 int	ft_echo(char **cmd, t_data *d)
 {
