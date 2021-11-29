@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_intlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 12:37:20 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/10/14 12:41:27 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/22 11:06:24 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t		ft_intlen(int n)
+size_t	ft_intlen(int n)
 {
 	size_t		len;
 

@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:38:59 by ldes-cou@         #+#    #+#             */
-/*   Updated: 2021/11/15 16:51:34 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/22 11:25:41 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@
 
 void	ft_env(t_data *d, char **cmd)
 {
-	t_list *tmp;
-	
+	t_list	*tmp;
+
 	if (d->env == NULL)
 	{
 		ft_putstr_fd("there is no environment", 2);
 		d->ret = FAILURE;
 	}
 	tmp = d->env;
-	while(d->env != NULL)
+	while (d->env != NULL)
 	{
 		printf("%s\n", (char *)d->env->content);
 		d->env = d->env->next;
@@ -36,25 +36,25 @@ void	ft_env(t_data *d, char **cmd)
 	free_array(cmd);
 }
 
-char *find_var(char *name)
+char	*find_var(char *name)
 {
-	char *var;
+	char	*var;
 
 	var = NULL;
 	var = ft_strchr(name, '=');
 	if (!var)
-		return(NULL);
-	return(var + 1);
+		return (NULL);
+	return (var + 1);
 }
 
-char *find_name(char *var)
+char	*find_name(char *var)
 {
-	char *name;
-	int i;
+	char	*name;
+	int		i;
 
 	i = 0;
 	while (var[i] != '=' && var[i])
 		i++;
 	name = ft_substr(var, 0, i);
-	return(name);
+	return (name);
 }

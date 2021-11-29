@@ -204,22 +204,59 @@ t_list		*init_env(t_data *d, char **envp);
 t_list		*set_lvl(t_list *env, char * lvl);
 
 /*
-** Built-in 
+** Built-in
+*/
+
+/*
+** env
 */
 void	ft_env(t_data *d, char **cmd);
 void	convert_env(t_data *d);
-char	*find_var(char *name);
-char	*find_name(char *var);
+
+/*
+** export
+*/
 void	export_var(char **cmd, t_data *d, int j);
 int		ft_export(char **cmd, t_data *d);
 void	print_export(t_data *d);
-t_list	*ft_unset(char **cmd, t_data *d);
-void	unset_var(char *var, t_data *d);
+
+/*
+** unset
+*/
+t_list			*ft_unset(char **cmd, t_data *d);
+void			unset_var(char *var, t_data *d);
+// static t_list	*delete_last(t_list *h, t_list *hn, char *name);
+// static t_list	*delete_middle(t_list *h, t_list *hn, char *name);
+// static t_list	*delete_head(t_list *head);
+
+/*
+** pwd
+*/
 int		ft_pwd(void);
 //int		ft_exit(char **cmd, t_data *d);
-int		ft_exit();
-int		ft_cd(char **cmd);
+
+/*
+** echo 
+*/
 int		ft_echo(char **cmd, t_data *d);
+
+/*
+** exit
+*/
+int		ft_exit();
+
+/*
+** cd
+*/
+int		ft_cd(char **cmd, t_data *d);
+
+
+/*
+** utils
+*/
+char	*find_var(char *name);
+char	*find_name(char *var);
+
 
 /*
 ** Free
@@ -234,7 +271,7 @@ void	tests(t_list *env, char **cmd);
 void	opening_error(char *error);
 
 /*
-** signals
+** Signals
 */
 void	sig_heredoc(int signo);
 void	sig_int(int signo);

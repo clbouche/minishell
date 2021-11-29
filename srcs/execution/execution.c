@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 09:02:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/11/16 15:17:39 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/22 11:15:53 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	execute(char **cmd, t_data *d)
 	if (g_sig.sigint == 1)
 	{
 		free_array(cmd);
-		return;
+		return ;
 	}
 	d->have_path = false;
 	if (ft_strchr(cmd[0], '/'))
@@ -31,7 +31,6 @@ void	execute(char **cmd, t_data *d)
 
 char	*exec_pipes(char *line, char *new_input, t_data *d)
 {
-
 	if (pipe(d->fds) == -1)
 		puts("error_pipe attention oublie pas dexit proprement");
 	g_sig.pid = fork();

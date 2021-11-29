@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:32:10 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/18 15:38:27 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/29 10:38:05 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char	*split_args(char *str)
 
 size_t	count_args(char *line)
 {
-	size_t		i;
+	size_t	i;
 	char	quote;
 
 	i = 1;
@@ -99,13 +99,12 @@ size_t	count_args(char *line)
 	return (i);
 }
 
-
 void	print_cmd(char **cmd)
 {
 	int	i;
 
 	i = 0;
-	while(cmd[i])
+	while (cmd[i])
 	{
 		printf("cmd[%i] : [%s]\n", i, cmd[i]);
 		i++;
@@ -119,8 +118,8 @@ void	print_cmd(char **cmd)
 char	**split_cmd(char *line)
 {
 	char	**cmd;
-	size_t		i;
-	size_t		count;
+	size_t	i;
+	size_t	count;
 
 	i = 0;
 	if (!line)

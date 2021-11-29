@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/18 15:36:18 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/29 10:39:36 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 {
 	char	*new_line;
 
-	while(line[i] != quote)
+	while (line[i] != quote)
 	{
 		if (line[i] == '$' && quote == '"')
 		{
@@ -77,10 +77,7 @@ char	*manage_pipe(char *line, int pipe_pos, t_data *data)
 
 	new_input = NULL;
 	if (line[pipe_pos - 1] != '|' && line[pipe_pos + 1] != '|')
-	{
 		new_input = ft_strdup(&line[pipe_pos + 1]);
-		//printf("new input pipe : [%s]\n", new_input);
-	}
 	else
 	{
 		ft_putstr_fd("syntax error\n", 1);
@@ -88,7 +85,7 @@ char	*manage_pipe(char *line, int pipe_pos, t_data *data)
 		return (line);
 	}
 	line[pipe_pos] = '\0';
-	return(exec_pipes(line, new_input, data));
+	return (exec_pipes(line, new_input, data));
 }
 
 /*
@@ -98,7 +95,7 @@ char	*manage_pipe(char *line, int pipe_pos, t_data *data)
 ** - S'occupe des redirections
 ** - Tranforme l'input rendu propre en tableau de commandes.
 */
-int		parser(char *line, t_data *data)
+int	parser(char *line, t_data *data)
 {
 	int		i;
 	//char	quote;

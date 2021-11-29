@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:54 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/16 14:53:29 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/23 09:06:57 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,3 @@ t_list	*init_env(t_data *data, char **envp)
 	data->env = get_env(data, envp);
 	return (data->env);
 }
-

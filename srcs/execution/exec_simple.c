@@ -6,15 +6,16 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:49:47 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/18 13:26:33 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/29 10:40:38 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-	
+
 void	exec_bin(char **cmd, char *bin, t_data *d)
 {
-	struct  stat stat_b;
+	struct stat	stat_b;
+
 	if (bin == NULL)
 		free_exit(d, cmd[0], 127, ": command not found\n");
 	free(cmd[0]);
@@ -36,10 +37,10 @@ void	exec_bin(char **cmd, char *bin, t_data *d)
 	exit(g_sig.status);
 }
 
-void    exec_child(char **cmd, t_data *d)
+void	exec_child(char **cmd, t_data *d)
 {
-	char *bin;
-	char **paths;
+	char	*bin;
+	char	**paths;
 
 	paths = NULL;
 	bin = NULL;
@@ -57,10 +58,8 @@ void    exec_child(char **cmd, t_data *d)
 	//free(bin);
 }
 
-
-
-void exec_simple(char **cmd, t_data *d)
-{ 
+void	exec_simple(char **cmd, t_data *d)
+{
 	g_sig.prog = 1;
 	g_sig.pid = fork();
 	if (g_sig.pid == -1)
@@ -79,5 +78,5 @@ void exec_simple(char **cmd, t_data *d)
 		g_sig.status = WEXITSTATUS(g_sig.status);
 	g_sig.prog = 0;
 	//close_fds(d);
-	return;
+	return ;
 }

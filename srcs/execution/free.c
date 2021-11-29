@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 12:08:22 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/11/17 15:25:01 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/22 11:13:15 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ void	free_array(char **array)
 	}
 }
 
-void free_lst(t_list *lst)
+void	free_lst(t_list *lst)
 {
 	t_list	*tofree;
 
 	tofree = NULL;
 	if (lst == NULL)
-		return;
+		return ;
 	while (lst)
 	{
 		//printf("%s\n", (char *)lst->content);
@@ -49,7 +49,7 @@ void free_lst(t_list *lst)
 		free(tofree);
 		tofree = NULL;
 	}
-	return;
+	return ;
 }
 
 void	free_exit(t_data *d, char *error, int exit_code, char *pb)

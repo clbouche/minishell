@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 12:25:00 by clbouche          #+#    #+#             */
-/*   Updated: 2021/10/28 13:44:49 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/26 15:05:49 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,56 @@
 ** -> utilisation de chdir
 */
 
-int	ft_cd(char **cmd)
+void	change_oldpwd(t_data *d, char *old_pwd)
+{
+	t_list	*new_oldpwd;
+
+	unset_var("OLDPWD", d);
+	old_pwd = ft_strjoin("OLDPWD=", old_pwd);
+	new_oldpwd = ft_lstnew(old_pwd);
+	old_pwd = NULL;
+	ft_lstadd_back(&d->env, new_oldpwd);
+}
+
+void	change_pwd(t_data *d)
+{
+	t_list	*new_pwd;
+	char	*pwd;
+
+	unset_var("PWD=", d);
+	pwd = ft_strjoin("PWD=", getcwd(NULL, 0));
+	new_pwd = ft_lstnew(pwd);
+	ft_lstadd_back(&d->env, new_pwd);
+}
+// une idee du probleme : que je viennes recuperer le pwd et le old pwd via un autre char *, 
+// va savoir pourquoi, ca creer plusieurs variables a la suite
+// genre si je viens chercher le getcwd direct dans le strjoin, ca marche
+//faire de meme pour oldpwd ? 
+//mais au fond, quel est le soucis wsh ??????? 
+
+int	ft_cd(char **cmd, t_data *d)
 {
 	char	*path;
+	char	*old_pwd;
 
 	path = NULL;
-	if (cmd[1] == NULL)
+	old_pwd = getcwd(NULL, 0);
+	if (cmd[1] && cmd[2])
+	{
+		ft_putstr_fd("cd : too many arguments\n", 1);
 		return (FAILURE);
-	path = ft_strdup(cmd[1]);
+	}
+	else if (cmd[1] == NULL)
+	{
+		path = getenv("HOME");
+		if (path == NULL)
+		{
+			ft_putstr_fd("cd : HOME not set\n", 1);
+			return (FAILURE);
+		}
+	}
+	else if (cmd[1])
+		path = cmd[1];
 	if (chdir(path) == -1)
 	{
 		perror("cd");
@@ -32,7 +74,8 @@ int	ft_cd(char **cmd)
 		g_sig.status = 1;
 		return (FAILURE);
 	}
-	free(path);
+	change_pwd(d);
+	change_oldpwd(d, old_pwd);
 	free_array(cmd);
 	g_sig.status = 0;
 	return (SUCCESS);
