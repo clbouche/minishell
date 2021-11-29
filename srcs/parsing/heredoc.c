@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 14:12:46 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/24 13:54:05 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/29 10:44:34 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,16 @@ int		check_expand(char *str)
 	}
 	return (-1);
 }
-
+void	bash_avertissement(char *del, char *input)
+{
+	ft_putstr_fd("bash: avertissement : « here-document » (wanted '", 2);
+	ft_putstr_fd(delimiter, 2);
+	ft_putendl_fd("')", 2);
+	free(input);
+	break ;
+}
 void	heredoc_loop(char *delimiter, t_data *data)
 {
-
 	char	*input;
 	char	*new_input;
 	int		i;
@@ -109,13 +115,7 @@ void	heredoc_loop(char *delimiter, t_data *data)
 		rl_outstream = stderr;
 		input = readline("> ");
 		if (!input)
-		{
-			ft_putstr_fd("bash: avertissement : « here-document » (wanted '", 2);
-			ft_putstr_fd(delimiter, 2);
-			ft_putendl_fd("')", 2);
-			free(input);
-			break ;
-		}
+			bash_avertissement(delimiter, input);
 		if (ft_strcmp(input, delimiter) == 0)
 		{
 			free(input);
@@ -131,5 +131,4 @@ void	heredoc_loop(char *delimiter, t_data *data)
 		write(data->fds[1] , input, ft_strlen(input));
 		write(data->fds[1] , "\n", 1);	
 	}
-	
 }
