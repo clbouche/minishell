@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/23 14:07:18 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/29 10:56:10 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 {
 	char	*new_line;
 
-	while(line[i] != quote)
+	while (line[i] != quote)
 	{
 		if (line[i] == '$' && quote == '"')
 		{
@@ -77,9 +77,7 @@ char	*manage_pipe(char *line, int pipe_pos, t_data *data)
 
 	new_input = NULL;
 	if (line[pipe_pos - 1] != '|' && line[pipe_pos + 1] != '|')
-	{
 		new_input = ft_strdup(&line[pipe_pos + 1]);
-	}
 	else
 	{
 		ft_putstr_fd("syntax error\n", 1);
@@ -87,7 +85,7 @@ char	*manage_pipe(char *line, int pipe_pos, t_data *data)
 		return (line);
 	}
 	line[pipe_pos] = '\0';
-	return(exec_pipes(line, new_input, data));
+	return (exec_pipes(line, new_input, data));
 }
 
 /*
@@ -105,7 +103,7 @@ int		parser(char *line, t_data *data)
 	char	*new_line;
 
 	i = 0;
-	while (line[i])
+	while (line && line[i])
 	{
 		if (line[i] == '$' && line[i + 1] !=  ' ')
 		{

@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 12:25:32 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/18 10:55:48 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/29 10:48:21 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,10 @@
 ** to the standard output.
 ** -> there is a max size of 6 octets for the path
 ** ->
-*/ 
-
+*/
 int	ft_pwd(void)
 {
-    char path[MAX];
+	char	path[MAX];
 
     if (getcwd(path, MAX))
     {

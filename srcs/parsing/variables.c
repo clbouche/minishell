@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 13:46:38 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/18 15:45:59 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/29 10:37:33 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*copy_name(char *line)
 	len = 0;
 	j = 0;
 	name = NULL;
-	while(line[i] && check_char(line[i]) && !spe_case(line[i]))
+	while (line[i] && check_char(line[i]) && !spe_case(line[i]))
 	{
 		i++;
 		len++;
@@ -38,7 +38,7 @@ char	*copy_name(char *line)
 		if (!name)
 			return (0);
 		i = 0;
-		while(i < len)
+		while (i < len)
 			name[i++] = line[j++];
 		name[i] = '\0';
 	}
@@ -72,19 +72,18 @@ char	*find_content(char *name, t_data *data)
 	return (content);
 }
 
-
 char	*add_end_line(char *input, char *line)
 {
-	int i;
+	int		i;
 	char	*new_input;
 
 	i = 0;
 	new_input = NULL;
-	while(line[i] && line[i] != '=')
+	while (line[i] && line[i] != '=')
 		i++;
 	if (line[i] == '=')
 		new_input = ft_strjoin_realloc(&input, &line[i]);
-	return(new_input);
+	return (new_input);
 }
 
 /* 
@@ -106,15 +105,14 @@ char	*create_new_input(char *line, int i, char *content, int type)
 		i++;
 	else if (type == 1)
 	{
-		while(line[i] && check_char(line[i]) && !spe_case(line[i]))
+		while (line[i] && check_char(line[i]) && !spe_case(line[i]))
 			i++;
 	}
-	if(line[i])
+	if (line[i])
 		new_input = ft_strjoin_realloc(&new_input, &line[i]);
 	free(line);
 	return (new_input);
 }
-
 
 /*
 ** Recuperer le nom et le contenu de la variable.

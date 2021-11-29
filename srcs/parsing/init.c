@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:54 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/23 15:40:55 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/29 10:48:55 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,3 @@ t_list	*init_env(t_data *data, char **envp)
 	data->env = get_env(data, envp);
 	return (data->env);
 }
-

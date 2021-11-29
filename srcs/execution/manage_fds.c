@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 11:36:04 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/11/23 14:02:49 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/29 10:52:22 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	pipe_in(t_data *d)
 	close(d->fds[0]);
 }
 
-void  restore_fds(t_data *d)
+void	restore_fds(t_data *d)
 {
 	if (d->redir->r_out == true)//|| d->piped == true)
 	{

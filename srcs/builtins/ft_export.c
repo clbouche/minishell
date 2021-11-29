@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:04 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/22 11:38:19 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/29 10:48:00 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ int	export_var(char **cmd, t_data *d, int j)
 //==> don't forget to sort alphabetically the variables
 int	ft_export(char **cmd, t_data *d)
 {
-	int i;
-	
+	int	i;
+
 	i = 1;
 	if (cmd[i])
 	{
@@ -60,7 +60,7 @@ int	ft_export(char **cmd, t_data *d)
 		{
 			ft_putstr_fd("not a valid identifier", 2);
 			g_sig.status = FAILURE;
-			return(g_sig.status);
+			return (g_sig.status);
 		}
 		while (cmd[i])
 		{	
@@ -73,17 +73,15 @@ int	ft_export(char **cmd, t_data *d)
 		print_export(d);
 	free_array(cmd);
 	g_sig.status = SUCCESS;
-	return(g_sig.status);
+	return (g_sig.status);
 }
-
-
 
 void	print_export(t_data *d)
 {
 	t_list	*tmp;
-	
+
 	tmp = d->env;
-	while (d->env != NULL) //print alphabetically
+	while (d->env != NULL)
 	{
 		if (d->env->next == NULL)
 		{

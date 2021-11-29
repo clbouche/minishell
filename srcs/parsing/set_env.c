@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   set_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 12:09:16 by ldes-cou@         #+#    #+#             */
-/*   Updated: 2021/11/09 16:18:31 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/26 15:29:20 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char *change_shlvl(char *var)
+char	*change_shlvl(char *var)
 {
-	int lvl;
-	char *new_lvl;
-	char *tmp;
+	int		lvl;
+	char	*new_lvl;
+	char	*tmp;
 
 	lvl = 0;
 	tmp = var;
@@ -28,7 +28,22 @@ char *change_shlvl(char *var)
 	free(tmp);
 	var = ft_strjoin("SHLVL=", new_lvl);
 	free(new_lvl);
-	return(var);
+	return (var);
+}
+
+t_list	*env_null(t_data *d)
+{
+	t_list	*new;
+	char	*tmp;
+	char	path[MAX];
+
+	getcwd(path, MAX);
+	tmp = ft_strjoin("PWD=", path);
+	new = ft_lstnew(tmp);
+	ft_lstadd_back(&d->env, new);
+	new = ft_lstnew("SHLV=1");
+	ft_lstadd_back(&d->env, new);
+	return (d->env);
 }
 
 t_list	*get_env(t_data *d, char **envp)
@@ -40,6 +55,8 @@ t_list	*get_env(t_data *d, char **envp)
 	new = NULL;
 	var = NULL;
 	i = -1;
+	if (*envp == NULL)
+		env_null(d);
 	while (envp[++i])
 	{
 		var = ft_strdup(envp[i]);
@@ -53,5 +70,5 @@ t_list	*get_env(t_data *d, char **envp)
 		ft_lstadd_back(&d->env, new);
 		d->env_len++;
 	}
-	return(d->env);
+	return (d->env);
 }

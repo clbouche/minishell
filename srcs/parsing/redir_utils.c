@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 17:54:08 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/15 12:32:11 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/22 12:01:35 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ int	recup_file_len(char *str)
 	char	quote;
 
 	i = 0;
-	while(str[i] == ' ')
+	while (str[i] == ' ')
 		i++;
-	while(str[i] && check_char_file(str[i]))
+	while (str[i] && check_char_file(str[i]))
 	{
 		if (str[i] == '\'' || str[i] == '"')
 		{
 			quote = str[i];
 			i++;
-			while(str[i] && str[i] != quote)
+			while (str[i] && str[i] != quote)
 				i++;
 		}
 		else
@@ -51,15 +51,15 @@ char	*recup_filename(char *str)
 	i = 0;
 	j = 0;
 	file_name = malloc(sizeof(char) * (recup_file_len(str) + 1));
-	while(str[i] == ' ')
+	while (str[i] == ' ')
 		i++;
-	while(str[i] && check_char_file(str[i]))
+	while (str[i] && check_char_file(str[i]))
 	{
 		if (str[i] == '\'' || str[i] == '"')
 		{
 			quote = str[i];
 			str[i++] = ' ';
-			while(str[i] && str[i] != quote)
+			while (str[i] && str[i] != quote)
 			{
 				file_name[j++] = str[i];
 				str[i++] = ' ';
@@ -77,10 +77,10 @@ char	*recup_filename(char *str)
 	return (file_name);
 }
 
-void		count_redir(char *line, t_data *data)
+void	count_redir(char *line, t_data *data)
 {
-	int i;
-	int quote;
+	int	i;
+	int	quote;
 
 	i = 0;
 	while (line[i])
@@ -88,7 +88,7 @@ void		count_redir(char *line, t_data *data)
 		if (line[i] == '"' || line[i] == '\'')
 		{
 			quote = line[i++];
-			while(line[i] != quote)
+			while (line[i] != quote)
 				i++;
 		}
 		if (line[i] == '<' && line[i + 1] != '<')
@@ -119,10 +119,11 @@ void		count_redir(char *line, t_data *data)
 
 char	*check_redir(char *line, t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while (line && line[i] && (data->redir->r_out == true || data->redir->r_in == true))
+	while (line && line[i] && (data->redir->r_out == true
+			|| data->redir->r_in == true))
 	{
 		if (line[i] == '<' || line[i] == '>')
 			manage_redir(line, i, data);

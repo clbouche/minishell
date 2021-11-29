@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 15:33:59 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/04 17:41:59 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/22 11:06:59 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_strchr(const char *s, int c)
 {
 	while (*s && *s != c)
 		s++;
-	if (*s == c) 
+	if (*s == c)
 		return ((char *)s);
 	return (0);
 }

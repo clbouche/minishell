@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 11:56:59 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/03 11:34:48 by claclou          ###   ########.fr       */
+/*   Updated: 2021/11/22 11:03:17 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,29 +21,6 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <stdbool.h>
-
-
-typedef enum		e_token_type
-{
-	T_ARG = 0,
-	T_SEP = 1,
-	T_OPT = 2,
-	T_EOF = 3,
-	T_PIPE = 4,
-	T_ARG_DOUBLE_QUOTE  = 5,
-	T_ARG_SIMPLE_QUOTE = 6,
-	T_CMD = 7,
-	T_FILE = 8,
-	T_SIMPLE_REDIR_L = 9,
-	T_SIMPLE_REDIR_R = 10, 
-	T_DOUBLE_REDIR_L = 11,
-	T_DOUBLE_REDIR_R = 12,
-	//T_DOLLARS = 13,
-	// T_BACKSLASH = 14,
-	// T_NL = 15,
-	T_MAX
-}					t_token_type;
-
 
 # define BUFFER_SIZE 1000000
 
@@ -118,7 +95,7 @@ int		ft_tolower(int c);
 int		ft_toupper(int c);
 
 /* MANIP MEMORY */
-void    ft_memdel(char **str);
+void	ft_memdel(char **str);
 void	*ft_memset(void *b, int c, size_t len);
 void	ft_bzero(void *s, size_t n);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
@@ -136,7 +113,7 @@ void	ft_putnbr_fd(int n, int fd);
 
 /* MANIP FILE - GNL */
 int		get_next_line(int fd, char **line);
-int		ft_check (char *str);
+int		ft_check(char *str);
 char	*ft_form_line(const char *s1);
 char	*ft_savetxt(char *s);
 

@@ -29,7 +29,6 @@ SOURCES		+=                            		\
 		srcs/parsing/set_env.c               	\
 		srcs/parsing/redir.c                 	\
 		srcs/parsing/split_cmd.c             	\
-		srcs/parsing/utils_expands.c         	\
 		srcs/parsing/clean_input.c           	\
 		srcs/parsing/init.c                  	\
 
@@ -44,6 +43,7 @@ SOURCES		+=                            		\
 		srcs/builtins/ft_pwd.c               	\
 		srcs/builtins/ft_cd.c                	\
 		srcs/builtins/ft_export.c            	\
+		srcs/builtins/utils_builtins.c       	\
 		srcs/builtins/ft_env.c               	\
 
 

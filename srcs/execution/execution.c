@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 09:02:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/11/24 13:30:07 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/29 10:52:13 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	execute(char **cmd, t_data *d)
 	if (g_sig.sigint == 1)
 	{
 		free_array(cmd);
-		return;
+		return ;
 	}
 	d->have_path = false;
 	if (ft_strchr(cmd[0], '/'))

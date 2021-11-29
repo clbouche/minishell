@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:36:42 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/24 11:05:36 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/29 10:52:45 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 **  @return void
 */
 
-void    sig_heredoc(int signo)
+void	sig_heredoc(int signo)
 {
     (void)signo;
     ft_putchar_fd('\n', 1);
@@ -29,7 +29,7 @@ void    sig_heredoc(int signo)
     
 }
 
-void sig_int(int signo)
+void	sig_int(int signo)
 {
     if (signo == SIGINT)
     {
@@ -49,7 +49,7 @@ void sig_int(int signo)
     }
 }
 
-void sig_quit(int signo)
+void	sig_quit(int signo)
 {
     if (signo == SIGQUIT)
     {

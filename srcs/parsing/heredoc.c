@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 14:12:46 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/29 10:44:34 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/29 10:53:51 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 ** Il ne doit pas juste "faire partie" de la ligne.
 */
 
-int		len_delimiter(char *str)
+int	len_delimiter(char *str)
 {
-	int i;
-	int	len;
+	int		i;
+	int		len;
 	char	quote;
 
 	i = 0;
@@ -31,7 +31,7 @@ int		len_delimiter(char *str)
 	if (str[i] && (str[i] == '"' || str[i] == '\''))
 	{
 		quote = str[i++];
-		while(str[i + len] != quote)
+		while (str[i + len] != quote)
 			len++;
 		i++;
 	}
@@ -45,10 +45,10 @@ int		len_delimiter(char *str)
 
 char	*define_delimiter(char *str)
 {
-	int 	i;
+	int		i;
 	int		j;
 	char	quote;
-	char *delimiter;
+	char	*delimiter;
 
 	i = 0;
 	j = 0;
@@ -61,13 +61,13 @@ char	*define_delimiter(char *str)
 	{
 		quote = str[i];
 		str[i++] = ' ';
-		while(str[i] && str[i] != quote)
+		while (str[i] && str[i] != quote)
 		{
 			delimiter[j++] = str[i];
 			str[i++] = ' ';
 		}
 	}
-	else 
+	else
 	{
 		while (str[i] && str[i] != ' ')
 		{
@@ -85,10 +85,10 @@ char	*define_delimiter(char *str)
 
 int		check_expand(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
 		if (str[i] == '$')
 			return (i);
@@ -99,10 +99,9 @@ int		check_expand(char *str)
 void	bash_avertissement(char *del, char *input)
 {
 	ft_putstr_fd("bash: avertissement : « here-document » (wanted '", 2);
-	ft_putstr_fd(delimiter, 2);
+	ft_putstr_fd(del, 2);
 	ft_putendl_fd("')", 2);
 	free(input);
-	break ;
 }
 void	heredoc_loop(char *delimiter, t_data *data)
 {
@@ -115,12 +114,15 @@ void	heredoc_loop(char *delimiter, t_data *data)
 		rl_outstream = stderr;
 		input = readline("> ");
 		if (!input)
+		{
 			bash_avertissement(delimiter, input);
+			break ;
+		}
 		if (ft_strcmp(input, delimiter) == 0)
 		{
 			free(input);
 			input = NULL;
-			break;
+			break ;
 		}
 		i = check_expand(input);
 		if (i >= 0)

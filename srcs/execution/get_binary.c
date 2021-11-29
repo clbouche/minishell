@@ -3,25 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   get_binary.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 15:15:48 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/16 10:45:00 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/26 15:09:05 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void convert_env(t_data *d)
+void	convert_env(t_data *d)
 {
-	t_list *tmp;
-	int i;
-	
+	t_list	*tmp;
+	int		i;
+
 	i = 0;
 	tmp = d->env;
-	
 	d->envp = malloc(sizeof(char *) * (d->env_len + 1));
-	while(tmp != NULL)
+	while (tmp != NULL)
 	{
 		d->envp[i] = ft_strdup(tmp->content);
 		tmp = tmp->next;
@@ -30,7 +29,7 @@ void convert_env(t_data *d)
 	d->envp[i] = NULL;
 }
 
-char *test_path(char **cmd, char **paths, char *bin, int i)
+char	*test_path(char **cmd, char **paths, char *bin, int i)
 {
 	bin = (char *)ft_calloc(sizeof(char), (ft_strlen(paths[i]) + ft_strlen(cmd[0]) + 2));
 	ft_strcat(bin, paths[i]); //faire une fonction maison
@@ -39,12 +38,12 @@ char *test_path(char **cmd, char **paths, char *bin, int i)
 	return (bin);
 }
 
-char *find_bin(char **paths, char **cmd)
+char	*find_bin(char **paths, char **cmd)
 {
-	char *bin;
-	int		i;
-	struct  stat stat_b;
-	
+	char		*bin;
+	int			i;
+	struct stat	stat_b;
+
 	i = 0;
 	bin = NULL;
 	if (paths)
@@ -59,7 +58,7 @@ char *find_bin(char **paths, char **cmd)
 		}
 	}
 	//free_array(paths);
-	return(bin);
+	return (bin);
 }
 
 char	**get_path(t_data *d)
@@ -79,10 +78,9 @@ char	**get_path(t_data *d)
 		i++;
 	}
 	if (d->envp[i] == NULL)
-		return(NULL);
+		return (NULL);
 	path = ft_substr(d->envp[i], 4, ft_strlen(d->envp[i]));
 	paths = ft_split(path, ':');
 	ft_memdel(&path);
 	return (paths);
 }
-

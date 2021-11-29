@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 10:32:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/22 11:56:32 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/29 10:47:51 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 /* if its piped should not exit
 **  shuould return the last arg of exit
 */
-
 int	is_numeric(char *input)
 {
 	int	i;
@@ -36,7 +35,7 @@ int	is_numeric(char *input)
 	return (0);
 }
 
-static int numeric_arg_required(char *arg)
+static int	numeric_arg_required(char *arg)
 {
 	ft_putstr_fd("minishell: exit: ", 2);
 	ft_putstr_fd(arg, 2);
@@ -46,7 +45,7 @@ static int numeric_arg_required(char *arg)
 	return (g_sig.status);
 }
 
-int     ft_exit(char **cmd, t_data *d)//norme !!!!!!
+int	ft_exit(char **cmd, t_data *d)//norme !!!!!!
 {
 	int exit_code;
 

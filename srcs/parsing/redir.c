@@ -6,17 +6,24 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/24 13:52:11 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/29 10:50:06 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+void	re_init_redir(t_data *data)
+{
+	data->redir->count_out = -1;
+	data->redir->r_out = false;
+	data->redir->bad_r = true;
+}
+
 /*
 ** Lit l'entree de la source actuelle 
 ** jusqu'a ce que le delimiteur soit croise. 
 */
-void redir_heredoc(char *str, t_data *data)
+void	redir_heredoc(char *str, t_data *data)
 {
 	char	*delimiter;
 	pid_t	pid;
@@ -45,7 +52,7 @@ void redir_heredoc(char *str, t_data *data)
 */
 void	redir_input(char *str, t_data *data)
 {
-	char	*file_name;
+	char		*file_name;
 	static int	count = 1;
 
 	file_name = recup_filename(str);
@@ -78,13 +85,14 @@ void	redir_input(char *str, t_data *data)
 */
 void	redir_output_append(char *str, t_data *data)
 {
-	char	*file_name;
+	char		*file_name;
 	static int	count = 1;
-	
+
 	file_name = recup_filename(str);
 	if (file_name)
 	{
-		data->file_out =  open(file_name, O_RDWR | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
+		data->file_out = open(file_name, O_RDWR | O_CREAT
+				| O_APPEND, S_IRUSR | S_IWUSR);
 		if (count == data->redir->count_append)
 		{
 			data->std_out = dup(1);
@@ -94,9 +102,7 @@ void	redir_output_append(char *str, t_data *data)
 		{
 			perror(file_name);
 			free(file_name);
-			data->redir->count_out = -1;
-			data->redir->r_out = false;
-			data->redir->bad_r = true;
+			re_init_redir(data);
 			return ;
 		}
 		free(file_name);
@@ -105,19 +111,19 @@ void	redir_output_append(char *str, t_data *data)
 	}	
 }
 
-
 /*
 ** Redirige le contenu de l'information demander vers un fichier.
 */
 void	redir_output(char *str, t_data *data)
 {
-	char	*file_name;
-	static int		count = 1;
-	
+	char		*file_name;
+	static int	count = 1;
+
 	file_name = recup_filename(str);
 	if (file_name)
 	{
-		data->file_out = open(file_name, O_RDWR | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
+		data->file_out = open(file_name, O_RDWR | O_CREAT
+				| O_TRUNC, S_IRUSR | S_IWUSR);
 		if (count == data->redir->count_out)
 		{
 			data->std_out = dup(1);
@@ -127,9 +133,7 @@ void	redir_output(char *str, t_data *data)
 		{
 			perror(file_name);
 			free(file_name);
-			data->redir->count_out = -1;
-			data->redir->r_out = false;
-			data->redir->bad_r = true;
+			re_init_redir(data);
 			return ;
 		}
 		free(file_name);
