@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 10:32:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/29 10:47:51 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/29 13:58:24 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	numeric_arg_required(char *arg)
 
 int	ft_exit(char **cmd, t_data *d)//norme !!!!!!
 {
-	int exit_code;
+	int	exit_code;
 
 	exit_code = 0;
 	d->ret = 0;
@@ -55,7 +55,7 @@ int	ft_exit(char **cmd, t_data *d)//norme !!!!!!
 	if (cmd[1] && cmd[2] != NULL)
 	{
 		ft_putendl_fd("minishell: exit: too many arguments", 2);
-		return(FAILURE);
+		return (FAILURE);
 	}
 	if (is_numeric(cmd[1]) == 1)
 	{

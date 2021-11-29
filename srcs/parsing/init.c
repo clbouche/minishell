@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:54 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/29 10:48:55 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/29 13:58:47 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	init_redir(t_data *data)
 
 void	init_datas(t_data *data)
 {
-
 	g_sig.prog = 0;
 	data->file_out = 0;
 	data->file_in = 0;
@@ -37,7 +36,6 @@ void	init_datas(t_data *data)
 	data->piped = false;
 	data->pipe = false;
 	g_sig.heredoc = false;
-
 	init_redir(data);
 }
 

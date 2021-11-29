@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:04 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/29 10:48:00 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/29 13:56:18 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	export_var(char **cmd, t_data *d, int j)
 		if (cmd[j][i] == '=')
 		{
 			var_unset = ft_substr(cmd[j], 0, i);
+			printf("var unset : %s\n", var_unset);
 			unset_var(var_unset, d);
 			new_var = ft_lstnew(cmd[j]);
 			ft_lstadd_back(&d->env, new_var);
@@ -41,7 +42,7 @@ int	export_var(char **cmd, t_data *d, int j)
 		i++;
 	}
 	g_sig.status = SUCCESS;
-	return(g_sig.status);
+	return (g_sig.status);
 }
 
 //=>export_var
@@ -54,7 +55,7 @@ int	ft_export(char **cmd, t_data *d)
 	i = 1;
 	if (cmd[i])
 	{
-		if(cmd[i][0] == '-')
+		if (cmd[i][0] == '-')
 			g_sig.status = INVALID_OPTION;
 		else if (ft_isdigit(cmd[i][0] == 1))
 		{
