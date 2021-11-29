@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 09:02:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/11/29 10:52:13 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/29 14:10:08 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,10 @@ void	execute(char **cmd, t_data *d)
 		exec_simple(cmd, d);
 }
 
-
 static void	exec_bin(char **cmd, char *bin, t_data *d)
 {
-	struct  stat stat_b;
-	
+	struct stat	stat_b;
+
 	signal(SIGINT, &sig_int);
 	signal(SIGQUIT, &sig_quit);
 	if (bin == NULL)
@@ -59,14 +58,13 @@ static void	exec_bin(char **cmd, char *bin, t_data *d)
 	exit(g_sig.status);
 }
 
-static void    exec_child(char **cmd, t_data *d)
+static void	exec_child(char **cmd, t_data *d)
 {
-	char *bin;
-	char **paths;
+	char	*bin;
+	char	**paths;
 
 	paths = NULL;
 	bin = NULL;
-	
 	if (d->have_path == false)
 	{
 		paths = get_path(d);
@@ -80,7 +78,7 @@ static void    exec_child(char **cmd, t_data *d)
 	exec_bin(cmd, bin, d);
 }
 
-void exec_simple(char **cmd, t_data *d)
+void	exec_simple(char **cmd, t_data *d)
 {
 	g_sig.pid = fork();
 	g_sig.prog = 1;
@@ -94,5 +92,5 @@ void exec_simple(char **cmd, t_data *d)
 	if (WIFEXITED(g_sig.status))
 		g_sig.status = WEXITSTATUS(g_sig.status);
 	g_sig.prog = 0;
-	return;
+	return ;
 }

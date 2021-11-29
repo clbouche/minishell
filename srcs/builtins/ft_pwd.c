@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 12:25:32 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/29 10:48:21 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/29 13:57:47 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ int	ft_pwd(void)
 {
 	char	path[MAX];
 
-    if (getcwd(path, MAX))
-    {
-        ft_putendl_fd(path, 1);
-        return(SUCCESS);
-    }
-    else
-    {
-        ft_putendl_fd(strerror(errno), 2);
-        return(FAILURE);
-    }  
+	if (getcwd(path, MAX))
+	{
+		ft_putendl_fd(path, 1);
+		return (SUCCESS);
+	}
+	else
+	{
+		ft_putendl_fd(strerror(errno), 2);
+		return (FAILURE);
+	}
 }

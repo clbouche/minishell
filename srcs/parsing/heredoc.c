@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 14:12:46 by clbouche          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/11/29 15:26:31 by ldes-cou         ###   ########.fr       */
+=======
+/*   Updated: 2021/11/29 14:03:27 by clbouche         ###   ########.fr       */
+>>>>>>> 983f42dfd8a1a0b8b3e39b1bf4891b1ab11aa124
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +41,7 @@ int	len_delimiter(char *str)
 	}
 	else
 	{
-		while(str[i + len] && (str[i] != ' ' || str[i] != '\0'))
+		while (str[i + len] && (str[i] != ' ' || str[i] != '\0'))
 			len++;
 	}
 	return (len);
@@ -83,7 +87,7 @@ char	*define_delimiter(char *str)
 	//idem pour expand = ne pas exploiter la variable. 
 }
 
-int		check_expand(char *str)
+int	check_expand(char *str)
 {
 	int	i;
 
@@ -96,6 +100,7 @@ int		check_expand(char *str)
 	}
 	return (-1);
 }
+
 void	bash_avertissement(char *del, char *input)
 {
 	ft_putstr_fd("bash: avertissement : « here-document » (wanted '", 2);
@@ -103,13 +108,14 @@ void	bash_avertissement(char *del, char *input)
 	ft_putendl_fd("')", 2);
 	free(input);
 }
+
 void	heredoc_loop(char *delimiter, t_data *data)
 {
 	char	*input;
 	char	*new_input;
 	int		i;
 
-	while(true)
+	while (true)
 	{
 		signal(SIGQUIT, &sig_quit);
 		rl_outstream = stderr;
@@ -131,8 +137,7 @@ void	heredoc_loop(char *delimiter, t_data *data)
 			new_input = manage_expand(input, i, data);
 			input = new_input;
 		}
-		// write(data->fds[1] , input, ft_strlen(input));
-		// write(data->fds[1] , "\n", 1);
-		pipe_out(data);
+		write(data->fds[1], input, ft_strlen(input));
+		write(data->fds[1], "\n", 1);
 	}
 }

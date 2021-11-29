@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 14:24:35 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/23 15:39:59 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/29 11:52:26 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	unset_var(char *var, t_data *d)
 	t_list	*tmp;
 	char	*name_var;
 
-	printf("var : %s\n", var);
 	tmp = d->env;
 	while (tmp != NULL)
 	{

@@ -6,24 +6,25 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 12:37:16 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/29 15:38:50 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/29 15:47:41 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-void count_childs(char *cmd, t_data *data)
+
+void	count_childs(char *cmd, t_data *data)
 {
-    int    i;
-	
+	int	i;
+
 	data->pid = 0;
 	data->pipes = 0;
-    i = 0;
-    while (cmd[i] != '\0')
-    {
-        if (cmd[i] == '|')
-            data->pipes++;
-        i++;
-    }
+	i = 0;
+	while (cmd[i] != '\0')
+	{
+		if (cmd[i] == '|')
+			data->pipes++;
+		i++;
+	}
 	data->pipes += data->redir->count_heredoc;
 }
 
@@ -31,12 +32,11 @@ void	malloc_pid_array(t_data *data)
 {
 	data->pid_array = (pid_t *)malloc(sizeof(pid_t) * (data->pipes + 1));
 	ft_bzero(data->pid_array, (sizeof(pid_t) * (data->pipes + 1)));
-    if (data->pid_array == NULL)
-        exit(FAILURE);
-    
+	if (data->pid_array == NULL)
+		exit(FAILURE);
 }
 
-void add_to_array(t_data *d, pid_t pid)
+void	add_to_array(t_data *d, pid_t pid)
 {
 	d->pid_array[d->pid] = pid;
 	d->pid++;
@@ -44,7 +44,7 @@ void add_to_array(t_data *d, pid_t pid)
 
 char	*exec_pipes(char *line, char *new_input, t_data *d)
 {
-    pid_t   pid;
+	pid_t	pid;
 
 	if (pipe(d->fds) == -1)
 		puts("error_pipe attention oublie pas dexit proprement");
@@ -65,7 +65,7 @@ char	*exec_pipes(char *line, char *new_input, t_data *d)
 	return (new_input);
 }
 
-void    wait_for_childs(t_data *data)
+void	wait_for_childs(t_data *data)
 {
     int  i;
 	int ret = 1;

@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 13:46:38 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/29 10:37:33 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/29 14:04:18 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	*find_content(char *name, t_data *data)
 	}
 	if (tmp_content)
 		content = ft_strdup(tmp_content);
-	else 
+	else
 		content = ft_strdup(" ");
 	return (content);
 }
@@ -95,7 +95,7 @@ char	*create_new_input(char *line, int i, char *content, int type)
 {
 	char	*new_input;
 	char	*tmp;
-	
+
 	new_input = NULL;
 	tmp = ft_substr(line, 0, i);
 	new_input = ft_strjoin(tmp, content);
@@ -123,8 +123,8 @@ char	*manage_variable(char *line, int i, t_data *data)
 	char	*new_input;
 	char	*name;
 	char	*content;
-	int 	type;
-	
+	int		type;
+
 	new_input = NULL;
 	name = NULL;
 	content = NULL;
@@ -144,5 +144,5 @@ char	*manage_variable(char *line, int i, t_data *data)
 		new_input = create_new_input(line, i, content, type);
 	free(name);
 	free(content);
-	return(new_input);
+	return (new_input);
 }

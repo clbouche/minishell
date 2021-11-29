@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/29 10:56:10 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/29 14:01:07 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,7 @@ char	*manage_pipe(char *line, int pipe_pos, t_data *data)
 ** - S'occupe des redirections
 ** - Tranforme l'input rendu propre en tableau de commandes.
 */
-
-
-int		parser(char *line, t_data *data)
+int	parser(char *line, t_data *data)
 {
 	int		i;
 	char	*new_line;
@@ -105,7 +103,7 @@ int		parser(char *line, t_data *data)
 	i = 0;
 	while (line && line[i])
 	{
-		if (line[i] == '$' && line[i + 1] !=  ' ')
+		if (line[i] == '$' && line[i + 1] != ' ')
 		{
 			new_line = manage_expand(line, i, data);
 			line = new_line;
@@ -113,7 +111,6 @@ int		parser(char *line, t_data *data)
 		if (line[i] == '|' && line[i + 1])
 		{
 			line = manage_pipe(line, i, data);
-			i = -1;
 			if (line)
 				data->piped = true;
 			else
@@ -122,9 +119,9 @@ int		parser(char *line, t_data *data)
 		if (line[i] == '"')
 		{
 			i++;
-			while(line[i] && line[i] != '"')
+			while (line[i] && line[i] != '"')
 			{
-				if (line[i] == '$' && line[i + 1] !=  ' ')
+				if (line[i] == '$' && line[i + 1] != ' ')
 				{
 					new_line = manage_expand(line, i, data);
 					line = new_line;

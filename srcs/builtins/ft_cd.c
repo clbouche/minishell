@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 12:25:00 by clbouche          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/11/29 13:18:18 by ldes-cou         ###   ########.fr       */
+=======
+/*   Updated: 2021/11/29 14:50:53 by clbouche         ###   ########.fr       */
+>>>>>>> 983f42dfd8a1a0b8b3e39b1bf4891b1ab11aa124
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +37,12 @@ void	change_pwd(t_data *d)
 	t_list	*new_pwd;
 	char	*pwd;
 
-	unset_var("PWD=", d);
+	unset_var("PWD", d);
 	pwd = ft_strjoin("PWD=", getcwd(NULL, 0));
 	new_pwd = ft_lstnew(pwd);
+	pwd = NULL;
 	ft_lstadd_back(&d->env, new_pwd);
 }
-// une idee du probleme : que je viennes recuperer le pwd et le old pwd via un autre char *, 
-// va savoir pourquoi, ca creer plusieurs variables a la suite
-// genre si je viens chercher le getcwd direct dans le strjoin, ca marche
-//faire de meme pour oldpwd ? 
-//mais au fond, quel est le soucis wsh ??????? 
 
 int	ft_cd(char **cmd, t_data *d)
 {
