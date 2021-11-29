@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:54 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/29 10:48:55 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/29 15:30:59 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	init_datas(t_data *data)
 {
 
 	g_sig.prog = 0;
+	g_sig.status = 0;
 	data->file_out = 0;
 	data->file_in = 0;
 	data->have_path = false;
@@ -37,7 +38,6 @@ void	init_datas(t_data *data)
 	data->piped = false;
 	data->pipe = false;
 	g_sig.heredoc = false;
-
 	init_redir(data);
 }
 

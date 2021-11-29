@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 14:12:46 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/29 10:53:51 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/29 15:26:31 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ void	heredoc_loop(char *delimiter, t_data *data)
 
 	while(true)
 	{
+		signal(SIGQUIT, &sig_quit);
 		rl_outstream = stderr;
 		input = readline("> ");
 		if (!input)
@@ -118,10 +119,10 @@ void	heredoc_loop(char *delimiter, t_data *data)
 			bash_avertissement(delimiter, input);
 			break ;
 		}
-		if (ft_strcmp(input, delimiter) == 0)
+		else if (ft_strcmp(input, delimiter) == 0)
 		{
-			free(input);
-			input = NULL;
+			//free(input);
+			//input = NULL;
 			break ;
 		}
 		i = check_expand(input);
@@ -130,7 +131,8 @@ void	heredoc_loop(char *delimiter, t_data *data)
 			new_input = manage_expand(input, i, data);
 			input = new_input;
 		}
-		write(data->fds[1] , input, ft_strlen(input));
-		write(data->fds[1] , "\n", 1);	
+		// write(data->fds[1] , input, ft_strlen(input));
+		// write(data->fds[1] , "\n", 1);
+		pipe_out(data);
 	}
 }

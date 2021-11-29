@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_simple.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:49:47 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/29 10:40:38 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/29 15:40:16 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,10 @@ void	exec_simple(char **cmd, t_data *d)
 	else
 	{
 		waitpid(g_sig.pid, &g_sig.status, 0);
+		if (WIFEXITED(g_sig.status))
+			g_sig.status = WEXITSTATUS(g_sig.status);
 		free_array(cmd);
 	}
-	if (WIFEXITED(g_sig.status))
-		g_sig.status = WEXITSTATUS(g_sig.status);
 	g_sig.prog = 0;
 	//close_fds(d);
 	return ;
