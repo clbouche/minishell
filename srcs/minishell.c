@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/29 10:50:18 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/11/29 11:12:58 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	minishell_to_parser(char *line, t_data *data)
 {
 	char	*input;
 
+	g_sig.prog = 0;
 	g_sig.sigint = 0;
 	manage_history(line);
 	input = clean_input(line);
@@ -53,10 +54,12 @@ void	minishell_to_parser(char *line, t_data *data)
 	else if (input[0])
 	{
 		count_redir(input, data);
-		data->std_out = dup(1);
-		data->std_in = dup(0);
+		count_childs(input, data);
+		malloc_pid_array(data);
+		save_std_fds(data);
 		parser(input, data);
 		restore_fds(data);
+		wait_for_childs(data);
 	}
 	else
 		free(input);
