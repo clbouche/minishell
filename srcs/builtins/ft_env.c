@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:38:59 by ldes-cou@         #+#    #+#             */
-/*   Updated: 2021/11/22 11:25:41 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/29 15:17:37 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@ void	ft_env(t_data *d, char **cmd)
 {
 	t_list	*tmp;
 
+	if (cmd[1])
+	{
+		ft_putstr_fd("error env\n", 1);
+		d->ret = FAILURE;
+		free_array(cmd);
+		return ;
+	}
 	if (d->env == NULL)
 	{
 		ft_putstr_fd("there is no environment", 2);

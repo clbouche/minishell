@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:31 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/29 13:48:05 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/29 15:08:27 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,13 @@ t_list	*delete_node(t_list *head, char *var)
 	t_list	*hn;
 	char	*name;
 
-	ft_lstprint(head);
+	//ft_lstprint(head);
 	if (!(ft_strncmp(var, head->content, (ft_strlen(var)))))
 		head = delete_head(head);
 	h = head;
 	hn = head->next;
 	while (hn && hn->next != NULL)
 	{
-		h = h->next;
-		hn = hn->next;
 		name = find_name(hn->content);
 		if (!(ft_strncmp(var, name, (ft_strlen(name)))))
 		{
@@ -69,6 +67,8 @@ t_list	*delete_node(t_list *head, char *var)
 				return (head);
 			}
 		}
+		h = h->next;
+		hn = hn->next;
 	}
 	return (head);
 }
