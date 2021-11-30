@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:36:42 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/29 14:11:54 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/30 21:58:41 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	sig_heredoc(int signo)
 {
 	(void)signo;
 	ft_putchar_fd('\n', 1);
-	rl_replace_line("", 1);
+	//rl_replace_line("", 1);
 	rl_on_new_line();
 	exit(0);
 }
@@ -36,7 +36,7 @@ void	sig_int(int signo)
 		if (g_sig.prog == 0)
 		{
 			ft_putchar_fd('\n', 1);
-			rl_replace_line("", 1);
+			//rl_replace_line("", 1);
 			rl_on_new_line();
 			rl_redisplay();
 		}
