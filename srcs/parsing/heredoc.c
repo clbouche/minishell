@@ -6,7 +6,11 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 14:12:46 by clbouche          #+#    #+#             */
+<<<<<<< HEAD
+/*   Updated: 2021/11/29 15:26:31 by ldes-cou         ###   ########.fr       */
+=======
 /*   Updated: 2021/11/29 14:03:27 by clbouche         ###   ########.fr       */
+>>>>>>> 983f42dfd8a1a0b8b3e39b1bf4891b1ab11aa124
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +117,7 @@ void	heredoc_loop(char *delimiter, t_data *data)
 
 	while (true)
 	{
+		signal(SIGQUIT, &sig_quit);
 		rl_outstream = stderr;
 		input = readline("> ");
 		if (!input)
@@ -120,10 +125,10 @@ void	heredoc_loop(char *delimiter, t_data *data)
 			bash_avertissement(delimiter, input);
 			break ;
 		}
-		if (ft_strcmp(input, delimiter) == 0)
+		else if (ft_strcmp(input, delimiter) == 0)
 		{
-			free(input);
-			input = NULL;
+			//free(input);
+			//input = NULL;
 			break ;
 		}
 		i = check_expand(input);

@@ -1,12 +1,12 @@
-/* ************************************************************************** */
+mmit -m "leaks and norme in progress/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 12:37:16 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/29 14:08:34 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/29 15:47:41 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,17 @@ char	*exec_pipes(char *line, char *new_input, t_data *d)
 
 void	wait_for_childs(t_data *data)
 {
-    int	i;
-
-	i = 0;
-	while (i <= data->pid)
-	{
-		waitpid(data->pid_array[i], &g_sig.status, 0);
-		if (WIFEXITED(g_sig.status))
-			g_sig.status = WEXITSTATUS(g_sig.status);
-		i++;
-	}
-	free(data->pid_array);
+    int  i;
+	int ret = 1;
+    i = 0;
+    while(data->pid >= 0)
+    {
+        waitpid(data->pid_array[data->pid], &g_sig.status, 0);
+        if (WIFEXITED(g_sig.status))
+		    g_sig.status = WEXITSTATUS(g_sig.status);
+		printf("[%i]status == %i\n", ret, g_sig.status);
+        data->pid--;
+		ret++;
+    }    
+    free(data->pid_array);
 }

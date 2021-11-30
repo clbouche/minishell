@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:54 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/30 14:12:40 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/30 15:54:44 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	init_redir(t_data *data)
 void	init_datas(t_data *data)
 {
 	g_sig.prog = 0;
+	g_sig.status = 0;
 	data->file_out = 0;
 	data->file_in = 0;
 	data->have_path = false;
