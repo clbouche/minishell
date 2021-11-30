@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/29 14:01:07 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/30 15:38:14 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char	*manage_pipe(char *line, int pipe_pos, t_data *data)
 	char	*new_input;
 
 	new_input = NULL;
-	if (line[pipe_pos - 1] != '|' && line[pipe_pos + 1] != '|')
+	if (pipe_pos > 0 && line[pipe_pos - 1] != '|' && line[pipe_pos + 1] != '|')
 		new_input = ft_strdup(&line[pipe_pos + 1]);
 	else
 	{

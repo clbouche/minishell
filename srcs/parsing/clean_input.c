@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 13:48:26 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/29 13:59:16 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/30 15:47:07 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	copy_input(char *dst, char *src)
 		}
 		else
 			*(dst++) = *(src++);
-		//gerer les chars interdits
 	}
 	*dst = '\0';
 }

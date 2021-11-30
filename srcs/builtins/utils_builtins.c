@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 14:24:35 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/29 11:52:26 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/30 15:43:07 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	unset_var(char *var, t_data *d)
 			free(name_var);
 			return ;
 		}
+		free(name_var);
 		tmp = tmp->next;
 	}
 	d->ret = FAILURE;
-	free(name_var);
 	return ;
 }

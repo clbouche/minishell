@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 12:25:00 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/29 14:50:53 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/30 15:45:31 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,39 @@ void	change_pwd(t_data *d)
 {
 	t_list	*new_pwd;
 	char	*pwd;
+	char	path[MAX];
 
 	unset_var("PWD", d);
-	pwd = ft_strjoin("PWD=", getcwd(NULL, 0));
+	pwd = ft_strjoin("PWD=", getcwd(path, MAX));
 	new_pwd = ft_lstnew(pwd);
 	pwd = NULL;
 	ft_lstadd_back(&d->env, new_pwd);
 }
 
+int	execute_cd(char *path, t_data *d, char **cmd)
+{
+	char	*old_pwd;
+	char	dir[MAX];
+
+	old_pwd = getcwd(dir, MAX);
+	if (chdir(path) == -1)
+	{
+		perror("cd");
+		free(path);
+		g_sig.status = FAILURE;
+		return (g_sig.status);
+	}
+	change_pwd(d);
+	change_oldpwd(d, old_pwd);
+	free_array(cmd);
+	return (g_sig.status);
+}
+
 int	ft_cd(char **cmd, t_data *d)
 {
 	char	*path;
-	char	*old_pwd;
 
 	path = NULL;
-	old_pwd = getcwd(NULL, 0);
 	if (cmd[1] && cmd[2])
 	{
 		ft_putstr_fd("cd : too many arguments\n", 1);
@@ -63,15 +81,5 @@ int	ft_cd(char **cmd, t_data *d)
 	}
 	else if (cmd[1])
 		path = cmd[1];
-	if (chdir(path) == -1)
-	{
-		perror("cd");
-		free(path);
-		g_sig.status = FAILURE;
-		return (g_sig.status);
-	}
-	change_pwd(d);
-	change_oldpwd(d, old_pwd);
-	free_array(cmd);
-	return (g_sig.status);
+	return (execute_cd(path, d, cmd));
 }

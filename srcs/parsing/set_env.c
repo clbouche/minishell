@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 12:09:16 by ldes-cou@         #+#    #+#             */
-/*   Updated: 2021/11/26 15:29:20 by claclou          ###   ########.fr       */
+/*   Updated: 2021/11/30 15:49:15 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ char	*change_shlvl(char *var)
 
 	lvl = 0;
 	tmp = var;
-	while (*var != '=')
-		var++;
-	var++;
-	lvl = ft_atoi(var);
+	while (*tmp != '=')
+		tmp++;
+	tmp++;
+	lvl = ft_atoi(tmp);
 	new_lvl = ft_itoa(lvl + 1);
-	free(tmp);
+	free(var);
 	var = ft_strjoin("SHLVL=", new_lvl);
 	free(new_lvl);
 	return (var);
@@ -37,11 +37,11 @@ t_list	*env_null(t_data *d)
 	char	*tmp;
 	char	path[MAX];
 
-	getcwd(path, MAX);
-	tmp = ft_strjoin("PWD=", path);
+	tmp = ft_strjoin("PWD=", getcwd(path, MAX));
 	new = ft_lstnew(tmp);
 	ft_lstadd_back(&d->env, new);
-	new = ft_lstnew("SHLV=1");
+	tmp = ft_strdup("SHLV=1");
+	new = ft_lstnew(tmp);
 	ft_lstadd_back(&d->env, new);
 	return (d->env);
 }
@@ -52,7 +52,6 @@ t_list	*get_env(t_data *d, char **envp)
 	char	*var;
 	int		i;
 
-	new = NULL;
 	var = NULL;
 	i = -1;
 	if (*envp == NULL)

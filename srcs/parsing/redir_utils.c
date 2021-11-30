@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 17:54:08 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/22 12:01:35 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/30 15:50:47 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ char	*recup_filename(char *str)
 	{
 		if (str[i] == '\'' || str[i] == '"')
 		{
+			//return(quote_filename(str, i));
 			quote = str[i];
 			str[i++] = ' ';
 			while (str[i] && str[i] != quote)

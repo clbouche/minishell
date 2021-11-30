@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/29 11:35:48 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/11/30 15:48:37 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	redir_heredoc(char *str, t_data *data)
 	if (pid == 0)
 	{
 		signal(SIGINT, &sig_heredoc);
-	 	heredoc_loop(delimiter, data);
+		heredoc_loop(delimiter, data);
 		exit(1);
 	}
 	//data->redir->r_in = true;
