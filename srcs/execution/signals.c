@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:36:42 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/30 21:58:41 by claclou          ###   ########.fr       */
+/*   Updated: 2021/12/01 10:54:43 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	sig_int(int signo)
 		if (g_sig.prog == 0)
 		{
 			ft_putchar_fd('\n', 1);
-			//rl_replace_line("", 1);
+			rl_replace_line("", 1);
 			rl_on_new_line();
 			rl_redisplay();
 		}
@@ -47,7 +47,11 @@ void	sig_int(int signo)
 		}
 	}
 }
-
+void	sig_pipe(int signo)
+{
+	if (signo == SIGPIPE)
+		rl_replace_line("", 1);
+}
 void	sig_quit(int signo)
 {
 	if (signo == SIGQUIT)

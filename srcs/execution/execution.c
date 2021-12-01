@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 09:02:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/11/30 14:15:00 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/12/01 10:30:53 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ static void	exec_child(char **cmd, t_data *d)
 
 void	exec_simple(char **cmd, t_data *d)
 {
+	//int status;
+	
 	g_sig.pid = fork();
 	g_sig.prog = 1;
 	if (g_sig.pid == -1)
@@ -88,9 +90,9 @@ void	exec_simple(char **cmd, t_data *d)
 		exec_child(cmd, d);
 	signal(SIGQUIT, &sig_quit);
 	waitpid(g_sig.pid, &g_sig.status, 0);
-	free_array(cmd);
 	if (WIFEXITED(g_sig.status))
 		g_sig.status = WEXITSTATUS(g_sig.status);
+	free_array(cmd);
 	g_sig.prog = 0;
 	return ;
 }

@@ -285,5 +285,6 @@ void    sig_child();
 void	sig_heredoc(int signo);
 void	sig_int(int signo);
 void	sig_quit(int signo);
+void	sig_pipe(int signo);
 
 #endif

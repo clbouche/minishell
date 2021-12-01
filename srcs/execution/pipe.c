@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 21:59:23 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/30 21:59:25 by claclou          ###   ########.fr       */
+/*   Updated: 2021/12/01 10:58:35 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,16 +68,17 @@ char	*exec_pipes(char *line, char *new_input, t_data *d)
 void	wait_for_childs(t_data *data)
 {
     int  i;
+	int status = g_sig.status;
 	int ret = 1;
-    i = 0;
-    while(data->pid >= 0)
+    i = data->pid;
+    while(data->pid_array[i] != 0)
     {
-        waitpid(data->pid_array[data->pid], &g_sig.status, 0);
-        if (WIFEXITED(g_sig.status))
-		    g_sig.status = WEXITSTATUS(g_sig.status);
-		printf("[%i]status == %i\n", ret, g_sig.status);
-        data->pid--;
+        waitpid(data->pid_array[i], &status, 0);
+        i--;
 		ret++;
     }    
+	if (WIFEXITED(status))
+		g_sig.status = WEXITSTATUS(status);
+	printf("[%i]status == %i\n", ret, g_sig.status);
     free(data->pid_array);
 }
