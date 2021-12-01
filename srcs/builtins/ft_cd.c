@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:56:26 by clbouche          #+#    #+#             */
-/*   Updated: 2021/12/01 11:02:58 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/12/01 12:51:42 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ void	change_oldpwd(t_data *d, char *old_pwd)
 	unset_var("OLDPWD", d);
 	old_pwd = ft_strjoin("OLDPWD=", old_pwd);
 	new_oldpwd = ft_lstnew(old_pwd);
-	old_pwd = NULL;
-	free(old_pwd);
 	ft_lstadd_back(&d->env, new_oldpwd);
 }
 
@@ -38,8 +36,6 @@ void	change_pwd(t_data *d)
 	unset_var("PWD", d);
 	pwd = ft_strjoin("PWD=", getcwd(path, MAX));
 	new_pwd = ft_lstnew(pwd);
-	pwd = NULL;
-	free(pwd);
 	ft_lstadd_back(&d->env, new_pwd);
 }
 
@@ -52,7 +48,7 @@ int	execute_cd(char *path, t_data *d, char **cmd)
 	if (chdir(path) == -1)
 	{
 		perror("cd");
-		free(path);
+		free_array(cmd);
 		g_sig.status = FAILURE;
 		return (g_sig.status);
 	}
@@ -70,6 +66,7 @@ int	ft_cd(char **cmd, t_data *d)
 	if (cmd[1] && cmd[2])
 	{
 		ft_putstr_fd("cd : too many arguments\n", 1);
+		free_array(cmd);
 		return (FAILURE);
 	}
 	else if (cmd[1] == NULL)
@@ -78,6 +75,7 @@ int	ft_cd(char **cmd, t_data *d)
 		if (path == NULL)
 		{
 			ft_putstr_fd("cd : HOME not set\n", 1);
+			free_array(cmd);
 			return (FAILURE);
 		}
 	}
