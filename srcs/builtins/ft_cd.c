@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:56:26 by clbouche          #+#    #+#             */
-/*   Updated: 2021/12/01 13:46:54 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/12/01 13:48:24 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	change_pwd(t_data *d)
 	ft_lstadd_back(&d->env, new_pwd);
 }
 
-int	execute_cd(char *path, t_data *d, char **cmd)
+int	execute_cd(char *path, t_data *d)
 {
 	char	*old_pwd;
 	char	dir[MAX];
@@ -78,5 +78,5 @@ int	ft_cd(char **cmd, t_data *d)
 	}
 	else if (cmd[1])
 		path = cmd[1];
-	return (execute_cd(path, d, cmd));
+	return (execute_cd(path, d));
 }

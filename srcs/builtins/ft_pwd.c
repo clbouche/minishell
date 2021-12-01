@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 12:25:32 by clbouche          #+#    #+#             */
-/*   Updated: 2021/12/01 10:06:03 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/12/01 13:52:06 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,18 @@
 ** -> there is a max size of 6 octets for the path
 ** ->
 */
-int	ft_pwd(char **cmd)
+int	ft_pwd(void)
 {
 	char	path[MAX];
 
 	if (getcwd(path, MAX))
 	{
 		ft_putendl_fd(path, 1);
-		free_array(cmd);
 		return (SUCCESS);
 	}
 	else
 	{
 		ft_putendl_fd(strerror(errno), 2);
-		free_array(cmd);
 		return (FAILURE);
 	}
 }

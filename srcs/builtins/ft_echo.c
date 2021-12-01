@@ -58,6 +58,5 @@ int	ft_echo(char **cmd, t_data *d)
 		handle_multiarg(cmd, i);
 		ft_putchar_fd('\n', 1);
 	}
-	free_array(cmd);
 	return (0);
 }
