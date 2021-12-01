@@ -5,16 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/09 12:25:00 by clbouche          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/11/30 15:45:31 by clbouche         ###   ########.fr       */
-=======
-<<<<<<< HEAD
-/*   Updated: 2021/11/29 13:18:18 by ldes-cou         ###   ########.fr       */
-=======
-/*   Updated: 2021/11/29 14:50:53 by clbouche         ###   ########.fr       */
->>>>>>> 983f42dfd8a1a0b8b3e39b1bf4891b1ab11aa124
->>>>>>> 21717adc2a4e9113dc52e10786a40dcd456b9ce5
+/*   Created: 2021/11/30 15:56:26 by clbouche          #+#    #+#             */
+/*   Updated: 2021/12/01 09:48:00 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +25,7 @@ void	change_oldpwd(t_data *d, char *old_pwd)
 	old_pwd = ft_strjoin("OLDPWD=", old_pwd);
 	new_oldpwd = ft_lstnew(old_pwd);
 	old_pwd = NULL;
+	free(old_pwd);
 	ft_lstadd_back(&d->env, new_oldpwd);
 }
 
@@ -46,6 +39,7 @@ void	change_pwd(t_data *d)
 	pwd = ft_strjoin("PWD=", getcwd(path, MAX));
 	new_pwd = ft_lstnew(pwd);
 	pwd = NULL;
+	free(pwd);
 	ft_lstadd_back(&d->env, new_pwd);
 }
 

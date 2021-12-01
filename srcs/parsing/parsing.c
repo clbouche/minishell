@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/30 15:38:14 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/12/01 10:35:09 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ int	parser(char *line, t_data *data)
 		if (line[i] == '|' && line[i + 1])
 		{
 			line = manage_pipe(line, i, data);
+			i = 0;
 			if (line)
 				data->piped = true;
 			else

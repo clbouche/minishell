@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:04 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/29 13:56:18 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/12/01 10:54:13 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	export_var(char **cmd, t_data *d, int j)
 			var_unset = ft_substr(cmd[j], 0, i);
 			printf("var unset : %s\n", var_unset);
 			unset_var(var_unset, d);
+			ft_memdel(&var_unset);
 			new_var = ft_lstnew(cmd[j]);
 			ft_lstadd_back(&d->env, new_var);
 		}
@@ -53,6 +54,8 @@ int	ft_export(char **cmd, t_data *d)
 	int	i;
 
 	i = 1;
+	if (cmd[1] == NULL)
+		print_export(d);
 	if (cmd[i])
 	{
 		if (cmd[i][0] == '-')
@@ -68,10 +71,9 @@ int	ft_export(char **cmd, t_data *d)
 			export_var(cmd, d, i);
 			i++;
 		}
+		//free_array(cmd);
 		return (g_sig.status);
 	}
-	if (cmd[1] == NULL)
-		print_export(d);
 	free_array(cmd);
 	g_sig.status = SUCCESS;
 	return (g_sig.status);

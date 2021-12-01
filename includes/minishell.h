@@ -240,7 +240,7 @@ void			unset_var(char *var, t_data *d);
 /*
 ** pwd
 */
-int		ft_pwd(void);
+int		ft_pwd(char **cmd);
 //int		ft_exit(char **cmd, t_data *d);
 
 /*
