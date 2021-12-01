@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 14:12:46 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/30 21:59:40 by claclou          ###   ########.fr       */
+/*   Updated: 2021/12/01 11:03:03 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,8 +123,8 @@ void	heredoc_loop(char *delimiter, t_data *data)
 		}
 		else if (ft_strcmp(input, delimiter) == 0)
 		{
-			//free(input);
-			//input = NULL;
+			free(input);
+			input = NULL;
 			break ;
 		}
 		i = check_expand(input);
@@ -135,5 +135,6 @@ void	heredoc_loop(char *delimiter, t_data *data)
 		}
 		write(data->fds[1], input, ft_strlen(input));
 		write(data->fds[1], "\n", 1);
+		free(input);
 	}
 }

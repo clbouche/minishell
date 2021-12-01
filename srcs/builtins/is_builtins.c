@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 10:14:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/11/23 11:51:22 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/12/01 10:46:36 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	exec_builtin(char **cmd, t_data *d)
 	else if (is_builtins(cmd) == FT_EXPORT)
 		ft_export(cmd, d);
 	else if (is_builtins(cmd) == FT_PWD)
-		ft_pwd();
+		ft_pwd(cmd);
 	else if (is_builtins(cmd) == FT_UNSET)
 		ft_unset(cmd, d);
 	else if (is_builtins(cmd) == FT_EXIT)
