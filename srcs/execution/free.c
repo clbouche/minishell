@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 12:08:22 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/11/30 15:54:50 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/12/01 12:13:42 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ void	free_array(char **array)
 	i = 0;
 	if (array)
 	{
-		while (array[i])
+		while (array && array[i])
 		{
+			printf("array[i] == %s\n", array[i]);
 			ft_memdel(&array[i]);
 			i++;
 		}
@@ -36,11 +37,11 @@ void	free_lst(t_list *lst)
 	tofree = NULL;
 	if (lst == NULL)
 		return ;
-	while (lst)
+	while (lst != NULL)
 	{
-		//printf("%s\n", (char *)lst->content);
 		if (lst->content != NULL)
 		{
+			//printf("%s\n", (char *)lst->content);
 			free(lst->content);
 			lst->content = NULL;
 		}
@@ -56,14 +57,20 @@ void	free_exit(t_data *d, char *error, int exit_code, char *pb)
 {
 	ft_putstr_fd(error, 2);
 	ft_putstr_fd(pb, 2);
-	free_lst(d->env);
-	free_array(d->envp);
+	if (d->env)
+		free_lst(d->env);
+	if (d->envp)
+		free_array(d->envp);
 	g_sig.status = exit_code;
 	exit(exit_code);
 }
 
-void	free_all(t_data *d)
+void	free_all(t_data *d, char **cmd)
 {
 	if (d->env != NULL)
 		free_lst(d->env);
+	d->env = NULL;
+	if (cmd != NULL)
+		free_array(cmd);
+	cmd = NULL;
 }

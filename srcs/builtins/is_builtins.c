@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 10:14:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/12/01 12:01:55 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/12/01 13:43:56 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,5 @@ void	exec_builtin(char **cmd, t_data *d)
 		ft_unset(cmd, d);
 	else if (is_builtins(cmd) == FT_EXIT)
 		ft_exit(cmd, d);
-	//close_fds(d);
+	free_array(cmd);
 }
