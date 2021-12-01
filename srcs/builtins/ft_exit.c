@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 10:32:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/29 13:58:24 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/12/01 11:53:44 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,10 @@ int	ft_exit(char **cmd, t_data *d)//norme !!!!!!
 			printf("exit code == %i\n", exit_code);
 			if (WIFEXITED(exit_code))
 				exit_code = WEXITSTATUS(exit_code);
-			free_all(d);
+			free_all(d, cmd);
 			exit(exit_code);
 		}
 	}
-	free_all(d);
-	free_array(cmd);
+	free_all(d, cmd);
 	exit(SUCCESS);
 }

@@ -251,7 +251,7 @@ int		ft_echo(char **cmd, t_data *d);
 /*
 ** exit
 */
-int		ft_exit();
+int		ft_exit(char **cmd, t_data *d);
 
 /*
 ** cd
@@ -274,7 +274,7 @@ void	free_stack(t_list *top);
 void	free_array(char **array);
 void	free_lst(t_list *lst);
 void	free_exit(t_data *d, char *error, int exit_code, char *pb);
-void	free_all(t_data *d);
+void	free_all(t_data *d, char **cmd);
 void	tests(t_list *env, char **cmd);
 void	opening_error(char *error);
 
