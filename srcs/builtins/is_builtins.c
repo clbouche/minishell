@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_builtins.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 10:14:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/12/01 13:52:21 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/12/01 18:07:06 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,5 @@ void	exec_builtin(char **cmd, t_data *d)
 	else if (is_builtins(cmd) == FT_EXIT)
 		ft_exit(cmd, d);
 	free_array(cmd);
+	cmd = NULL;
 }

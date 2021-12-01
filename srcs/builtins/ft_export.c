@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:04 by clbouche          #+#    #+#             */
-/*   Updated: 2021/12/01 13:48:06 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/12/01 18:10:36 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int	export_var(char **cmd, t_data *d, int j)
 	int		i;
 	char	*var_unset;
 	
-	var_unset = NULL;
+	//var_unset = NULL;
 	i = 0;
-	while (cmd[j][i])
+	while (cmd && cmd[j][i])
 	{
 		if (cmd[j][i] == '=')
 		{
@@ -56,7 +56,7 @@ int	ft_export(char **cmd, t_data *d)
 	i = 1;
 	if (cmd[1] == NULL)
 		print_export(d);
-	if (cmd[i])
+	if (cmd && cmd[i])
 	{
 		if (cmd[i][0] == '-')
 			g_sig.status = INVALID_OPTION;
@@ -66,7 +66,7 @@ int	ft_export(char **cmd, t_data *d)
 			g_sig.status = FAILURE;
 			return (g_sig.status);
 		}
-		while (cmd[i])
+		while (cmd && cmd[i])
 		{	
 			export_var(cmd, d, i);
 			i++;

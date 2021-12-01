@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 21:59:23 by claclou           #+#    #+#             */
-/*   Updated: 2021/12/01 16:12:47 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/12/01 16:48:45 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	wait_for_childs(t_data *data)
 	int status = g_sig.status;
 	int ret = 1;
     i = 0;
-    while(data->pid_array[i] != 0)
+    while(i < data->pid)
     {
         waitpid(data->pid_array[i], &status, 0);
         i++;

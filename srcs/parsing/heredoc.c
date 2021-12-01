@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 14:12:46 by clbouche          #+#    #+#             */
-/*   Updated: 2021/12/01 11:03:03 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/12/01 17:23:55 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ void	heredoc_loop(char *delimiter, t_data *data)
 		signal(SIGQUIT, &sig_quit);
 		rl_outstream = stderr;
 		input = readline("> ");
+		printf("delimiter = %s\n", delimiter);
 		if (!input)
 		{
 			bash_avertissement(delimiter, input);
