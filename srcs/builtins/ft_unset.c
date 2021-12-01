@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:31 by clbouche          #+#    #+#             */
-/*   Updated: 2021/12/01 12:22:29 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/12/01 13:52:39 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,5 @@ t_list	*ft_unset(char **cmd, t_data *d)
 		unset_var(cmd[i], d);
 		i++;
 	}
-	free_array(cmd);
 	return (d->env);
 }

@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:38:59 by ldes-cou@         #+#    #+#             */
-/*   Updated: 2021/11/30 09:57:19 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/12/01 13:51:24 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	ft_env(t_data *d, char **cmd)
 	{
 		ft_putstr_fd("error env\n", 1);
 		d->ret = FAILURE;
-		free_array(cmd);
 		return ;
 	}
 	if (d->env == NULL)
@@ -40,7 +39,6 @@ void	ft_env(t_data *d, char **cmd)
 	}
 	d->env = tmp;
 	d->ret = FAILURE;
-	free_array(cmd);
 }
 
 char	*find_var(char *name)
