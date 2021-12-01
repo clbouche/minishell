@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:04 by clbouche          #+#    #+#             */
-/*   Updated: 2021/12/01 13:20:09 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/12/01 13:48:06 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	export_var(char **cmd, t_data *d, int j)
 		if (cmd[j][i] == '=')
 		{
 			var_unset = ft_substr(cmd[j], 0, i);
-			printf("var unset : %s\n", var_unset);
 			unset_var(var_unset, d);
 			ft_memdel(&var_unset);
 			new_var = ft_lstnew(cmd[j]);

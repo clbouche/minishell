@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 15:26:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/12/01 12:19:25 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/12/01 16:13:30 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	main(int argc, char **argv, char **envp)
 	{
 		signal(SIGINT, &sig_int);
 		signal(SIGQUIT, SIG_IGN);
-		//signal(SIGPIPE, &sig_pipe);
+		signal(SIGPIPE, &sig_pipe);
 		data.env = init_env(&data, envp);
 		init_datas(&data);
 		minishell_loop(&data);
