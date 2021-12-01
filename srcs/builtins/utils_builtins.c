@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_builtins.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 14:24:35 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/30 15:43:07 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/12/01 13:35:15 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ void	unset_var(char *var, t_data *d)
 		{
 			d->env = delete_node(d->env, var);
 			d->ret = SUCCESS;
-			free(name_var);
+			ft_memdel(&name_var);
 			return ;
 		}
-		free(name_var);
+		ft_memdel(&name_var);
 		tmp = tmp->next;
 	}
 	d->ret = FAILURE;

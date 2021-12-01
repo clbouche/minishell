@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:56:26 by clbouche          #+#    #+#             */
-/*   Updated: 2021/12/01 11:02:58 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/12/01 13:44:51 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,12 @@ int	execute_cd(char *path, t_data *d, char **cmd)
 	if (chdir(path) == -1)
 	{
 		perror("cd");
-		free(path);
+		ft_memdel(&path);
 		g_sig.status = FAILURE;
 		return (g_sig.status);
 	}
 	change_pwd(d);
 	change_oldpwd(d, old_pwd);
-	free_array(cmd);
 	return (g_sig.status);
 }
 
