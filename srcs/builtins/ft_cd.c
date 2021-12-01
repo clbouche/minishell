@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:56:26 by clbouche          #+#    #+#             */
-/*   Updated: 2021/12/01 13:44:51 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/12/01 13:46:54 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ void	change_oldpwd(t_data *d, char *old_pwd)
 	unset_var("OLDPWD", d);
 	old_pwd = ft_strjoin("OLDPWD=", old_pwd);
 	new_oldpwd = ft_lstnew(old_pwd);
-	old_pwd = NULL;
-	free(old_pwd);
 	ft_lstadd_back(&d->env, new_oldpwd);
 }
 
@@ -38,8 +36,6 @@ void	change_pwd(t_data *d)
 	unset_var("PWD", d);
 	pwd = ft_strjoin("PWD=", getcwd(path, MAX));
 	new_pwd = ft_lstnew(pwd);
-	pwd = NULL;
-	free(pwd);
 	ft_lstadd_back(&d->env, new_pwd);
 }
 
