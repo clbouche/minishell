@@ -91,6 +91,8 @@ typedef struct s_redir
 	bool	r;
 	bool	r_in;
 	bool	r_out;
+	bool	pipe_in;
+	bool	pipe_out;
 	bool	bad_r;
 	int		count_in;
 	int		count_out;
