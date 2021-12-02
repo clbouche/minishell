@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 12:08:22 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/12/01 16:12:15 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/12/02 11:46:38 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,9 @@ void	free_all(t_data *d, char **cmd)
 	if (cmd != NULL)
 		free_array(cmd);
 	cmd = NULL;
+	if (d->pid_array)
+	{
+		free(d->pid_array);
+		d->pid_array = NULL;
+	}		
 }

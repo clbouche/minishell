@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:04 by clbouche          #+#    #+#             */
-/*   Updated: 2021/12/01 18:10:36 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/12/02 11:19:26 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	export_var(char **cmd, t_data *d, int j)
 			var_unset = ft_substr(cmd[j], 0, i);
 			unset_var(var_unset, d);
 			ft_memdel(&var_unset);
-			new_var = ft_lstnew(cmd[j]);
+			new_var = ft_lstnew(ft_strdup(cmd[j]));
 			ft_lstadd_back(&d->env, new_var);
 		}
 		i++;
