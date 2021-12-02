@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 12:08:22 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/12/01 13:40:55 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/12/02 14:28:00 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	free_array(char **array)
 	{
 		while (array && array[i])
 		{
-			printf("array[i] == %s\n", array[i]);
+			//printf("array[i] == %s\n", array[i]);
 			free(array[i]);
 			array[i] = NULL;
  			i++;

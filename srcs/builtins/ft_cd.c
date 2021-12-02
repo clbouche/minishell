@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:56:26 by clbouche          #+#    #+#             */
-/*   Updated: 2021/12/01 13:48:24 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/12/02 14:38:45 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int	execute_cd(char *path, t_data *d)
 	if (chdir(path) == -1)
 	{
 		perror("cd");
-		ft_memdel(&path);
 		g_sig.status = FAILURE;
 		return (g_sig.status);
 	}

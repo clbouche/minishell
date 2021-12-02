@@ -24,10 +24,12 @@ SOURCES		+=                            		\
 		srcs/parsing/variables.c             	\
 		srcs/parsing/redir_utils.c           	\
 		srcs/parsing/heredoc.c               	\
+		srcs/parsing/redir_utils2.c          	\
 		srcs/parsing/bool_check_utils.c      	\
 		srcs/parsing/parsing.c               	\
 		srcs/parsing/set_env.c               	\
 		srcs/parsing/redir.c                 	\
+		srcs/parsing/utils_heredoc.c         	\
 		srcs/parsing/split_cmd.c             	\
 		srcs/parsing/clean_input.c           	\
 		srcs/parsing/init.c                  	\

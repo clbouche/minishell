@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:22:30 by clbouche          #+#    #+#             */
-/*   Updated: 2021/11/29 11:35:36 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/12/02 14:12:55 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 bool	check_char_file(char c)
 {
 	if (ft_isalpha(c) || c == '_' || ft_isalnum(c) || c == '$' || c == '%'
-		|| c == '{' || c == '}' || c == '.' || c == '/')
+		|| c == '{' || c == '}' || c == '.' || c == '/' || c == '\''
+		|| c == '"')
 		return (true);
 	return (false);
 }

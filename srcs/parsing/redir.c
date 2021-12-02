@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/11/30 15:55:01 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/12/01 18:11:09 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	re_init_redir(t_data *data)
 */
 void	redir_heredoc(char *str, t_data *data)
 {
-	char	*delimiter;
-	pid_t	pid;
-	static int count = 1;
+	char		*delimiter;
+	pid_t		pid;
+	static int	count = 1;
 
 	delimiter = NULL;
 	delimiter = define_delimiter(str);
@@ -41,7 +41,7 @@ void	redir_heredoc(char *str, t_data *data)
 		heredoc_loop(delimiter, data);
 		exit(1);
 	}
-	waitpid(-1, &g_sig.status, 0);//trouver un moyen pour stocker le retour du heredoc	
+	waitpid(-1, &g_sig.status, 0);
 	if (count == data->redir->count_heredoc)
 		pipe_in(data);
 	free(delimiter);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:04 by clbouche          #+#    #+#             */
-/*   Updated: 2021/12/01 13:20:09 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/12/01 18:06:02 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,10 @@ int	ft_export(char **cmd, t_data *d)
 			return (g_sig.status);
 		}
 		while (cmd[i])
-		{	
+		{
 			export_var(cmd, d, i);
 			i++;
 		}
-		return (g_sig.status);
 	}
 	g_sig.status = SUCCESS;
 	return (g_sig.status);

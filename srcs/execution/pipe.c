@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 21:59:23 by claclou           #+#    #+#             */
-/*   Updated: 2021/12/01 12:05:52 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/12/02 14:28:25 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,6 @@ void	wait_for_childs(t_data *data)
     }    
 	if (WIFEXITED(status))
 		g_sig.status = WEXITSTATUS(status);
-	printf("[%i]status == %i\n", ret, g_sig.status);
+	//printf("[%i]status == %i\n", ret, g_sig.status);
     free(data->pid_array);
 }
