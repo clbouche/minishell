@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 11:36:04 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/12/02 15:04:54 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/12/02 15:39:51 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,18 @@ void	pipe_in(t_data *d)
 
 void	restore_fds(t_data *d)
 {
-	if (d->redir->pipe_out == true)//|| d->piped == true)
+	if (d->redir->r_out == true || d->redir->pipe_out == true)
 	{
 		close(d->file_out);
 		dup2(d->std_out, 1);
+		d->redir->r_out = false;
 		d->redir->pipe_out = false;
 	}
-	if (d->redir->pipe_in == true) //|| d->piped == true)
+	if (d->redir->r_in == true || d->redir->pipe_in == true)
 	{
 		close(d->file_in);
 		dup2(d->std_in, 0);
+		d->redir->r_in = false;
 		d->redir->pipe_in = false;
 	}
 	if (d->std_out != 1)
