@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:32:10 by claclou           #+#    #+#             */
-/*   Updated: 2021/12/02 17:58:36 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/12/02 22:23:16 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,18 +97,6 @@ size_t	count_args(char *line)
 			i++;
 	}
 	return (i);
-}
-
-void	print_cmd(char **cmd)
-{
-	int	i;
-
-	i = 0;
-	while (cmd[i])
-	{
-		printf("cmd[%i] : [%s]\n", i, cmd[i]);
-		i++;
-	}
 }
 
 /*

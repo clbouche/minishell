@@ -3,30 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 12:20:02 by clbouche          #+#    #+#             */
-/*   Updated: 2021/12/02 17:59:32 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/12/02 22:17:08 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-/*char	*manage_quotes(char *line, int i, int quote, t_data *data)
-{
-	char	*new_line;
-
-	while (line[i] != quote)
-	{
-		if (line[i] == '$' && quote == '"')
-		{
-			new_line = manage_expand(line, data);
-			line = new_line;
-		}
-		i++;
-	}
-	return (line);
-}*/
 
 /*
 ** Verifie le type de redirections dont il s'agit 
@@ -88,6 +72,32 @@ char	*manage_pipe(char *line, int pipe_pos, t_data *data)
 	return (exec_pipes(line, new_input, data));
 }
 
+int	manage_quotes(char **line, int *i, t_data *data)
+{
+	char	*new_line;
+
+	if ((*line)[*i] == '"')
+	{
+		(*i)++;
+		while ((*line)[*i] && (*line)[*i] != '"')
+		{
+			if ((*line)[*i] == '$' && (*line)[*i + 1] != ' ')
+			{
+				new_line = manage_expand((*line), *i, data);
+				(*line) = new_line;
+			}
+			(*i)++;
+		}
+	}
+	if ((*line)[*i] == '\'')
+	{
+		(*i)++;
+		while ((*line)[*i] != '\'')
+			(*i)++;
+	}
+	return (0);
+}
+
 /*
 ** Fais les memes etapes que bash : 
 ** - Verifie d'abord les expands pour modifier l'input en foncton. 
@@ -117,25 +127,7 @@ int	parser(char *line, t_data *data)
 			else
 				return (0);
 		}
-		if (line[i] == '"')
-		{
-			i++;
-			while (line[i] && line[i] != '"')
-			{
-				if (line[i] == '$' && line[i + 1] != ' ')
-				{
-					new_line = manage_expand(line, i, data);
-					line = new_line;
-				}
-				i++;
-			}
-		}
-		if (line[i] == '\'')
-		{
-			i++;
-			while (line[i] != '\'')
-				i++;
-		}
+		manage_quotes(&line, &i, data);
 		i++;
 	}
 	return (parse_to_exec(line, data));

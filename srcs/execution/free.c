@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 12:08:22 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/12/02 17:52:52 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/12/02 22:07:17 by claclou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	free_array(char **array)
 		while (array && array[i])
 		{
 			ft_memdel(&array[i]);
- 			i++;
+			i++;
 		}
 		free(array);
 		array = NULL;
