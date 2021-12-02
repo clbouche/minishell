@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 11:36:04 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/12/01 18:17:38 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/12/02 14:57:33 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,13 @@ void	restore_fds(t_data *d)
 		d->redir->r_in = false;
 	}
 	if (d->std_out != 1)
+	{
 		close(d->std_out);
+		d->std_out = 1;
+	}
 	if (d->std_in != 0)
+	{
 		close(d->std_in);
+		d->std_in = 0;
+	}
 }

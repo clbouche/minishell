@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 12:09:16 by ldes-cou@         #+#    #+#             */
-/*   Updated: 2021/11/30 15:49:15 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/12/02 16:41:26 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ char	*change_shlvl(char *var)
 		tmp++;
 	tmp++;
 	lvl = ft_atoi(tmp);
-	new_lvl = ft_itoa(lvl + 1);
 	free(var);
+	new_lvl = ft_itoa(lvl + 1);
 	var = ft_strjoin("SHLVL=", new_lvl);
 	free(new_lvl);
 	return (var);
@@ -61,8 +61,6 @@ t_list	*get_env(t_data *d, char **envp)
 		var = ft_strdup(envp[i]);
 		if (ft_strncmp(var, "SHLVL", 5) == 0)
 			var = change_shlvl(var);
-		if (var == NULL)
-			free_exit(d, "env", 1, "malloc error");
 		new = ft_lstnew(var);
 		if (new == NULL)
 			free_exit(d, "env", 1, "chained list error");

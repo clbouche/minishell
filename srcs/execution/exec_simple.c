@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_simple.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:49:47 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/12/01 09:59:04 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/12/02 14:50:28 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ void	exec_child(char **cmd, t_data *d)
 		bin = ft_strdup(cmd[0]);
 	}
 	exec_bin(cmd, bin, d);
-	//free(bin);
 }
 
 void	exec_simple(char **cmd, t_data *d)
 {
 	g_sig.prog = 1;
 	g_sig.pid = fork();
+	signal(SIGINT, &sig_int);
 	if (g_sig.pid == -1)
 	{
 		puts("error_pid attention oublie pas dexit proprement");
@@ -77,6 +77,5 @@ void	exec_simple(char **cmd, t_data *d)
 		free_array(cmd);
 	}
 	g_sig.prog = 0;
-	//close_fds(d);
 	return ;
 }

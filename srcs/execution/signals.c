@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:36:42 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/12/01 17:27:59 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/12/02 15:40:06 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,11 @@ void	sig_int(int signo)
 		}
 		else if (g_sig.prog == 1)
 		{
+			ft_putchar_fd('\n', 1);
 			g_sig.sigint = 1;
+			//rl_on_new_line();
 			rl_redisplay();
+			//exit(130);
 		}
 	}
 }

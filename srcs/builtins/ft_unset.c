@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:31 by clbouche          #+#    #+#             */
-/*   Updated: 2021/12/01 13:52:39 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/12/02 16:45:43 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static t_list	*delete_head(t_list *head)
 	t_list	*new_head;
 
 	new_head = head->next;
+	free(head->content);
 	free(head);
 	head = NULL;
 	return (new_head);
@@ -25,6 +26,7 @@ static t_list	*delete_head(t_list *head)
 static t_list	*delete_middle(t_list *h, t_list *hn, char *name)
 {	
 	h->next = hn->next;
+	free(hn->content);
 	free(hn);
 	hn = NULL;
 	ft_memdel(&name);
@@ -34,6 +36,7 @@ static t_list	*delete_middle(t_list *h, t_list *hn, char *name)
 static t_list	*delete_last(t_list *h, t_list *hn, char *name)
 {
 	h->next = NULL;
+	free(hn->content);
 	free(hn);
 	hn = NULL;
 	ft_memdel(&name);
@@ -91,8 +94,8 @@ t_list *delete_node(t_list *head, char *var)
 		h = h->next;
 		hn = hn->next;
 		name = find_name(hn->content);
-		printf("compare var : [%s] ", var);
-		printf("with var of env : [%s]\n", name);
+		// printf("compare var : [%s] ", var);
+		// printf("with var of env : [%s]\n", name);
 		if (!(ft_strncmp(var, name, (ft_strlen(name)))))
 		{
 			if (hn->next == NULL)

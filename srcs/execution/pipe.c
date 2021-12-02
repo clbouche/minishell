@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 21:59:23 by claclou           #+#    #+#             */
-/*   Updated: 2021/12/02 11:27:14 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/12/02 14:15:18 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,5 @@ void	wait_for_childs(t_data *data)
     }    
 	if (WIFEXITED(status))
 		g_sig.status = WEXITSTATUS(status);
-	printf("[%i]status == %i\n", ret, g_sig.status);
     free(data->pid_array);
 }

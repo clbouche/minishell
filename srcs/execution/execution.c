@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 09:02:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/12/01 17:28:55 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/12/02 15:44:37 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ static void	exec_bin(char **cmd, char *bin, t_data *d)
 
 	signal(SIGINT, &sig_int);
 	signal(SIGQUIT, &sig_quit);
-	//signal(SIGPIPE, SIG_IGN);
 	if (bin == NULL)
 		free_exit(d, cmd[0], 127, ": command not found\n");
 	free(cmd[0]);

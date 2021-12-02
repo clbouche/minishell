@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 12:08:22 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/12/02 11:46:38 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/12/02 16:57:26 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@ void	free_array(char **array)
 	{
 		while (array && array[i])
 		{
-			//printf("array[i] == %s\n", array[i]);
-			free(array[i]);
-			array[i] = NULL;
+			ft_memdel(&array[i]);
  			i++;
 		}
 		free(array);
@@ -34,24 +32,29 @@ void	free_array(char **array)
 void	free_lst(t_list *lst)
 {
 	t_list	*tofree;
-
+	t_list	*head;
+	
 	tofree = NULL;
-	if (lst == NULL)
-		return ;
-	while (lst != NULL)
+	if (lst)
 	{
-		if (lst->content != NULL)
+		head = lst->next;
+		while (head->next != NULL)
 		{
-			//printf("%s\n", (char *)lst->content);
-			free(lst->content);
-			lst->content = NULL;
+			if (head->content)
+			{
+				free(head->content);
+				head->content = NULL;
+			
+			}
+			tofree = head;
+			head = head->next;
+			free(tofree);
+			tofree = NULL;
 		}
-		tofree = lst;
-		lst = lst->next;
-		free(tofree);
-		tofree = NULL;
+		free(head->content);
+		free(head);
+		head = NULL;
 	}
-	return ;
 }
 
 void	free_exit(t_data *d, char *error, int exit_code, char *pb)
