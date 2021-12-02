@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/12/01 18:11:09 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/12/02 14:40:23 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	redir_heredoc(char *str, t_data *data)
 
 	delimiter = NULL;
 	delimiter = define_delimiter(str);
+	printf("str_apres= [%s]\n", str);
 	pipe(data->fds);
 	g_sig.prog = 1;
 	pid = fork();
@@ -58,6 +59,7 @@ void	redir_input(char *str, t_data *data)
 	static int	count = 1;
 
 	file_name = recup_filename(str);
+	printf("str_avant= [%s]\n", str);
 	if (file_name)
 	{
 		data->file_in = open(file_name, O_RDWR);
@@ -90,7 +92,9 @@ void	redir_output_append(char *str, t_data *data)
 	char		*file_name;
 	static int	count = 1;
 
+	printf("str_avant= [%s]\n", str);
 	file_name = recup_filename(str);
+	printf("str_apres= [%s]\n", str);
 	if (file_name)
 	{
 		data->file_out = open(file_name, O_RDWR | O_CREAT
@@ -121,7 +125,9 @@ void	redir_output(char *str, t_data *data)
 	char		*file_name;
 	static int	count = 1;
 
+	printf("str_avant= [%s]\n", str);
 	file_name = recup_filename(str);
+	printf("str_apres= [%s]\n", str);
 	if (file_name)
 	{
 		data->file_out = open(file_name, O_RDWR | O_CREAT

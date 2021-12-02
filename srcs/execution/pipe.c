@@ -6,7 +6,7 @@
 /*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 21:59:23 by claclou           #+#    #+#             */
-/*   Updated: 2021/12/02 14:28:25 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/12/02 14:40:43 by clbouche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,11 @@ void	wait_for_childs(t_data *data)
     int  i;
 	int status = g_sig.status;
 	int ret = 1;
-    i = data->pid;
-    while(data->pid_array[i] != 0)
+    i = 0;
+    while(i < data->pid)
     {
         waitpid(data->pid_array[i], &status, 0);
-        i--;
+        i++;
 		ret++;
     }    
 	if (WIFEXITED(status))
