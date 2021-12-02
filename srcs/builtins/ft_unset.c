@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:31 by clbouche          #+#    #+#             */
-/*   Updated: 2021/12/02 16:45:43 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/12/02 17:04:53 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,77 +43,38 @@ static t_list	*delete_last(t_list *h, t_list *hn, char *name)
 	return (h);
 }
 
-// t_list	*delete_node(t_list *head, char *var)
-// {
-// 	t_list	*h;
-// 	t_list	*hn;
-// 	char	*name;
-
-// 	//ft_lstprint(head);
-// 	if (!(ft_strncmp(var, head->content, (ft_strlen(var)))))
-// 		head = delete_head(head);
-// 	h = head;
-// 	hn = head->next;
-// 	while (hn && hn->next != NULL)
-// 	{
-// 		name = find_name(hn->content);
-// 		printf("compare var : [%s] ", var);
-// 		printf("with var of env : [%s]\n", name);
-// 		if (!(ft_strncmp(var, name, (ft_strlen(name)))))
-// 		{
-// 			if (hn->next == NULL)
-// 			{
-// 				h = delete_last(h, hn, name);
-// 				return (head);
-// 			}
-// 			else
-// 			{
-// 				h = delete_middle(h, hn, name);
-// 				return (head);
-// 			}
-// 		}
-// 		free(name);
-// 		h = h->next;
-// 		hn = hn->next;
-// 	}
-// 	return (head);
-// }
-
-t_list *delete_node(t_list *head, char *var)
+t_list	*delete_node(t_list *head, char *var)
 {
-	t_list *h;
-	t_list *hn;
-	char *name;
-	
+	t_list	*h;
+	t_list	*hn;
+	char	*name;
+
 	if (!(ft_strncmp(var, head->content, (ft_strlen(var)))))
 		head = delete_head(head);
 	h = head;
 	hn = head->next;
-	while(hn->next != NULL)
+	while (hn->next != NULL)
 	{
 		h = h->next;
 		hn = hn->next;
 		name = find_name(hn->content);
+<<<<<<< HEAD
 		// printf("compare var : [%s] ", var);
 		// printf("with var of env : [%s]\n", name);
+=======
+>>>>>>> f1821ef2a32a15fd5da0acdd197d6c347f90a164
 		if (!(ft_strncmp(var, name, (ft_strlen(name)))))
 		{
 			if (hn->next == NULL)
-			{
 				h = delete_last(h, hn, name);
-				return(head);
-			}
 			else
-			{
 				h = delete_middle(h, hn, name);
-				return(head);
-			}
+			return (head);
 		}
 		free(name);
 	}
 	return (head);
 }
-
 
 t_list	*ft_unset(char **cmd, t_data *d)
 {
