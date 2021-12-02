@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 14:24:35 by clbouche          #+#    #+#             */
-/*   Updated: 2021/12/01 17:59:52 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/12/02 17:52:15 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,10 @@ void	unset_var(char *var, t_data *d)
 		{
 			d->env = delete_node(d->env, var);
 			d->ret = SUCCESS;
-			free(name_var);
-			//ft_memdel(&name_var);
+			ft_memdel(&name_var);
 			return ;
 		}
-		//ft_memdel(&name_var);
-		free(name_var);
+		ft_memdel(&name_var);
 		tmp = tmp->next;
 	}
 	d->ret = FAILURE;

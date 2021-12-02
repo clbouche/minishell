@@ -21,7 +21,7 @@ static int	handle_multiarg(char **cmd, int i)
 	char	*str;
 	char	*tmp;
 
-	str = NULL; //don't forget to protect sterrror(errno) 
+	str = NULL;
 	tmp = NULL;
 	while (cmd[i] != NULL)
 	{

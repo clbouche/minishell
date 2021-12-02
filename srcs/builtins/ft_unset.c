@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:31 by clbouche          #+#    #+#             */
-/*   Updated: 2021/12/02 17:04:53 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/12/02 17:43:05 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,6 @@ t_list	*delete_node(t_list *head, char *var)
 		h = h->next;
 		hn = hn->next;
 		name = find_name(hn->content);
-<<<<<<< HEAD
-		// printf("compare var : [%s] ", var);
-		// printf("with var of env : [%s]\n", name);
-=======
->>>>>>> f1821ef2a32a15fd5da0acdd197d6c347f90a164
 		if (!(ft_strncmp(var, name, (ft_strlen(name)))))
 		{
 			if (hn->next == NULL)

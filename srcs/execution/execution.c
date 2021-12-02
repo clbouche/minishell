@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 09:02:21 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/12/02 15:44:37 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/12/02 17:49:11 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,6 @@
 
 void	execute(char **cmd, t_data *d)
 {
-	// int i = 0;
-	// while (cmd[i])
-	// {
-	// 	printf("cmd == %s\n", cmd[i]);
-	// 	i++;
-	// }
 	if (g_sig.sigint == 1)
 	{
 		free_array(cmd);

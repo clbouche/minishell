@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 21:59:23 by claclou           #+#    #+#             */
-/*   Updated: 2021/12/02 17:05:18 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/12/02 17:56:29 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*exec_pipes(char *line, char *new_input, t_data *d)
 	pid = fork();
 	add_to_array(d, pid);
 	if (pid == -1)
-		puts("error_pid attention oublie pas dexit proprement");//pening_error("Fork");	
+		puts("error_pid attention oublie pas dexit proprement");
 	if (pid == 0)
 	{
 		pipe_out(d);
@@ -67,17 +67,17 @@ char	*exec_pipes(char *line, char *new_input, t_data *d)
 
 void	wait_for_childs(t_data *data)
 {
-    int  i;
-	int status = g_sig.status;
-	int ret = 1;
-    i = 0;
-    while(i < data->pid)
-    {
-        waitpid(data->pid_array[i], &status, 0);
-        i++;
-		ret++;
-    }    
+	int	i;
+	int	status;
+
+	status = g_sig.status;
+	i = 0;
+	while (i < data->pid)
+	{
+		waitpid(data->pid_array[i], &status, 0);
+		i++;
+	}
 	if (WIFEXITED(status))
 		g_sig.status = WEXITSTATUS(status);
-    free(data->pid_array);
+	free(data->pid_array);
 }

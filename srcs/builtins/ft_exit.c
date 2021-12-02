@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 10:32:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/12/01 11:53:44 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/12/02 17:51:22 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	numeric_arg_required(char *arg)
 	return (g_sig.status);
 }
 
-int	ft_exit(char **cmd, t_data *d)//norme !!!!!!
+int	ft_exit(char **cmd, t_data *d)
 {
 	int	exit_code;
 

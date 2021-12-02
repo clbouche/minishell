@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 13:37:04 by clbouche          #+#    #+#             */
-/*   Updated: 2021/12/02 14:40:57 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/12/02 17:51:35 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,12 @@
 // 	ft_putstr_fd(var->content, 1);
 // }
 
-//void is_there_an_egal
 int	export_var(char **cmd, t_data *d, int j)
 {
 	t_list	*new_var;
 	int		i;
 	char	*var_unset;
-	
-	//var_unset = NULL;
+
 	i = 0;
 	while (cmd && cmd[j][i])
 	{

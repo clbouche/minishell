@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/12/02 17:00:49 by ldes-cou         ###   ########.fr       */
-=======
-/*   Updated: 2021/12/02 15:34:49 by clbouche         ###   ########.fr       */
->>>>>>> f1821ef2a32a15fd5da0acdd197d6c347f90a164
+/*   Updated: 2021/12/02 17:42:53 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +58,6 @@ void	redir_input(char *str, t_data *data)
 	static int	count = 1;
 
 	file_name = recup_filename(str);
-<<<<<<< HEAD
-=======
-	//printf("str_avant= [%s]\n", str);
->>>>>>> f1821ef2a32a15fd5da0acdd197d6c347f90a164
 	if (file_name)
 	{
 		data->file_in = open(file_name, O_RDWR);
@@ -98,13 +90,7 @@ void	redir_output_append(char *str, t_data *data)
 	char		*file_name;
 	static int	count = 1;
 
-<<<<<<< HEAD
 	file_name = recup_filename(str);
-=======
-	//printf("str_avant= [%s]\n", str);
-	file_name = recup_filename(str);
-	//printf("str_apres= [%s]\n", str);
->>>>>>> f1821ef2a32a15fd5da0acdd197d6c347f90a164
 	if (file_name)
 	{
 		data->file_out = open(file_name, O_RDWR | O_CREAT
@@ -135,13 +121,7 @@ void	redir_output(char *str, t_data *data)
 	char		*file_name;
 	static int	count = 1;
 
-<<<<<<< HEAD
 	file_name = recup_filename(str);
-=======
-	//printf("str_avant= [%s]\n", str);
-	file_name = recup_filename(str);
-	//printf("str_apres= [%s]\n", str);
->>>>>>> f1821ef2a32a15fd5da0acdd197d6c347f90a164
 	if (file_name)
 	{
 		data->file_out = open(file_name, O_RDWR | O_CREAT

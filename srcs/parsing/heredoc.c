@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 14:12:46 by clbouche          #+#    #+#             */
-/*   Updated: 2021/12/02 17:04:28 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/12/02 17:57:05 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	check_expand(char *str)
 	}
 	return (-1);
 }
+
 void	expand(char *input, char *new_input, t_data *data)
 {
 	new_input = manage_expand(input, check_expand(input), data);
@@ -38,6 +39,7 @@ void	bash_avertissement(char *del, char *input)
 	ft_putendl_fd("')", 2);
 	free(input);
 }
+
 void	write_free_input(char *input, t_data *data)
 {
 	write(data->fds[1], input, ft_strlen(input));

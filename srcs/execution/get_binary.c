@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_binary.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claclou <claclou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 15:15:48 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/11/26 15:09:05 by claclou          ###   ########.fr       */
+/*   Updated: 2021/12/02 17:54:05 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,9 @@ void	convert_env(t_data *d)
 
 char	*test_path(char **cmd, char **paths, char *bin, int i)
 {
-	bin = (char *)ft_calloc(sizeof(char), (ft_strlen(paths[i]) + ft_strlen(cmd[0]) + 2));
-	ft_strcat(bin, paths[i]); //faire une fonction maison
+	bin = (char *)ft_calloc(sizeof(char), \
+		(ft_strlen(paths[i]) + ft_strlen(cmd[0]) + 2));
+	ft_strcat(bin, paths[i]);
 	ft_strcat(bin, "/");
 	ft_strcat(bin, cmd[0]);
 	return (bin);
@@ -57,7 +58,6 @@ char	*find_bin(char **paths, char **cmd)
 			i++;
 		}
 	}
-	//free_array(paths);
 	return (bin);
 }
 
