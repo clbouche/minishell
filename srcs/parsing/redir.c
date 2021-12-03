@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clbouche <clbouche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:22:28 by claclou           #+#    #+#             */
-/*   Updated: 2021/12/03 11:43:03 by clbouche         ###   ########.fr       */
+/*   Updated: 2021/12/03 12:37:32 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	redir_heredoc(char *str, t_data *data)
 		exit(1);
 	}
 	waitpid(-1, &g_sig.status, 0);
-	//if (count == data->redir->count_heredoc)
-	pipe_in(data);
+	if (count == data->redir->count_heredoc)
+		pipe_in(data);
 	free(delimiter);
 	g_sig.prog = 0;
 	count++;
