@@ -6,7 +6,7 @@
 /*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 10:32:52 by clbouche          #+#    #+#             */
-/*   Updated: 2021/12/02 17:51:22 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/12/03 10:04:04 by ldes-cou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,20 @@ static int	numeric_arg_required(char *arg)
 	return (g_sig.status);
 }
 
-int	ft_exit(char **cmd, t_data *d)
+void	exit_with_status(char **cmd, t_data *d)
 {
 	int	exit_code;
 
 	exit_code = 0;
+	exit_code = ft_atoi(cmd[1]);
+	if (WIFEXITED(exit_code))
+		exit_code = WEXITSTATUS(exit_code);
+	free_all(d, cmd);
+	exit(exit_code);
+}
+
+int	ft_exit(char **cmd, t_data *d)
+{
 	d->ret = 0;
 	ft_putendl_fd("exit", 2);
 	if (cmd[1] && cmd[2] != NULL)
@@ -65,14 +74,7 @@ int	ft_exit(char **cmd, t_data *d)
 	else
 	{
 		if (cmd[1] != NULL)
-		{
-			exit_code = ft_atoi(cmd[1]);
-			printf("exit code == %i\n", exit_code);
-			if (WIFEXITED(exit_code))
-				exit_code = WEXITSTATUS(exit_code);
-			free_all(d, cmd);
-			exit(exit_code);
-		}
+			exit_with_status(cmd, d);
 	}
 	free_all(d, cmd);
 	exit(SUCCESS);

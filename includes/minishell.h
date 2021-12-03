@@ -1,78 +1,77 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/03 09:32:28 by ldes-cou          #+#    #+#             */
+/*   Updated: 2021/12/03 09:44:18 by ldes-cou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
-
-#ifndef DEFINE_DEBUG_ONCE
-#define DEFINE_DEBUG_ONCE
-
-#if DEBUG
-  #include <stdio.h>
-  #define debug(x, ...)      do{fprintf(stderr, "%s:%s(%u): " x "\n", __FILE__, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);}while(0)
-#else
-  #define debug(x, ...)      /* x */
-#endif
-
-#endif
 
 /*
 ** DEFINE
 */
 
-#define RED "\001\033[31;1m\002"
-#define GREEN "\001\e[1;32m\002"
-#define RESET "\001\e[0m\002"
-#define FAILURE 1
-#define SUCCESS 0
-#define OUT 1
-#define IN 2
-#define BOTH 3
-#define MAX 4096
-#define UNKNOWN_COMMAND 127 
-#define INVALID_OPTION 2
+# define RED "\001\033[31;1m\002"
+# define GREEN "\001\e[1;32m\002"
+# define RESET "\001\e[0m\002"
+# define FAILURE 1
+# define SUCCESS 0
+# define OUT 1
+# define IN 2
+# define BOTH 3
+# define MAX 4096
+# define UNKNOWN_COMMAND 127 
+# define INVALID_OPTION 2
 
 /*
 ** LIBRAIRIES
 */
 
-#include "libft/includes/libft.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <sys/wait.h>
-#include <fcntl.h>
-#include <signal.h>
-#include <sys/time.h>
-#include <sys/resource.h>
-#include <dirent.h>
-#include <errno.h>
-#include <sys/ioctl.h>
-#include <termios.h>
-#include <curses.h>
-#include <term.h>
-#include <stdbool.h>
-#include <errno.h>
+# include "libft/includes/libft.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <string.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <sys/wait.h>
+# include <fcntl.h>
+# include <signal.h>
+# include <sys/time.h>
+# include <sys/resource.h>
+# include <dirent.h>
+# include <errno.h>
+# include <sys/ioctl.h>
+# include <termios.h>
+# include <curses.h>
+# include <term.h>
+# include <stdbool.h>
+# include <errno.h>
 /*
 ** ENUM
 */
 
-
-typedef struct	s_sig
+typedef struct s_sig
 {
 	int		status;
 	pid_t	pid;
-	int 	prog;
+	int		prog;
 	int		sigint;
 	int		sigquit;
 	bool	heredoc;	
 }				t_sig;
 
-extern t_sig g_sig;
+extern t_sig	g_sig;
 
-typedef enum	s_builtin
+typedef enum s_builtin
 {
 	FT_CD = 2,
 	FT_ECHO,
@@ -100,7 +99,7 @@ typedef struct s_redir
 	int		count_heredoc;
 }				t_redir;
 
-typedef	struct s_data
+typedef struct s_data
 {
 	t_list	*env;
 	pid_t	*pid_array;
@@ -111,9 +110,9 @@ typedef	struct s_data
 	int		file_in;
 	int		std_out;
 	int		std_in;
-	int 	ret;
+	int		ret;
 	int		env_len;
-	char **	envp;
+	char	**envp;
 	t_node	*lexer;
 	t_dlist	*lst;
 	char	pwd[MAX];
@@ -121,18 +120,21 @@ typedef	struct s_data
 	bool	pipe;
 	bool	piped;
 	bool	heredoc_int;
-	t_redir		*redir;
+	t_redir	*redir;
 }				t_data;
-
-
 
 /*
 ** Init
 */
 
-t_list	*init_env(t_data *data, char **envp);
+t_list	*set_lvl(t_list *env, char *lvl);
 void	init_datas(t_data *data);
+t_list	*init_env(t_data *data, char **envp);
+t_dlist	*init_list(t_dlist *list);
+t_list	*get_env(t_data *d, char **envp);
 void	malloc_pid_array(t_data *data);
+t_list	*delete_node(t_list *head, char *var);
+void	print_dlist(t_dlist *lst);
 
 /*
 ** Parsing
@@ -162,7 +164,7 @@ int		recup_file_len(char *str);
 ** expands
 */
 char	*manage_expand(char *line, int i, t_data *data);
-char    *manage_variable(char *line, int i, t_data *data);
+char	*manage_variable(char *line, int i, t_data *data);
 int		check_append(char *line);
 
 /*
@@ -181,11 +183,11 @@ bool	check_exist_var(char *arg, int i, t_data *data);
 void	add_to_array(t_data *d, pid_t pid);
 void	count_childs(char *cmd, t_data *data);
 void	execute(char **cmd, t_data *data);
-void 	exec_builtin(char **cmd, t_data *d);
-void 	exec_simple(char  **cmd, t_data *d);
+void	exec_builtin(char **cmd, t_data *d);
+void	exec_simple(char **cmd, t_data *d);
 char	*exec_pipes(char *line, char *new_input, t_data *data);
-int 	is_builtins(char **cmd);
-void    wait_for_childs(t_data *data);
+int		is_builtins(char **cmd);
+void	wait_for_childs(t_data *data);
 
 /*
 ** manage_fds
@@ -196,32 +198,21 @@ void	pipe_in(t_data *d);
 void	restore_fds(t_data *data);
 
 /*
-** find_path
+** get_binary
 */
-
-// char *find_bin(char **paths, char **cmd, char **env);
-char 	*test_path(char **cmd, char **paths, char *bin, int i);
+char	*test_path(char **cmd, char **paths, char *bin, int i);
 char	**get_path(t_data *d);
-char 	*find_bin(char **paths, char **cmd);
-char 	**get_absolute_path(char **cmd, t_data *d);
+char	*find_bin(char **paths, char **cmd);
+char	**get_absolute_path(char **cmd, t_data *d);
 
 /*
 ** init
 */
-t_list		*delete_node(t_list *head, char *var);
-t_list		*get_env(t_data *d, char **envp);
-t_dlist		*init_list(t_dlist *list);
-void		print_dlist(t_dlist *lst);
-t_list		*init_env(t_data *d, char **envp);
-t_list		*set_lvl(t_list *env, char * lvl);
 
 /*
 ** Built-in
 */
 
-/*
-** env
-*/
 void	ft_env(t_data *d, char **cmd);
 void	convert_env(t_data *d);
 char	*find_var(char *name);
@@ -229,44 +220,17 @@ char	*find_name(char *var);
 int		export_var(char **cmd, t_data *d, int j);
 int		ft_export(char **cmd, t_data *d);
 void	print_export(t_data *d);
-
-/*
-** unset
-*/
-t_list			*ft_unset(char **cmd, t_data *d);
-void			unset_var(char *var, t_data *d);
-// static t_list	*delete_last(t_list *h, t_list *hn, char *name);
-// static t_list	*delete_middle(t_list *h, t_list *hn, char *name);
-// static t_list	*delete_head(t_list *head);
-
-/*
-** pwd
-*/
+t_list	*ft_unset(char **cmd, t_data *d);
+void	unset_var(char *var, t_data *d);
 int		ft_pwd(void);
-//int		ft_exit(char **cmd, t_data *d);
-
-/*
-** echo 
-*/
 int		ft_echo(char **cmd, t_data *d);
-
-/*
-** exit
-*/
 int		ft_exit(char **cmd, t_data *d);
-
-/*
-** cd
-*/
 int		ft_cd(char **cmd, t_data *d);
-
-
 /*
 ** utils
 */
 char	*find_var(char *name);
 char	*find_name(char *var);
-
 
 /*
 ** Free
@@ -283,10 +247,9 @@ void	opening_error(char *error);
 /*
 ** Signals
 */
-void    sig_child();
+
 void	sig_heredoc(int signo);
 void	sig_int(int signo);
 void	sig_quit(int signo);
-void	sig_pipe(int signo);
 
 #endif
