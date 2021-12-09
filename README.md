@@ -8,7 +8,7 @@
 
 1. `git clone https://github.com/clbouche/minishell.git`
 
-2. `make` -> We used [Arthur's][https://github.com/arthur-trt/genMake] wonderful Makefile generator
+2. `make` -> We used [Arthur's](https://github.com/arthur-trt/genMake) wonderful Makefile generator
 
 3. run ./minishell -> create a prompt where you can add your command ! Enjoy 😃 
 
@@ -42,6 +42,6 @@
 
 ### 🎉 Final Grade 🎉 
 100/100
-Created by [Lucrèce][https://github.com/Tart3mpion] & me ! 
+Created by [Lucrèce](https://github.com/Tart3mpion) & me ! 
 
 🍄 ENJOY 🍄
