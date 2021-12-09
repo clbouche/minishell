@@ -19,7 +19,7 @@ make
 
 3. run ./minishell -> create a prompt where you can add your command ! Enjoy 😃 
 
-### Plan of the project
+## Plan of the project
 
 #### Understand the shell
 #### Parsing
