@@ -8,7 +8,7 @@
 
 1. `git clone https://github.com/clbouche/minishell.git`
 
-2. `make` -> We used [Arthur's](https://github.com/arthur-trt/genMake) wonderful Makefile generator
+2. `make` -> We used Arthur's wonderful [Makefile generator](https://github.com/arthur-trt/genMake)
 
 3. run ./minishell -> create a prompt where you can add your command ! Enjoy 😃 
 
