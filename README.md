@@ -6,9 +6,16 @@
 
 ## How to use it
 
-1. `git clone https://github.com/clbouche/minishell.git`
+1. 
+```
+git clone https://github.com/clbouche/minishell.git
+```
 
-2. `make` -> We used Arthur's wonderful [Makefile generator](https://github.com/arthur-trt/genMake)
+2. 
+```
+make
+``` 
+-> We used Arthur's wonderful [Makefile generator](https://github.com/arthur-trt/genMake)
 
 3. run ./minishell -> create a prompt where you can add your command ! Enjoy 😃 
 
