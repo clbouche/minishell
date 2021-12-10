@@ -6,8 +6,10 @@
 
 //mettre une video demo avec des exemples de commandes
 
+---
 ## Subject 
 
+---
 ## How to use it
 
 1. 
@@ -23,6 +25,7 @@ make
 
 3. run ./minishell -> create a prompt where you can add your command ! Enjoy 😃 
 
+---
 ## Plan of the project
 
 #### Understand the shell
@@ -45,15 +48,20 @@ make
   - pwd
   - unset
   
+---
 #### Les cas tricky/relous
-  
+
+---
 ## Notes
 
+---
 ## Ressources
 
+---
 ### 🎉 Final Grade 🎉 
 100/100
 
 Created by [Lucrèce](https://github.com/Tart3mpion) & me ! 
 
+--- 
 🍄 ENJOY 🍄
