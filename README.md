@@ -1,5 +1,10 @@
 # Minishell - 42
 
+<h1 align=center>
+	<b> MINISHELL - 42 : </b>
+</h1>
+
+
 //mettre une video demo avec des exemples de commandes
 
 ## Subject 
