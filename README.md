@@ -1,7 +1,6 @@
-# Minishell - 42
 
 <h1 align=center>
-	<b> MINISHELL - 42 : </b>
+	<b> MINISHELL - 42</b>
 </h1>
 
 
