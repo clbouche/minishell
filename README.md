@@ -16,7 +16,7 @@
 
 2. ```make``` 
 
--> We used Arthur's wonderful [Makefile generator](https://github.com/arthur-trt/genMake)
+      -> We used Arthur's wonderful [Makefile generator](https://github.com/arthur-trt/genMake)
 
 3. run ./minishell -> create a prompt where you can add your command ! Enjoy 😃 
 
