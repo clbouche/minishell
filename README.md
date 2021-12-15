@@ -12,10 +12,7 @@
 ---
 ## How to use it
 
-1. 
-```
-git clone https://github.com/clbouche/minishell.git
-```
+1. ```git clone https://github.com/clbouche/minishell.git```
 
 2. 
 ```
