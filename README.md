@@ -27,8 +27,11 @@
 
 1. Pipe 
 2. Redirections
-3. Quotes
-4. Expand
+	2.1. A penser 
+	- Les multiples redirections 
+	- 
+4. Quotes
+5. Expand
 
 
 #### Execution 
@@ -44,6 +47,7 @@ Je ne vais pas parler de cette partie puisque je ne m'en suis pas occupée ! Goo
   
 ---
 #### Les cas tricky/relous
+
 
 ---
 ## Notes
