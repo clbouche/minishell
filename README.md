@@ -3,8 +3,6 @@
 	<b> MINISHELL - 42</b>
 </h1>
 
-![hawu9y](https://user-images.githubusercontent.com/57404773/146171247-d44c409c-8e04-4642-971e-209602e0b19d.gif)
-
 //mettre une video demo avec des exemples de commandes
 
 ---
@@ -23,8 +21,6 @@
 ## Plan of the project
 
 #### Understand the shell
-
-//add image of shell operation
 
 
 #### Parsing
