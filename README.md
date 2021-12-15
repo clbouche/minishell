@@ -10,7 +10,7 @@
 
 → L'objectif de Minishell est ... 🥁 de créer un petit shell ! Pour plus de clarté, je vous partage la définition d'un shell : 
 
-`Le shell (ou interface système en français) est un programme qui reçoit des commandes informatiques données par un utilisateur à partir de son clavier pour les envoyer au système d’exploitation qui se chargera de les exécuter.`
+``` Le shell (ou interface système en français) est un programme qui reçoit des commandes informatiques données par un utilisateur à partir de son clavier pour les envoyer au système d’exploitation qui se chargera de les exécuter.```
 
 TADAM !
 
