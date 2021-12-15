@@ -55,14 +55,20 @@ Je ne vais pas parler de cette partie puisque je ne m'en suis pas occupée ! Goo
 ## Ressources
 
 - http://i.paysdu42.fr/?page=minishell.c ➡️ principe de minishell et son fonctionnement. 
+
 - http://www.zeitoun.net/articles/communication-par-tuyau/start ➡️ les pipes. 
+
 - https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html ➡️ Le manuel de Bash, et ouiiii ! Je vous conseille : 
 	- 3.1.1. Shell operations ➡️ vous donnera les étapes par lesquelles passer pour traiter les informations dans le bon ordre. 
 	Permet d'éviter de gérer de nombreux cas particuliers a la fin du projet. 
 	- 3.6 Redirections ➡️ comprendre leurs fonctionnements et comment les utiliser. 
+
 - https://www.geeksforgeeks.org/signals-c-language/ ➡️ les signaux. 
+
 - https://github.com/iciamyplant/Minishell#i---quest-ce-que-minishell- ➡️ un Readme plus que complet sur la partie parsing !! 
+
 - https://shapeshed.com/unix-exit-codes/ ➡️ sortie d'erreurs et code erreur posix. 
+
 - https://ix-56h.github.io/how-to-make-a-tokenizer/  ➡️ un tuto que l'on a finalement pas suivi mais qui rend un parsing solide comme du beton alors je vous le conseille vivement ! 
 
 ---
