@@ -3,10 +3,10 @@
 	<b> MINISHELL - 42</b>
 </h1>
 
-//mettre une video demo avec des exemples de commandes
+//demo
 
 ---
-## Subject 
+## Sujet 
 
 → L'objectif de Minishell est ... 🥁 de créer un petit shell ! Pour plus de clarté, je vous partage la définition d'un shell : 
 
@@ -15,18 +15,18 @@
 TADAM !
 
 ---
-## How to use it
+## Comment ça marche ? 
 
 1. ```git clone https://github.com/clbouche/minishell.git```
 
-2. ```make```  -> We used Arthur's wonderful [Makefile generator](https://github.com/arthur-trt/genMake)
+2. ```make```  -> On a utilisé le MAGNIFIQUE genmake de notre Arthur national [Makefile generator](https://github.com/arthur-trt/genMake)
 
-3. run ./minishell -> create a prompt where you can add your command ! Enjoy 😃 
+3. run ./minishell -> crée un prompt, à vos commandes ! 😃 
 
 ---
-## Plan of the project
+## Plan du projet
 
-#### Understand the shell
+#### Comprendre le shell
 
 
 #### Parsing
@@ -82,7 +82,7 @@ Je ne vais pas parler de cette partie puisque je ne m'en suis pas occupée ! Goo
 ### 🎉 Final Grade 🎉 
 100/100
 
-Created by [Lucrèce](https://github.com/Tart3mpion) & me ! 
+Créé par [Lucrèce](https://github.com/Tart3mpion) & moi ! 
 
 --- 
 🍄 ENJOY 🍄
