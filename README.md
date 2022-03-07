@@ -19,7 +19,7 @@ TADAM !
 
 1. ```git clone https://github.com/clbouche/minishell.git```
 
-2. ```make```  -> On a utilisé le MAGNIFIQUE genmake de notre Arthur national [Makefile generator](https://github.com/arthur-trt/genMake)
+2. ```make```  -> On a utilisé le MAGNIFIQUE [Genmake](https://github.com/arthur-trt/genMake) de notre Arthur national !
 
 3. run ./minishell -> crée un prompt, à vos commandes ! 😃 
 
