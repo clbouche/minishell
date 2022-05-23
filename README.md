@@ -82,7 +82,7 @@ Je ne vais pas parler de cette partie puisque je ne m'en suis pas occupée ! Goo
 ### 🎉 Final Grade 🎉 
 100/100
 
-Créé par [Lucrèce](https://github.com/Tart3mpion) & moi ! 
+Créé par [Lucrèce](https://github.com/ldes-cou) & moi ! 
 
 --- 
 🍄 ENJOY 🍄
